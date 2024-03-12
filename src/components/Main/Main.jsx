@@ -1,5 +1,5 @@
 import { CORE_CONCEPTS } from "../../data.js";
-import Example from "../Example.jsx";
+import Example from "../Example/Example.jsx";
 import "./Main.css";
 
 function CoreConcept({ image, title, description }) {
