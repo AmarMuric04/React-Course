@@ -1,4 +1,5 @@
 import { CORE_CONCEPTS } from "../../../data";
+import Section from "../../Section";
 
 import "./CardsContainer.css";
 
@@ -14,13 +15,12 @@ function Card({ image, title, description }) {
 
 export default function CardsContainer() {
   return (
-    <section id="core-concepts">
-      <h2>Vreme je da pocnemo!</h2>
+    <Section id="core-concepts" title={"Vreme je da pocnemo"}>
       <ul>
         {CORE_CONCEPTS.map((cardHTML) => (
           <Card key={cardHTML.title} {...cardHTML} />
         ))}
       </ul>
-    </section>
+    </Section>
   );
 }
