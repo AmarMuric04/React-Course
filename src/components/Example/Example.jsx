@@ -1,19 +1,28 @@
+import { useState } from "react";
+import { EXAMPLES } from "../../data.js";
+
 import "./Example.css";
 
-function TabButton({ text, onClick }) {
+function TabButton({ text, onClick, isClicked }) {
   return (
     <li>
-      <button onClick={onClick}>{text}</button>
+      <button className={isClicked ? "active" : null} onClick={onClick}>
+        {text}
+      </button>
     </li>
   );
 }
 
 export default function Example() {
+  const [clickedTopic, setClickedTopic] = useState();
+
   function handleTabButtonClick(clickedButton) {
-    clickedButton === "Components";
-    clickedButton === "JSX";
-    clickedButton === "Props";
-    clickedButton === "State";
+    if (clickedTopic === clickedButton) {
+      setClickedTopic(!clickedButton);
+      return;
+    }
+
+    setClickedTopic(clickedButton);
   }
 
   return (
@@ -21,23 +30,37 @@ export default function Example() {
       <h2>Examples</h2>
       <menu>
         <TabButton
-          onClick={handleTabButtonClick.bind(null, "Components")}
+          isClicked={clickedTopic === "components"}
+          onClick={handleTabButtonClick.bind(null, "components")}
           text="Components"
         />
         <TabButton
-          onClick={handleTabButtonClick.bind(null, "JSX")}
+          isClicked={clickedTopic === "jsx"}
+          onClick={handleTabButtonClick.bind(null, "jsx")}
           text="JSX"
         />
         <TabButton
-          onClick={handleTabButtonClick.bind(null, "Props")}
+          isClicked={clickedTopic === "props"}
+          onClick={handleTabButtonClick.bind(null, "props")}
           text="Props"
         />
         <TabButton
-          onClick={handleTabButtonClick.bind(null, "State")}
+          isClicked={clickedTopic === "state"}
+          onClick={handleTabButtonClick.bind(null, "state")}
           text="State"
         />
       </menu>
-      ...
+      {!clickedTopic ? (
+        <p>Please click a button</p>
+      ) : (
+        <div id="tab-content">
+          <h3>{EXAMPLES[clickedTopic].title}</h3>
+          <p>{EXAMPLES[clickedTopic].description}</p>
+          <pre>
+            <code>{EXAMPLES[clickedTopic].code}</code>
+          </pre>
+        </div>
+      )}
     </section>
   );
 }
