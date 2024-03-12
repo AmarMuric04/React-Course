@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { EXAMPLES } from "../../data.js";
+import { EXAMPLES } from "../../../data.js";
 
-import "./Example.css";
+import "./Examples.css";
 
 function TabButton({ text, onClick, isClicked }) {
   return (
@@ -17,12 +17,9 @@ export default function Example() {
   const [clickedTopic, setClickedTopic] = useState();
 
   function handleTabButtonClick(clickedButton) {
-    if (clickedTopic === clickedButton) {
-      setClickedTopic(!clickedButton);
-      return;
-    }
-
-    setClickedTopic(clickedButton);
+    clickedTopic === clickedButton
+      ? setClickedTopic(!clickedButton)
+      : setClickedTopic(clickedButton);
   }
 
   return (
@@ -50,6 +47,7 @@ export default function Example() {
           text="State"
         />
       </menu>
+
       {!clickedTopic ? (
         <p>Please click a button</p>
       ) : (
