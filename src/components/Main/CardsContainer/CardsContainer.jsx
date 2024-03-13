@@ -1,5 +1,5 @@
 import { CORE_CONCEPTS } from "../../../data";
-import Section from "../../Section";
+import Section from "../../templates/Section";
 
 import "./CardsContainer.css";
 

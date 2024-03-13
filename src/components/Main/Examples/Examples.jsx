@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { EXAMPLES } from "../../../data.js";
 
-import Section from "../../Section.jsx";
-import Tabs from "../../Tabs.jsx";
+import Section from "../../templates/Section.jsx";
+import Tabs from "../../templates/Tabs.jsx";
 
 import "./Examples.css";
 
