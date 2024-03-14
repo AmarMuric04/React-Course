@@ -77,7 +77,8 @@ function App() {
               <td>{el.year}</td>
               <td>{formatter.format(el.valueEndOfYear)}</td>
               <td>{formatter.format(el.interest)}</td>
-              <td>{formatter.format(el.annualInvestment)}</td>
+              <td>{formatter.format(el.totalInterest)}</td>
+              <td>{formatter.format(el.investedCapital)}</td>
             </tr>
           ))}
         </tbody>
