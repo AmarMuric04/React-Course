@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { calculateInvestmentResults } from "./util/investment";
-import { formatter } from "./util/investment";
+
+import Table from "./components/Table";
+import UserInputs from "./components/UserInputs";
 
 const INITIAL_INVESTMENTS = {
-  initialInvestment: 0,
-  annualInvestment: 0,
-  expectedReturn: 0,
-  duration: 0,
+  initialInvestment: 15000,
+  annualInvestment: 1700,
+  expectedReturn: 8,
+  duration: 12,
 };
 
 function App() {
-  const [investments, setInvestments] = useState([]);
+  /*prettier-ignore */
+  const [investments, setInvestments] = useState(calculateInvestmentResults(INITIAL_INVESTMENTS));
+
+  let errorText;
 
   function getInputValues(event) {
     /*prettier-ignore */
@@ -25,64 +30,23 @@ function App() {
     setInvestments(calculateInvestmentResults(INITIAL_INVESTMENTS));
   }
 
+  if (
+    (!INITIAL_INVESTMENTS.initialInvestment &&
+      INITIAL_INVESTMENTS.initialInvestment !== 0) ||
+    (!INITIAL_INVESTMENTS.annualInvestment &&
+      INITIAL_INVESTMENTS.annualInvestment !== 0) ||
+    (!INITIAL_INVESTMENTS.expectedReturn &&
+      INITIAL_INVESTMENTS.expectedReturn !== 0) ||
+    (!INITIAL_INVESTMENTS.duration && INITIAL_INVESTMENTS.duration !== 0)
+  )
+    errorText = <p className="center">Please fill up all the input fields.</p>;
+  else if (INITIAL_INVESTMENTS.duration <= 0)
+    errorText = <p className="center">Duration must be greater than 0.</p>;
+
   return (
     <>
-      <main id="user-input">
-        <div className="input-group">
-          <div>
-            <label htmlFor="initial-investment">Initial Investment</label>
-            <input
-              onChange={getInputValues}
-              type="number"
-              id="initial-investment"
-            />
-          </div>
-          <div>
-            <label htmlFor="annual-investment">Annual investment</label>
-            <input
-              onChange={getInputValues}
-              type="number"
-              id="annual-investment"
-            />
-          </div>
-        </div>
-        <div className="input-group">
-          <div>
-            <label htmlFor="expected-return">Expected return</label>
-            <input
-              onChange={getInputValues}
-              type="number"
-              id="expected-return"
-            />
-          </div>
-          <div>
-            <label htmlFor="duration">Duration</label>
-            <input onChange={getInputValues} type="number" id="duration" />
-          </div>
-        </div>
-      </main>
-      <table id="result">
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Investment Value</th>
-            <th>Interest (Year)</th>
-            <th>Total Interest</th>
-            <th>Invested Capital</th>
-          </tr>
-        </thead>
-        <tbody>
-          {investments.map((el) => (
-            <tr key={el.year}>
-              <td>{el.year}</td>
-              <td>{formatter.format(el.valueEndOfYear)}</td>
-              <td>{formatter.format(el.interest)}</td>
-              <td>{formatter.format(el.totalInterest)}</td>
-              <td>{formatter.format(el.investedCapital)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <UserInputs inputValues={INITIAL_INVESTMENTS} onChange={getInputValues} />
+      {errorText ? errorText : <Table investmentArray={investments} />}
     </>
   );
 }
