@@ -1,18 +1,12 @@
-import logo from "../assets/logo.png";
+import Main from "../components/Main";
+import Header from "../components/Header";
 
 function App() {
   return (
-    <header>
-      <div id="header-logo">
-        <img src={logo} alt="Site logo" />
-        <p>Lorem</p>
-      </div>
-      <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-      </ul>
-    </header>
+    <>
+      <Header />
+      <Main />
+    </>
   );
 }
 
