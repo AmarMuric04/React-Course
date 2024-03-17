@@ -32,13 +32,12 @@ body {
 }
 
 header {
-  width: calc(100% - 20rem);
+  width: 80vw;
   height: 8vh;
 
-  color: white;
   display: flex;
   justify-content: space-between;
-  padding: 2rem 10rem;
+  padding: 2rem 0rem;
 }
 
 #header-logo {

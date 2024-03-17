@@ -5,7 +5,7 @@ export default function Header() {
     <header>
       <div id="header-logo">
         <img src={logo} alt="Site logo" />
-        <p>Lorem</p>
+        <p>React / Murga</p>
       </div>
       <ul>
         <li>Home</li>
