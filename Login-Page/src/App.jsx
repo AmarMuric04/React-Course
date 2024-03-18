@@ -1,20 +1,16 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-import SignUp from "../components/SignUp";
-import SignIn from "../components/Signin";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/Signin";
 
 function App() {
   const [showPage, setShowPage] = useState("signin");
 
-  function handleSignUp() {
-    setShowPage("signup");
-  }
-
-  function handleSignIn() {
-    setShowPage("signin");
+  function handleShowPage(identiifier) {
+    identiifier === "signup" ? setShowPage("signup") : setShowPage("signin");
   }
 
   return (
@@ -23,10 +19,18 @@ function App() {
         {showPage === "signup" ? <SignUp /> : <SignIn />}
 
         <section id="buttons-section">
-          <Button onClick={handleSignUp} id="signup-button" variant="text">
+          <Button
+            onClick={handleShowPage.bind(null, "signup")}
+            id="signup-button"
+            variant="text"
+          >
             Sign up
           </Button>
-          <Button onClick={handleSignIn} id="signin-button" variant="contained">
+          <Button
+            onClick={handleShowPage.bind(null, "signin")}
+            id="signin-button"
+            variant="contained"
+          >
             Sign in
           </Button>
         </section>
