@@ -65,6 +65,11 @@ export default function SignIn({ onClick }) {
     }, 2000);
   }
 
+  function handleSignOut() {
+    setSignedIn(false);
+    setAlertMessage("");
+  }
+
   return (
     <>
       <h1>
@@ -98,27 +103,31 @@ export default function SignIn({ onClick }) {
         >
           Don't have an account?
         </button>
-        <Button
-          onClick={handleCheckInputs.bind(
-            null,
-            emailValue.current,
-            passwordValue.current
-          )}
-          id="signin-button"
-          variant="contained"
-          disabled={signedIn}
-        >
-          {showSpinner ? (
-            <>
-              <p>Signning in</p>
-              <AutorenewIcon className="spinner" />{" "}
-            </>
-          ) : signedIn ? (
-            <p>Sign out</p>
-          ) : (
-            <p>Sign in</p>
-          )}
-        </Button>
+        {signedIn ? (
+          <Button variant="contaned" id="signin-button" onClick={handleSignOut}>
+            Sign out
+          </Button>
+        ) : (
+          <Button
+            onClick={handleCheckInputs.bind(
+              null,
+              emailValue.current,
+              passwordValue.current
+            )}
+            id="signin-button"
+            variant="contained"
+            disabled={signedIn}
+          >
+            {showSpinner ? (
+              <>
+                <p>Signning in</p>
+                <AutorenewIcon className="spinner" />{" "}
+              </>
+            ) : (
+              <p>Sign in</p>
+            )}
+          </Button>
+        )}
       </section>
     </>
   );

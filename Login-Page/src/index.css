@@ -108,6 +108,9 @@ main label {
   color: inherit;
 
   color: white;
+
+  display: flex;
+  align-items: center;
 }
 
 #password-container {
