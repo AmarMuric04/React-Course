@@ -1,7 +1,8 @@
 import TextField from "@mui/material/TextField";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Button from "@mui/material/Button";
 
-export default function SignUp() {
+export default function SignUp({ onClick }) {
   return (
     <>
       <h1>
@@ -19,6 +20,24 @@ export default function SignUp() {
             variant="standard"
           />
         </div>
+      </section>
+
+      <section id="buttons-section">
+        <button
+          // onClick={handleShowPage.bind(null, "signup")}
+          id="side-button"
+          variant="text"
+          onClick={onClick.bind(null, "signin")}
+        >
+          Already have an account?
+        </button>
+        <Button
+          // onClick={handleShowPage.bind(null, "signin")}
+          id="signup-button"
+          variant="contained"
+        >
+          Sign up
+        </Button>
       </section>
     </>
   );
