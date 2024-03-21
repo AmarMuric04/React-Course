@@ -1,4 +1,7 @@
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+
+import noProjectsImg from "./assets/no-projects.png";
 
 function App() {
   return (
@@ -6,21 +9,17 @@ function App() {
       <main>
         <section id="your-projects">
           <h1>Your projects</h1>
-          <button id="add-project-button">+ Add Project</button>
+          <Button id="add-project-button" variant="outlined">
+            + Add Project
+          </Button>
         </section>
-        <section id="add-project-page">
-          <div id="add-project-page-buttons">
-            <button className="cancel-button">Cancel</button>
-            <button className="save-button">Save</button>
-          </div>
-          <TextField id="filled-basic" label="TITLE" variant="filled" />{" "}
-          <TextField
-            id="filled-multiline-static"
-            label="DESCRIPTION"
-            multiline
-            rows={4}
-            variant="filled"
-          />
+        <section id="no-project-section" className="right-section">
+          <img id="no-project-image" src={noProjectsImg} alt="" />
+          <h2>No Project Selected</h2>
+          <p>Select a project or get started with a new one</p>
+          <Button id="add-project-button" variant="outlined">
+            Create new project
+          </Button>
         </section>
       </main>
     </>
