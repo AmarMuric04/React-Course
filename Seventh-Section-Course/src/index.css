@@ -31,11 +31,11 @@ main {
     rgba(13, 8, 0, 1) 100%
   );
   height: calc(95% - 10rem);
-  width: calc(25% - 6rem);
+  width: calc(20% - 6rem);
 
   padding: 5rem 3rem;
 
-  border-top-right-radius: 1.5rem;
+  border-top-right-radius: 1rem;
   color: white;
 
   display: flex;
@@ -50,7 +50,6 @@ main {
 }
 
 #add-project-button {
-  background-color: rgb(37, 37, 37);
   color: inherit;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -66,14 +65,40 @@ main {
 }
 
 #add-project-button:hover {
-  background-color: #131313;
+  background-color: #d6d6d6;
+}
+
+#projects-list-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#projects-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  list-style: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0px;
+}
+
+#projects-list li {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+#projects-list li:hover {
+  background-color: #222;
 }
 
 .right-section {
   display: flex;
   flex-direction: column;
 
-  width: 75%;
+  width: 80%;
   align-items: center;
   justify-content: center;
   gap: 2rem;
@@ -92,4 +117,141 @@ main {
 #no-project-section p {
   font-size: 1.5rem;
   color: gray;
+}
+
+#add-projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: calc(80% - 20rem);
+  height: 95%;
+  padding: 0rem 17rem 0rem 3rem;
+
+  gap: 2rem;
+}
+
+#add-projects input {
+  width: 100%;
+}
+
+.add-project-page-button {
+  padding: 1rem 2rem !important;
+  width: 8rem !important;
+  color: gray !important;
+  border-radius: 0.5rem !important;
+}
+
+#add-projects-save {
+  background-color: #131313;
+}
+
+#add-projects-cancel {
+  background-color: gray;
+  color: white !important;
+  opacity: 0.7;
+}
+
+#add-projects-buttons {
+  align-self: flex-end;
+  display: flex;
+  gap: 0.5rem;
+}
+
+#project {
+  width: calc(80% - 20rem);
+  height: calc(95% - 6rem);
+
+  padding: 6rem 17rem 0rem 3rem;
+}
+
+#project-title-container {
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#delete-project-button {
+  color: red;
+
+  border-color: red;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+
+  transition: all 0.5s;
+}
+
+#delete-project-button:hover,
+#remove-task-button:hover {
+  background-color: rgb(255, 86, 86);
+  border-color: rgb(255, 86, 86);
+
+  color: white;
+}
+
+#project-date {
+  color: rgb(150, 150, 150);
+  font-size: 1.3rem;
+}
+
+#project-description {
+  margin-top: 3rem;
+  min-height: 5rem;
+}
+
+#task-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 1rem;
+}
+
+#add-task-container {
+  display: flex;
+  gap: 1rem;
+}
+
+#add-task-container input {
+  width: 20rem;
+}
+
+#add-task-button {
+  border-color: lime;
+
+  color: lime;
+  padding: 1rem 2rem;
+}
+
+#add-task-button:hover {
+  background-color: rgb(115, 254, 115);
+  border-color: rgb(115, 254, 115);
+  border-radius: 0.5rem;
+
+  color: white;
+}
+
+#tasks-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 0px;
+}
+
+#task-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.5rem 1rem;
+}
+
+#remove-task-button {
+  border-color: red;
+  color: red;
+  padding: 0.5rem 1rem;
+
+  transition: all 0.5s;
 }
