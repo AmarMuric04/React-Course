@@ -9,14 +9,7 @@ import AddProject from "./components/AddProject";
 import IndividualProject from "./components/IndividualProject";
 
 function App() {
-  const [projects, setProjects] = useState([
-    {
-      title: "First project",
-      description: "",
-      date: "",
-      tasks: [],
-    },
-  ]);
+  const [projects, setProjects] = useState([]);
 
   const [activeProject, setActiveProject] = useState({});
   const [indexOfActiveProject, setIndexOfActiveProject] = useState();
@@ -56,15 +49,6 @@ function App() {
     setProjects((prevProjects) => (prevProjects = [...projects, newProject]));
   }
 
-  function handleAddTask(newTask) {
-    setTasks((prevTasks) => (prevTasks = [...tasks, newTask]));
-  }
-
-  function handleRemoveTask(newTasks) {
-    console.log(newTasks);
-    setTasks((prevTasks) => (prevTasks = [...newTasks]));
-  }
-
   return (
     <>
       <main>
@@ -79,8 +63,6 @@ function App() {
             project={activeProject}
             indexOfProject={indexOfActiveProject}
             projects={projects}
-            addTask={handleAddTask}
-            removeTask={handleRemoveTask}
             changePage={changeToNoProjectPage}
           />
         )}

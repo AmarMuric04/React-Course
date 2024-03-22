@@ -52,51 +52,59 @@ export default function AddPage({ addProject, projects, changePage }) {
 
   return (
     <section id="add-projects">
-      <div id="add-projects-buttons">
-        <Button
-          onClick={changePage}
-          id="add-projects-cancel"
-          className="add-project-page-button"
-        >
-          CANCEL
-        </Button>
-        <Button
-          onClick={handleSubmitClick}
-          id="add-projects-save"
-          className="add-project-page-button"
-        >
-          SAVE
-        </Button>
-      </div>
-      <TextField
-        error={titleInputError}
-        onChange={handleTitleChange}
-        helperText={titleInputError ? "Incorrect entry." : null}
-        id="filled-basic"
-        label="TITLE"
-        variant="filled"
-        value={titleInput}
-      />
-      <TextField
-        error={descriptionInputError}
-        onChange={handleDescriptionChange}
-        helperText={descriptionInputError ? "Incorrect entry." : null}
-        id="filled-multiline-static"
-        label="DESCRIPTION"
-        multiline
-        rows={4}
-        variant="filled"
-        value={descriptionInput}
-      />
-      <TextField
-        error={dateInputError}
-        onChange={handleDateChange}
-        helperText={dateInputError ? "Incorrect entry." : null}
-        id="filled-basic"
-        label="DUE DATE"
-        variant="filled"
-        value={dateInput}
-      />
+      <section id="add-projects-container">
+        <div id="add-projects-buttons">
+          <Button
+            onClick={changePage}
+            id="add-projects-cancel"
+            className="add-project-page-button"
+          >
+            CANCEL
+          </Button>
+          <Button
+            onClick={handleSubmitClick}
+            id="add-projects-save"
+            className="add-project-page-button"
+          >
+            SAVE
+          </Button>
+        </div>
+        <div className="input-label-group normal-input">
+          <TextField
+            error={titleInputError}
+            onChange={handleTitleChange}
+            helperText={titleInputError ? "Incorrect entry." : null}
+            id="filled-basic"
+            label="TITLE"
+            variant="filled"
+            value={titleInput}
+          />
+        </div>
+        <div className="input-label-group">
+          <TextField
+            error={descriptionInputError}
+            onChange={handleDescriptionChange}
+            helperText={descriptionInputError ? "Incorrect entry." : null}
+            id="filled-multiline-static"
+            label="DESCRIPTION"
+            multiline
+            rows={4}
+            variant="filled"
+            value={descriptionInput}
+          />
+        </div>
+        <div className="input-label-group  normal-input">
+          <TextField
+            error={dateInputError}
+            onChange={handleDateChange}
+            helperText={dateInputError ? "Incorrect entry." : null}
+            id="filled-basic"
+            label="DUE DATE"
+            variant="filled"
+            value={dateInput}
+          />
+        </div>
+      </section>
     </section>
   );
 }
