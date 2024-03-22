@@ -210,6 +210,8 @@ main {
 #add-task-container {
   display: flex;
   gap: 1rem;
+  align-items: flex-start;
+  height: 5rem;
 }
 
 #add-task-container input {

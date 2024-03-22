@@ -41,6 +41,7 @@ export default function AddPage({ addProject, projects, changePage }) {
         title: titleInput,
         description: descriptionInput,
         date: dateInput,
+        tasks: [],
       });
 
       setTitleInput("");
@@ -79,7 +80,7 @@ export default function AddPage({ addProject, projects, changePage }) {
       <TextField
         error={descriptionInputError}
         onChange={handleDescriptionChange}
-        helperText={titleInputError ? "Incorrect entry." : null}
+        helperText={descriptionInputError ? "Incorrect entry." : null}
         id="filled-multiline-static"
         label="DESCRIPTION"
         multiline

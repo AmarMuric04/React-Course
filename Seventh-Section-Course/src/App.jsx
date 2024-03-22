@@ -17,23 +17,39 @@ function App() {
       tasks: [],
     },
   ]);
-  const [tasks, setTasks] = useState([
-    "Eat hotdogs",
-    "Eat sandwiches",
-    "Eat a cheeseburger",
-  ]);
 
+  const [activeProject, setActiveProject] = useState({});
+  const [indexOfActiveProject, setIndexOfActiveProject] = useState();
+
+  const [projectPage, setProjectPage] = useState(false);
   const [addProjectPage, setAddProjectPage] = useState(false);
   const [noProjectsPage, setNoProjectsPage] = useState(true);
 
-  function changeToAddPage() {
-    setNoProjectsPage((prevNoProjectsPage) => !prevNoProjectsPage);
-    setAddProjectPage((prevAddProjectsPage) => !prevAddProjectsPage);
+  function handleProjectsChange(newProjects) {
+    setProjects(newProjects);
   }
 
   function changeToNoProjectPage() {
-    setNoProjectsPage((prevNoProjectsPage) => !prevNoProjectsPage);
-    setAddProjectPage((prevAddProjectsPage) => !prevAddProjectsPage);
+    setNoProjectsPage(true);
+    setAddProjectPage(false);
+    setProjectPage(false);
+  }
+
+  function changeToAddPage() {
+    setNoProjectsPage(false);
+    setAddProjectPage(true);
+    setProjectPage(false);
+  }
+
+  function changeToProjectPage(project, index) {
+    setNoProjectsPage(false);
+    setAddProjectPage(false);
+
+    setActiveProject((prevActiveProject) => (prevActiveProject = project));
+    setIndexOfActiveProject(
+      (prevIndexOfACtiveProject) => (prevIndexOfACtiveProject = index)
+    );
+    setProjectPage(true);
   }
 
   function handleAddProject(newProject) {
@@ -52,16 +68,23 @@ function App() {
   return (
     <>
       <main>
-        <YourProjects projects={projects} />
-        <IndividualProject
-          title="Learn react"
-          description="Learn refs"
-          date="24/12/2025"
-          tasks={tasks}
-          addTask={handleAddTask}
-          removeTask={handleRemoveTask}
+        <YourProjects
+          changePageToAddProject={changeToAddPage}
+          changePageToProject={changeToProjectPage}
+          projects={projects}
         />
-        {/* {addProjectPage && (
+        {projectPage && (
+          <IndividualProject
+            changeProjects={handleProjectsChange}
+            project={activeProject}
+            indexOfProject={indexOfActiveProject}
+            projects={projects}
+            addTask={handleAddTask}
+            removeTask={handleRemoveTask}
+            changePage={changeToNoProjectPage}
+          />
+        )}
+        {addProjectPage && (
           <AddProject
             addProject={handleAddProject}
             projects={projects}
@@ -70,7 +93,7 @@ function App() {
         )}
         {noProjectsPage && (
           <NoProjects projects={projects} changePage={changeToAddPage} />
-        )} */}
+        )}
       </main>
     </>
   );

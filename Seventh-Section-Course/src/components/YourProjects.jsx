@@ -1,10 +1,18 @@
 import Button from "@mui/material/Button";
 
-export default function YourProjects({ projects }) {
+export default function YourProjects({
+  projects,
+  changePageToProject,
+  changePageToAddProject,
+}) {
   return (
     <section id="your-projects">
       <h1>Your projects</h1>
-      <Button id="add-project-button" variant="outlined">
+      <Button
+        onClick={changePageToAddProject}
+        id="add-project-button"
+        variant="outlined"
+      >
         + Add Project
       </Button>
 
@@ -13,7 +21,9 @@ export default function YourProjects({ projects }) {
           <p>Your current projects: </p>
           <ul id="projects-list">
             {projects.map((project, i) => (
-              <li key={i}>{project.title}</li>
+              <li onClick={changePageToProject.bind(null, project, i)} key={i}>
+                {project.title}
+              </li>
             ))}
           </ul>
         </div>
