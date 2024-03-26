@@ -8,7 +8,7 @@ export default function NoProjects({ changePage }) {
       <h2>No Project Selected</h2>
       <p>Select a project or get started with a new one</p>
       <Button onClick={changePage} id="add-project-button" variant="outlined">
-        Create new project
+        Create a new project
       </Button>
     </section>
   );

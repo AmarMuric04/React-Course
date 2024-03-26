@@ -19,7 +19,7 @@ main {
   width: 100%;
   height: 100svh;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 }
 
 #your-projects {
@@ -40,7 +40,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  align-items: start;
+  align-items: flex-start;
 }
 
 #your-projects h1 {
