@@ -1,7 +1,7 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function AddPage({ addProject, projects, changePage }) {
   const [titleInput, setTitleInput] = useState("");
@@ -12,6 +12,8 @@ export default function AddPage({ addProject, projects, changePage }) {
 
   const [dateInput, setDateInput] = useState("");
   const [dateInputError, setDateInputError] = useState(false);
+
+  let errorTimeout = useRef();
 
   function handleTitleChange(event) {
     setTitleInput(event.target.value);
@@ -26,11 +28,13 @@ export default function AddPage({ addProject, projects, changePage }) {
   }
 
   function handleSubmitClick() {
+    clearTimeout(errorTimeout.current);
+
     if (!titleInput) setTitleInputError(true);
     if (!descriptionInput) setDescriptionInputError(true);
     if (!dateInput) setDateInputError(true);
 
-    setTimeout(() => {
+    errorTimeout.current = setTimeout(() => {
       setTitleInputError(false);
       setDescriptionInputError(false);
       setDateInputError(false);

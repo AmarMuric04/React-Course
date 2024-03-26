@@ -1,7 +1,7 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function IndividualProject({
   project,
@@ -13,6 +13,8 @@ export default function IndividualProject({
   const [newTaskInput, setNewTaskInput] = useState("");
   const [newTaskInputError, setNewTaskInputError] = useState(false);
   const [taskRemoved, setTaskRemoved] = useState(false);
+
+  let errorTimeout = useRef();
 
   function handleTaskChange(event) {
     setNewTaskInput(
@@ -35,10 +37,12 @@ export default function IndividualProject({
   }
 
   function handleAddTask() {
+    clearTimeout(errorTimeout.current);
+
     if (!newTaskInput) {
       setNewTaskInputError((prevNewTaskInputError) => true);
 
-      setTimeout(() => {
+      errorTimeout.current = setTimeout(() => {
         setNewTaskInputError((prevNewTaskInputError) => false);
       }, 1500);
     } else {
