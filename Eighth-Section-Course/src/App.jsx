@@ -2,6 +2,7 @@ import Header from "./components/Header.jsx";
 import Shop from "./components/Shop.jsx";
 import Product from "./components/Product.jsx";
 import CartContextProvider from "./store/shoppingCart.jsx";
+import { DUMMY_PRODUCTS } from "./dummy-products.js";
 
 function App() {
   return (
