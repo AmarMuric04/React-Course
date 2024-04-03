@@ -3,14 +3,13 @@ import QUESTIONS from "./questions.js";
 
 import ProgressBar from "./components/ProgressBar.jsx";
 
-import { useState, useReducer, useRef } from "react";
+import { useState, useReducer, useRef, useEffect } from "react";
 
-let progressBarElement = <ProgressBar time={4000} />;
-
-function App() {
+export function App() {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [checkAnswer, setCheckAnswer] = useState("");
   const [buttonClass, setButtonClass] = useState("");
+  const [progressBar, setProgressBar] = useState(<ProgressBar time={4000} />);
 
   const firstAnswer = useRef();
   const secondAnswer = useRef();
@@ -28,15 +27,10 @@ function App() {
     };
   }
 
-  function handleSelect(identifier) {
-    setSelectedAnswer(identifier);
-    setButtonClass("selected");
-
-    progressBarElement = <ProgressBar time={2000} />;
-
-    setTimeout(() => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
       setCheckAnswer(identifier);
-      progressBarElement = <p>penis</p>;
+
       if (
         identifier === "first" &&
         firstAnswer.current.textContent ===
@@ -46,11 +40,28 @@ function App() {
       else setButtonClass("wrong");
     }, 3000);
 
-    if (question.questionIndex === QUESTIONS.length - 1) return;
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [selectedAnswer]);
 
-    setTimeout(() => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setProgressBar(<ProgressBar time={4000} />);
       handleShowQuestions();
     }, 5000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
+
+  function handleSelect(identifier) {
+    setSelectedAnswer(identifier);
+    setButtonClass("selected");
+    setProgressBar(<ProgressBar answered={true} time={2000} />);
+
+    if (question.questionIndex === QUESTIONS.length - 1) return;
   }
 
   function handleShowQuestions(index) {
@@ -64,7 +75,7 @@ function App() {
       </header>
       <main id="quiz">
         <div id="question">
-          {progressBarElement}
+          {progressBar}
 
           <h2>{QUESTIONS[question.questionIndex].text}</h2>
         </div>

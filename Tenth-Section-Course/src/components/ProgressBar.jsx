@@ -1,22 +1,26 @@
 import { useState, useEffect, useRef } from "react";
 
-export default function ProgressBar({ time }) {
+export default function ProgressBar({ time, answered }) {
   const [remainingTime, setRemainingTime] = useState(time);
 
   let interval = useRef();
 
   useEffect(() => {
-    clearInterval(interval);
-
     interval = setInterval(() => {
-      setRemainingTime((prevRemainingTime) => prevRemainingTime - 500);
+      setRemainingTime((prevRemainingTime) => prevRemainingTime - 10);
       if (remainingTime <= 0) clearInterval(interval);
-    }, 500);
+    }, 10);
 
     return () => {
       clearInterval(interval);
     };
   }, []);
 
-  return <progress value={remainingTime} max={time} />;
+  return (
+    <progress
+      className={answered ? "answered" : ""}
+      value={remainingTime}
+      max={time}
+    />
+  );
 }
