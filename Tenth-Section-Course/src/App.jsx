@@ -16,6 +16,8 @@ export function App() {
   const thirdAnswer = useRef();
   const fourthAnswer = useRef();
 
+  let answerTimeout = useRef();
+
   const [question, questionDispatch] = useReducer(questionElementsReducer, {
     questionIndex: 0,
   });
@@ -26,24 +28,6 @@ export function App() {
       questionIndex: state.questionIndex + 1,
     };
   }
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setCheckAnswer(identifier);
-
-      if (
-        identifier === "first" &&
-        firstAnswer.current.textContent ===
-          QUESTIONS[question.questionIndex].answers[0]
-      )
-        setButtonClass("correct");
-      else setButtonClass("wrong");
-    }, 3000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [selectedAnswer]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -62,6 +46,21 @@ export function App() {
     setProgressBar(<ProgressBar answered={true} time={2000} />);
 
     if (question.questionIndex === QUESTIONS.length - 1) return;
+    answerTimeout = setTimeout(() => {
+      setCheckAnswer(identifier);
+
+      if (
+        identifier === "first" &&
+        firstAnswer.current.textContent ===
+          QUESTIONS[question.questionIndex].answers[0]
+      )
+        setButtonClass("correct");
+      else setButtonClass("wrong");
+    }, 3000);
+
+    return () => {
+      clearTimeout(answerTimeout);
+    };
   }
 
   function handleShowQuestions(index) {

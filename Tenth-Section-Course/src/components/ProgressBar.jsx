@@ -8,6 +8,7 @@ export default function ProgressBar({ time, answered }) {
   useEffect(() => {
     interval = setInterval(() => {
       setRemainingTime((prevRemainingTime) => prevRemainingTime - 10);
+      console.log(time);
       if (remainingTime <= 0) clearInterval(interval);
     }, 10);
 
