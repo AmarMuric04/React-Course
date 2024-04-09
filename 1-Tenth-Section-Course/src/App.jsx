@@ -8,6 +8,7 @@ function App() {
       <main>
         <Quiz />
         <Murga />
+        <Murga />
       </main>
     </>
   );
