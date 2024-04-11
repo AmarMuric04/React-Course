@@ -7,8 +7,6 @@ function App() {
       <Header />
       <main>
         <Quiz />
-        <Murga />
-        <Murga />
       </main>
     </>
   );
