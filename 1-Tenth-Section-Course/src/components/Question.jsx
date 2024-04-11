@@ -10,7 +10,7 @@ export default function Question({ onSelectAnswer, onSkipAnswer, index }) {
     isCorrect: null,
   });
 
-  let timer = 2000;
+  let timer = 10000;
 
   if (answer.selectedAnswer) timer = 1000;
 
@@ -42,6 +42,9 @@ export default function Question({ onSelectAnswer, onSkipAnswer, index }) {
 
   return (
     <div id="question">
+      <button onClick={onSkipAnswer} id="skip-question">
+        SKIP
+      </button>
       <QuestionTimer
         key={timer}
         timer={timer}
