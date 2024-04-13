@@ -1,8 +1,6 @@
-import { log } from '../../../log.js';
+import { log } from "../../../log.js";
 
 export default function PlusIcon(props) {
-  log('<PlusIcon /> rendered', 3);
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
