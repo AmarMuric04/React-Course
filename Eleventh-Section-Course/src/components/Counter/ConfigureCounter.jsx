@@ -14,7 +14,11 @@ export default function ConfigureCounter({ onSet }) {
   return (
     <section id="configure-counter">
       <h2>Set Counter</h2>
-      <input type="number" onChange={handleChange} value={enteredNumber} />
+      <input
+        type="number"
+        onChange={handleChange}
+        defaultValue={enteredNumber}
+      />
       <button onClick={handleSetClick}>Set</button>
     </section>
   );
