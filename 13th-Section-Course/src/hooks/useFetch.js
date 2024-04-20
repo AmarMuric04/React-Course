@@ -27,6 +27,7 @@ export function useFetch(
   return {
     isFetching,
     error,
+    setFetchedData,
     fetchedData,
   };
 }
