@@ -120,7 +120,6 @@ function App() {
         )}
 
         <AvailablePlaces onSelectPlace={handleSelectPlace} />
-        <Murga />
       </main>
     </>
   );
