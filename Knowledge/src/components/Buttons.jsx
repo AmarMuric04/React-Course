@@ -1,7 +1,13 @@
-export default function Buttons({ openModal }) {
+import { useRef } from "react";
+import Modal from "./Modal";
+import ModalContext from "../store/modal-context";
+import { useContext } from "react";
+
+export default function Buttons({ onClick }) {
+  const { open } = useContext(ModalContext);
   return (
     <>
-      <button onClick={openModal}>Open modal</button>
+      <button onClick={open}>Open modal</button>
       <button>Don't open modal</button>
     </>
   );

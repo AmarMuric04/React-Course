@@ -1,10 +1,25 @@
-import { useImperativeHandle } from "react";
-import { forwardRef } from "react";
+import { forwardRef, useRef, useImperativeHandle } from "react";
 
-const Modal = forwardRef(function Modal({}, ref) {
-  useImperativeHandle();
+const Modal = forwardRef(function Modal({ onClick }, ref) {
+  const modal = useRef();
 
-  return <dialog id="modal">Hello there!</dialog>;
+  useImperativeHandle(ref, () => {
+    return {
+      open() {
+        modal.current.showModal();
+      },
+    };
+  });
+
+  return (
+    <>
+      <button onClick={onClick}>HELLO!!</button>
+      <dialog ref={modal} id="modal">
+        Hello there!
+      </dialog>
+      ;
+    </>
+  );
 });
 
 export default Modal;
