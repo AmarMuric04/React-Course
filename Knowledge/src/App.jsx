@@ -8,17 +8,24 @@ function App() {
 
   const modalContext = {
     open: openModal,
+    close: closeModal,
   };
 
   function openModal() {
     modal.current.open();
   }
 
+  function closeModal() {
+    modal.current.close();
+  }
+
   return (
-    <ModalContext.Provider value={modalContext}>
-      <Buttons />
-      <Modal ref={modal} />
-    </ModalContext.Provider>
+    <div className="bg-yellow-100 h-screen w-screen text-white flex gap-2 justify-center items-center">
+      <ModalContext.Provider value={modalContext}>
+        <Buttons />
+        <Modal ref={modal} />
+      </ModalContext.Provider>
+    </div>
   );
 }
 
