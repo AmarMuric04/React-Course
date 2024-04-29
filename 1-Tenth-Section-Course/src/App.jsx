@@ -8,6 +8,8 @@ function App() {
       <main>
         <Quiz />
       </main>
+      <Murga />
+    <HakatonWinner/>
     </>
   );
 }
