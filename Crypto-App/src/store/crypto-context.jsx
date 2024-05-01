@@ -3,14 +3,18 @@ import { createContext, useEffect, useState } from "react";
 export const CryptoContext = createContext({
   coinsList: [],
   userWallet: [],
+  favoriteCryptos: [],
+  addFavorite: () => {},
   formatList: () => {},
   buyCoin: () => {},
   handleFormatNumber: () => {},
+  handlePreventDefault: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
   const [coins, setCoins] = useState([]);
   const [wallet, setWallet] = useState([]);
+  const [favoriteCryptos, setFavoriteCryptos] = useState([]);
 
   useEffect(() => {
     async function fetchCrypto() {
@@ -23,71 +27,91 @@ export default function CryptoContextProvider({ children }) {
     fetchCrypto();
   }, []);
 
+  function handleFavorite(coin) {
+    const newFavoriteCryptos = [...favoriteCryptos];
+
+    if (newFavoriteCryptos.includes(coin)) {
+      newFavoriteCryptos.splice(
+        newFavoriteCryptos.findIndex((el) => el === coin),
+        1
+      );
+    } else newFavoriteCryptos.push(coin);
+
+    console.log(newFavoriteCryptos);
+
+    setFavoriteCryptos(newFavoriteCryptos);
+  }
+
   function handleBuy(coin) {
-    alert(`Purchased one ${coin.id} for ${coin.value}$`);
+    const coinCost = Number(coin.priceUsd).toFixed(2);
+    alert(`Purchased one ${coin.id} for ${coinCost}$`);
 
     setWallet((prevWallet) => {
       return [
         ...prevWallet,
         {
           id: coin.id,
-          value: coin.value,
+          value: coinCost,
         },
       ];
     });
   }
 
-  function handleFormatList(event) {
+  function handleFormatList(event, arrOfCoins, type) {
     let newCoins = [];
 
     if (event.target.value === "rank") {
-      newCoins = [...coins].sort((a, b) => Number(a.rank) - Number(b.rank));
+      newCoins = [...arrOfCoins].sort(
+        (a, b) => Number(a.rank) - Number(b.rank)
+      );
     }
 
     if (event.target.value === "rank-reversed")
-      newCoins = [...coins].sort((a, b) => Number(b.rank) - Number(a.rank));
+      newCoins = [...arrOfCoins].sort(
+        (a, b) => Number(b.rank) - Number(a.rank)
+      );
 
     if (event.target.value === "cost")
-      newCoins = [...coins].sort(
+      newCoins = [...arrOfCoins].sort(
         (a, b) => Number(b.priceUsd) - Number(a.priceUsd)
       );
 
     if (event.target.value === "cost-reversed")
-      newCoins = [...coins].sort(
+      newCoins = [...arrOfCoins].sort(
         (a, b) => Number(a.priceUsd) - Number(b.priceUsd)
       );
 
     if (event.target.value === "marketcap")
-      newCoins = [...coins].sort(
+      newCoins = [...arrOfCoins].sort(
         (a, b) => Number(b.marketCapUsd) - Number(a.marketCapUsd)
       );
 
     if (event.target.value === "marketcap-reversed")
-      newCoins = [...coins].sort(
+      newCoins = [...arrOfCoins].sort(
         (a, b) => Number(a.marketCapUsd) - Number(b.marketCapUsd)
       );
 
     if (event.target.value === "volume")
-      newCoins = [...coins].sort(
+      newCoins = [...arrOfCoins].sort(
         (a, b) => Number(b.volumeUsd24Hr) - Number(a.volumeUsd24Hr)
       );
 
     if (event.target.value === "volume-reversed")
-      newCoins = [...coins].sort(
+      newCoins = [...arrOfCoins].sort(
         (a, b) => Number(a.volumeUsd24Hr) - Number(b.volumeUsd24Hr)
       );
 
     if (event.target.value === "change")
-      newCoins = [...coins].sort(
+      newCoins = [...arrOfCoins].sort(
         (a, b) => Number(b.changePercent24Hr) - Number(a.changePercent24Hr)
       );
 
     if (event.target.value === "change-reversed")
-      newCoins = [...coins].sort(
+      newCoins = [...arrOfCoins].sort(
         (a, b) => Number(a.changePercent24Hr) - Number(b.changePercent24Hr)
       );
 
-    setCoins(newCoins);
+    type === "main" ? setCoins(newCoins) : setFavoriteCryptos(newCoins);
   }
 
   function handleFormatNumber(amount) {
@@ -100,12 +124,21 @@ export default function CryptoContextProvider({ children }) {
     return newAmount;
   }
 
+  function handlePreventDefault(event) {
+    if (event.target.closest("a")) {
+      event.preventDefault();
+    }
+  }
+
   const cryptoValue = {
     coinsList: coins,
     userWallet: [],
+    favoriteCryptos,
+    addFavorite: handleFavorite,
     formatList: handleFormatList,
     buyCoin: handleBuy,
     handleFormatNumber,
+    handlePreventDefault,
   };
 
   return (
