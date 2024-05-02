@@ -4,13 +4,13 @@ export const CryptoContext = createContext({
   _mainCoinsList: [],
   coinsList: [],
   userWallet: [],
-  favoriteCryptos: [],
+  showCryptoList: [],
   addFavorite: () => {},
   formatList: () => {},
   buyCoin: () => {},
   handleFormatNumber: () => {},
   handlePreventDefault: () => {},
-  handleShowFavorite: () => {},
+  handleShowCryptoList: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
@@ -18,7 +18,7 @@ export default function CryptoContextProvider({ children }) {
   const [filteredCoins, setFilteredCoins] = useState([]);
   const [wallet, setWallet] = useState([]);
   const [favoriteCryptos, setFavoriteCryptos] = useState([]);
-  const [showFavorite, setShowFavorite] = useState(false);
+  const [showCryptoList, setShowCryptoList] = useState("main");
 
   useEffect(() => {
     async function fetchCrypto() {
@@ -143,22 +143,22 @@ export default function CryptoContextProvider({ children }) {
     }
   }
 
-  function handleShowFavorite(identifier) {
-    !identifier ? setShowFavorite(false) : setShowFavorite(true);
+  function handleShowCryptoList(identifier) {
+    setShowCryptoList(identifier);
   }
 
   const cryptoValue = {
     _mainCoinsList: coins,
     coinsList: filteredCoins,
     userWallet: [],
-    showFavorite,
+    showCryptoList,
     favoriteCryptos,
     addFavorite: handleFavorite,
     formatList: handleFormatList,
     buyCoin: handleBuy,
     handleFormatNumber,
     handlePreventDefault,
-    handleShowFavorite,
+    handleShowCryptoList,
   };
 
   return (

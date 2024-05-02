@@ -66,7 +66,7 @@ export default function SignUp({ onChange }) {
       <p>
         Already have an account?{" "}
         <span
-          onClick={onChange}
+          onClick={() => onChange("login")}
           className="text-yellow-400 hover:underline cursor-pointer font-bold"
         >
           Log in!

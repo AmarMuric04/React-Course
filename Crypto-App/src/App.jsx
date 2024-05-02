@@ -1,6 +1,5 @@
 import Header from "./components/Header";
 import Menu from "./components/Menu";
-import FilterCryptoList from "./components/FilterCryptoList";
 import CryptoContextProvider from "./store/crypto-context.jsx";
 import InterestingCryptos from "./components/InterestingCryptos.jsx";
 import CredentialsPage from "./components/CredentialsPage";
@@ -21,24 +20,24 @@ function App() {
     <>
       {showPage === "home" && (
         <CryptoContextProvider>
-          <main className="bg-stone-200 max-w-screen mt-[4.5rem] h-auto flex flex-col justify-center items-center">
+          <main className="bg-stone-200 max-w-screen mt-[4.5rem] h-auto min-h-screen flex flex-col justify-center items-center">
             <Header onChangeMainPage={handleChangeMainPage} />
             <div className="flex flex-col w-[100rem] mt-24">
-              <h1 className="text-4xl font-bold uppercase mb-8">
-                Market overview
-              </h1>
               <InterestingCryptos />
               <section>
-                <Menu onChangeMainPage={handleChangeMainPage} />
-                <FilterCryptoList />
-              
+                <Menu />
                 <CryptoListContainer />
               </section>
             </div>
           </main>
         </CryptoContextProvider>
       )}
-      {showPage === "credentials" && <CredentialsPage page={credentialsPage} />}
+      {showPage === "credentials" && (
+        <CredentialsPage
+          page={credentialsPage}
+          onChangeMainPage={handleChangeMainPage}
+        />
+      )}
     </>
   );
 }
