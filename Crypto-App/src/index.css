@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-#signup {
-  background-image: url("../public/main.jpg");
-}
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
 
 #signup-inner {
   background-image: url("../public/LoginBGmain.jpg");
+  background-size: cover;
+}
+
+#signup-text {
+  font-family: "Arimo", sans-serif;
 }

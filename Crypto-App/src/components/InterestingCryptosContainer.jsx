@@ -99,12 +99,29 @@ export default function InterestingCryptosContainer({ filterBy }) {
                 <li className="w-32 text-xs">{coinMarketCap}$</li>
                 <li className="w-32 text-xs">{volumeInLast24Hours}$</li>
                 <li
-                  className={`w-32 flex items-center justify-end ${
-                    changeInLast24Hours < 0 ? "text-red-400" : "text-green-400"
+                  className={`w-32 flex items-center justify-end gap-2 ${
+                    changeInLast24Hours < -0.2 && "text-red-400"
+                  }  ${changeInLast24Hours > 0.2 && "text-green-400"} ${
+                    changeInLast24Hours > -0.2 &&
+                    changeInLast24Hours < 0.2 &&
+                    "text-stone-500"
                   }`}
                 >
                   {changeInLast24Hours}%{" "}
-                  {changeInLast24Hours < 0 ? (
+                  {changeInLast24Hours > -0.2 && changeInLast24Hours < 0.2 && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M8 18h3v-3H2v-2h20v2h-9v3h3l-4 4zm4-16L8 6h3v3H2v2h20V9h-9V6h3z"
+                      />
+                    </svg>
+                  )}
+                  {changeInLast24Hours < -0.2 && (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1.5em"
@@ -116,7 +133,8 @@ export default function InterestingCryptosContainer({ filterBy }) {
                         d="M7.03 13.92h4V5l2.01-.03v8.95h3.99l-5 5Z"
                       />
                     </svg>
-                  ) : (
+                  )}
+                  {changeInLast24Hours > 0.2 && (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1.5em"

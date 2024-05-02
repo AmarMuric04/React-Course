@@ -77,13 +77,13 @@ export default function Crypto({ coin }) {
         <li className="w-3 font-normal absolute bottom-2 left-2 text-sm">
           {coinRank}.
         </li>
-        <li className="w-64">
+        <li className="w-60">
           <span className="">{coinName} </span>(
           <span className="font-extrabold text-lg">{coinSymbol}</span>)
         </li>
         <li className="w-32">{coinValue}$</li>
         <li className="w-32"> {coinMarketCap}$</li>
-        <li className="w-32">{volumeInLast24Hours}$</li>
+        <li className="w-20">{volumeInLast24Hours}$</li>
         <li
           className={`w-32 flex items-center justify-end gap-2 ${
             changeInLast24Hours < -0.2 && "text-red-400"

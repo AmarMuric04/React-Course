@@ -10,6 +10,7 @@ export const CryptoContext = createContext({
   buyCoin: () => {},
   handleFormatNumber: () => {},
   handlePreventDefault: () => {},
+  handleShowFavorite: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
@@ -17,14 +18,23 @@ export default function CryptoContextProvider({ children }) {
   const [filteredCoins, setFilteredCoins] = useState([]);
   const [wallet, setWallet] = useState([]);
   const [favoriteCryptos, setFavoriteCryptos] = useState([]);
+  const [showFavorite, setShowFavorite] = useState(false);
 
   useEffect(() => {
     async function fetchCrypto() {
-      const response = await fetch(`https://api.coincap.io/v2/assets?limit=20`);
-      const data = await response.json();
+      try {
+        const response = await fetch(
+          `https://api.coincap.io/v2/assets?limit=20`
+        );
+        const data = await response.json();
 
-      setCoins(data.data);
-      setFilteredCoins(data.data);
+        if (!response.ok) throw new Error("Something went wrong!");
+
+        setCoins(data.data);
+        setFilteredCoins(data.data);
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     fetchCrypto();
@@ -133,16 +143,22 @@ export default function CryptoContextProvider({ children }) {
     }
   }
 
+  function handleShowFavorite(identifier) {
+    !identifier ? setShowFavorite(false) : setShowFavorite(true);
+  }
+
   const cryptoValue = {
     _mainCoinsList: coins,
     coinsList: filteredCoins,
     userWallet: [],
+    showFavorite,
     favoriteCryptos,
     addFavorite: handleFavorite,
     formatList: handleFormatList,
     buyCoin: handleBuy,
     handleFormatNumber,
     handlePreventDefault,
+    handleShowFavorite,
   };
 
   return (
