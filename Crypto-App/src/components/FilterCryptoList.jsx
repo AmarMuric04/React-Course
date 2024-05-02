@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { CryptoContext } from "../store/crypto-context.jsx";
 
 export default function FilterCryptoList({ type }) {
-  let { formatList, coinsList, favoriteCryptos } = useContext(CryptoContext);
+  let { formatList, _mainCoinsList, favoriteCryptos } =
+    useContext(CryptoContext);
 
-  const coins = type === "main" ? coinsList : favoriteCryptos;
+  const coins = type === "main" ? _mainCoinsList : favoriteCryptos;
 
   return (
     <div className="w-full flex justify-end gap-5 px-10 py-5 items-center">

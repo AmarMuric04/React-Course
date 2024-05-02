@@ -2,45 +2,45 @@ import { useContext, useState } from "react";
 import { CryptoContext } from "../store/crypto-context";
 
 export default function InterestingCryptosContainer({ filterBy }) {
-  const { coinsList, handleFormatNumber, handlePreventDefault } =
+  const { _mainCoinsList, handleFormatNumber, handlePreventDefault } =
     useContext(CryptoContext);
 
-  const [filteredCoins, setFilteredCoins] = useState([]);
+  const [reverseFilter, setReverseFilter] = useState(false);
 
-  let coins = [...coinsList];
+  let newCoins = [..._mainCoinsList];
 
   let message, reverse;
-
   if (filterBy === "volume") {
-    coins = [...coins].sort(
+    newCoins = [...newCoins].sort(
       (a, b) => Number(b.volumeUsd24Hr) - Number(a.volumeUsd24Hr)
     );
-    message = "Most volume last 24hr";
-    reverse = "Check lowest";
+    message = !reverseFilter
+      ? "Most volume last 24hr"
+      : "Lowest volume last 24hr";
+    reverse = !reverseFilter ? "Check lowest" : "Check most";
   }
   if (filterBy === "change") {
-    coins = [...coins].sort(
+    newCoins = [...newCoins].sort(
       (a, b) => Number(b.changePercent24Hr) - Number(a.changePercent24Hr)
     );
-    message = "Best performing last 24hr";
-    reverse = "Check worst";
+    message = !reverseFilter
+      ? "Best performing last 24hr"
+      : "Worst performing last 24hr";
+    reverse = !reverseFilter ? "Check worst" : "Check best";
   }
   if (filterBy === "marketcap") {
-    coins = [...coins].sort(
+    newCoins = [...newCoins].sort(
       (a, b) => Number(b.marketCapUsd) - Number(a.marketCapUsd)
     );
-    message = "Highest Market Cap";
-    reverse = "Check lowest";
+    message = !reverseFilter ? "Highest Market Cap" : "Lowest Market cap";
+    reverse = !reverseFilter ? "Check lowest" : "Check highest";
   }
 
+  if (reverseFilter) newCoins = [...newCoins].splice(-4).reverse();
+  else if (!reverseFilter) newCoins = [...newCoins].splice(0, 4);
+
   function handleReverseFilter() {
-    if (filterBy === "volume" && reverse === "Check lowest") {
-      coins = [...coins].sort(
-        (a, b) => Number(a.volumeUsd24Hr) - Number(b.volumeUsd24Hr)
-      );
-      message = "Lowest volume last 24hr";
-      reverse = "Check highest";
-    }
+    setReverseFilter(!reverseFilter);
   }
 
   return (
@@ -65,8 +65,8 @@ export default function InterestingCryptosContainer({ filterBy }) {
           </svg>
         </p>
       </header>
-      <ul key={coins} className="flex flex-col gap-3 h-full">
-        {coins.splice(0, 4).map((coin) => {
+      <ul key={newCoins} className="flex flex-col gap-3 h-full">
+        {newCoins.map((coin) => {
           const coinRank = coin.rank;
           const coinSymbol = coin.symbol;
           const coinName =

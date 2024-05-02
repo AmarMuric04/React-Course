@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.showtext .p {
-  display: block;
+#signup {
+  background-image: url("../public/main.jpg");
+}
+
+#signup-inner {
+  background-image: url("../public/LoginBGmain.jpg");
 }

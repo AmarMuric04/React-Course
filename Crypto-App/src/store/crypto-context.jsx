@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
 export const CryptoContext = createContext({
+  _mainCoinsList: [],
   coinsList: [],
   userWallet: [],
   favoriteCryptos: [],
@@ -13,6 +14,7 @@ export const CryptoContext = createContext({
 
 export default function CryptoContextProvider({ children }) {
   const [coins, setCoins] = useState([]);
+  const [filteredCoins, setFilteredCoins] = useState([]);
   const [wallet, setWallet] = useState([]);
   const [favoriteCryptos, setFavoriteCryptos] = useState([]);
 
@@ -22,6 +24,7 @@ export default function CryptoContextProvider({ children }) {
       const data = await response.json();
 
       setCoins(data.data);
+      setFilteredCoins(data.data);
     }
 
     fetchCrypto();
@@ -111,7 +114,7 @@ export default function CryptoContextProvider({ children }) {
         (a, b) => Number(a.changePercent24Hr) - Number(b.changePercent24Hr)
       );
 
-    type === "main" ? setCoins(newCoins) : setFavoriteCryptos(newCoins);
+    type === "main" ? setFilteredCoins(newCoins) : setFavoriteCryptos(newCoins);
   }
 
   function handleFormatNumber(amount) {
@@ -131,7 +134,8 @@ export default function CryptoContextProvider({ children }) {
   }
 
   const cryptoValue = {
-    coinsList: coins,
+    _mainCoinsList: coins,
+    coinsList: filteredCoins,
     userWallet: [],
     favoriteCryptos,
     addFavorite: handleFavorite,

@@ -1,12 +1,12 @@
-import Header from "./components/Header";
-import CryptoList from "./components/CryptoList";
-import FavoriteCryptoList from "./components/FavoriteCryptoList";
-import FilterCryptoList from "./components/FilterCryptoList";
-import CryptoContextProvider from "./store/crypto-context.jsx";
-import InterestingCryptosContainer from "./components/InterestingCryptosContainer.jsx";
+// import Header from "./components/Header";
+// import CryptoList from "./components/CryptoList";
+// import FavoriteCryptoList from "./components/FavoriteCryptoList";
+// import FilterCryptoList from "./components/FilterCryptoList";
+// import CryptoContextProvider from "./store/crypto-context.jsx";
+// import InterestingCryptos from "./components/InterestingCryptos.jsx";
 import { useState } from "react";
 
-// import SignUp from "./components/SignUp";
+import SignUp from "./components/SignUp";
 
 function App() {
   const [showFavorite, setShowFavorite] = useState(false);
@@ -17,19 +17,15 @@ function App() {
 
   return (
     <>
-      {/* <SignUp /> */}
-      <CryptoContextProvider>
+      <SignUp />
+      {/* <CryptoContextProvider>
         <main className="bg-stone-200 max-w-screen mt-[4.5rem] h-auto flex flex-col justify-center items-center">
           <Header />
           <div className="flex flex-col w-[100rem] mt-24">
             <h1 className="text-4xl font-bold uppercase mb-8">
               Market overview
             </h1>
-            <section className="flex flex-wrap w-ful justify-between px-16 mb-16">
-              <InterestingCryptosContainer filterBy="volume" />
-              <InterestingCryptosContainer filterBy="change" />
-              <InterestingCryptosContainer filterBy="marketcap" />
-            </section>
+            <InterestingCryptos />
             <section>
               <ul className="flex gap-10 text-xl px-12">
                 <li
@@ -62,7 +58,7 @@ function App() {
             </section>
           </div>
         </main>
-      </CryptoContextProvider>
+      </CryptoContextProvider> */}
     </>
   );
 }
