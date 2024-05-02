@@ -88,13 +88,13 @@ export default function Crypto({ coin }) {
           className={`w-32 flex items-center justify-end gap-2 ${
             changeInLast24Hours < -0.2 && "text-red-400"
           }  ${changeInLast24Hours > 0.2 && "text-green-400"} ${
-            changeInLast24Hours > -0.2 &&
-            changeInLast24Hours < 0.2 &&
+            changeInLast24Hours >= -0.2 &&
+            changeInLast24Hours <= 0.2 &&
             "text-stone-500"
           }`}
         >
           {changeInLast24Hours}%{" "}
-          {changeInLast24Hours > -0.2 && changeInLast24Hours < 0.2 && (
+          {changeInLast24Hours >= -0.2 && changeInLast24Hours <= 0.2 && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1em"

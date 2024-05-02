@@ -5,6 +5,7 @@ export const CryptoContext = createContext({
   coinsList: [],
   userWallet: [],
   showCryptoList: [],
+  favoriteCryptos: [],
   addFavorite: () => {},
   formatList: () => {},
   buyCoin: () => {},

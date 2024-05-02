@@ -1,4 +1,4 @@
-import Logo from "../../public/MainLogo.png";
+import Logo from "../../public/YellowLogoMain.png";
 import BG from "../../public/LoginBGmain.jpg";
 
 import SignUp from "./SignUp";
@@ -15,7 +15,7 @@ export default function CredentialsPage({ page, onChangeMainPage }) {
   return (
     <main
       id="signup"
-      className="bg-white w-screen h-screen grid place-items-center"
+      className="bg-stone-200 w-screen h-screen grid place-items-center"
     >
       <p
         onClick={() => onChangeMainPage("home")}
@@ -44,7 +44,7 @@ export default function CredentialsPage({ page, onChangeMainPage }) {
       >
         <div className="flex flex-col gap-3 w-[40rem] ml-16">
           <img src={Logo} className="w-32 mb-16 ml-16" alt="" />
-          <h1 id="signup-text" className="text-5xl font-thin text-yellow-500">
+          <h1 id="signup-text" className="text-5xl font-thin text-yellow-400">
             Your Path to Financial Freedom
           </h1>
           <p className="text-stone-500">

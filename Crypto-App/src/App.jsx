@@ -20,7 +20,7 @@ function App() {
     <>
       {showPage === "home" && (
         <CryptoContextProvider>
-          <main className="bg-stone-200 max-w-screen mt-[4.5rem] h-auto min-h-screen flex flex-col justify-center items-center">
+          <main className="bg-stone-200 max-w-screen mt-16 h-auto min-h-screen flex flex-col justify-center items-center">
             <Header onChangeMainPage={handleChangeMainPage} />
             <div className="flex flex-col w-[100rem] mt-24">
               <InterestingCryptos />
