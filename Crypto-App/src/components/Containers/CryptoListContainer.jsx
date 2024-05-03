@@ -1,9 +1,10 @@
-import FavoriteCryptoList from "./FavoriteCryptoList";
-import CryptoList from "./CryptoList";
-import Performers from "./Performers";
-import FilterCryptoList from "./FilterCryptoList";
+import FavoriteCryptoList from "../DifferentCryptoLists/FavoriteCryptoList";
+import CryptoList from "../DifferentCryptoLists/CryptoList";
+import Performers from "../Single Components/Performers";
+import FilterCryptoList from "../DifferentCryptoLists/FilterCryptoList";
+import SearchedCryptoList from "../DifferentCryptoLists/SearchedCryptoList";
 import { useContext } from "react";
-import { CryptoContext } from "../store/crypto-context";
+import { CryptoContext } from "../../store/crypto-context";
 
 export default function CryptoListContainer() {
   const { showCryptoList } = useContext(CryptoContext);
@@ -26,6 +27,7 @@ export default function CryptoListContainer() {
       )}
       {showCryptoList === "favorite" && <FavoriteCryptoList />}
       {showCryptoList === "main" && <CryptoList />}
+      {showCryptoList === "search" && <SearchedCryptoList />}
     </>
   );
 }

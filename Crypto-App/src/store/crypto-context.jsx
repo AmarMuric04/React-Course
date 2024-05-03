@@ -130,6 +130,7 @@ export default function CryptoContextProvider({ children }) {
 
   function handleFormatNumber(amount) {
     let newAmount = amount;
+
     if (amount > 1000000) newAmount = (amount / 1000000).toFixed(0) + "M";
     if (amount > 1000000000) newAmount = (amount / 1000000000).toFixed(0) + "B";
     if (amount > 1000000000000)

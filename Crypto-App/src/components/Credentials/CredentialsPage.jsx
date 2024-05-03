@@ -1,5 +1,5 @@
-import Logo from "../../public/YellowLogoMain.png";
-import BG from "../../public/LoginBGmain.jpg";
+import Logo from "../../../public/YellowLogoMain.png";
+import BG from "../../../public/LoginBGmain.jpg";
 
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { CryptoContext } from "../store/crypto-context";
+import { CryptoContext } from "../../store/crypto-context";
 export default function Crypto({ coin }) {
   const {
     favoriteCryptos,
@@ -34,9 +34,7 @@ export default function Crypto({ coin }) {
     coin.id.slice(0, 1).toUpperCase() +
     coin.id.slice(1, coin.id.length).replace("-", " ");
   const coinValue = Number(coin.priceUsd).toFixed(2);
-  const coinMarketCap = handleFormatNumber(
-    Number(coin.marketCapUsd).toFixed(0)
-  );
+  const coinMarketCap = handleFormatNumber(Number(coin.marketCapUsd));
   const changeInLast24Hours = Number(coin.changePercent24Hr).toFixed(2);
   const volumeInLast24Hours = handleFormatNumber(
     Number(coin.volumeUsd24Hr).toFixed(0)
@@ -45,7 +43,7 @@ export default function Crypto({ coin }) {
   return (
     <a key={coin.id} href={`${coin.explorer}`} onClick={handlePreventDefault}>
       <ul className="preventdefault flex items-center bg-white py-8 text-2xl pr-16 pl-8 rounded-xl relative hover:scale-[1.02] transition-all delay-50 gap-24">
-        <li className="w-16">
+        <li className="w-12">
           {favoriteCryptos.includes(coin) ? (
             <svg
               onClick={() => addFavorite(coin)}
@@ -77,7 +75,7 @@ export default function Crypto({ coin }) {
         <li className="w-3 font-normal absolute bottom-2 left-2 text-sm">
           {coinRank}.
         </li>
-        <li className="w-60">
+        <li className="w-64">
           <span className="">{coinName} </span>(
           <span className="font-extrabold text-lg">{coinSymbol}</span>)
         </li>

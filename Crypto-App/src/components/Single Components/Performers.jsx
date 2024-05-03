@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CryptoContext } from "../store/crypto-context";
+import { CryptoContext } from "../../store/crypto-context";
 
 import Crypto from "./Crypto";
 

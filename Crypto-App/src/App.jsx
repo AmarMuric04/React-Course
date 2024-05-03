@@ -1,11 +1,12 @@
-import Header from "./components/Header";
-import Menu from "./components/Menu";
+import Header from "./components/Single Components/Header.jsx";
+import Menu from "./components/Single Components/Menu.jsx";
 import CryptoContextProvider from "./store/crypto-context.jsx";
-import InterestingCryptos from "./components/InterestingCryptos.jsx";
-import CredentialsPage from "./components/CredentialsPage";
-import CryptoListContainer from "./components/CryptoListContainer.jsx";
+import InterestingCryptos from "./components/Containers/InterestingCryptosContainer.jsx";
+import CredentialsPage from "./components/Credentials/CredentialsPage.jsx";
+import CryptoListContainer from "./components/Containers/CryptoListContainer.jsx";
 
 import { useState } from "react";
+import CryptoSearchContextProvider from "./store/cryptoSearch-context.jsx";
 
 function App() {
   const [showPage, setShowPage] = useState("home");
@@ -25,8 +26,10 @@ function App() {
             <div className="flex flex-col w-[100rem] mt-24">
               <InterestingCryptos />
               <section>
-                <Menu />
-                <CryptoListContainer />
+                <CryptoSearchContextProvider>
+                  <Menu />
+                  <CryptoListContainer />
+                </CryptoSearchContextProvider>
               </section>
             </div>
           </main>

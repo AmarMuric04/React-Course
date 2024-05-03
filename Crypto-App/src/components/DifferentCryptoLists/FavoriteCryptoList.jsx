@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import { CryptoContext } from "../store/crypto-context";
-import Crypto from "./Crypto";
+import { CryptoContext } from "../../store/crypto-context";
+import Crypto from "../Single Components/Crypto";
 
 export default function FavoriteCryptoList() {
   const { favoriteCryptos } = useContext(CryptoContext);

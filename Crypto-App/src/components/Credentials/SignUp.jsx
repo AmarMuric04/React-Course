@@ -1,5 +1,5 @@
-import Logo from "../../public/MainLogo.png";
-import BG from "../../public/LoginBGmain.jpg";
+import Logo from "../../../public/MainLogo.png";
+import BG from "../../../public/LoginBGmain.jpg";
 
 export default function SignUp({ onChange }) {
   return (

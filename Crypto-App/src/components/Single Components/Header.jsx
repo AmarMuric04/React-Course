@@ -1,4 +1,4 @@
-import Logo from "../../public/YellowLogoNoTextMain.png";
+import Logo from "../../../public/YellowLogoNoTextMain.png";
 
 export default function Header({ onChangeMainPage }) {
   return (

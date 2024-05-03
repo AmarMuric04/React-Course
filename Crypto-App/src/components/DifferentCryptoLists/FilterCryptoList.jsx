@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CryptoContext } from "../store/crypto-context.jsx";
+import { CryptoContext } from "../../store/crypto-context.jsx";
 
 export default function FilterCryptoList() {
   let { formatList, _mainCoinsList, favoriteCryptos, showCryptoList } =
