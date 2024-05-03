@@ -4,6 +4,7 @@ import CryptoContextProvider from "./store/crypto-context.jsx";
 import InterestingCryptos from "./components/Containers/InterestingCryptosContainer.jsx";
 import CredentialsPage from "./components/Credentials/CredentialsPage.jsx";
 import CryptoListContainer from "./components/Containers/CryptoListContainer.jsx";
+import BuyCryptoPage from "./components/BuyCryptoPage.jsx";
 
 import { useState } from "react";
 import CryptoSearchContextProvider from "./store/cryptoSearch-context.jsx";
@@ -18,22 +19,20 @@ function App() {
   }
 
   return (
-    <>
+    <CryptoContextProvider>
       {showPage === "home" && (
-        <CryptoContextProvider>
-          <main className="bg-stone-200 max-w-screen mt-16 h-auto min-h-screen flex flex-col justify-center items-center">
-            <Header onChangeMainPage={handleChangeMainPage} />
-            <div className="flex flex-col w-[100rem] mt-24">
-              <InterestingCryptos />
-              <section>
-                <CryptoSearchContextProvider>
-                  <Menu />
-                  <CryptoListContainer />
-                </CryptoSearchContextProvider>
-              </section>
-            </div>
-          </main>
-        </CryptoContextProvider>
+        <main className="bg-stone-200 max-w-screen mt-16 h-auto min-h-screen flex flex-col justify-center items-center">
+          <Header onChangeMainPage={handleChangeMainPage} />
+          <div className="flex flex-col w-[100rem] mt-24">
+            <InterestingCryptos />
+            <section>
+              <CryptoSearchContextProvider>
+                <Menu />
+                <CryptoListContainer onCryptoClick={handleChangeMainPage} />
+              </CryptoSearchContextProvider>
+            </section>
+          </div>
+        </main>
       )}
       {showPage === "credentials" && (
         <CredentialsPage
@@ -41,7 +40,10 @@ function App() {
           onChangeMainPage={handleChangeMainPage}
         />
       )}
-    </>
+      {showPage === "buycrypto" && (
+        <BuyCryptoPage onChangeMainPage={handleChangeMainPage} />
+      )}
+    </CryptoContextProvider>
   );
 }
 

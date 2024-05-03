@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { CryptoContext } from "../../store/crypto-context";
-export default function Crypto({ coin }) {
+export default function Crypto({ onBuyCrypto, coin }) {
   const {
     favoriteCryptos,
     handleFormatNumber,
     addFavorite,
-    buyCoin,
+    handleChangeBuyCryptoPage,
     handlePreventDefault,
+    handleFormatNumberWithCommas,
   } = useContext(CryptoContext);
 
   const [buyIsHovered, setBuyIsHovered] = useState(false);
@@ -28,12 +29,19 @@ export default function Crypto({ coin }) {
     setSellIsHovered(false);
   }
 
+  function handleGoToBuyPage(coin) {
+    handleChangeBuyCryptoPage(coin);
+    onBuyCrypto("buycrypto");
+  }
+
   const coinRank = coin.rank;
   const coinSymbol = coin.symbol;
   const coinName =
     coin.id.slice(0, 1).toUpperCase() +
     coin.id.slice(1, coin.id.length).replace("-", " ");
-  const coinValue = Number(coin.priceUsd).toFixed(2);
+  const coinValue = handleFormatNumberWithCommas(
+    Number(coin.priceUsd).toFixed(2)
+  );
   const coinMarketCap = handleFormatNumber(Number(coin.marketCapUsd));
   const changeInLast24Hours = Number(coin.changePercent24Hr).toFixed(2);
   const volumeInLast24Hours = handleFormatNumber(
@@ -142,7 +150,7 @@ export default function Crypto({ coin }) {
               className="hover:text-green-400 hover:scale-[1.2] transition-all"
               onMouseOver={handleHoverBuy}
               onMouseLeave={handleNoHoverBuy}
-              onClick={() => buyCoin(coin)}
+              onClick={() => handleGoToBuyPage(coin)}
             >
               <defs>
                 <mask id="ipSBuy0">

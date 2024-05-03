@@ -6,12 +6,13 @@ export const CryptoContext = createContext({
   userWallet: [],
   showCryptoList: [],
   favoriteCryptos: [],
+  buyCryptoPageCoin: {},
   addFavorite: () => {},
   formatList: () => {},
-  buyCoin: () => {},
   handleFormatNumber: () => {},
   handlePreventDefault: () => {},
   handleShowCryptoList: () => {},
+  handleChangeBuyCryptoPage: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
@@ -20,6 +21,7 @@ export default function CryptoContextProvider({ children }) {
   const [wallet, setWallet] = useState([]);
   const [favoriteCryptos, setFavoriteCryptos] = useState([]);
   const [showCryptoList, setShowCryptoList] = useState("main");
+  const [buyCryptoPageCoin, setBuyCryptoPageCoin] = useState({});
 
   useEffect(() => {
     async function fetchCrypto() {
@@ -54,21 +56,6 @@ export default function CryptoContextProvider({ children }) {
     console.log(newFavoriteCryptos);
 
     setFavoriteCryptos(newFavoriteCryptos);
-  }
-
-  function handleBuy(coin) {
-    const coinCost = Number(coin.priceUsd).toFixed(2);
-    alert(`Purchased one ${coin.id} for ${coinCost}$`);
-
-    setWallet((prevWallet) => {
-      return [
-        ...prevWallet,
-        {
-          id: coin.id,
-          value: coinCost,
-        },
-      ];
-    });
   }
 
   function handleFormatList(event, arrOfCoins, type) {
@@ -149,18 +136,28 @@ export default function CryptoContextProvider({ children }) {
     setShowCryptoList(identifier);
   }
 
+  function handleChangeBuyCryptoPage(coin) {
+    setBuyCryptoPageCoin(coin);
+  }
+
+  function handleFormatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const cryptoValue = {
     _mainCoinsList: coins,
     coinsList: filteredCoins,
     userWallet: [],
     showCryptoList,
     favoriteCryptos,
+    buyCryptoPageCoin,
     addFavorite: handleFavorite,
     formatList: handleFormatList,
-    buyCoin: handleBuy,
     handleFormatNumber,
     handlePreventDefault,
     handleShowCryptoList,
+    handleChangeBuyCryptoPage,
+    handleFormatNumberWithCommas,
   };
 
   return (

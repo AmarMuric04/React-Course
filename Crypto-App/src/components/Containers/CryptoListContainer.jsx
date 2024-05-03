@@ -6,7 +6,7 @@ import SearchedCryptoList from "../DifferentCryptoLists/SearchedCryptoList";
 import { useContext } from "react";
 import { CryptoContext } from "../../store/crypto-context";
 
-export default function CryptoListContainer() {
+export default function CryptoListContainer({ onCryptoClick }) {
   const { showCryptoList } = useContext(CryptoContext);
 
   return (
@@ -23,11 +23,15 @@ export default function CryptoListContainer() {
         <li className="w-40">Trade</li>
       </ul>
       {(showCryptoList === "gp" || showCryptoList === "bp") && (
-        <Performers type={showCryptoList} />
+        <Performers onBuy={onCryptoClick} type={showCryptoList} />
       )}
-      {showCryptoList === "favorite" && <FavoriteCryptoList />}
-      {showCryptoList === "main" && <CryptoList />}
-      {showCryptoList === "search" && <SearchedCryptoList />}
+      {showCryptoList === "favorite" && (
+        <FavoriteCryptoList onBuy={onCryptoClick} />
+      )}
+      {showCryptoList === "main" && <CryptoList onBuy={onCryptoClick} />}
+      {showCryptoList === "search" && (
+        <SearchedCryptoList onBuy={onCryptoClick} />
+      )}
     </>
   );
 }

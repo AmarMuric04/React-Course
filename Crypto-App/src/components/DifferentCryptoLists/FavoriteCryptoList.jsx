@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { CryptoContext } from "../../store/crypto-context";
 import Crypto from "../Single Components/Crypto";
 
-export default function FavoriteCryptoList() {
+export default function FavoriteCryptoList({ onBuy }) {
   const { favoriteCryptos } = useContext(CryptoContext);
 
   return (
@@ -13,7 +13,9 @@ export default function FavoriteCryptoList() {
           You do not have any cryptos favorited...
         </p>
       ) : (
-        favoriteCryptos.map((coin) => <Crypto key={coin.id} coin={coin} />)
+        favoriteCryptos.map((coin) => (
+          <Crypto key={coin.id} coin={coin} onBuyCrypto={onBuy} />
+        ))
       )}
     </ul>
   );

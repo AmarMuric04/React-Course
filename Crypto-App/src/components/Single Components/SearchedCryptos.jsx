@@ -8,7 +8,7 @@ export default function SearchedCryptos() {
     <div className="w-2/5 flex items-center gap-2 px-10">
       <p className="w-1/3 text-end">Search for cryptos:</p>
       <input
-        className="pl-2 pr-8 py-2 rounded-xl focus:outline-none w-2/3"
+        className="pl-2 pr-8 py-2 rounded-xl focus:outline-none w-2/3 border-[0.1rem] border-white focus:border-yellow-400 transition-all"
         type="text"
         placeholder="Crypto Name / Crypto Price / Crypto Symbol..."
         onChange={handleSearchInput}

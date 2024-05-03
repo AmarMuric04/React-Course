@@ -2,8 +2,12 @@ import { useContext, useState } from "react";
 import { CryptoContext } from "../../store/crypto-context";
 
 export default function InterestingCryptosContainer({ filterBy }) {
-  const { _mainCoinsList, handleFormatNumber, handlePreventDefault } =
-    useContext(CryptoContext);
+  const {
+    _mainCoinsList,
+    handleFormatNumber,
+    handlePreventDefault,
+    handleFormatNumberWithCommas,
+  } = useContext(CryptoContext);
 
   const [reverseFilter, setReverseFilter] = useState(false);
 
@@ -72,7 +76,9 @@ export default function InterestingCryptosContainer({ filterBy }) {
           const coinName =
             coin.id.slice(0, 1).toUpperCase() +
             coin.id.slice(1, coin.id.length).replace("-", " ");
-          const coinValue = Number(coin.priceUsd).toFixed(2);
+          const coinValue = handleFormatNumberWithCommas(
+            Number(coin.priceUsd).toFixed(2)
+          );
           const coinMarketCap = handleFormatNumber(
             Number(coin.marketCapUsd).toFixed(0)
           );
