@@ -7,8 +7,8 @@ import CryptoSearchContextProvider from "./store/cryptoSearch-context.jsx";
 function App() {
   return (
     <>
-      <Header />
       <main className="bg-stone-200 max-w-screen mt-16 h-auto min-h-screen flex flex-col justify-center items-center">
+        <Header />
         <div className="flex flex-col w-[100rem] mt-24">
           <InterestingCryptos />
           <section>

@@ -6,12 +6,13 @@ import BuyCryptoLeftSide from "./BuyCryptoLeftSide";
 import BuyCryptoRightSide from "./BuyCryptoRightSide";
 import { useParams, Link } from "react-router-dom";
 
+import { extendedCryptoObject } from "../assets/extendedCryptoObject";
+
 export default function BuyCryptoPage() {
-  const { _mainCoinsList } = useContext(CryptoContext);
-  const { id } = useParams(); // Assuming dynamicId is part of the URL path
+  const { _mainCoinsList, handleFormatNumber } = useContext(CryptoContext);
+  const { id } = useParams();
 
   if (!_mainCoinsList || _mainCoinsList.length === 0) {
-    // Render loading state or fallback UI until data is loaded
     return (
       <div className="w-screen h-screen bg-stone-300 grid place-content-center">
         <svg
@@ -162,6 +163,10 @@ export default function BuyCryptoPage() {
     );
   }
 
+  console.log(buyCryptoPageCoin);
+
+  const extendedCoin = extendedCryptoObject.find((coin) => coin.id === id);
+
   const coinName =
     buyCryptoPageCoin.id.slice(0, 1).toUpperCase() +
     buyCryptoPageCoin.id
@@ -172,23 +177,64 @@ export default function BuyCryptoPage() {
     buyCryptoPageCoin.changePercent24Hr
   ).toFixed(2);
   const coinSymbol = buyCryptoPageCoin.symbol.toUpperCase();
+  const coinRank = buyCryptoPageCoin.rank;
+  const coinMarketCap = handleFormatNumber(
+    Number(buyCryptoPageCoin.marketCapUsd)
+  );
+  const volumeInLast24Hours = handleFormatNumber(
+    Number(buyCryptoPageCoin.volumeUsd24Hr).toFixed(0)
+  );
+  const coinSupply = handleFormatNumber(Number(buyCryptoPageCoin.supply));
+  const coinVwapInLast24Hours = Number(buyCryptoPageCoin.vwap24Hr);
+  const coinResource = buyCryptoPageCoin.explorer;
 
   return (
     <main className="bg-stone-300 h-full min-h w-full min-w-screen flex flex-col items-center">
       <Header />
       <div className="w-[80rem] mt-16">
         <p className="text-md font-bold text-gray-600 my-8">
-          <Link to="/crypto-list" className="cursor-pointer hover:underline">
+          <Link to="/" className="cursor-pointer hover:underline">
             Home
-          </Link>{" "}
-          {">"} {coinName} Price
+          </Link>
+          {" > "}
+          <Link to="/crypto-list" className="cursor-pointer hover:underline">
+            Crypto List
+          </Link>
+          {" > "}
+          {coinName} Price
         </p>
         <div className="flex w-full min-h-screen h-full gap-5">
           <BuyCryptoLeftSide
-            coin={{ coinName, coinValue, changeInLast24Hours, coinSymbol }}
+            coin={{
+              coinName,
+              coinValue,
+              changeInLast24Hours,
+              coinSymbol,
+              extendedCoin,
+              coinRank,
+              coinMarketCap,
+              volumeInLast24Hours,
+              coinSupply,
+              coinVwapInLast24Hours,
+              coinResource,
+            }}
+            extendedCoin={extendedCoin}
           />
           <BuyCryptoRightSide
-            coin={{ coinName, coinValue, changeInLast24Hours, coinSymbol }}
+            coin={{
+              coinName,
+              coinValue,
+              changeInLast24Hours,
+              coinSymbol,
+              extendedCoin,
+              coinRank,
+              coinMarketCap,
+              volumeInLast24Hours,
+              coinSupply,
+              coinVwapInLast24Hours,
+              coinResource,
+            }}
+            extendedCoin={extendedCoin}
           />
         </div>
       </div>

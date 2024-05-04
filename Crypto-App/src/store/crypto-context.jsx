@@ -13,6 +13,7 @@ export const CryptoContext = createContext({
   handlePreventDefault: () => {},
   handleShowCryptoList: () => {},
   handleCustomToFixed: () => {},
+  handleGetRandomNumber: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
@@ -172,6 +173,10 @@ export default function CryptoContextProvider({ children }) {
     }
   }
 
+  function handleGetRandomNumber(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
   const cryptoValue = {
     _mainCoinsList: coins,
     coinsList: filteredCoins,
@@ -186,6 +191,7 @@ export default function CryptoContextProvider({ children }) {
     handleShowCryptoList,
     handleFormatNumberWithCommas,
     handleCustomToFixed,
+    handleGetRandomNumber,
   };
 
   return (

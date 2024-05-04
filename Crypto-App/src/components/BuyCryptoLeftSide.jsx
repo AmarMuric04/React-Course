@@ -1,26 +1,20 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
+import Image from "./Image";
 import Logo from "../../public/btcLogo.png";
 import { CryptoContext } from "../store/crypto-context";
+import BuyCryptoThoughts from "./BuyCryptoThoughts";
 
-export default function BuyCryptoLeftSide({ coin }) {
-  const { handleCustomToFixed } = useContext(CryptoContext);
-  const [clickedGood, setClickedGood] = useState(false);
-  const [clickedBad, setClickedBad] = useState(false);
+export default function BuyCryptoLeftSide({ coin, extendedCoin }) {
+  const { handleCustomToFixed, handleGetRandomNumber } =
+    useContext(CryptoContext);
 
-  function handleClickedFeeling(identifier) {
-    if (identifier === "good") {
-      setClickedGood(true);
-      setClickedBad(false);
-    } else {
-      setClickedBad(true);
-      setClickedGood(false);
-    }
-  }
+  const priceChange1h = handleGetRandomNumber(-0.5, 0.5).toFixed(2);
+  const priceChange7d = handleGetRandomNumber(0.1, 0.15).toFixed(2);
 
   return (
     <div className="flex flex-col w-2/3 ">
       <div className="flex gap-3 items-center mb-8">
-        <img className="w-20" src={Logo} alt="" />
+        <Image image={Logo} className="w-16" svgSize="2em" />
         <h1 className="text-4xl text-stone-600 flex gap-2 items-end">
           {coin.coinName} Price
           <span className="text-lg">
@@ -89,126 +83,28 @@ export default function BuyCryptoLeftSide({ coin }) {
         </p>
         <p className="text-stone-400 font-bold">24hr</p>
       </div>
-      <div className="flex items-center justify-between mt-16">
-        <h2 className="font-bold text-2xl">
-          How do you feel about {coin.coinName} today?
-        </h2>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => handleClickedFeeling("good")}
-            className="flex items-center gap-1 bg-stone-400 px-2 py-1 rounded-md focus:outline-none"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M23 10a2 2 0 0 0-2-2h-6.32l.96-4.57c.02-.1.03-.21.03-.32c0-.41-.17-.79-.44-1.06L14.17 1L7.59 7.58C7.22 7.95 7 8.45 7 9v10a2 2 0 0 0 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73zM1 21h4V9H1z"
-              />
-            </svg>
-            <span className="text-white font-bold">Good</span>
-          </button>
-          <button
-            onClick={() => handleClickedFeeling("bad")}
-            className="flex items-center gap-1 bg-stone-400 px-2 py-1 rounded-md focus:outline-none"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M19 15h4V3h-4m-4 0H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2a2 2 0 0 0 2 2h6.31l-.95 4.57c-.02.1-.03.2-.03.31c0 .42.17.79.44 1.06L9.83 23l6.58-6.59c.37-.36.59-.86.59-1.41V5a2 2 0 0 0-2-2"
-              />
-            </svg>
-            <span className="text-white font-bold">Bad</span>
-          </button>
-        </div>
-      </div>
-      <div className="flex flex-col gap-3 justify-between rounded-md mt-8 px-2 py-1 bg-stone-400">
-        <div className="flex w-full h-full">
-          <div className="flex items-center gap-3 w-1/6 justify-start">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M23 10a2 2 0 0 0-2-2h-6.32l.96-4.57c.02-.1.03-.21.03-.32c0-.41-.17-.79-.44-1.06L14.17 1L7.59 7.58C7.22 7.95 7 8.45 7 9v10a2 2 0 0 0 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73zM1 21h4V9H1z"
-              />
-            </svg>
-            <p className="flex gap-2">
-              Good{" "}
-              <span className="text-green-400 font-bold">
-                {clickedGood ? "2" : "1"}
-              </span>
-            </p>
-          </div>
-          <div className="flex w-4/6 gap-2 h-full items-center justify-center">
-            <div
-              className={`h-1/2 skew-x-[-45deg] transition-all w-${
-                clickedGood ? "2/3" : clickedBad ? "1/3" : "1/2"
-              } bg-green-400`}
-            ></div>
-            <div
-              className={`h-1/2 skew-x-[-45deg] transition-all w-${
-                clickedBad ? "2/3" : clickedGood ? "1/3" : "1/2"
-              } bg-red-400`}
-            ></div>
-          </div>
-          <div className="flex items-center gap-3 w-1/6 justify-end">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M19 15h4V3h-4m-4 0H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2a2 2 0 0 0 2 2h6.31l-.95 4.57c-.02.1-.03.2-.03.31c0 .42.17.79.44 1.06L9.83 23l6.58-6.59c.37-.36.59-.86.59-1.41V5a2 2 0 0 0-2-2"
-              />
-            </svg>
-            <p className="flex gap-2">
-              Bad{" "}
-              <span className="text-red-400 font-bold">
-                {clickedBad ? "2" : "1"}
-              </span>
-            </p>
-          </div>
-        </div>
-        <p className="flex items-center gap-2 text-sm text-stone-600">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.2em"
-            height="1.2em"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="currentColor"
-              d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
-            />
-          </svg>
-          Note: This information is for reference only.
-        </p>
-      </div>
+      <BuyCryptoThoughts coin={coin} />
       <div className="flex flex-col mt-16">
-        <h1 className="text-4xl font-bold mb-8">
-          Price of {coin.coinSymbol} today
-        </h1>
-        <p>
-          The live price of {coin.coinName} is ${" "}
-          {handleCustomToFixed(coin.coinValue)} per ({coin.coinSymbol} / USD)
-          with a current market cap of $ 1,239.30B USD. 24-hour trading volume
-          is $ 33.12B USD. BTC to USD price is updated in real-time. Bitcoin is
-          +6.59% in the last 24 hours with a circulating supply of 19.69M.
-        </p>
+        <div className="my-16">
+          <h1 className="text-4xl font-bold mb-8">
+            Price of {coin.coinSymbol} today
+          </h1>
+          <p>
+            The live price of {coin.coinName} is ${" "}
+            <strong>{handleCustomToFixed(coin.coinValue)}</strong> per (
+            {coin.coinSymbol} / USD) with a current market cap of ${" "}
+            <strong>{coin.coinMarketCap}</strong> USD. 24-hour trading volume is
+            $ <strong>{coin.volumeInLast24Hours}</strong> USD. {coin.coinSymbol}{" "}
+            to USD price is updated in real-time. Bitcoin is{" "}
+            <strong>
+              {coin.changeInLast24Hours > 0
+                ? `+${coin.changeInLast24Hours}`
+                : coin.changeInLast24Hours}{" "}
+            </strong>
+            in the last 24 hours with a circulating supply of{" "}
+            <strong>{coin.coinSupply}</strong>.
+          </p>
+        </div>
         <h2 className="text-2xl font-bold my-8">
           {coin.coinSymbol} Price History USD
         </h2>
@@ -365,7 +261,7 @@ export default function BuyCryptoLeftSide({ coin }) {
           {coin.coinSymbol} Price Information
         </h2>
         <div>
-          <p className="flex items-center">
+          <p className="flex items-center gap-3">
             24h Low & High{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -379,6 +275,275 @@ export default function BuyCryptoLeftSide({ coin }) {
               />
             </svg>
           </p>
+          <div className="flex w-2/3 justify-between gap-3">
+            <p className="w-1/4 text-nowrap">
+              Low: ${" "}
+              {handleCustomToFixed(coin.coinValue - coin.coinValue * 0.097)}
+            </p>
+            <div className="w-1/3 flex items-center">
+              <div className="w-2/5 h-1/3 bg-red-400"></div>
+              <div className="w-3/5 h-1/3 bg-green-400"></div>
+            </div>
+            <p className="w-1/4 text-nowrap">
+              High: ${" "}
+              {handleCustomToFixed(coin.coinValue + coin.coinValue * 0.074)}
+            </p>
+          </div>
+          <div className="flex flex-col">
+            <ul className="flex flex-wrap my-8">
+              <li className="w-1/4">
+                <p className="flex items-center gap-1">
+                  All Time High{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                    />
+                  </svg>
+                </p>
+                <p className="font-bold">
+                  $ {handleCustomToFixed(Number(extendedCoin.allTimeHigh))}
+                </p>
+              </li>
+              <li className="w-1/4">
+                <p className="flex items-center gap-1">
+                  Price Change (1h)
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                    />
+                  </svg>
+                </p>
+                <p
+                  className={`font-bold ${
+                    priceChange1h > 0 && "text-green-400"
+                  } ${priceChange1h === 0 && "text-stone-400"} ${
+                    priceChange1h < 0 && "text-red-400"
+                  }`}
+                >
+                  {priceChange1h > 0 ? `+ ${priceChange1h}` : priceChange1h} %
+                </p>
+              </li>
+              <li className="w-1/4">
+                <p className="flex items-center gap-1">
+                  Price Change (24h)
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                    />
+                  </svg>
+                </p>
+                <p
+                  className={`font-bold ${
+                    coin.changeInLast24Hours > 0 && "text-green-400"
+                  } ${coin.changeInLast24Hours === 0 && "text-stone-400"} ${
+                    coin.changeInLast24Hours < 0 && "text-red-400"
+                  }`}
+                >
+                  {coin.changeInLast24Hours > 0
+                    ? `+ ${coin.changeInLast24Hours}`
+                    : coin.changeInLast24Hours}{" "}
+                  %
+                </p>
+              </li>
+              <li className="w-1/4">
+                <p className="flex items-center gap-1">
+                  Price Change (7d)
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                    />
+                  </svg>
+                </p>
+                <p
+                  className={`font-bold ${
+                    priceChange7d > 0 && "text-green-400"
+                  } ${priceChange7d === 0 && "text-stone-400"} ${
+                    priceChange7d < 0 && "text-red-400"
+                  }`}
+                >
+                  {priceChange7d > 0 ? `+ ${priceChange7d}` : priceChange7d} %
+                </p>
+              </li>
+            </ul>
+            <h2 className="text-2xl font-bold my-8">
+              {coin.coinSymbol} Market Information
+            </h2>
+            <ul className="flex flex-wrap">
+              <li className="w-1/4">
+                <p className="flex font-bold items-center gap-1">
+                  Popularity{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                    />
+                  </svg>
+                </p>
+                <p className="font-bold">#{coin.coinRank}</p>
+              </li>
+              <li className="w-1/4">
+                <p className="flex items-center gap-1">
+                  Market Cap
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                    />
+                  </svg>
+                </p>
+                <p className="font-bold">$ {coin.coinMarketCap}</p>
+              </li>
+              <li className="w-1/4">
+                <p className="flex items-center gap-1">
+                  Volume (24hours)
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                    />
+                  </svg>
+                </p>
+                <p className="font-bold">$ {coin.volumeInLast24Hours}</p>
+              </li>
+              <li className="w-1/4">
+                <p className="flex items-center gap-1">
+                  Circulating Supply{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                    />
+                  </svg>
+                </p>
+                <p className="font-bold">{coin.coinSupply}</p>
+              </li>
+              <li className="w-1/4">
+                <p className="flex items-center gap-1">
+                  Total Maximum Supply
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                    />
+                  </svg>
+                </p>
+                <p className="font-bold">21.00M</p>
+              </li>
+              <li className="w-1/4">
+                <p className="flex items-center gap-1">
+                  Vwap (24h)
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+                    />
+                  </svg>
+                </p>
+                <p className="font-bold">
+                  {handleCustomToFixed(Number(coin.coinVwapInLast24Hours))}
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h1 className="text-4xl font-bold mt-16 mb-8">
+            About {coin.coinName} (<span>{coin.coinSymbol}</span>)
+          </h1>
+          <div className="flex flex-col gap-3">
+            <p>{extendedCoin.moreInformation}</p>
+            <p>{extendedCoin.moreInformation2}</p>
+          </div>
+          <div className="my-32">
+            <h1 className="text-3xl font-bold my-8">
+              {coin.coinName} Resources
+            </h1>
+            <div className="flex flex-col gap-3">
+              <a href={coin.coinResource} className="flex gap-3 items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.5em"
+                  height="1.5em"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M202.24 74C166.11 56.75 115.61 48.3 48 48a31.36 31.36 0 0 0-17.92 5.33A32 32 0 0 0 16 79.9V366c0 19.34 13.76 33.93 32 33.93c71.07 0 142.36 6.64 185.06 47a4.11 4.11 0 0 0 6.94-3V106.82a15.9 15.9 0 0 0-5.46-12A143 143 0 0 0 202.24 74m279.68-20.7A31.33 31.33 0 0 0 464 48c-67.61.3-118.11 8.71-154.24 26a143.3 143.3 0 0 0-32.31 20.78a15.93 15.93 0 0 0-5.45 12v337.13a3.93 3.93 0 0 0 6.68 2.81c25.67-25.5 70.72-46.82 185.36-46.81a32 32 0 0 0 32-32v-288a32 32 0 0 0-14.12-26.61"
+                  />
+                </svg>
+                {coin.coinResource}
+              </a>
+              <a
+                href="https://www.binance.com/"
+                className="flex gap-3 items-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.5em"
+                  height="1.5em"
+                  viewBox="0 0 256 256"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M128 20a108 108 0 1 0 108 108A108.12 108.12 0 0 0 128 20m0 187a113.4 113.4 0 0 1-20.39-35h40.82a116.94 116.94 0 0 1-10 20.77A108.61 108.61 0 0 1 128 207m-26.49-59a135.42 135.42 0 0 1 0-40h53a135.42 135.42 0 0 1 0 40ZM44 128a83.49 83.49 0 0 1 2.43-20h30.82a160.63 160.63 0 0 0 0 40H46.43A83.49 83.49 0 0 1 44 128m84-79a113.4 113.4 0 0 1 20.39 35h-40.8a116.94 116.94 0 0 1 10-20.77A108.61 108.61 0 0 1 128 49m50.73 59h30.82a83.52 83.52 0 0 1 0 40h-30.8a160.63 160.63 0 0 0 0-40Zm20.77-24h-25.79a140.82 140.82 0 0 0-15.5-34.36A84.51 84.51 0 0 1 199.52 84ZM97.79 49.64A140.82 140.82 0 0 0 82.29 84H56.48a84.51 84.51 0 0 1 41.31-34.36M56.48 172h25.81a140.82 140.82 0 0 0 15.5 34.36A84.51 84.51 0 0 1 56.48 172m101.73 34.36a140.82 140.82 0 0 0 15.5-34.36h25.81a84.51 84.51 0 0 1-41.31 34.36"
+                  />
+                </svg>
+                Go to Binance
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,23 +1,25 @@
-import FavoriteCryptoList from "../DifferentCryptoLists/FavoriteCryptoList";
-import CryptoList from "../DifferentCryptoLists/CryptoList";
-import Performers from "../Single Components/Performers";
-import FilterCryptoList from "../DifferentCryptoLists/FilterCryptoList";
-import SearchedCryptoList from "../DifferentCryptoLists/SearchedCryptoList";
-import { useContext } from "react";
-import { CryptoContext } from "../../store/crypto-context";
+import { useState } from "react";
 
-export default function CryptoListContainer() {
-  const { showCryptoList, _mainCoinsList } = useContext(CryptoContext);
+export default function Image({ image, className, svgSize }) {
+  const [isLoading, setIsLoading] = useState(true);
 
-  console.log(_mainCoinsList);
+  console.log(isLoading);
 
-  if (!_mainCoinsList || _mainCoinsList.length === 0) {
-    return (
-      <div className="w-auto h-96 grid place-content-center">
+  function handleImageLoaded() {
+    setIsLoading(false);
+  }
+
+  setTimeout(() => {
+    handleImageLoaded();
+  }, 1500);
+
+  return (
+    <>
+      {isLoading && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="3em"
-          height="3em"
+          width={svgSize}
+          height={svgSize}
           viewBox="0 0 24 24"
           className="text-yellow-400"
         >
@@ -114,29 +116,8 @@ export default function CryptoListContainer() {
             />
           </rect>
         </svg>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <FilterCryptoList />
-
-      <ul className="flex gap-16 px-8 relative text-sm text-stone-700">
-        <li className="w-24">Favorite</li>
-        <li className="w-72">Name</li>
-        <li className="w-40">Value</li>
-        <li className="w-40">Market cap</li>
-        <li className="w-40">Volume (24hr)</li>
-        <li className="w-48">Change (24hr)</li>
-        <li className="w-40">Trade</li>
-      </ul>
-      {(showCryptoList === "gp" || showCryptoList === "bp") && (
-        <Performers type={showCryptoList} />
       )}
-      {showCryptoList === "favorite" && <FavoriteCryptoList />}
-      {showCryptoList === "main" && <CryptoList />}
-      {showCryptoList === "search" && <SearchedCryptoList />}
+      <img src={image} className={className} onLoad={handleImageLoaded} />
     </>
   );
 }

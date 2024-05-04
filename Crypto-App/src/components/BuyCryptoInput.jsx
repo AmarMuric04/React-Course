@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { CryptoContext } from "../store/crypto-context";
+import Image from "./Image";
 
 import Logo from "../../public/btcLogo.png";
 
@@ -32,7 +33,7 @@ export default function BuyCryptoInput({ coin, type }) {
         <p className="text-white absolute top-4 left-3">Buy</p>
         <div className="flex bg-stone-800 rounded-full py-2 w-auto pr-3 pl-2 items-center absolute right-3 top-8">
           {type === "crypto" ? (
-            <img src={Logo} className="w-10" alt="" />
+            <Image image={Logo} className="w-8" svgSize="1em" />
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
