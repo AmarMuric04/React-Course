@@ -4,7 +4,7 @@ import { CryptoContext } from "../store/crypto-context";
 import Logo from "../../public/btcLogo.png";
 
 export default function BuyCryptoInput({ coin, type }) {
-  const { handleFormatNumberWithCommas } = useContext(CryptoContext);
+  const { handleCustomToFixed } = useContext(CryptoContext);
 
   const [inputValue, setInputValue] = useState();
   function handleInputValue(event) {
@@ -60,19 +60,19 @@ export default function BuyCryptoInput({ coin, type }) {
       </div>
       <div className="flex w-full gap-2 text-xl">
         <p className="font-bold max-w-1/3 w-1/3 overflow-hidden truncate whitespace-nowrap">
-          {handleFormatNumberWithCommas(inputValue)}{" "}
+          {inputValue &&
+            inputValue !== "." &&
+            handleCustomToFixed(Number(inputValue))}{" "}
           {type === "crypto" ? coin.coinSymbol : "USD $"} =
         </p>
         <p className="font-bold max-w-2/3 w-2/3 overflow-hidden truncate whitespace-nowrap text-end">
           {type === "crypto" ? "USD $" : coin.coinSymbol}{" "}
           {type === "crypto"
-            ? inputValue
-              ? handleFormatNumberWithCommas(
-                  (coin.coinValue * inputValue).toFixed(2)
-                )
+            ? inputValue && inputValue !== "."
+              ? handleCustomToFixed(coin.coinValue * inputValue)
               : "0.00"
-            : inputValue
-            ? (inputValue / coin.coinValue).toFixed(8)
+            : inputValue && inputValue !== "."
+            ? handleCustomToFixed(inputValue / coin.coinValue)
             : "0.00"}
         </p>
       </div>
@@ -92,7 +92,7 @@ export default function BuyCryptoInput({ coin, type }) {
         0% trading fee on{" "}
         {type === "crypto"
           ? `${coin.coinSymbol}/USDT`
-          : `USDT/${coin.coinSymbol}`}
+          : `USDT/${coin.coinSymbol}`}{" "}
         spot trading pair.
       </p>
     </>

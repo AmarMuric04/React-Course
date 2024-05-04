@@ -6,13 +6,13 @@ export const CryptoContext = createContext({
   userWallet: [],
   showCryptoList: [],
   favoriteCryptos: [],
-  buyCryptoPageCoin: {},
+  isLoading: true,
   addFavorite: () => {},
   formatList: () => {},
   handleFormatNumber: () => {},
   handlePreventDefault: () => {},
   handleShowCryptoList: () => {},
-  handleChangeBuyCryptoPage: () => {},
+  handleCustomToFixed: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
@@ -21,7 +21,7 @@ export default function CryptoContextProvider({ children }) {
   const [wallet, setWallet] = useState([]);
   const [favoriteCryptos, setFavoriteCryptos] = useState([]);
   const [showCryptoList, setShowCryptoList] = useState("main");
-  const [buyCryptoPageCoin, setBuyCryptoPageCoin] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchCrypto() {
@@ -35,6 +35,7 @@ export default function CryptoContextProvider({ children }) {
 
         setCoins(data.data);
         setFilteredCoins(data.data);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -56,6 +57,31 @@ export default function CryptoContextProvider({ children }) {
     console.log(newFavoriteCryptos);
 
     setFavoriteCryptos(newFavoriteCryptos);
+  }
+
+  function handleCustomToFixed(number) {
+    if (Math.abs(number) >= 0.1 || Math.abs(number) === 0) {
+      return handleFormatNumberWithCommas(number.toFixed(2));
+    } else {
+      let strNumber = number.toString();
+      let decimalIndex = strNumber.indexOf(".");
+      if (decimalIndex !== -1) {
+        let nonZeroIndex = decimalIndex + 1;
+        while (
+          nonZeroIndex < strNumber.length &&
+          strNumber.charAt(nonZeroIndex) === "0"
+        ) {
+          nonZeroIndex++;
+        }
+        let precision = Math.min(
+          strNumber.length - decimalIndex - 1,
+          nonZeroIndex - decimalIndex - 1
+        );
+        return handleFormatNumberWithCommas(number.toFixed(precision + 2));
+      } else {
+        return handleFormatNumberWithCommas(number.toString());
+      }
+    }
   }
 
   function handleFormatList(event, arrOfCoins, type) {
@@ -136,12 +162,14 @@ export default function CryptoContextProvider({ children }) {
     setShowCryptoList(identifier);
   }
 
-  function handleChangeBuyCryptoPage(coin) {
-    setBuyCryptoPageCoin(coin);
-  }
-
   function handleFormatNumberWithCommas(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const parts = number.toString().split(".");
+    const formattedInteger = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if (parts.length > 1) {
+      return formattedInteger + "." + parts[1];
+    } else {
+      return formattedInteger;
+    }
   }
 
   const cryptoValue = {
@@ -150,14 +178,14 @@ export default function CryptoContextProvider({ children }) {
     userWallet: [],
     showCryptoList,
     favoriteCryptos,
-    buyCryptoPageCoin,
+    isLoading,
     addFavorite: handleFavorite,
     formatList: handleFormatList,
     handleFormatNumber,
     handlePreventDefault,
     handleShowCryptoList,
-    handleChangeBuyCryptoPage,
     handleFormatNumberWithCommas,
+    handleCustomToFixed,
   };
 
   return (

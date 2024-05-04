@@ -1,27 +1,12 @@
-import { useState, useContext } from "react";
-import { CryptoContext } from "../store/crypto-context";
-import Logo from "../../public/btcLogo.png";
+import { useState } from "react";
 import BuyCryptoInput from "./BuyCryptoInput";
 
 export default function BuyCryptoContainer({ coin }) {
   const [buyCryptoButton, setBuyCryptoButton] = useState(true);
-  const [inputValue, setInputValue] = useState();
-  function handleInputValue(event) {
-    let value = event.target.value;
-
-    value = value.replace(/[^0-9.]/g, "").replace(/^0+/, "");
-
-    if (value.split(".").length > 2) {
-      value = value.substring(0, value.lastIndexOf("."));
-    }
-    setInputValue(value);
-  }
 
   function handleChangeBuyCryptoButton(identifier) {
     setBuyCryptoButton(identifier);
   }
-
-  const { handleFormatNumberWithCommas } = useContext(CryptoContext);
 
   return (
     <div className="w-full h-auto flex flex-col">

@@ -1,5 +1,8 @@
 import { useContext, useState } from "react";
 import { CryptoContext } from "../../store/crypto-context";
+
+import { Link } from "react-router-dom";
+
 export default function Crypto({ onBuyCrypto, coin }) {
   const {
     favoriteCryptos,
@@ -7,7 +10,7 @@ export default function Crypto({ onBuyCrypto, coin }) {
     addFavorite,
     handleChangeBuyCryptoPage,
     handlePreventDefault,
-    handleFormatNumberWithCommas,
+    handleCustomToFixed,
   } = useContext(CryptoContext);
 
   const [buyIsHovered, setBuyIsHovered] = useState(false);
@@ -39,9 +42,7 @@ export default function Crypto({ onBuyCrypto, coin }) {
   const coinName =
     coin.id.slice(0, 1).toUpperCase() +
     coin.id.slice(1, coin.id.length).replace("-", " ");
-  const coinValue = handleFormatNumberWithCommas(
-    Number(coin.priceUsd).toFixed(2)
-  );
+  const coinValue = handleCustomToFixed(Number(coin.priceUsd));
   const coinMarketCap = handleFormatNumber(Number(coin.marketCapUsd));
   const changeInLast24Hours = Number(coin.changePercent24Hr).toFixed(2);
   const volumeInLast24Hours = handleFormatNumber(
@@ -142,43 +143,49 @@ export default function Crypto({ onBuyCrypto, coin }) {
         </li>
         <li className="w-16 flex relative justify-center">
           <div className="absolute top-[-0.5rem] left-0 hover:showtext">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 48 48"
-              className="hover:text-green-400 hover:scale-[1.2] transition-all"
-              onMouseOver={handleHoverBuy}
-              onMouseLeave={handleNoHoverBuy}
-              onClick={() => handleGoToBuyPage(coin)}
-            >
-              <defs>
-                <mask id="ipSBuy0">
-                  <g fill="none" stroke-width="4">
-                    <path
-                      fill="#fff"
-                      fill-rule="evenodd"
-                      stroke="#fff"
-                      stroke-linejoin="round"
-                      d="M6 15h36l-2 27H8z"
-                      clip-rule="evenodd"
-                    />
-                    <path
-                      stroke="#fff"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M16 19V6h16v13"
-                    />
-                    <path stroke="#000" stroke-linecap="round" d="M16 34h16" />
-                  </g>
-                </mask>
-              </defs>
-              <path
-                fill="currentColor"
-                d="M0 0h48v48H0z"
-                mask="url(#ipSBuy0)"
-              />
-            </svg>
+            <Link to={`/crypto-list/${coin.id}`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 48 48"
+                className="hover:text-green-400 hover:scale-[1.2] transition-all"
+                onMouseOver={handleHoverBuy}
+                onMouseLeave={handleNoHoverBuy}
+                onClick={() => handleGoToBuyPage(coin)}
+              >
+                <defs>
+                  <mask id="ipSBuy0">
+                    <g fill="none" stroke-width="4">
+                      <path
+                        fill="#fff"
+                        fill-rule="evenodd"
+                        stroke="#fff"
+                        stroke-linejoin="round"
+                        d="M6 15h36l-2 27H8z"
+                        clip-rule="evenodd"
+                      />
+                      <path
+                        stroke="#fff"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M16 19V6h16v13"
+                      />
+                      <path
+                        stroke="#000"
+                        stroke-linecap="round"
+                        d="M16 34h16"
+                      />
+                    </g>
+                  </mask>
+                </defs>
+                <path
+                  fill="currentColor"
+                  d="M0 0h48v48H0z"
+                  mask="url(#ipSBuy0)"
+                />
+              </svg>
+            </Link>
             <p
               className={`absolute text-xs right-[130%] bg-stone-200 px-2 py-1 rounded-md shadow-lg top-0 ${
                 buyIsHovered ? "inline-block" : "hidden"

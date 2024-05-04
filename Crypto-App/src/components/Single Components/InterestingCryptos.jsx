@@ -6,7 +6,7 @@ export default function InterestingCryptosContainer({ filterBy }) {
     _mainCoinsList,
     handleFormatNumber,
     handlePreventDefault,
-    handleFormatNumberWithCommas,
+    handleCustomToFixed,
   } = useContext(CryptoContext);
 
   const [reverseFilter, setReverseFilter] = useState(false);
@@ -76,9 +76,7 @@ export default function InterestingCryptosContainer({ filterBy }) {
           const coinName =
             coin.id.slice(0, 1).toUpperCase() +
             coin.id.slice(1, coin.id.length).replace("-", " ");
-          const coinValue = handleFormatNumberWithCommas(
-            Number(coin.priceUsd).toFixed(2)
-          );
+          const coinValue = handleCustomToFixed(Number(coin.priceUsd));
           const coinMarketCap = handleFormatNumber(
             Number(coin.marketCapUsd).toFixed(0)
           );

@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import Logo from "../../../public/YellowLogoNoTextMain.png";
 
-export default function Header({ onChangeMainPage }) {
+export default function Header() {
   return (
     <header className="absolute top-0 left-0 right-0 bg-stone-800 px-16 h-16 items-center flex justify-between">
       <div className="flex items-center h-full gap-3 cursor-pointer">
@@ -18,18 +19,18 @@ export default function Header({ onChangeMainPage }) {
         <li className="cursor-pointer">Contact</li>
       </ul>
       <div className="flex gap-4">
-        <button
-          onClick={() => onChangeMainPage("credentials", "login")}
+        <Link
           className="bg-yellow-400 py-2 px-4 rounded-md hover:bg-yellow-500 transition-all font-bold"
+          to="/login"
         >
           Log in
-        </button>
-        <button
-          onClick={() => onChangeMainPage("credentials", "signup")}
+        </Link>
+        <Link
           className="bg-yellow-400 py-2 px-4 rounded-md hover:bg-yellow-500 transition-all font-bold"
+          to="/signup"
         >
           Sign up
-        </button>
+        </Link>
       </div>
     </header>
   );

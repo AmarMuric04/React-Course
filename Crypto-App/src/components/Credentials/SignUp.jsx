@@ -1,6 +1,3 @@
-import Logo from "../../../public/MainLogo.png";
-import BG from "../../../public/LoginBGmain.jpg";
-
 export default function SignUp({ onChange }) {
   return (
     <div className="bg-white rounded-lg w-[28rem] h-[40rem] flex flex-col items-start px-20 py-8 gap-6 shadow-2xl">
