@@ -27,6 +27,7 @@ export default function CryptoContextProvider({ children }) {
   const [userAccount, setUserAccount] = useState({
     firstName: "",
     lastName: "",
+    balance: 150000,
     purchaseHistory: [],
     wallet: [],
   });
@@ -56,19 +57,10 @@ export default function CryptoContextProvider({ children }) {
     console.log(userAccount);
   }, [userAccount]);
 
-  function handleBuyCrypto(coin, amountOfCoins, amountOfCash) {
+  function handleBuyCrypto(coin, cashAmount, coinAmount) {
     const time = `${new Date().getDate()}/${
       new Date().getMonth() + 1
     }/${new Date().getFullYear()}`;
-
-    let coinAmount = Number(amountOfCoins);
-    let cashAmount = Number(amountOfCash);
-
-    if (!amountOfCoins)
-      coinAmount = Number(amountOfCash) / Number(coin.coinValue);
-
-    if (!amountOfCash)
-      cashAmount = Number(amountOfCoins) * Number(coin.coinValue);
 
     let alreadyBoughtCoin =
       userAccount &&
@@ -80,6 +72,7 @@ export default function CryptoContextProvider({ children }) {
       setUserAccount((prevUserAccount) => {
         return {
           ...prevUserAccount,
+          balance: userAccount.balance - cashAmount,
           wallet: [
             ...userAccount.wallet,
             {
@@ -119,6 +112,7 @@ export default function CryptoContextProvider({ children }) {
       setUserAccount((prevUserAccount) => {
         return {
           ...prevUserAccount,
+          balance: userAccount.balance - cashAmount,
           wallet: newWallet,
           purchaseHistory: [
             ...userAccount.purchaseHistory,

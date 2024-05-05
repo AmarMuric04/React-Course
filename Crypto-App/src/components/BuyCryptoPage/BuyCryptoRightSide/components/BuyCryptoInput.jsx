@@ -5,9 +5,11 @@ import Image from "../../../Single Components/Image";
 import Logo from "/public/btcLogo.png";
 
 export default function BuyCryptoInput({ coin, type }) {
-  const { handleCustomToFixed, handleBuyCrypto } = useContext(CryptoContext);
-
+  const { handleCustomToFixed, handleBuyCrypto, userAccount } =
+    useContext(CryptoContext);
   const [inputValue, setInputValue] = useState();
+  const [error, setError] = useState(false);
+
   function handleInputValue(event) {
     let value = event.target.value;
 
@@ -19,11 +21,36 @@ export default function BuyCryptoInput({ coin, type }) {
     setInputValue(value);
   }
 
+  function handleBuyCryptoHelper(coin, amountOfCoins, amountOfCash) {
+    let coinAmount = Number(amountOfCoins);
+    let cashAmount = Number(amountOfCash);
+
+    if (!amountOfCoins)
+      coinAmount = Number(amountOfCash) / Number(coin.coinValue);
+
+    if (!amountOfCash)
+      cashAmount = Number(amountOfCoins) * Number(coin.coinValue);
+
+    if (userAccount.balance < cashAmount || !Number(inputValue)) {
+      setError(true);
+
+      setTimeout(() => {
+        setError(false);
+      }, 1000);
+      return;
+    }
+
+    setInputValue("");
+    handleBuyCrypto(coin, cashAmount, coinAmount);
+  }
+
   return (
     <>
       <div className="w-full relative my-4">
         <input
-          className="bg-stone-400 pb-4 py-12 w-full text-white px-4 rounded-lg focus:outline-none placeholder-stone-800"
+          className={`bg-stone-400 pb-4 py-12 w-full text-white px-4 rounded-lg focus:outline-none placeholder-stone-800 border-[0.1rem] ${
+            error && "border-red-400"
+          }`}
           type="text"
           value={inputValue}
           maxLength="11"
@@ -99,8 +126,8 @@ export default function BuyCryptoInput({ coin, type }) {
       <button
         onClick={
           type === "crypto"
-            ? () => handleBuyCrypto(coin, inputValue, "")
-            : () => handleBuyCrypto(coin, "", inputValue)
+            ? () => handleBuyCryptoHelper(coin, inputValue, "")
+            : () => handleBuyCryptoHelper(coin, "", inputValue)
         }
         className="bg-yellow-400 rounded-md py-4 font-bold hover:bg-yellow-500 transition-all"
       >
