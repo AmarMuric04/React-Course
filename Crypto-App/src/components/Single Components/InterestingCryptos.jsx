@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { CryptoContext } from "../../store/crypto-context";
 
-export default function InterestingCryptosContainer({ filterBy }) {
+export default function InterestingCryptosContainer({ filterBy, classes }) {
   const {
     _mainCoinsList,
     handleFormatNumber,
@@ -161,7 +161,7 @@ export default function InterestingCryptosContainer({ filterBy }) {
   }
 
   return (
-    <div className="h-auto  w-[30%] min-w-64">
+    <div className={`${classes} h-auto min-w-64`}>
       <header className="flex justify-between">
         <h2>{message}</h2>
         <p

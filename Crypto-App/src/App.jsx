@@ -3,6 +3,7 @@ import InterestingCryptos from "./components/Containers/InterestingCryptosContai
 import CryptoListContainer from "./components/Containers/CryptoListContainer.jsx";
 import Header from "./components/Single Components/Header.jsx";
 import CryptoSearchContextProvider from "./store/cryptoSearch-context.jsx";
+import Footer from "./components/Single Components/Footer.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             </CryptoSearchContextProvider>
           </section>
         </div>
+        <Footer />
       </main>
     </>
   );

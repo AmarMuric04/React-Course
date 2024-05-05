@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
-import { CryptoContext } from "../store/crypto-context";
-import Image from "./Image";
+import { CryptoContext } from "../../../../store/crypto-context";
+import Image from "../../../Single Components/Image";
 
-import Logo from "../../public/btcLogo.png";
+import Logo from "/public/btcLogo.png";
 
 export default function BuyCryptoInput({ coin, type }) {
   const { handleCustomToFixed } = useContext(CryptoContext);

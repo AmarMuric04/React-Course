@@ -1,16 +1,19 @@
 import { useContext } from "react";
-import { CryptoContext } from "../store/crypto-context";
-import Header from "./Single Components/Header";
+import { CryptoContext } from "../../store/crypto-context";
+import Header from "../Single Components/Header";
 
-import BuyCryptoLeftSide from "./BuyCryptoLeftSide";
-import BuyCryptoRightSide from "./BuyCryptoRightSide";
+import BuyCryptoLeftSide from "./BuyCryptoLeftSide/BuyCryptoLeftSide";
+import BuyCryptoRightSide from "./BuyCryptoRightSide/BuyCryptoRightSide";
 import { useParams, Link } from "react-router-dom";
+import Footer from "../Single Components/Footer";
 
-import { extendedCryptoObject } from "../assets/extendedCryptoObject";
+import { extendedCryptoObject } from "../../assets/extendedCryptoObject";
 
 export default function BuyCryptoPage() {
   const { _mainCoinsList, handleFormatNumber } = useContext(CryptoContext);
   const { id } = useParams();
+
+  window.scrollTo(0, 0);
 
   if (!_mainCoinsList || _mainCoinsList.length === 0) {
     return (
@@ -189,18 +192,38 @@ export default function BuyCryptoPage() {
   const coinResource = buyCryptoPageCoin.explorer;
 
   return (
-    <main className="bg-stone-300 h-full min-h w-full min-w-screen flex flex-col items-center">
+    <main className="bg-stone-300 h-full min-h-screen w-full min-w-screen flex flex-col items-center">
       <Header />
       <div className="w-[80rem] mt-16">
-        <p className="text-md font-bold text-gray-600 my-8">
+        <p className="flex items-center gap-3 text-md font-bold text-gray-600 my-8">
           <Link to="/" className="cursor-pointer hover:underline">
             Home
           </Link>
-          {" > "}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M9.879 17.243a1 1 0 0 1-.707-1.707L12.707 12L9.172 8.464a1 1 0 0 1 1.414-1.414l4.242 4.243a1 1 0 0 1 0 1.414l-4.242 4.243a.997.997 0 0 1-.707.293"
+            />
+          </svg>
           <Link to="/crypto-list" className="cursor-pointer hover:underline">
             Crypto List
           </Link>
-          {" > "}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M9.879 17.243a1 1 0 0 1-.707-1.707L12.707 12L9.172 8.464a1 1 0 0 1 1.414-1.414l4.242 4.243a1 1 0 0 1 0 1.414l-4.242 4.243a.997.997 0 0 1-.707.293"
+            />
+          </svg>
           {coinName} Price
         </p>
         <div className="flex w-full min-h-screen h-full gap-5">
@@ -238,6 +261,7 @@ export default function BuyCryptoPage() {
           />
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

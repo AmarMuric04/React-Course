@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BuyCryptoInput from "./BuyCryptoInput";
+import BuyCryptoInput from "../../BuyCryptoRightSide/components/BuyCryptoInput";
 
 export default function BuyCryptoContainer({ coin }) {
   const [buyCryptoButton, setBuyCryptoButton] = useState(true);

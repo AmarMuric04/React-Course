@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import CredentialsPage from "../components/Credentials/CredentialsPage";
-import BuyCryptoPage from "../components/BuyCryptoPage";
+import BuyCryptoPage from "../components/BuyCryptoPage/BuyCryptoPage";
 import App from "../App";
 import LandingPage from "../components/LandingPage";
 

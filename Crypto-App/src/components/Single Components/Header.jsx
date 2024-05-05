@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import Logo from "../../../public/YellowLogoNoTextMain.png";
+import Image from "./Image";
 
 export default function Header() {
   return (
     <header className="absolute top-0 left-0 right-0 bg-stone-800 px-16 h-16 items-center flex justify-between">
       <div className="flex items-center h-full gap-3 cursor-pointer">
-        <img className="h-3/4" src={Logo} alt="" />
-        <h1 className="text-4xl text-yellow-400 font-extrabold">
+        <Image image={Logo} className="w-10" svgSize="1.5" />
+        <h1 className="text-2xl text-yellow-400 tracking-[0.3rem]">
           B<span className="text-stone-700 text-2xl">LAJV</span>
           INANCE
         </h1>
@@ -14,9 +15,9 @@ export default function Header() {
       <ul className="flex text-white gap-5 text-lg items-center">
         <li className="cursor-pointer">Buy Crypto</li>
         <li className="cursor-pointer">My Wallet</li>
-        <li className="cursor-pointer">*Earn</li>
-        <li className="cursor-pointer">Information</li>
+        <li className="cursor-pointer">Earn</li>
         <li className="cursor-pointer">Contact</li>
+        <li className="cursor-pointer">Sell Crypto</li>
       </ul>
       <div className="flex gap-4">
         <Link

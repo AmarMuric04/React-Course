@@ -119,7 +119,7 @@ export default function CryptoListContainer() {
   }
 
   return (
-    <>
+    <div className="mb-64">
       <FilterCryptoList />
 
       <ul className="flex gap-16 px-8 relative text-sm text-stone-700">
@@ -137,6 +137,6 @@ export default function CryptoListContainer() {
       {showCryptoList === "favorite" && <FavoriteCryptoList />}
       {showCryptoList === "main" && <CryptoList />}
       {showCryptoList === "search" && <SearchedCryptoList />}
-    </>
+    </div>
   );
 }

@@ -5,9 +5,9 @@ export default function InterestingCrypto() {
     <>
       <h1 className="text-4xl font-bold uppercase mb-8">Market overview</h1>
       <section className="flex flex-wrap w-ful justify-between px-16 mb-16">
-        <InterestingCryptos filterBy="volume" />
-        <InterestingCryptos filterBy="change" />
-        <InterestingCryptos filterBy="marketcap" />
+        <InterestingCryptos classes="w-[30%]" filterBy="volume" />
+        <InterestingCryptos classes="w-[30%]" filterBy="change" />
+        <InterestingCryptos classes="w-[30%]" filterBy="marketcap" />
       </section>
     </>
   );
