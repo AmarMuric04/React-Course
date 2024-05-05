@@ -8,7 +8,6 @@ export default function Crypto({ onBuyCrypto, coin }) {
     favoriteCryptos,
     handleFormatNumber,
     addFavorite,
-    handleChangeBuyCryptoPage,
     handlePreventDefault,
     handleCustomToFixed,
   } = useContext(CryptoContext);
@@ -30,11 +29,6 @@ export default function Crypto({ onBuyCrypto, coin }) {
 
   function handleNoHoverSell() {
     setSellIsHovered(false);
-  }
-
-  function handleGoToBuyPage(coin) {
-    handleChangeBuyCryptoPage(coin);
-    onBuyCrypto("buycrypto");
   }
 
   const coinRank = coin.rank;
@@ -152,7 +146,6 @@ export default function Crypto({ onBuyCrypto, coin }) {
                 className="hover:text-green-400 hover:scale-[1.2] transition-all"
                 onMouseOver={handleHoverBuy}
                 onMouseLeave={handleNoHoverBuy}
-                onClick={() => handleGoToBuyPage(coin)}
               >
                 <defs>
                   <mask id="ipSBuy0">

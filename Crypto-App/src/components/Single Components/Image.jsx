@@ -3,8 +3,6 @@ import { useState } from "react";
 export default function Image({ image, className, svgSize }) {
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(isLoading);
-
   function handleImageLoaded() {
     setIsLoading(false);
   }

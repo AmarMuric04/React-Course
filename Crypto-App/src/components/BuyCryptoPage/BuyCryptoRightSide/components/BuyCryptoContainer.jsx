@@ -31,9 +31,6 @@ export default function BuyCryptoContainer({ coin }) {
       {buyCryptoButton && <BuyCryptoInput coin={coin} type="crypto" />}
       {!buyCryptoButton && <BuyCryptoInput coin={coin} type="cash" />}
 
-      <button className="bg-yellow-400 rounded-md py-4 font-bold hover:bg-yellow-500 transition-all">
-        Buy {coin.coinSymbol}
-      </button>
       <p className="text-end text-sm text-stone-800 my-4">
         Last updated 2024/05/03 21:03 (CEST)
       </p>

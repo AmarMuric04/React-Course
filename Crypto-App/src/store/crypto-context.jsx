@@ -7,6 +7,7 @@ export const CryptoContext = createContext({
   showCryptoList: [],
   favoriteCryptos: [],
   isLoading: true,
+  userAccount: {},
   addFavorite: () => {},
   formatList: () => {},
   handleFormatNumber: () => {},
@@ -14,15 +15,21 @@ export const CryptoContext = createContext({
   handleShowCryptoList: () => {},
   handleCustomToFixed: () => {},
   handleGetRandomNumber: () => {},
+  handleBuyCrypto: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
   const [coins, setCoins] = useState([]);
   const [filteredCoins, setFilteredCoins] = useState([]);
-  const [wallet, setWallet] = useState([]);
   const [favoriteCryptos, setFavoriteCryptos] = useState([]);
   const [showCryptoList, setShowCryptoList] = useState("main");
   const [isLoading, setIsLoading] = useState(true);
+  const [userAccount, setUserAccount] = useState({
+    firstName: "",
+    lastName: "",
+    purchaseHistory: [],
+    wallet: [],
+  });
 
   useEffect(() => {
     async function fetchCrypto() {
@@ -44,6 +51,89 @@ export default function CryptoContextProvider({ children }) {
 
     fetchCrypto();
   }, []);
+
+  useEffect(() => {
+    console.log(userAccount);
+  }, [userAccount]);
+
+  function handleBuyCrypto(coin, amountOfCoins, amountOfCash) {
+    const time = `${new Date().getDate()}/${
+      new Date().getMonth() + 1
+    }/${new Date().getFullYear()}`;
+
+    let coinAmount = Number(amountOfCoins);
+    let cashAmount = Number(amountOfCash);
+
+    if (!amountOfCoins)
+      coinAmount = Number(amountOfCash) / Number(coin.coinValue);
+
+    if (!amountOfCash)
+      cashAmount = Number(amountOfCoins) * Number(coin.coinValue);
+
+    let alreadyBoughtCoin =
+      userAccount &&
+      userAccount.wallet.find(
+        (purchasedCoin) => purchasedCoin.id === coin.coinId
+      );
+
+    if (!alreadyBoughtCoin)
+      setUserAccount((prevUserAccount) => {
+        return {
+          ...prevUserAccount,
+          wallet: [
+            ...userAccount.wallet,
+            {
+              id: coin.coinId,
+              purchasedPrice: coin.coinValue,
+              amountOfCoins: coinAmount,
+              moneySpent: cashAmount,
+              time: [time],
+            },
+          ],
+          purchaseHistory: [
+            {
+              id: coin.coinId,
+              purchasedPrice: coin.coinValue,
+              amountOfCoins: coinAmount,
+              moneySpent: cashAmount,
+              time: [time],
+            },
+          ],
+        };
+      });
+    else {
+      alreadyBoughtCoin.purchasedPrice =
+        (alreadyBoughtCoin.purchasedPrice + coin.coinValue) / 2;
+      alreadyBoughtCoin.amountOfCoins =
+        alreadyBoughtCoin.amountOfCoins + coinAmount;
+      alreadyBoughtCoin.moneySpent = alreadyBoughtCoin.moneySpent + cashAmount;
+      alreadyBoughtCoin.time.push(time);
+
+      const newWallet = [...userAccount.wallet];
+
+      newWallet.forEach(
+        (purchase) =>
+          (purchase = purchase.id === coin.coinId && alreadyBoughtCoin)
+      );
+
+      setUserAccount((prevUserAccount) => {
+        return {
+          ...prevUserAccount,
+          wallet: newWallet,
+          purchaseHistory: [
+            ...userAccount.purchaseHistory,
+            {
+              id: coin.coinId,
+              purchasedPrice: coin.coinValue,
+              amountOfCoins: coinAmount,
+              moneySpent: cashAmount,
+              time: [time],
+            },
+          ],
+        };
+      });
+    }
+  }
 
   function handleFavorite(coin) {
     const newFavoriteCryptos = [...favoriteCryptos];
@@ -184,6 +274,7 @@ export default function CryptoContextProvider({ children }) {
     showCryptoList,
     favoriteCryptos,
     isLoading,
+    userAccount,
     addFavorite: handleFavorite,
     formatList: handleFormatList,
     handleFormatNumber,
@@ -192,6 +283,7 @@ export default function CryptoContextProvider({ children }) {
     handleFormatNumberWithCommas,
     handleCustomToFixed,
     handleGetRandomNumber,
+    handleBuyCrypto,
   };
 
   return (

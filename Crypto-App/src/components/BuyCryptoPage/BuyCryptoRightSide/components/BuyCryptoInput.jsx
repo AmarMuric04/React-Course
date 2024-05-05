@@ -5,7 +5,7 @@ import Image from "../../../Single Components/Image";
 import Logo from "/public/btcLogo.png";
 
 export default function BuyCryptoInput({ coin, type }) {
-  const { handleCustomToFixed } = useContext(CryptoContext);
+  const { handleCustomToFixed, handleBuyCrypto } = useContext(CryptoContext);
 
   const [inputValue, setInputValue] = useState();
   function handleInputValue(event) {
@@ -96,6 +96,16 @@ export default function BuyCryptoInput({ coin, type }) {
           : `USDT/${coin.coinSymbol}`}{" "}
         spot trading pair.
       </p>
+      <button
+        onClick={
+          type === "crypto"
+            ? () => handleBuyCrypto(coin, inputValue, "")
+            : () => handleBuyCrypto(coin, "", inputValue)
+        }
+        className="bg-yellow-400 rounded-md py-4 font-bold hover:bg-yellow-500 transition-all"
+      >
+        Buy {coin.coinSymbol}
+      </button>
     </>
   );
 }

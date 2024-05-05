@@ -166,10 +166,9 @@ export default function BuyCryptoPage() {
     );
   }
 
-  console.log(buyCryptoPageCoin);
-
   const extendedCoin = extendedCryptoObject.find((coin) => coin.id === id);
 
+  const coinId = buyCryptoPageCoin.id;
   const coinName =
     buyCryptoPageCoin.id.slice(0, 1).toUpperCase() +
     buyCryptoPageCoin.id
@@ -240,6 +239,7 @@ export default function BuyCryptoPage() {
               coinSupply,
               coinVwapInLast24Hours,
               coinResource,
+              coinId,
             }}
             extendedCoin={extendedCoin}
           />
@@ -256,6 +256,7 @@ export default function BuyCryptoPage() {
               coinSupply,
               coinVwapInLast24Hours,
               coinResource,
+              coinId,
             }}
             extendedCoin={extendedCoin}
           />

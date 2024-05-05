@@ -1,8 +1,6 @@
 import FAQquestion from "./FAQquestion";
 
 export default function FAQ({ questions }) {
-  console.log(questions);
-
   return (
     <div className="min-h-96 h-auto">
       {questions.map((question) => (
