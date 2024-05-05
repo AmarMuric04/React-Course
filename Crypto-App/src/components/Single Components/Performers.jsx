@@ -4,16 +4,18 @@ import { CryptoContext } from "../../store/crypto-context";
 import Crypto from "./Crypto";
 
 export default function Performers({ type }) {
-  const { coinsList } = useContext(CryptoContext);
+  const { _mainCoinsList, coinFilter, handleFilterCoins } =
+    useContext(CryptoContext);
 
-  const newCoins = coinsList;
+  const newCoins = [..._mainCoinsList];
   let coins = [];
+
   coins =
     type === "bp"
       ? newCoins.filter((coin) => Number(coin.changePercent24Hr) < -0.2)
       : newCoins.filter((coin) => Number(coin.changePercent24Hr) > 0.2);
 
-  console.log(coins.length);
+  coins = handleFilterCoins(coinFilter, coins);
 
   return (
     <ul className="flex flex-col gap-3">

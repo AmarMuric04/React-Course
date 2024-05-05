@@ -22,7 +22,7 @@ export default function MainList() {
         </li>
         <li
           className="cursor-pointer"
-          onClick={() => handleShowCryptoList("favorite")}
+          onClick={() => handleShowCryptoList("mywallet")}
         >
           My Wallet
         </li>

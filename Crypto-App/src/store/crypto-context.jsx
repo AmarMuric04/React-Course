@@ -2,25 +2,26 @@ import { createContext, useEffect, useState } from "react";
 
 export const CryptoContext = createContext({
   _mainCoinsList: [],
-  coinsList: [],
+  coinFilter: "",
   userWallet: [],
   showCryptoList: [],
   favoriteCryptos: [],
   isLoading: true,
   userAccount: {},
   addFavorite: () => {},
-  formatList: () => {},
+  handleSetFilters: () => {},
   handleFormatNumber: () => {},
   handlePreventDefault: () => {},
   handleShowCryptoList: () => {},
   handleCustomToFixed: () => {},
   handleGetRandomNumber: () => {},
   handleBuyCrypto: () => {},
+  handleFilterCoins: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
   const [coins, setCoins] = useState([]);
-  const [filteredCoins, setFilteredCoins] = useState([]);
+  const [coinFilter, setCoinFilter] = useState("");
   const [favoriteCryptos, setFavoriteCryptos] = useState([]);
   const [showCryptoList, setShowCryptoList] = useState("main");
   const [isLoading, setIsLoading] = useState(true);
@@ -43,19 +44,29 @@ export default function CryptoContextProvider({ children }) {
         if (!response.ok) throw new Error("Something went wrong!");
 
         setCoins(data.data);
-        setFilteredCoins(data.data);
+
+        setFavoriteCryptos((prevFavoriteCryptos) => {
+          return prevFavoriteCryptos.map((favoriteCrypto) => {
+            const favoritedCrypto = data.data.find(
+              (coin) => coin.id === favoriteCrypto.id
+            );
+
+            return {
+              ...favoritedCrypto,
+            };
+          });
+        });
+
         setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
     }
 
-    fetchCrypto();
+    setInterval(() => {
+      fetchCrypto();
+    }, 5000);
   }, []);
-
-  useEffect(() => {
-    console.log(userAccount);
-  }, [userAccount]);
 
   function handleBuyCrypto(coin, cashAmount, coinAmount) {
     const time = `${new Date().getDate()}/${
@@ -84,6 +95,7 @@ export default function CryptoContextProvider({ children }) {
             },
           ],
           purchaseHistory: [
+            ...userAccount.purchaseHistory,
             {
               id: coin.coinId,
               purchasedPrice: coin.coinValue,
@@ -109,21 +121,23 @@ export default function CryptoContextProvider({ children }) {
           (purchase = purchase.id === coin.coinId && alreadyBoughtCoin)
       );
 
+      const newPurchaseHistory = [
+        ...userAccount.purchaseHistory,
+        {
+          id: coin.coinId,
+          purchasedPrice: coin.coinValue,
+          amountOfCoins: coinAmount,
+          moneySpent: cashAmount,
+          time: [time],
+        },
+      ];
+
       setUserAccount((prevUserAccount) => {
         return {
           ...prevUserAccount,
           balance: userAccount.balance - cashAmount,
           wallet: newWallet,
-          purchaseHistory: [
-            ...userAccount.purchaseHistory,
-            {
-              id: coin.coinId,
-              purchasedPrice: coin.coinValue,
-              amountOfCoins: coinAmount,
-              moneySpent: cashAmount,
-              time: [time],
-            },
-          ],
+          purchaseHistory: newPurchaseHistory,
         };
       });
     }
@@ -138,8 +152,6 @@ export default function CryptoContextProvider({ children }) {
         1
       );
     } else newFavoriteCryptos.push(coin);
-
-    console.log(newFavoriteCryptos);
 
     setFavoriteCryptos(newFavoriteCryptos);
   }
@@ -169,61 +181,61 @@ export default function CryptoContextProvider({ children }) {
     }
   }
 
-  function handleFormatList(event, arrOfCoins, type) {
-    let newCoins = [];
+  function handleFilterCoins(filter, givenCoins) {
+    let newCoins = [...givenCoins];
 
-    if (event.target.value === "rank") {
-      newCoins = [...arrOfCoins].sort(
-        (a, b) => Number(a.rank) - Number(b.rank)
-      );
+    if (filter === "rank") {
+      newCoins = [...newCoins].sort((a, b) => Number(a.rank) - Number(b.rank));
     }
 
-    if (event.target.value === "rank-reversed")
-      newCoins = [...arrOfCoins].sort(
-        (a, b) => Number(b.rank) - Number(a.rank)
-      );
+    if (filter === "rank-reversed")
+      newCoins = [...newCoins].sort((a, b) => Number(b.rank) - Number(a.rank));
 
-    if (event.target.value === "cost")
-      newCoins = [...arrOfCoins].sort(
+    if (filter === "cost")
+      newCoins = [...newCoins].sort(
         (a, b) => Number(b.priceUsd) - Number(a.priceUsd)
       );
 
-    if (event.target.value === "cost-reversed")
-      newCoins = [...arrOfCoins].sort(
+    if (filter === "cost-reversed")
+      newCoins = [...newCoins].sort(
         (a, b) => Number(a.priceUsd) - Number(b.priceUsd)
       );
 
-    if (event.target.value === "marketcap")
-      newCoins = [...arrOfCoins].sort(
+    if (filter === "marketcap")
+      newCoins = [...newCoins].sort(
         (a, b) => Number(b.marketCapUsd) - Number(a.marketCapUsd)
       );
 
-    if (event.target.value === "marketcap-reversed")
-      newCoins = [...arrOfCoins].sort(
+    if (filter === "marketcap-reversed")
+      newCoins = [...newCoins].sort(
         (a, b) => Number(a.marketCapUsd) - Number(b.marketCapUsd)
       );
 
-    if (event.target.value === "volume")
-      newCoins = [...arrOfCoins].sort(
+    if (filter === "volume")
+      newCoins = [...newCoins].sort(
         (a, b) => Number(b.volumeUsd24Hr) - Number(a.volumeUsd24Hr)
       );
 
-    if (event.target.value === "volume-reversed")
-      newCoins = [...arrOfCoins].sort(
+    if (filter === "volume-reversed")
+      newCoins = [...newCoins].sort(
         (a, b) => Number(a.volumeUsd24Hr) - Number(b.volumeUsd24Hr)
       );
 
-    if (event.target.value === "change")
-      newCoins = [...arrOfCoins].sort(
+    if (filter === "change")
+      newCoins = [...newCoins].sort(
         (a, b) => Number(b.changePercent24Hr) - Number(a.changePercent24Hr)
       );
 
-    if (event.target.value === "change-reversed")
-      newCoins = [...arrOfCoins].sort(
+    if (filter === "change-reversed")
+      newCoins = [...newCoins].sort(
         (a, b) => Number(a.changePercent24Hr) - Number(b.changePercent24Hr)
       );
 
-    type === "main" ? setFilteredCoins(newCoins) : setFavoriteCryptos(newCoins);
+    return newCoins;
+  }
+
+  function handleSetFilters(event) {
+    setCoinFilter(event.target.value);
   }
 
   function handleFormatNumber(amount) {
@@ -263,14 +275,14 @@ export default function CryptoContextProvider({ children }) {
 
   const cryptoValue = {
     _mainCoinsList: coins,
-    coinsList: filteredCoins,
     userWallet: [],
+    coinFilter,
     showCryptoList,
     favoriteCryptos,
     isLoading,
     userAccount,
     addFavorite: handleFavorite,
-    formatList: handleFormatList,
+    handleSetFilters,
     handleFormatNumber,
     handlePreventDefault,
     handleShowCryptoList,
@@ -278,6 +290,7 @@ export default function CryptoContextProvider({ children }) {
     handleCustomToFixed,
     handleGetRandomNumber,
     handleBuyCrypto,
+    handleFilterCoins,
   };
 
   return (

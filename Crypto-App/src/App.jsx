@@ -6,6 +6,8 @@ import CryptoSearchContextProvider from "./store/cryptoSearch-context.jsx";
 import Footer from "./components/Single Components/Footer.jsx";
 
 function App() {
+  document.title = `Blajvinance | Crypto List`;
+
   return (
     <>
       <main className="bg-stone-200 max-w-screen mt-16 h-auto min-h-screen flex flex-col justify-center items-center">

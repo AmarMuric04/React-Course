@@ -3,8 +3,7 @@ import { CryptoSearchContext } from "../../store/cryptoSearch-context";
 import { CryptoContext } from "../../store/crypto-context";
 
 import Crypto from "../Single Components/Crypto";
-
-export default function SearchedCryptoList({ onBuy }) {
+export default function SearchedCryptoList() {
   const { inputValue } = useContext(CryptoSearchContext);
   const { coinsList } = useContext(CryptoContext);
 
@@ -22,9 +21,7 @@ export default function SearchedCryptoList({ onBuy }) {
           No cryptos found for your search...
         </p>
       ) : (
-        coins.map((coin) => (
-          <Crypto key={coin.id} coin={coin} onBuyCrypto={onBuy} />
-        ))
+        coins.map((coin) => <Crypto key={coin.id} coin={coin} />)
       )}
     </ul>
   );

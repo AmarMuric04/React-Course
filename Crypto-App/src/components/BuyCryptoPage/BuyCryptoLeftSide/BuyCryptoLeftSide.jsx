@@ -24,7 +24,7 @@ export default function BuyCryptoLeftSide({ coin, extendedCoin }) {
   const { handleCustomToFixed, handleGetRandomNumber } =
     useContext(CryptoContext);
 
-  const priceChange1h = handleGetRandomNumber(-0.5, 0.5).toFixed(2);
+  const priceChange1h = handleGetRandomNumber(-0.1, 0.1).toFixed(2);
   const priceChange7d = handleGetRandomNumber(0.1, 0.15).toFixed(2);
 
   return (
@@ -191,7 +191,7 @@ export default function BuyCryptoLeftSide({ coin, extendedCoin }) {
               title="Vwap (24h)"
               value={
                 <p className="font-bold">
-                  {handleCustomToFixed(Number(coin.coinVwapInLast24Hours))}
+                  $ {handleCustomToFixed(Number(coin.coinVwapInLast24Hours))}
                 </p>
               }
             />

@@ -2,19 +2,13 @@ import { useContext } from "react";
 import { CryptoContext } from "../../store/crypto-context.jsx";
 
 export default function FilterCryptoList() {
-  let { formatList, _mainCoinsList, favoriteCryptos, showCryptoList } =
-    useContext(CryptoContext);
-
-  const coins =
-    showCryptoList !== "favorite" ? _mainCoinsList : favoriteCryptos;
+  let { handleSetFilters } = useContext(CryptoContext);
 
   return (
     <div className="w-full flex justify-end gap-5 px-10 py-5 items-center">
       <p>Filter by:</p>
       <select
-        onChange={() =>
-          formatList(event, coins, showCryptoList !== "favorite" ? "main" : "")
-        }
+        onChange={() => handleSetFilters(event)}
         className="px-2 py-1 rounded-md focus:outline-none cursor-pointer"
       >
         <option value="rank">Best rank</option>

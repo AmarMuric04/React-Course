@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
+  document.title = `Blajvinance | Crypto Currency Exchange Platform`;
+
   return (
     <div className="bg-stone-800 text-white w-screen h-screen flex flex-col items-center justify-center">
       <h1 className="text-xl flex gap-3 items-center">

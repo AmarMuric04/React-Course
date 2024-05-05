@@ -3,13 +3,12 @@ import CryptoList from "../DifferentCryptoLists/CryptoList";
 import Performers from "../Single Components/Performers";
 import FilterCryptoList from "../DifferentCryptoLists/FilterCryptoList";
 import SearchedCryptoList from "../DifferentCryptoLists/SearchedCryptoList";
+import MyWalletCryptoList from "../DifferentCryptoLists/MyWalletCryptoList";
 import { useContext } from "react";
 import { CryptoContext } from "../../store/crypto-context";
 
 export default function CryptoListContainer() {
   const { showCryptoList, _mainCoinsList } = useContext(CryptoContext);
-
-  console.log(_mainCoinsList);
 
   if (!_mainCoinsList || _mainCoinsList.length === 0) {
     return (
@@ -137,6 +136,7 @@ export default function CryptoListContainer() {
       {showCryptoList === "favorite" && <FavoriteCryptoList />}
       {showCryptoList === "main" && <CryptoList />}
       {showCryptoList === "search" && <SearchedCryptoList />}
+      {showCryptoList === "mywallet" && <MyWalletCryptoList />}
     </div>
   );
 }
