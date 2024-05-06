@@ -3,7 +3,7 @@ import CredentialsPage from "../components/Credentials/CredentialsPage";
 import BuyCryptoPage from "../components/BuyCryptoPage/BuyCryptoPage";
 import App from "../App";
 import LandingPage from "../components/LandingPage";
-import BuyAndSellGeneralPage from "../components/BuyAndSellGeneralPage";
+import BuyAndSellGeneralPage from "../components/BuyAndSellGeneralPage/BuyAndSellGeneralPage";
 
 export const router = createBrowserRouter([
   {
