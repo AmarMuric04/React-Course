@@ -72,7 +72,8 @@ export default function MyWalletCryptoList() {
                 firstText="Buy more"
                 secondText="Sell"
                 width="w-20"
-                coin={coin}
+                firstHash={`/crypto-list/${coin.id}`}
+                secondHash={`/sell-crypto`}
               />
             </ul>
           );

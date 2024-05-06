@@ -13,11 +13,15 @@ export default function Header() {
         </h1>
       </div>
       <ul className="flex text-white gap-5 text-lg items-center">
-        <li className="cursor-pointer">Buy Crypto</li>
+        <Link to="/buy-crypto" className="cursor-pointer">
+          Buy Crypto
+        </Link>
         <li className="cursor-pointer">My Wallet</li>
         <li className="cursor-pointer">Earn</li>
         <li className="cursor-pointer">Contact</li>
-        <li className="cursor-pointer">Sell Crypto</li>
+        <Link to="/sell-crypto" className="cursor-pointer">
+          Sell Crypto
+        </Link>
       </ul>
       <div className="flex gap-4 text-[#1A1C22ff]">
         <Link

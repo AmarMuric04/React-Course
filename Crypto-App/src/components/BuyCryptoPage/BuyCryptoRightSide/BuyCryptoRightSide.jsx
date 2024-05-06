@@ -203,9 +203,9 @@ export default function BuyCryptoRightSide({ id }) {
         }}
       />
       <div className="w-full flex flex-col gap-16 mt-32">
-        <InterestingCryptos filterBy="volume" />
-        <InterestingCryptos filterBy="marketcap" />
-        <InterestingCryptos filterBy="change" />
+        <InterestingCryptos filterBy="volume" amount="10" />
+        <InterestingCryptos filterBy="marketcap" amount="6" />
+        <InterestingCryptos filterBy="change" amount="4" />
       </div>
     </div>
   );

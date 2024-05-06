@@ -3,6 +3,7 @@ import CredentialsPage from "../components/Credentials/CredentialsPage";
 import BuyCryptoPage from "../components/BuyCryptoPage/BuyCryptoPage";
 import App from "../App";
 import LandingPage from "../components/LandingPage";
+import BuyAndSellGeneralPage from "../components/BuyAndSellGeneralPage";
 
 export const router = createBrowserRouter([
   {
@@ -24,5 +25,13 @@ export const router = createBrowserRouter([
   {
     path: `/crypto-list/:id`,
     element: <BuyCryptoPage />,
+  },
+  {
+    path: "/buy-crypto",
+    element: <BuyAndSellGeneralPage type="buy" />,
+  },
+  {
+    path: "/sell-crypto",
+    element: <BuyAndSellGeneralPage type="sell" />,
   },
 ]);

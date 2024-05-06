@@ -1,7 +1,11 @@
 import { useContext, useState } from "react";
 import { CryptoContext } from "../../store/crypto-context";
 
-export default function InterestingCryptosContainer({ filterBy, classes }) {
+export default function InterestingCryptosContainer({
+  filterBy,
+  classes,
+  amount,
+}) {
   const {
     _mainCoinsList,
     handleFormatNumber,
@@ -153,8 +157,8 @@ export default function InterestingCryptosContainer({ filterBy, classes }) {
     reverse = !reverseFilter ? "Check lowest" : "Check highest";
   }
 
-  if (reverseFilter) newCoins = [...newCoins].splice(-4).reverse();
-  else if (!reverseFilter) newCoins = [...newCoins].splice(0, 4);
+  if (reverseFilter) newCoins = [...newCoins].splice(-Number(amount)).reverse();
+  else if (!reverseFilter) newCoins = [...newCoins].splice(0, Number(amount));
 
   function handleReverseFilter() {
     setReverseFilter(!reverseFilter);

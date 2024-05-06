@@ -125,7 +125,8 @@ export default function Crypto({ coin }) {
           firstText="Buy"
           secondText="Short"
           width="w-16"
-          coin={coin}
+          firstHash={`/crypto-list/${coin.id}`}
+          secondHash={`/sell-crypto`}
         />
       </ul>
     </a>
