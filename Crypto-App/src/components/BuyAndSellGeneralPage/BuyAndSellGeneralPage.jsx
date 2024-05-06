@@ -56,31 +56,26 @@ export default function BuyAndSellGeneralPage({ type }) {
                 amount="3"
               />
             </div>
-            <div className="w-1/3 h-[30rem] my-16 rounded-lg bg-[#23272Eff] flex flex-col p-8 pt-0 justify-between">
-              <div className="flex flex-col gap-2">
-                <div className="flex justify-between mb-4">
-                  <Link
-                    to="/buy-crypto"
-                    className={`font-bold text-center w-1/2 text-xl py-4 border-b-[0.2rem] border-transparent ${
-                      type === "buy" && "border-yellow-400"
-                    }`}
-                  >
-                    Buy
-                  </Link>
-                  <Link
-                    to="/sell-crypto"
-                    className={`font-bold text-center w-1/2 text-xl py-4 border-b-[0.2rem] border-transparent ${
-                      type === "sell" && "border-yellow-400"
-                    }`}
-                  >
-                    Sell
-                  </Link>
-                </div>
-                <BuyAndSellInputs />
+            <div className="w-1/3 h-[30rem] my-16 rounded-lg bg-[#23272Eff] flex flex-col p-8 pt-0">
+              <div className="flex justify-between mb-4">
+                <Link
+                  to="/buy-crypto"
+                  className={`font-bold text-center w-1/2 text-xl py-4 border-b-[0.2rem] border-transparent ${
+                    type === "buy" && "border-yellow-400"
+                  }`}
+                >
+                  Buy
+                </Link>
+                <Link
+                  to="/sell-crypto"
+                  className={`font-bold text-center w-1/2 text-xl py-4 border-b-[0.2rem] border-transparent ${
+                    type === "sell" && "border-yellow-400"
+                  }`}
+                >
+                  Sell
+                </Link>
               </div>
-              <button className="bg-yellow-400 text-black py-3 text-xl rounded-lg font-bold">
-                {type.slice(0, 1).toUpperCase() + type.slice(1)}
-              </button>
+              <BuyAndSellInputs type={type} />
             </div>
           </div>
           <Title

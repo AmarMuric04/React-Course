@@ -17,6 +17,7 @@ export const CryptoContext = createContext({
   handleGetRandomNumber: () => {},
   handleBuyCrypto: () => {},
   handleFilterCoins: () => {},
+  handleBuyCryptoGeneral: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
@@ -73,6 +74,25 @@ export default function CryptoContextProvider({ children }) {
   useEffect(() => {
     console.log(userAccount);
   }, [userAccount]);
+
+  function handleBuyCryptoGeneral(
+    firstCoin,
+    secondCoin,
+    quantityFirst,
+    quantitySecond
+  ) {
+    if (firstCoin === "cash") {
+      const coinId = secondCoin.id;
+      const coinValue = Number(secondCoin.priceUsd);
+
+      handleBuyCrypto({ coinId, coinValue }, quantityFirst, quantitySecond);
+    } else {
+      //second coin is the one thats being bought
+      //take away the first coin from wallet,
+      //if quantityFirst === total quantity of that coin in our wallet, then remove the whole coin from wallet
+      //add the second coin to our wallet... easyyyy...!!!!
+    }
+  }
 
   function handleBuyCrypto(coin, cashAmount, coinAmount) {
     const time = `${new Date().getDate()}/${
@@ -299,6 +319,7 @@ export default function CryptoContextProvider({ children }) {
     handleGetRandomNumber,
     handleBuyCrypto,
     handleFilterCoins,
+    handleBuyCryptoGeneral,
   };
 
   return (
