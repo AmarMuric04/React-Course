@@ -26,21 +26,21 @@ export default function BuyCryptoThoughts({ coin }) {
         <div className="flex items-center gap-3">
           <button
             onClick={() => handleClickedFeeling("good")}
-            className="flex items-center gap-1 bg-stone-400 px-2 py-1 rounded-md focus:outline-none"
+            className="flex items-center gap-1 bg-[#23272Eff] px-2 py-1 rounded-md focus:outline-none"
           >
             <LikeIcon svgSize="1" />
             <span className="text-white font-bold">Good</span>
           </button>
           <button
             onClick={() => handleClickedFeeling("bad")}
-            className="flex items-center gap-1 bg-stone-400 px-2 py-1 rounded-md focus:outline-none"
+            className="flex items-center gap-1 bg-[#23272Eff] px-2 py-1 rounded-md focus:outline-none"
           >
             <DislikeIcon svgSize="1" />
             <span className="text-white font-bold">Bad</span>
           </button>
         </div>
       </div>
-      <div className="flex flex-col gap-3 justify-between rounded-md mt-8 px-2 py-1 bg-stone-400">
+      <div className="flex flex-col gap-3 justify-between rounded-md mt-8 px-2 py-1 bg-[#23272Eff]">
         <div className="flex w-full h-full">
           <div className="flex items-center gap-3 w-1/6 justify-start">
             <LikeIcon svgSize="1" />

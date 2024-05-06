@@ -1,19 +1,19 @@
-import BuyCryptoContainer from "../BuyCryptoRightSide/components/BuyCryptoContainer";
-import InterestingCryptos from "../../Single Components/InterestingCryptos";
 import { useContext } from "react";
-import { CryptoContext } from "../../../store/crypto-context";
+import { Link, useParams } from "react-router-dom";
+import { CryptoContext } from "../../../../store/crypto-context";
+import UserBalance from "../../../Single Components/UserBalance";
 
-export default function BuyCryptoRightSide({ id }) {
-  const { _mainCoinsList, handleGetRandomNumber, handleFormatNumber } =
-    useContext(CryptoContext);
+export default function Navigation() {
+  const { id } = useParams();
+  const { _mainCoinsList } = useContext(CryptoContext);
 
   if (!_mainCoinsList || _mainCoinsList.length === 0) {
     return (
-      <div className="w-screen h-screen bg-[#1A1C22ff] grid place-content-center">
+      <div className="mt-8 w-full h-16 bg-[#1A1C22ff] grid place-content-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="3em"
-          height="3em"
+          width="2em"
+          height="2em"
           viewBox="0 0 24 24"
           className="text-yellow-400"
         >
@@ -114,9 +114,9 @@ export default function BuyCryptoRightSide({ id }) {
     );
   }
 
-  const buyCryptoPageCoin = _mainCoinsList.find((item) => item.id === id);
+  let coinName = _mainCoinsList.find((item) => item.id === id);
 
-  if (!buyCryptoPageCoin) {
+  if (!coinName) {
     return (
       <div className="w-screen h-screen bg-[#1A1C22ff] flex justify-center items-center flex-col">
         <p className="flex items-center gap-2">
@@ -158,54 +158,46 @@ export default function BuyCryptoRightSide({ id }) {
     );
   }
 
-  const coinId = buyCryptoPageCoin.id;
-  const coinName =
-    buyCryptoPageCoin.id.slice(0, 1).toUpperCase() +
-    buyCryptoPageCoin.id
-      .slice(1, buyCryptoPageCoin.id.length)
-      .replace("-", " ");
-  const coinValue = Number(buyCryptoPageCoin.priceUsd);
-  const changeInLast24Hours = Number(
-    buyCryptoPageCoin.changePercent24Hr
-  ).toFixed(2);
-  const coinSymbol = buyCryptoPageCoin.symbol.toUpperCase();
-  const coinRank = buyCryptoPageCoin.rank;
-  const coinMarketCap = handleFormatNumber(
-    Number(buyCryptoPageCoin.marketCapUsd)
-  );
-  const volumeInLast24Hours = handleFormatNumber(
-    Number(buyCryptoPageCoin.volumeUsd24Hr).toFixed(0)
-  );
-  const coinSupply = handleFormatNumber(Number(buyCryptoPageCoin.supply));
-  const coinVwapInLast24Hours = Number(buyCryptoPageCoin.vwap24Hr);
-  const coinResource = buyCryptoPageCoin.explorer;
-
-  const priceChange1h = handleGetRandomNumber(-0.1, 0.1).toFixed(2);
-  const priceChange7d = handleGetRandomNumber(0.1, 0.15).toFixed(2);
+  coinName =
+    coinName.id.slice(0, 1).toUpperCase() +
+    coinName.id.slice(1, coinName.id.length).replace("-", " ");
 
   return (
-    <div className="flex flex-col w-1/3 ">
-      <BuyCryptoContainer
-        coin={{
-          coinName,
-          coinId,
-          coinValue,
-          coinSymbol,
-          coinRank,
-          changeInLast24Hours,
-          coinMarketCap,
-          volumeInLast24Hours,
-          coinSupply,
-          coinVwapInLast24Hours,
-          coinResource,
-          priceChange1h,
-          priceChange7d,
-        }}
-      />
-      <div className="w-full flex flex-col gap-16 mt-32">
-        <InterestingCryptos filterBy="volume" />
-        <InterestingCryptos filterBy="marketcap" />
-        <InterestingCryptos filterBy="change" />
+    <div className="flex justify-between items-center">
+      <p className="flex items-center gap-3 text-md font-bold text-yellow-400 my-8">
+        <Link to="/" className="cursor-pointer hover:underline">
+          Home
+        </Link>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="M9.879 17.243a1 1 0 0 1-.707-1.707L12.707 12L9.172 8.464a1 1 0 0 1 1.414-1.414l4.242 4.243a1 1 0 0 1 0 1.414l-4.242 4.243a.997.997 0 0 1-.707.293"
+          />
+        </svg>
+        <Link to="/crypto-list" className="cursor-pointer hover:underline">
+          Crypto List
+        </Link>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="M9.879 17.243a1 1 0 0 1-.707-1.707L12.707 12L9.172 8.464a1 1 0 0 1 1.414-1.414l4.242 4.243a1 1 0 0 1 0 1.414l-4.242 4.243a.997.997 0 0 1-.707.293"
+          />
+        </svg>
+        {coinName} Price
+      </p>
+      <div className="flex gap-2 items-end">
+        <p>Bal:</p>
+        <UserBalance />
       </div>
     </div>
   );

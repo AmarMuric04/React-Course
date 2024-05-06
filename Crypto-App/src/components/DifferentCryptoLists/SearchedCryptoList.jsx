@@ -5,14 +5,19 @@ import { CryptoContext } from "../../store/crypto-context";
 import Crypto from "../Single Components/Crypto";
 export default function SearchedCryptoList() {
   const { inputValue } = useContext(CryptoSearchContext);
-  const { coinsList } = useContext(CryptoContext);
+  const { _mainCoinsList, handleFilterCoins, coinFilter } =
+    useContext(CryptoContext);
 
-  let coins = coinsList.filter(
+  const newCoins = [..._mainCoinsList];
+
+  let coins = newCoins.filter(
     (coin) =>
       coin.id.toLowerCase().startsWith(inputValue.toLowerCase()) ||
       coin.symbol.toLowerCase().startsWith(inputValue.toLowerCase()) ||
       coin.priceUsd.startsWith(inputValue)
   );
+
+  coins = handleFilterCoins(coinFilter, coins);
 
   return (
     <ul key={coins} className="flex flex-col gap-3">

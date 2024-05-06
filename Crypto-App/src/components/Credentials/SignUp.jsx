@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 export default function SignUp({ onChange }) {
   return (
-    <div className="bg-white rounded-lg w-[28rem] h-[40rem] flex flex-col items-start px-20 py-8 gap-6 shadow-2xl">
+    <div className="bg-[#23272Eff] rounded-lg text-white w-[28rem] h-[40rem] flex flex-col items-start px-20 py-8 gap-6 shadow-2xl">
       <h1 className="text-yellow-400 text-3xl mb-8">Sign up</h1>
       <div className="flex w-full gap-5">
         <div className="w-1/2">
@@ -57,17 +59,18 @@ export default function SignUp({ onChange }) {
           />
         </div>
       </div>
-      <button className="bg-yellow-400 px-4 py-2 w-auto text-white font-bold rounded-md focus:outline-none hover:bg-yellow-500 transition-all">
+      <button className="bg-yellow-400 px-4 py-2 w-auto text-[#1A1C22ff] font-bold rounded-md focus:outline-none hover:bg-yellow-500 transition-all">
         Sign up
       </button>
       <p>
         Already have an account?{" "}
-        <span
+        <Link
+          to="/login"
           onClick={() => onChange("login")}
           className="text-yellow-400 hover:underline cursor-pointer font-bold"
         >
           Log in!
-        </span>
+        </Link>
       </p>
     </div>
   );

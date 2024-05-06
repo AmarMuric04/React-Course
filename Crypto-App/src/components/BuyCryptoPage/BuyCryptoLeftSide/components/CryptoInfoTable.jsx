@@ -23,7 +23,7 @@ export default function CryptoInfoTable({ coin }) {
         </TableRow>
       </thead>
       <tbody>
-        <TableRow classes="bg-stone-400 text-white">
+        <TableRow classes="bg-[#23272Eff] text-white">
           <TableColumn classes="px-4 py-2">Today</TableColumn>
           <TableColumn
             classes={`px-4 py-2 ${
@@ -52,7 +52,7 @@ export default function CryptoInfoTable({ coin }) {
             {coin.changeInLast24Hours < 0 && coin.changeInLast24Hours}%
           </TableColumn>
         </TableRow>
-        <TableRow classes="bg-stone-400 text-white">
+        <TableRow classes="bg-[#23272Eff] text-white">
           <TableColumn classes="px-4 py-2">30 Days</TableColumn>
           <TableColumn
             classes={`px-4 py-2 ${
@@ -87,7 +87,7 @@ export default function CryptoInfoTable({ coin }) {
             %
           </TableColumn>
         </TableRow>
-        <TableRow classes="bg-stone-400 text-white">
+        <TableRow classes="bg-[#23272Eff] text-white">
           <TableColumn classes="px-4 py-2">60 Days</TableColumn>
           <TableColumn
             classes={`px-4 py-2 ${
@@ -120,7 +120,7 @@ export default function CryptoInfoTable({ coin }) {
             %
           </TableColumn>
         </TableRow>
-        <TableRow classes="bg-stone-400 text-white">
+        <TableRow classes="bg-[#23272Eff] text-white">
           <TableColumn classes="px-4 py-2">90 Days</TableColumn>
           <TableColumn
             classes={`px-4 py-2 ${

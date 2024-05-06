@@ -161,8 +161,10 @@ export default function InterestingCryptosContainer({ filterBy, classes }) {
   }
 
   return (
-    <div className={`${classes} h-auto min-w-64`}>
-      <header className="flex justify-between">
+    <div
+      className={`${classes} h-auto min-w-64 border-[0.1rem] border-[#23272Eff] py-4 rounded-lg`}
+    >
+      <header className="flex justify-between px-8">
         <h2>{message}</h2>
         <p
           onClick={handleReverseFilter}
@@ -204,10 +206,8 @@ export default function InterestingCryptosContainer({ filterBy, classes }) {
               href={`${coin.explorer}`}
               onClick={handlePreventDefault}
             >
-              <ul className="flex bg-white rounded-lg items-center px-8 py-2 relative h-20 hover:scale-[1.02] transition-all delay-50">
-                <li className="w-3 font-normal absolute bottom-2 left-2 text-xs">
-                  {coinRank}.
-                </li>
+              <ul className="flex rounded-lg items-center gap-5 px-8 py-2 relative h-20 transition-all delay-50 hover:bg-[#23272Eff]">
+                <li className="w-3 font-normal text-xs">{coinRank}.</li>
                 <li className="w-48 text-xs">
                   <span className="">{coinName} </span>(
                   <span className="font-extrabold text-sm">{coinSymbol}</span>)

@@ -1,10 +1,10 @@
 import Image from "./Image";
-import Logo from "/public/Logo.png";
+import Logo from "/public/FinalLogo.png";
 
 export default function Footer() {
   return (
     <footer className="w-full h-64 relativeflex items-center flex-col justify-center text-white">
-      <div className=" bg-stone-800 flex flex-col items-center py-16">
+      <div className=" bg-[#23272Eff] flex flex-col items-center py-16">
         <div className="flex flex-col items-center gap-2">
           <h2 className="text-3xl text-yellow-400 flex gap-2 items-center uppercase tracking-[0.3rem]">
             Invest in crypto{" "}
@@ -48,7 +48,7 @@ export default function Footer() {
           </button>
         </div>
       </div>
-      <div className="bg-yellow-400 h-24 text-black flex flex-col gap-2 items-center justify-center">
+      <div className="bg-[#494D54ff] h-24 flex flex-col gap-2 items-center justify-center">
         <p className="flex items-center gap-3">
           {" "}
           <svg
@@ -71,7 +71,7 @@ export default function Footer() {
               width="1.7em"
               height="1.7em"
               viewBox="0 0 24 24"
-              className="cursor-pointer hover:text-stone-700 transition-all"
+              className="cursor-pointer hover:text-yellow-400 transition-all"
             >
               <path
                 fill="currentColor"
@@ -88,7 +88,7 @@ export default function Footer() {
               width="1.7em"
               height="1.7em"
               viewBox="0 0 24 24"
-              className="cursor-pointer hover:text-stone-700 transition-all"
+              className="cursor-pointer hover:text-yellow-400 transition-all"
             >
               <path
                 fill="currentColor"

@@ -1,14 +1,15 @@
-import Logo from "../../../public/YellowLogoMain.png";
+import Logo from "/public/FinalLogo.png";
 
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
+import Image from "../Single Components/Image";
 import { Link } from "react-router-dom";
 
 export default function CredentialsPage({ page }) {
   return (
     <main
       id="signup"
-      className="bg-stone-200 w-screen h-screen grid place-items-center"
+      className="bg-[#1A1C22ff] w-screen h-screen grid place-items-center"
     >
       <div
         id="signup-inner"
@@ -35,11 +36,11 @@ export default function CredentialsPage({ page }) {
           </Link>
         </p>
         <div className="flex flex-col gap-3 w-[40rem] ml-16 ">
-          <img src={Logo} className="w-32 mb-16 ml-16" alt="" />
+          <Image image={Logo} className="w-32 mb-16 ml-16" svgSize="5em" />
           <h1 id="signup-text" className="text-5xl font-thin text-yellow-400">
             Your Path to Financial Freedom
           </h1>
-          <p className="text-stone-500 text-white">
+          <p className=" text-white">
             Discover the power of cryptocurrency with Blajvinance, your premier
             platform for secure financial transactions. Whether you're intrigued
             by Bitcoin, Ethereum, or any other digital currency, our
@@ -48,7 +49,7 @@ export default function CredentialsPage({ page }) {
             community today and unlock the potential of digital assets to
             reshape your financial future.
           </p>
-          <p className="text-stone-500 text-white">
+          <p className=" text-white">
             At Blajvinance, safeguarding your financial data is our top
             priority. With state-of-the-art encryption and stringent security
             measures, we ensure your information remains protected at all times.

@@ -28,7 +28,7 @@ export default function CryptoContextProvider({ children }) {
   const [userAccount, setUserAccount] = useState({
     firstName: "",
     lastName: "",
-    balance: 150000,
+    balance: 150000000000,
     purchaseHistory: [],
     wallet: [],
   });
@@ -63,10 +63,16 @@ export default function CryptoContextProvider({ children }) {
       }
     }
 
+    fetchCrypto();
+
     setInterval(() => {
       fetchCrypto();
     }, 5000);
   }, []);
+
+  useEffect(() => {
+    console.log(userAccount);
+  }, [userAccount]);
 
   function handleBuyCrypto(coin, cashAmount, coinAmount) {
     const time = `${new Date().getDate()}/${
@@ -108,7 +114,9 @@ export default function CryptoContextProvider({ children }) {
       });
     else {
       alreadyBoughtCoin.purchasedPrice =
-        (alreadyBoughtCoin.purchasedPrice + coin.coinValue) / 2;
+        (alreadyBoughtCoin.purchasedPrice * alreadyBoughtCoin.amountOfCoins +
+          coin.coinValue * coinAmount) /
+        (alreadyBoughtCoin.amountOfCoins + coinAmount);
       alreadyBoughtCoin.amountOfCoins =
         alreadyBoughtCoin.amountOfCoins + coinAmount;
       alreadyBoughtCoin.moneySpent = alreadyBoughtCoin.moneySpent + cashAmount;

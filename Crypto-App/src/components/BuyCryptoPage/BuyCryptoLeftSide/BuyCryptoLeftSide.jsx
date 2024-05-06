@@ -11,6 +11,8 @@ import Table from "../../Single Components/Table";
 import TableRow from "../../Single Components/TableRow";
 import TableColumn from "../../Single Components/TableColumn";
 import FAQ from "./components/FAQ";
+import { extendedCryptoObject } from "../../../assets/extendedCryptoObject";
+
 import {
   ArrowDownIcon,
   ArrowHorizontalIcon,
@@ -20,23 +22,219 @@ import {
   InfoIcon,
 } from "../../../assets/icons";
 
-export default function BuyCryptoLeftSide({ coin, extendedCoin }) {
-  const { handleCustomToFixed, handleGetRandomNumber } =
-    useContext(CryptoContext);
+export default function BuyCryptoLeftSide({ id }) {
+  const {
+    handleCustomToFixed,
+    handleGetRandomNumber,
+    handleFormatNumber,
+    _mainCoinsList,
+  } = useContext(CryptoContext);
 
-  const priceChange1h = handleGetRandomNumber(-0.1, 0.1).toFixed(2);
-  const priceChange7d = handleGetRandomNumber(0.1, 0.15).toFixed(2);
+  if (!_mainCoinsList || _mainCoinsList.length === 0) {
+    return (
+      <div className="w-screen h-screen bg-[#1A1C22ff] grid place-content-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="3em"
+          height="3em"
+          viewBox="0 0 24 24"
+          className="text-yellow-400"
+        >
+          <rect width="2.8" height="12" x="1" y="6" fill="currentColor">
+            <animate
+              id="svgSpinnersBarsScale0"
+              attributeName="y"
+              begin="0;svgSpinnersBarsScale1.end-0.1s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="6;1;6"
+            />
+            <animate
+              attributeName="height"
+              begin="0;svgSpinnersBarsScale1.end-0.1s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="12;22;12"
+            />
+          </rect>
+          <rect width="2.8" height="12" x="5.8" y="6" fill="currentColor">
+            <animate
+              attributeName="y"
+              begin="svgSpinnersBarsScale0.begin+0.1s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="6;1;6"
+            />
+            <animate
+              attributeName="height"
+              begin="svgSpinnersBarsScale0.begin+0.1s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="12;22;12"
+            />
+          </rect>
+          <rect width="2.8" height="12" x="10.6" y="6" fill="currentColor">
+            <animate
+              attributeName="y"
+              begin="svgSpinnersBarsScale0.begin+0.2s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="6;1;6"
+            />
+            <animate
+              attributeName="height"
+              begin="svgSpinnersBarsScale0.begin+0.2s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="12;22;12"
+            />
+          </rect>
+          <rect width="2.8" height="12" x="15.4" y="6" fill="currentColor">
+            <animate
+              attributeName="y"
+              begin="svgSpinnersBarsScale0.begin+0.3s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="6;1;6"
+            />
+            <animate
+              attributeName="height"
+              begin="svgSpinnersBarsScale0.begin+0.3s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="12;22;12"
+            />
+          </rect>
+          <rect width="2.8" height="12" x="20.2" y="6" fill="currentColor">
+            <animate
+              id="svgSpinnersBarsScale1"
+              attributeName="y"
+              begin="svgSpinnersBarsScale0.begin+0.4s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="6;1;6"
+            />
+            <animate
+              attributeName="height"
+              begin="svgSpinnersBarsScale0.begin+0.4s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="12;22;12"
+            />
+          </rect>
+        </svg>
+      </div>
+    );
+  }
+
+  const buyCryptoPageCoin = _mainCoinsList.find((item) => item.id === id);
+
+  if (!buyCryptoPageCoin) {
+    return (
+      <div className="w-screen h-screen bg-[#1A1C22ff] flex justify-center items-center flex-col">
+        <p className="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="2em"
+            height="2em"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              fill-rule="evenodd"
+              d="M6.697 6.697a7.5 7.5 0 0 1 12.794 4.927A4.002 4.002 0 0 1 18.5 19.5h-12a5 5 0 0 1-1.667-9.715a7.47 7.47 0 0 1 1.864-3.088m4.01 3.596a1 1 0 0 0-1.414 1.414L10.586 13l-1.293 1.293a1 1 0 1 0 1.414 1.414L12 14.414l1.293 1.293a1 1 0 0 0 1.414-1.414L13.414 13l1.293-1.293a1 1 0 0 0-1.414-1.414L12 11.586z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Page not found...
+        </p>
+        <p className="text-sm">Are you sure you are in the right place?</p>
+        <Link className="flex items-center gap-2 mt-8" to="/crypto-list">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1.78em"
+            height="1em"
+            viewBox="0 0 16 9"
+          >
+            <path
+              fill="currentColor"
+              d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"
+            />
+            <path
+              fill="currentColor"
+              d="M6 8.5a.47.47 0 0 1-.35-.15l-3.5-3.5c-.2-.2-.2-.51 0-.71L5.65.65c.2-.2.51-.2.71 0s.2.51 0 .71L3.21 4.51l3.15 3.15c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z"
+            />
+          </svg>
+          Go back
+        </Link>
+      </div>
+    );
+  }
+
+  const extendedCoin = extendedCryptoObject.find((coin) => coin.id === id);
+
+  const coinId = buyCryptoPageCoin.id;
+  const coinName =
+    buyCryptoPageCoin.id.slice(0, 1).toUpperCase() +
+    buyCryptoPageCoin.id
+      .slice(1, buyCryptoPageCoin.id.length)
+      .replace("-", " ");
+  const coinValue = Number(buyCryptoPageCoin.priceUsd);
+  const changeInLast24Hours = Number(
+    buyCryptoPageCoin.changePercent24Hr
+  ).toFixed(2);
+  const coinSymbol = buyCryptoPageCoin.symbol.toUpperCase();
+  const coinRank = buyCryptoPageCoin.rank;
+  const coinMarketCap = handleFormatNumber(
+    Number(buyCryptoPageCoin.marketCapUsd)
+  );
+  const volumeInLast24Hours = handleFormatNumber(
+    Number(buyCryptoPageCoin.volumeUsd24Hr).toFixed(0)
+  );
+  const coinSupply = handleFormatNumber(Number(buyCryptoPageCoin.supply));
+  const coinVwapInLast24Hours = Number(buyCryptoPageCoin.vwap24Hr);
+  const coinResource = buyCryptoPageCoin.explorer;
+
+  const priceChange1h = handleGetRandomNumber(0.02, 0.03).toFixed(2);
+  const priceChange7d = handleGetRandomNumber(0.06, 0.07).toFixed(2);
+
+  let coin = {
+    priceChange1h,
+    priceChange7d,
+    coinSupply,
+    coinId,
+    coinName,
+    coinMarketCap,
+    coinSymbol,
+    volumeInLast24Hours,
+    coinVwapInLast24Hours,
+    coinResource,
+    changeInLast24Hours,
+    coinValue,
+  };
+
+  document.title = `${coinSymbol} Price | ${coinName} Index | ${coinName} Popularity`;
 
   return (
     <div className="flex flex-col w-2/3 ">
       <div className="flex gap-3 items-center mb-8">
         <Image image={Logo} className="w-16" svgSize="2em" />
-        <h1 className="text-4xl text-stone-600 flex gap-2 items-end">
-          {coin.coinName} Price
+        <h1 className="text-4xl flex gap-2 items-end">
+          {coinName} Price
           <span className="text-lg">
             (
-            <span className="text-lg font-extrabold uppercase text-stone-900">
-              {coin.coinSymbol}
+            <span className="text-lg font-extrabold uppercase">
+              {coinSymbol}
             </span>
             )
           </span>
@@ -44,24 +242,23 @@ export default function BuyCryptoLeftSide({ coin, extendedCoin }) {
       </div>
       <div className="flex gap-3 items-end">
         <h2 className="text-white font-extrabold text-3xl">
-          $ {handleCustomToFixed(Number(coin.coinValue))}
+          $ {handleCustomToFixed(Number(coinValue))}
         </h2>
         <p
           className={`flex items-center justify-end text-xl ${
-            coin.changeInLast24Hours < -0.2 && "text-red-400"
-          }  ${coin.changeInLast24Hours > 0.2 && "text-green-400"} ${
-            coin.changeInLast24Hours >= -0.2 &&
-            coin.changeInLast24Hours <= 0.2 &&
+            changeInLast24Hours < -0.2 && "text-red-400"
+          }  ${changeInLast24Hours > 0.2 && "text-green-400"} ${
+            changeInLast24Hours >= -0.2 &&
+            changeInLast24Hours <= 0.2 &&
             "text-stone-500"
           }`}
         >
-          {coin.changeInLast24Hours}%{" "}
-          {coin.changeInLast24Hours >= -0.2 &&
-            coin.changeInLast24Hours <= 0.2 && (
-              <ArrowHorizontalIcon svgSize="1" />
-            )}
-          {coin.changeInLast24Hours < -0.2 && <ArrowDownIcon svgSize="1.5" />}
-          {coin.changeInLast24Hours > 0.2 && <ArrowUpIcon svgSize="1.5" />}
+          {changeInLast24Hours}%{" "}
+          {changeInLast24Hours >= -0.2 && changeInLast24Hours <= 0.2 && (
+            <ArrowHorizontalIcon svgSize="1" />
+          )}
+          {changeInLast24Hours < -0.2 && <ArrowDownIcon svgSize="1.5" />}
+          {changeInLast24Hours > 0.2 && <ArrowUpIcon svgSize="1.5" />}
         </p>
         <p className="text-stone-400 font-bold">24hr</p>
       </div>
@@ -70,44 +267,42 @@ export default function BuyCryptoLeftSide({ coin, extendedCoin }) {
         <div className="my-16">
           <SubTitle
             title={`
-            Price of ${coin.coinSymbol} today
+            Price of ${coinSymbol} today
           `}
           />
           <p>
-            The live price of {coin.coinName} is ${" "}
-            <strong>{handleCustomToFixed(coin.coinValue)}</strong> per (
-            {coin.coinSymbol} / USD) with a current market cap of ${" "}
-            <strong>{coin.coinMarketCap}</strong> USD. 24-hour trading volume is
-            $ <strong>{coin.volumeInLast24Hours}</strong> USD. {coin.coinSymbol}{" "}
-            to USD price is updated in real-time. Bitcoin is{" "}
+            The live price of {coinName} is ${" "}
+            <strong>{handleCustomToFixed(coinValue)}</strong> per ({coinSymbol}{" "}
+            / USD) with a current market cap of ${" "}
+            <strong>{coinMarketCap}</strong> USD. 24-hour trading volume is ${" "}
+            <strong>{volumeInLast24Hours}</strong> USD. {coinSymbol} to USD
+            price is updated in real-time. Bitcoin is{" "}
             <strong>
-              {coin.changeInLast24Hours > 0
-                ? `+${coin.changeInLast24Hours}`
-                : coin.changeInLast24Hours}{" "}
+              {changeInLast24Hours > 0
+                ? `+${changeInLast24Hours}`
+                : changeInLast24Hours}{" "}
             </strong>
             % in the last 24 hours with a circulating supply of{" "}
-            <strong>{coin.coinSupply}</strong>.
+            <strong>{coinSupply}</strong>.
           </p>
         </div>
-        <SubTitle title={`${coin.coinSymbol} Price History USD`} />
+        <SubTitle title={`${coinSymbol} Price History USD`} />
         <CryptoInfoTable coin={coin} />
         <div className="flex flex-col">
-          <SubTitle title={`${coin.coinSymbol} Price Information`} />
+          <SubTitle title={`${coinSymbol} Price Information`} />
           <p className="flex items-center gap-3">
             24h Low & High <InfoIcon svgSize="1" />
           </p>
           <div className="flex w-2/3 justify-between gap-3">
             <p className="w-1/4 text-nowrap">
-              Low: ${" "}
-              {handleCustomToFixed(coin.coinValue - coin.coinValue * 0.097)}
+              Low: $ {handleCustomToFixed(coinValue - coinValue * 0.097)}
             </p>
             <div className="w-1/3 flex items-center">
               <div className="w-2/5 h-1/3 bg-red-400"></div>
               <div className="w-3/5 h-1/3 bg-green-400"></div>
             </div>
             <p className="w-1/4 text-nowrap">
-              High: ${" "}
-              {handleCustomToFixed(coin.coinValue + coin.coinValue * 0.074)}
+              High: $ {handleCustomToFixed(coinValue + coinValue * 0.074)}
             </p>
           </div>
           <ul className="flex flex-wrap my-8">
@@ -138,14 +333,14 @@ export default function BuyCryptoLeftSide({ coin, extendedCoin }) {
               value={
                 <p
                   className={`font-bold ${
-                    coin.changeInLast24Hours > 0 && "text-green-400"
-                  } ${coin.changeInLast24Hours === 0 && "text-stone-400"} ${
-                    coin.changeInLast24Hours < 0 && "text-red-400"
+                    changeInLast24Hours > 0 && "text-green-400"
+                  } ${changeInLast24Hours === 0 && "text-stone-400"} ${
+                    changeInLast24Hours < 0 && "text-red-400"
                   }`}
                 >
-                  {coin.changeInLast24Hours > 0
-                    ? `+ ${coin.changeInLast24Hours}`
-                    : coin.changeInLast24Hours}{" "}
+                  {changeInLast24Hours > 0
+                    ? `+ ${changeInLast24Hours}`
+                    : changeInLast24Hours}{" "}
                   %
                 </p>
               }
@@ -167,52 +362,49 @@ export default function BuyCryptoLeftSide({ coin, extendedCoin }) {
           </ul>
           <SubTitle
             title={`
-              ${coin.coinSymbol} Market Information
+              ${coinSymbol} Market Information
             `}
           />
           <ul className="flex flex-wrap">
             <CryptoStat
               title="Popularity"
-              value={<p className="font-bold">#{coin.coinRank}</p>}
+              value={<p className="font-bold">#{coinRank}</p>}
             />
             <CryptoStat
               title="Market Cap"
-              value={<p className="font-bold">$ {coin.coinMarketCap}</p>}
+              value={<p className="font-bold">$ {coinMarketCap}</p>}
             />{" "}
             <CryptoStat
               title="Volume (24hr)"
-              value={<p className="font-bold">$ {coin.volumeInLast24Hours}</p>}
+              value={<p className="font-bold">$ {volumeInLast24Hours}</p>}
             />
             <CryptoStat
               title="Circulating Supply"
-              value={<p className="font-bold">{coin.coinSupply}</p>}
+              value={<p className="font-bold">{coinSupply}</p>}
             />
             <CryptoStat
               title="Vwap (24h)"
               value={
                 <p className="font-bold">
-                  $ {handleCustomToFixed(Number(coin.coinVwapInLast24Hours))}
+                  $ {handleCustomToFixed(Number(coinVwapInLast24Hours))}
                 </p>
               }
             />
           </ul>
         </div>
         <div className="flex flex-col">
-          <Title
-            title={`About ${coin.coinName}`}
-            extra={`(${coin.coinSymbol})`}
-          />
+          <Title title={`About ${coinName}`} extra={`(${coinSymbol})`} />
           <div className="flex flex-col gap-3">
             <p>{extendedCoin.moreInformation}</p>
             <p>{extendedCoin.moreInformation2}</p>
           </div>
         </div>
         <div className="my-32 flex flex-col">
-          <h1 className="text-3xl font-bold my-8">{coin.coinName} Resources</h1>
+          <h1 className="text-3xl font-bold my-8">{coinName} Resources</h1>
           <div className="flex flex-col gap-3">
-            <a href={coin.coinResource} className="flex gap-3 items-center">
+            <a href={coinResource} className="flex gap-3 items-center">
               <BookIcon svgSize="1.5" />
-              {coin.coinResource}
+              {coinResource}
             </a>
             <a
               href="https://www.binance.com/"
@@ -224,82 +416,80 @@ export default function BuyCryptoLeftSide({ coin, extendedCoin }) {
           </div>
         </div>
         <div className="flex flex-col">
-          <Title
-            title={`People Also Ask: Other Questions About ${coin.coinName}`}
-          />
+          <Title title={`People Also Ask: Other Questions About ${coinName}`} />
           <FAQ questions={extendedCoin.frequentlyAskedQuestions} />
         </div>
         <div className="flex flex-col mb-16">
-          <Title title={`${coin.coinSymbol} to Local Currency`} />
+          <Title title={`${coinSymbol} to Local Currency`} />
           <Table classes="w-2/3 text-lg">
-            <TableRow classes="bg-stone-800 text-white">
+            <TableRow classes="bg-[#23272Eff] text-white">
               <TableColumn classes="py-2 px-4">
-                1 {coin.coinSymbol} to TRY
+                1 {coinSymbol} to TRY
               </TableColumn>
               <TableColumn classes="py-2 px-4 text-end">
-                ₺ {handleCustomToFixed(Number(coin.coinValue) * 32.35)}
+                ₺ {handleCustomToFixed(Number(coinValue) * 32.35)}
               </TableColumn>
             </TableRow>
             <TableRow>
               <TableColumn classes="py-2 px-4">
-                1 {coin.coinSymbol} to RUB
+                1 {coinSymbol} to RUB
               </TableColumn>
               <TableColumn classes="py-2 px-4 text-end">
-                ₽ {handleCustomToFixed(Number(coin.coinValue) * 91.6)}
+                ₽ {handleCustomToFixed(Number(coinValue) * 91.6)}
               </TableColumn>
             </TableRow>{" "}
-            <TableRow classes="bg-stone-800 text-white">
+            <TableRow classes="bg-[#23272Eff] text-white">
               <TableColumn classes="py-2 px-4">
-                1 {coin.coinSymbol} to EUR
+                1 {coinSymbol} to EUR
               </TableColumn>
               <TableColumn classes="py-2 px-4 text-end">
-                € {handleCustomToFixed(Number(coin.coinValue) * 0.93)}
+                € {handleCustomToFixed(Number(coinValue) * 0.93)}
               </TableColumn>
             </TableRow>{" "}
             <TableRow>
               <TableColumn classes="py-2 px-4">
-                1 {coin.coinSymbol} to AED
+                1 {coinSymbol} to AED
               </TableColumn>
               <TableColumn classes="py-2 px-4 text-end">
-                {handleCustomToFixed(Number(coin.coinValue) * 3.67)} د.إ{" "}
+                {handleCustomToFixed(Number(coinValue) * 3.67)} د.إ{" "}
               </TableColumn>
             </TableRow>{" "}
-            <TableRow classes="bg-stone-800 text-white">
+            <TableRow classes="bg-[#23272Eff] text-white">
               <TableColumn classes="py-2 px-4">
-                1 {coin.coinSymbol} to AUD
+                1 {coinSymbol} to AUD
               </TableColumn>
               <TableColumn classes="py-2 px-4 text-end">
                 A$
-                {handleCustomToFixed(Number(coin.coinValue) * 1.57)}
+                {handleCustomToFixed(Number(coinValue) * 1.57)}
               </TableColumn>
             </TableRow>
             <TableRow>
               <TableColumn classes="py-2 px-4">
-                1 {coin.coinSymbol} to BRL
+                1 {coinSymbol} to BRL
               </TableColumn>
               <TableColumn classes="py-2 px-4 text-end">
                 R$
-                {handleCustomToFixed(Number(coin.coinValue) * 5.07)}
+                {handleCustomToFixed(Number(coinValue) * 5.07)}
               </TableColumn>
             </TableRow>
-            <TableRow classes="bg-stone-800 text-white">
+            <TableRow classes="bg-[#23272Eff] text-white">
               <TableColumn classes="py-2 px-4">
-                1 {coin.coinSymbol} to VND
+                1 {coinSymbol} to VND
               </TableColumn>
               <TableColumn classes="py-2 px-4 text-end">
-                ₫ {handleCustomToFixed(Number(coin.coinValue) * 25415)}
+                ₫ {handleCustomToFixed(Number(coinValue) * 25415)}
               </TableColumn>
             </TableRow>
             <TableRow>
               <TableColumn classes="py-2 px-4">
-                1 {coin.coinSymbol} to IDR
+                1 {coinSymbol} to IDR
               </TableColumn>
               <TableColumn classes="py-2 px-4 text-end">
-                Rp {handleCustomToFixed(Number(coin.coinValue) * 15968.7)}
+                Rp {handleCustomToFixed(Number(coinValue) * 15968.7)}
               </TableColumn>
             </TableRow>
           </Table>
-          <p className="text-sm text-stone-700">
+          <p className="text-sm text-gray-400">
             Last updated 2024/05/05 01:09AM (CEST)
           </p>
         </div>

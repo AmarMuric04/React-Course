@@ -48,7 +48,7 @@ export default function BuyCryptoInput({ coin, type }) {
     <>
       <div className="w-full relative my-4">
         <input
-          className={`bg-stone-400 pb-4 py-12 w-full text-white px-4 rounded-lg focus:outline-none placeholder-stone-800 border-[0.1rem] ${
+          className={`bg-[#23272Eff] pb-4 py-12 w-full text-white px-4 rounded-lg focus:outline-none placeholder-white border-[0.1rem] ${
             error && "border-red-400"
           }`}
           type="text"

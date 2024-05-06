@@ -12,6 +12,8 @@ export default function CryptoSearchContextProvider({ children }) {
   const { handleShowCryptoList } = useContext(CryptoContext);
 
   function handleSearchInput(e) {
+    if (e.target.value === "") handleShowCryptoList("main");
+
     setSearchedCrypto(e.target.value);
     handleShowCryptoList("search");
   }

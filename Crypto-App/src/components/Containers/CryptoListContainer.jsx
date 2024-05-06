@@ -121,15 +121,27 @@ export default function CryptoListContainer() {
     <div className="mb-64">
       <FilterCryptoList />
 
-      <ul className="flex gap-16 px-8 relative text-sm text-stone-700">
-        <li className="w-24">Favorite</li>
-        <li className="w-72">Name</li>
-        <li className="w-40">Value</li>
-        <li className="w-40">Market cap</li>
-        <li className="w-40">Volume (24hr)</li>
-        <li className="w-48">Change (24hr)</li>
-        <li className="w-40">Trade</li>
-      </ul>
+      {showCryptoList !== "mywallet" && (
+        <ul className="flex gap-16 px-8 relative text-sm text-gray-400">
+          <li className="w-24">Favorite</li>
+          <li className="w-80">Name</li>
+          <li className="w-40">Value</li>
+          <li className="w-40">Market cap</li>
+          <li className="w-40">Volume (24hr)</li>
+          <li className="w-48">Change (24hr)</li>
+          <li className="w-40">Trade</li>
+        </ul>
+      )}
+      {showCryptoList === "mywallet" && (
+        <ul className="flex gap-16 px-8 relative text-sm text-gray-400">
+          <li className="w-1/6">Name</li>
+          <li className="w-1/6">Avg. Buying Price</li>
+          <li className="w-1/6">Amount of Coins</li>
+          <li className="w-1/6">Money Spent</li>
+          <li className="w-1/6">Price Change</li>
+          <li className="w-20">Action</li>
+        </ul>
+      )}
       {(showCryptoList === "gp" || showCryptoList === "bp") && (
         <Performers type={showCryptoList} />
       )}
