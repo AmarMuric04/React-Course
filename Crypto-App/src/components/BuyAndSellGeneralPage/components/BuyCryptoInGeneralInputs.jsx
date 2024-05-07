@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { CryptoContext } from "../../../store/crypto-context";
 import { Link } from "react-router-dom";
 
-export default function BuyAndSellInputs({ type }) {
+export default function BuyCryptoInGeneralInputs({ type }) {
   const {
     _mainCoinsList,
     handleCustomToFixed,
@@ -131,6 +131,9 @@ export default function BuyAndSellInputs({ type }) {
       Number(inputValueFirst.replaceAll(",", "")),
       Number(inputValueSecond.replaceAll(",", ""))
     );
+
+    setInputValueFirst("");
+    setInputValueSecond("");
   }
 
   return (
@@ -154,7 +157,7 @@ export default function BuyAndSellInputs({ type }) {
               <p className="text-sm text-gray-300">
                 In wallet:{" "}
                 {firstSelection !== "cash" && selectedCoinWallet?.amountOfCoins
-                  ? selectedCoinWallet.amountOfCoins
+                  ? handleCustomToFixed(selectedCoinWallet.amountOfCoins)
                   : 0}{" "}
                 {selectedCoin.symbol}
               </p>

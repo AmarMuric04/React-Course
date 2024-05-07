@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import UserBalance from "../Single Components/UserBalance";
 import Title from "../BuyCryptoPage/BuyCryptoLeftSide/components/Title";
 import InterestingCrytpos from "../Single Components/InterestingCryptos";
-import BuyAndSellInputs from "./components/BuyAndSellInputs";
+import BuyCryptoInGeneralInputs from "./components/BuyCryptoInGeneralInputs";
 import Buy1 from "/public/buy1.svg";
 import Buy2 from "/public/buy2.svg";
 import Buy3 from "/public/buy3.svg";
@@ -13,7 +13,7 @@ import Sell2 from "/public/sell2.svg";
 import Sell3 from "/public/sell3.svg";
 import Image from "../Single Components/Image";
 
-export default function BuyAndSellGeneralPage({ type }) {
+export default function BuyGeneralCrypto({ type }) {
   return (
     <>
       <Header />
@@ -75,7 +75,8 @@ export default function BuyAndSellGeneralPage({ type }) {
                   Sell
                 </Link>
               </div>
-              <BuyAndSellInputs type={type} />
+              {type === "buy" && <BuyCryptoInGeneralInputs type={type} />}
+              {/* {type === "sell" && <SellCryptoInGeneralInputs type={type} />} */}
             </div>
           </div>
           <Title

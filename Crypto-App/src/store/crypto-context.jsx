@@ -91,6 +91,103 @@ export default function CryptoContextProvider({ children }) {
       //take away the first coin from wallet,
       //if quantityFirst === total quantity of that coin in our wallet, then remove the whole coin from wallet
       //add the second coin to our wallet... easyyyy...!!!!
+
+      const time = `${new Date().getDate()}/${
+        new Date().getMonth() + 1
+      }/${new Date().getFullYear()}`;
+
+      const coinToRemoveId = firstCoin.id;
+      const coinToRemoveValue = Number(firstCoin.priceUsd);
+
+      let coinToRemove = userAccount.wallet.find(
+        (purchasedCoin) => purchasedCoin.id === coinToRemoveId
+      );
+
+      coinToRemove.amountOfCoins = coinToRemove.amountOfCoins - quantityFirst;
+      coinToRemove.moneySpent =
+        Number(coinToRemove.purchasedPrice) *
+        Number(coinToRemove.amountOfCoins);
+
+      const newWallet = [...userAccount.wallet];
+
+      newWallet.forEach(
+        (coin) => (coin = coin.id === coinToRemoveId && coinToRemove)
+      );
+
+      setUserAccount((prevUserAccount) => {
+        return {
+          ...prevUserAccount,
+          balance: userAccount.balance,
+          wallet: newWallet,
+          purchaseHistory: userAccount.purchaseHistory,
+        };
+      });
+
+      const coinToAddId = secondCoin.id;
+      const coinToAddValue = Number(secondCoin.priceUsd);
+
+      let coinToAdd = userAccount.wallet.find(
+        (purchasedCoin) => purchasedCoin.id === coinToAddId
+      );
+      if (!coinToAdd)
+        setUserAccount((prevUserAccount) => {
+          return {
+            ...prevUserAccount,
+            balance: userAccount.balance,
+            wallet: [
+              ...userAccount.wallet,
+              {
+                id: coinToAddId,
+                purchasedPrice: coinToAddValue,
+                amountOfCoins: quantitySecond,
+                moneySpent: Number(quantitySecond) * Number(coinToAddValue),
+                time: [time],
+              },
+            ],
+            purchaseHistory: [
+              ...userAccount.purchaseHistory,
+              {
+                id: coinToAddId,
+                purchasedPrice: coinToAddValue,
+                amountOfCoins: quantitySecond,
+                moneySpent: Number(quantitySecond) * Number(coinToAddValue),
+                time: [time],
+              },
+            ],
+          };
+        });
+      else {
+        coinToAdd.amountOfCoins = coinToAdd.amountOfCoins + quantitySecond;
+        coinToAdd.moneySpent =
+          Number(coinToRemove.amountOfCoins) *
+          Number(coinToRemove.purchasedPrice);
+
+        const newWallet = [...userAccount.wallet];
+
+        newWallet.forEach(
+          (coin) => (coin = coin.id === coinToAddId && coinToAdd)
+        );
+
+        const newPurchaseHistory = [
+          ...userAccount.purchaseHistory,
+          {
+            id: coinToAddId,
+            purchasedPrice: coinToAddValue,
+            amountOfCoins: quantitySecond,
+            moneySpent: Number(quantitySecond) * Number(coinToAddValue),
+            time: [time],
+          },
+        ];
+
+        setUserAccount((prevUserAccount) => {
+          return {
+            ...prevUserAccount,
+            balance: userAccount.balance,
+            wallet: newWallet,
+            purchaseHistory: newPurchaseHistory,
+          };
+        });
+      }
     }
   }
 
