@@ -10,7 +10,8 @@ import Modal from "../Single Components/Modal";
 import ActiveTradesCryptoList from "../DifferentCryptoLists/ActiveTradesCryptoList";
 
 export default function CryptoListContainer() {
-  const { showCryptoList, _mainCoinsList } = useContext(CryptoContext);
+  const { showCryptoList, _mainCoinsList, favoriteCryptos, userAccount } =
+    useContext(CryptoContext);
 
   if (!_mainCoinsList || _mainCoinsList.length === 0) {
     return (
@@ -119,31 +120,57 @@ export default function CryptoListContainer() {
     );
   }
 
+  function handleShowUl() {
+    if (showCryptoList === "mywallet" && userAccount.wallet.length === 0)
+      return false;
+    if (showCryptoList === "favorite" && favoriteCryptos.length === 0)
+      return false;
+    if (showCryptoList === "activetrades") return false;
+    return true;
+  }
+
   return (
     <div className="mb-64">
       <FilterCryptoList />
 
-      {showCryptoList !== "mywallet" && showCryptoList !== "activetrades" && (
-        <ul className="flex gap-16 px-8 relative text-sm text-gray-400">
-          <li className="w-24">Favorite</li>
-          <li className="w-80">Name</li>
-          <li className="w-40">Value</li>
-          <li className="w-40">Market cap</li>
-          <li className="w-40">Volume (24hr)</li>
-          <li className="w-48">Change (24hr)</li>
-          <li className="w-40">Trade</li>
-        </ul>
-      )}
-      {(showCryptoList === "mywallet" || showCryptoList === "activetrades") && (
-        <ul className="flex gap-16 px-8 relative text-sm text-gray-400">
-          <li className="w-1/6">Name</li>
-          <li className="w-1/6">Avg. Buying Price</li>
-          <li className="w-1/6">Amount of Coins</li>
-          <li className="w-1/6">Money Spent</li>
-          <li className="w-1/6">Price Change</li>
-          <li className="w-20">Action</li>
-        </ul>
-      )}
+      {handleShowUl() &&
+        showCryptoList !== "mywallet" &&
+        showCryptoList !== "activetrades" && (
+          <ul className="flex gap-2 text-xs px-0 md-px-8 relative md-gap-16 md-text-sm text-gray-400">
+            <li className="w-1/6 md-w-24">Favorite</li>
+            <li className="w-1/6 md-w-80">Name</li>
+            <li className="w-1/6 md-w-40">Value</li>
+            <li className="w-1/6 md-w-40">
+              <span className="hidden md-block">Market Cap</span>
+              <span className="md-hidden">M. cap</span>
+            </li>
+            <li className="hidden md-block  md-w-40">Volume (24hr)</li>
+            <li className="w-1/6 md-w-48">Change (24hr)</li>
+            <li className="w-1/6 md-w-16">Trade</li>
+          </ul>
+        )}
+      {handleShowUl() &&
+        (showCryptoList === "mywallet" ||
+          showCryptoList === "activetrades") && (
+          <ul className="flex gap-2 md-gap-16 md-px-8 relative text-xs md-text-sm text-gray-400 text-center">
+            <li className="w-1/6">Name</li>
+            <li className="w-1/6">
+              <span className="hidden md-block">Avg. Buying Price</span>
+              <span className="md-hidden">Buy price</span>
+            </li>
+            <li className="w-1/6">
+              Amount<span className="hidden md-block"> of Coins</span>
+            </li>
+            <li className="w-1/6">
+              <span className="hidden md-block">Money</span> Spent
+            </li>
+            <li className="w-1/6">
+              <span className="hidden md-block">Price Change</span>
+              <span className="md-hidden">Changed</span>
+            </li>
+            <li className="w-20">Action</li>
+          </ul>
+        )}
       {(showCryptoList === "gp" || showCryptoList === "bp") && (
         <Performers type={showCryptoList} />
       )}

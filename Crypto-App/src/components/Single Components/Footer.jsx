@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="w-full h-64 relativeflex items-center flex-col justify-center text-white">
       <div className=" bg-[#23272Eff] flex flex-col items-center py-16">
         <div className="flex flex-col items-center gap-2">
-          <h2 className="text-3xl text-yellow-400 flex gap-2 items-center uppercase tracking-[0.3rem]">
+          <h2 className="text-lg md-text-3xl text-yellow-400 flex gap-2 items-center text-center uppercase tracking-[0.3rem]">
             Invest in crypto{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -20,12 +20,12 @@ export default function Footer() {
               />
             </svg>
           </h2>
-          <p className="text-2xl uppercase tracking-[0.1rem]">
+          <p className="text-md md-text-2xl uppercase tracking-[0.1rem]">
             Be financially free
           </p>
         </div>
         <Image image={Logo} className="w-20 my-4 mt-8" svgSize="2"></Image>
-        <div className="flex gap-8 mt-8 items-center">
+        <div className="flex gap-8 mt-8 items-center flex-wrap justify-center">
           <h1 className="font-bold text-yellow-400">BLAJVINANCE</h1>
           <p>muricamar2004@gmail.com</p>
           <button

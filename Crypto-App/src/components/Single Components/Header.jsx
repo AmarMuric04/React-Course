@@ -11,7 +11,7 @@ export default function Header() {
           B<span className="text-stone-700 text-2xl">LAJV</span>
           INANCE
         </h1>
-        <ul className="flex text-white gap-5 items-center ml-8 font-bold text-md">
+        <ul className="hidden sm-flex text-white gap-5 items-center ml-8 font-bold text-md">
           <Link to="/crypto-list">List of Cryptos</Link>
           <Link to="/buy-crypto" className="cursor-pointer">
             Buy Crypto

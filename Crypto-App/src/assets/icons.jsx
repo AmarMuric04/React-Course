@@ -86,7 +86,37 @@ export function ArrowDownIcon({ svgSize }) {
       height={`${svgSize}em`}
       viewBox="0 0 24 24"
     >
-      <path fill="currentColor" d="M7.03 13.92h4V5l2.01-.03v8.95h3.99l-5 5Z" />
+      <g transform="rotate(-90 12 12)">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        >
+          <path stroke-dasharray="14" stroke-dashoffset="14" d="M19 12H5.5">
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              dur="0.3s"
+              values="14;0"
+            />
+          </path>
+          <path
+            stroke-dasharray="8"
+            stroke-dashoffset="8"
+            d="M5 12L10 17M5 12L10 7"
+          >
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              begin="0.3s"
+              dur="0.2s"
+              values="8;0"
+            />
+          </path>
+        </g>
+      </g>
     </svg>
   );
 }
@@ -99,7 +129,37 @@ export function ArrowUpIcon({ svgSize }) {
       height={`${svgSize}em`}
       viewBox="0 0 24 24"
     >
-      <path fill="currentColor" d="M7.03 9.97h4v8.92l2.01.03V9.97h3.99l-5-5Z" />
+      <g transform="rotate(-90 12 12) translate(24 0) scale(-1 1)">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        >
+          <path stroke-dasharray="14" stroke-dashoffset="14" d="M19 12H5.5">
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              dur="0.3s"
+              values="14;0"
+            />
+          </path>
+          <path
+            stroke-dasharray="8"
+            stroke-dashoffset="8"
+            d="M5 12L10 17M5 12L10 7"
+          >
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              begin="0.3s"
+              dur="0.2s"
+              values="8;0"
+            />
+          </path>
+        </g>
+      </g>
     </svg>
   );
 }
@@ -112,10 +172,50 @@ export function ArrowHorizontalIcon({ svgSize }) {
       height={`${svgSize}em`}
       viewBox="0 0 24 24"
     >
-      <path
-        fill="currentColor"
-        d="M8 18h3v-3H2v-2h20v2h-9v3h3l-4 4zm4-16L8 6h3v3H2v2h20V9h-9V6h3z"
-      />
+      <g transform="rotate(-90 12 12)">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        >
+          <path stroke-dasharray="20" stroke-dashoffset="20" d="M12 3V21">
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              dur="0.3s"
+              values="20;0"
+            />
+          </path>
+          <path
+            stroke-dasharray="8"
+            stroke-dashoffset="8"
+            d="M22 12H15.5M2 12H8.5"
+          >
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              begin="0.4s"
+              dur="0.2s"
+              values="8;0"
+            />
+          </path>
+          <path
+            stroke-dasharray="6"
+            stroke-dashoffset="6"
+            d="M15 12L18 15M9 12L6 15M15 12L18 9M9 12L6 9"
+          >
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              begin="0.6s"
+              dur="0.2s"
+              values="6;0"
+            />
+          </path>
+        </g>
+      </g>
     </svg>
   );
 }

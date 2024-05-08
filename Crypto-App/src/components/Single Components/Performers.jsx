@@ -20,14 +20,15 @@ export default function Performers({ type }) {
   return (
     <ul className="flex flex-col gap-3">
       {coins.length === 0 ? (
-        <div className="text-2xl text-center w-full h-96 grid place-items-center m-8">
+        <div className="text-4xl text-center md-m-8 w-full h-96 grid place-items-center">
           {type === "bp" ? (
-            <div className="w-96 h-full flex flex-col items-center justify-center border-[0.1rem] rounded-xl border-[#23272Eff] gap-3">
+            <div className="border-[0.1rem] border-[#23272Eff] rounded-xl w-96 md-w-96 h-full flex flex-col items-center justify-between gap-3 pb-16">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="5em"
                 height="5em"
                 viewBox="0 0 24 24"
+                className="text-green-400"
               >
                 <mask id="lineMdEmojiGrin0">
                   <path
@@ -96,12 +97,13 @@ export default function Performers({ type }) {
               </p>
             </div>
           ) : (
-            <div className="w-96 h-full flex flex-col items-center justify-center border-[0.1rem] rounded-xl border-[#23272Eff] gap-3">
+            <div className="border-[0.1rem] border-[#23272Eff] rounded-xl w-96 md-w-96 h-full flex flex-col items-center justify-between gap-3 pb-16">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="5em"
                 height="5em"
                 viewBox="0 0 24 24"
+                className="text-red-400"
               >
                 <mask id="lineMdEmojiFrownOpen0">
                   <path
@@ -167,7 +169,7 @@ export default function Performers({ type }) {
               <p className="text-2xl">The market is not having a good day!</p>
               <p className="text-lg text-gray-400">
                 This is the perfect time to grab some more coins and stack your
-                wallet!
+                wallet though!
               </p>
             </div>
           )}

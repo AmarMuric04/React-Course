@@ -10,7 +10,7 @@ export default function MainList() {
       className="w-full flex-wrap flex justify-between items-center"
       id="menu"
     >
-      <ul className="flex gap-10 text-md px-12">
+      <ul className="flex w-full gap-3 justify-between md-justify-start md-gap-10 text-xs md-text-md px-2 md-px-12">
         <li
           className={`cursor-pointer border-b-[0.2rem] border-transparent py-2 ${
             showCryptoList === "main" && "border-yellow-400"
@@ -25,7 +25,8 @@ export default function MainList() {
           }`}
           onClick={() => handleShowCryptoList("favorite")}
         >
-          Favorite Cryptos
+          <span className="hidden md-block">Favorite Cryptos</span>
+          <span className="md-hidden">Favorites</span>
         </li>
         <li
           className={`cursor-pointer border-b-[0.2rem] border-transparent py-2 ${
@@ -33,7 +34,7 @@ export default function MainList() {
           }`}
           onClick={() => handleShowCryptoList("mywallet")}
         >
-          My Wallet
+          <span className="hidden md-block">My</span> Wallet
         </li>
         <li
           className={`cursor-pointer border-b-[0.2rem] border-transparent py-2 ${
@@ -41,7 +42,7 @@ export default function MainList() {
           }`}
           onClick={() => handleShowCryptoList("gp")}
         >
-          GP Cryptos
+          GP <span className="hidden md-block">Cryptos</span>
         </li>
         <li
           className={`cursor-pointer border-b-[0.2rem] border-transparent py-2 ${
@@ -49,7 +50,7 @@ export default function MainList() {
           }`}
           onClick={() => handleShowCryptoList("bp")}
         >
-          BP Cryptos
+          BP <span className="hidden md-block">Cryptos</span>
         </li>
         <li
           className={`cursor-pointer border-b-[0.2rem] border-transparent py-2 ${

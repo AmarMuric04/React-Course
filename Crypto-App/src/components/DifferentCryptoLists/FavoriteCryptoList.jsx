@@ -12,8 +12,8 @@ export default function FavoriteCryptoList() {
   return (
     <ul className="flex flex-col gap-3">
       {newCoins.length === 0 ? (
-        <div className="text-4xl text-center m-8 w-full h-96 grid place-items-center">
-          <div className="border-[0.1rem] border-[#23272Eff] rounded-xl w-96 h-full flex flex-col items-center justify-between gap-3 pb-16">
+        <div className="text-4xl text-center md-m-8 w-full h-96 grid place-items-center">
+          <div className="border-[0.1rem] border-[#23272Eff] rounded-xl w-96 md-w-96 h-full flex flex-col items-center justify-between gap-3 pb-16">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="3em"
@@ -54,8 +54,8 @@ export default function FavoriteCryptoList() {
             <div className="flex flex-col gap-2">
               <p>You have no favorite cryptos!</p>
               <p className="text-sm text-gray-400 px-8">
-                Do some research on some coins and if you like them add them to
-                your favorites!
+                Do research on some coins and if you like them add them to your
+                favorites!
               </p>
             </div>
           </div>

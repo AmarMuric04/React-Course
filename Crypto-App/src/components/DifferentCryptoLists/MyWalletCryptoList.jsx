@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { CryptoContext } from "../../store/crypto-context";
 import {
   ArrowUpIcon,
   ArrowDownIcon,
   ArrowHorizontalIcon,
 } from "../../assets/icons";
+import { CryptoContext } from "../../store/crypto-context";
+
 import CryptoAction from "../Single Components/CryptoAction";
 
 export default function MyWalletCryptoList() {
@@ -18,8 +19,8 @@ export default function MyWalletCryptoList() {
   return (
     <ul className="flex flex-col gap-3">
       {walletCryptos.length === 0 ? (
-        <div className="text-4xl text-center m-8 w-full h-96 grid place-items-center">
-          <div className="border-[0.1rem] border-[#23272Eff] rounded-xl w-96 h-full flex flex-col items-center justify-between gap-3 pb-16">
+        <div className="text-4xl text-center md-m-8 w-full h-96 grid place-items-center">
+          <div className="border-[0.1rem] border-[#23272Eff] rounded-xl w-96 md-w-96 h-full flex flex-col items-center justify-between gap-3 pb-16">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="3em"
@@ -124,25 +125,27 @@ export default function MyWalletCryptoList() {
 
           return (
             <ul
-              className="preventdefault flex items-center py-8 text-2xl pr-16 pl-8 rounded-xl relative hover:bg-[#23272Eff] transition-all delay-50 gap-24"
+              className="preventdefault flex items-center py-4 md-py-8 text-xs md-text-2xl px-2 md-pr-16 md-pl-8 rounded-xl relative hover:bg-[#23272Eff] transition-all delay-50 gap-2 md-gap-24 justify-between md-justify-start"
               key={coin.id}
             >
               <li className="w-1/6">
                 <span className="">{coinName} </span>(
-                <span className="font-extrabold text-lg">{newCoin.symbol}</span>
+                <span className="font-extrabold text-[0.5rem] md-text-lg">
+                  {newCoin.symbol}
+                </span>
                 )
               </li>
-              <li className="w-1/6 tracking-[0.1rem]">
+              <li className="w-16 md-w-1/6 md-tracking-[0.1rem]">
                 $ {handleCustomToFixed(coin.purchasedPrice)}
               </li>
-              <li className="w-1/6 tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
+              <li className="w-8 md-w-1/6 md-tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
                 {handleCustomToFixed(coin.amountOfCoins)}
               </li>
-              <li className="w-1/6 tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
+              <li className="w-1/6 md-tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
                 $ {handleCustomToFixed(coin.moneySpent)}
               </li>
               <li
-                className={`w-1/6 flex items-center gap-2 overflow-hidden truncate whitespace-nowrap ${
+                className={`w-16 md-w-1/6 flex items-center md-gap-2 overflow-hidden truncate whitespace-nowrap ${
                   percentageChange < -0.2 && "text-red-400"
                 } ${percentageChange > 0.2 && "text-green-400"} ${
                   percentageChange >= -0.2 &&
@@ -160,7 +163,7 @@ export default function MyWalletCryptoList() {
               <CryptoAction
                 firstText="Buy more"
                 secondText="Sell"
-                width="w-20"
+                width="w-10 md-w-20"
                 firstHash={`/crypto-list/${coin.id}`}
                 secondHash={`/sell-crypto`}
               />

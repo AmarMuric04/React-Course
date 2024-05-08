@@ -3,10 +3,10 @@ import { createPortal } from "react-dom";
 
 export default function Modal({ children, height, width, onCancel }) {
   const [isOpen, setIsOpen] = useState(true);
-  const [margin, setMargin] = useState("mt-[5rem] opacity-0");
+  const [margin, setMargin] = useState("md-mt-[5rem] opacity-0");
 
   setTimeout(() => {
-    setMargin("mt-[0rem] opacity-100");
+    setMargin("md-mt-[0rem] opacity-100");
   }, 10);
 
   function handleClose() {
@@ -26,7 +26,7 @@ export default function Modal({ children, height, width, onCancel }) {
   return (
     isOpen &&
     createPortal(
-      <div className="fixed top-0 left-0 w-full h-full grid place-items-center backdrop-blur-sm z-50">
+      <div className="absolute md-fixed top-0 left-0 w-full h-full grid place-items-center backdrop-blur-sm z-50">
         <div
           className={`flex flex-col bg-[#23272Eff] text-white ${width} ${height} rounded-xl transition-all ${margin}`}
         >

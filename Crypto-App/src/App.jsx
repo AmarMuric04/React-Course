@@ -15,7 +15,7 @@ function App() {
       <main className="bg-[#1A1C22ff] text-white max-w-screen mt-16 h-auto min-h-screen flex flex-col justify-center items-center">
         <Header />
         <div className="flex flex-col w-[100rem] max-w-full mt-8">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center flex-col md-flex-row my-8">
             <p className="flex items-center gap-3 text-md font-bold text-yellow-400 my-8">
               <Link to="/" className="cursor-pointer hover:underline">
                 Home

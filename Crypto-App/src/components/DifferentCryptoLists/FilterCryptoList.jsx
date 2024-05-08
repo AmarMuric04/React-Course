@@ -2,11 +2,31 @@ import { useContext } from "react";
 import { CryptoContext } from "../../store/crypto-context.jsx";
 
 export default function FilterCryptoList() {
-  let { handleSetFilters, showCryptoList } = useContext(CryptoContext);
+  let {
+    handleSetFilters,
+    showCryptoList,
+    userAccount,
+    favoriteCryptos,
+    _mainCoinsList,
+  } = useContext(CryptoContext);
+
+  function handleShowUl() {
+    if (showCryptoList === "mywallet" && userAccount.wallet.length === 0)
+      return false;
+    if (showCryptoList === "favorite" && favoriteCryptos.length === 0)
+      return false;
+    if (
+      !_mainCoinsList.some((coin) => Number(coin.changePercent24Hr) > 0.2) &&
+      !_mainCoinsList.some((coin) => Number(coin.changePercent24Hr) < -0.2)
+    )
+      return false;
+    if (showCryptoList === "activetrades") return false;
+    return true;
+  }
 
   return (
     <div className="w-full min-h-20 flex justify-end gap-5 px-10 py-5 items-center">
-      {showCryptoList !== "mywallet" && (
+      {handleShowUl() && showCryptoList !== "mywallet" && (
         <>
           <p>Sort by:</p>
           <select
