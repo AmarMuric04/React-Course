@@ -1,7 +1,7 @@
 export default function ActiveTradesCryptoList() {
   return (
     <main className="bg-[#1A1C22ff]  w-full h-[35rem] text-xl gap-6 flex justify-center items-center flex-col-reverse">
-      <div className="border-[0.1rem] border-[#23272Eff] rounded-xl w-96 md-w-96 h-full flex flex-col items-center justify-between gap-3 pb-16 p-8">
+      <div className="border-[0.1rem] border-[#23272Eff] rounded-xl w-96 md:w-96 h-full flex flex-col items-center justify-between gap-3 pb-16 p-8">
         <p>Coming soon...</p>
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -1,11 +1,7 @@
 import { useContext, useState } from "react";
 import { CryptoContext } from "../../store/crypto-context";
 
-export default function InterestingCryptosContainer({
-  filterBy,
-  classes,
-  amount,
-}) {
+export default function InteresetingCryptos({ filterBy, classes, amount }) {
   const {
     _mainCoinsList,
     handleFormatNumber,
@@ -166,7 +162,7 @@ export default function InterestingCryptosContainer({
 
   return (
     <div
-      className={`${classes} h-auto min-w-64 border-[0.1rem] border-[#23272Eff] py-4 rounded-lg`}
+      className={`${classes} h-auto md:min-w-64 border-[0.1rem] border-[#23272Eff] py-4 rounded-lg`}
     >
       <header className="flex justify-between px-8">
         <h2>{message}</h2>

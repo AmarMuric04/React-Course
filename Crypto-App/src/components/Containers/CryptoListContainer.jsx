@@ -136,37 +136,37 @@ export default function CryptoListContainer() {
       {handleShowUl() &&
         showCryptoList !== "mywallet" &&
         showCryptoList !== "activetrades" && (
-          <ul className="flex gap-2 text-xs px-0 md-px-8 relative md-gap-16 md-text-sm text-gray-400">
-            <li className="w-1/6 md-w-24">Favorite</li>
-            <li className="w-1/6 md-w-80">Name</li>
-            <li className="w-1/6 md-w-40">Value</li>
-            <li className="w-1/6 md-w-40">
-              <span className="hidden md-block">Market Cap</span>
-              <span className="md-hidden">M. cap</span>
+          <ul className="flex gap-2 text-xs px-0 md:px-8 relative md:gap-16 md:text-sm text-gray-400">
+            <li className="w-1/6 md:w-24">Favorite</li>
+            <li className="w-1/6 md:w-80">Name</li>
+            <li className="w-1/6 md:w-40">Value</li>
+            <li className="w-1/6 md:w-40">
+              <span className="hidden md:block">Market Cap</span>
+              <span className="md:hidden">M. cap</span>
             </li>
-            <li className="hidden md-block  md-w-40">Volume (24hr)</li>
-            <li className="w-1/6 md-w-48">Change (24hr)</li>
-            <li className="w-1/6 md-w-16">Trade</li>
+            <li className="hidden md:block  md:w-40">Volume (24hr)</li>
+            <li className="w-1/6 md:w-48">Change (24hr)</li>
+            <li className="w-1/6 md:w-16">Trade</li>
           </ul>
         )}
       {handleShowUl() &&
         (showCryptoList === "mywallet" ||
           showCryptoList === "activetrades") && (
-          <ul className="flex gap-2 md-gap-16 md-px-8 relative text-xs md-text-sm text-gray-400 text-center">
+          <ul className="flex gap-2 md:gap-16 md:px-8 relative text-xs md:text-sm text-gray-400 text-center">
             <li className="w-1/6">Name</li>
             <li className="w-1/6">
-              <span className="hidden md-block">Avg. Buying Price</span>
-              <span className="md-hidden">Buy price</span>
+              <span className="hidden md:block">Avg. Buying Price</span>
+              <span className="md:hidden">Buy price</span>
             </li>
             <li className="w-1/6">
-              Amount<span className="hidden md-block"> of Coins</span>
+              Amount<span className="hidden md:block"> of Coins</span>
             </li>
             <li className="w-1/6">
-              <span className="hidden md-block">Money</span> Spent
+              <span className="hidden md:block">Money</span> Spent
             </li>
             <li className="w-1/6">
-              <span className="hidden md-block">Price Change</span>
-              <span className="md-hidden">Changed</span>
+              <span className="hidden md:block">Price Change</span>
+              <span className="md:hidden">Changed</span>
             </li>
             <li className="w-20">Action</li>
           </ul>

@@ -31,8 +31,8 @@ export default function Crypto({ coin }) {
 
   return (
     <a key={coin.id} href={`${coin.explorer}`} onClick={handlePreventDefault}>
-      <ul className="preventdefault flex items-center py-4 md-py-8 text-xs md-text-2xl px-4 md-pr-16  md-pl-8 rounded-xl relative hover:bg-[#23272Eff] transition-all delay-50 gap-2 md-gap-24 justify-between md-justify-start">
-        <li className="w-8 md-w-12">
+      <ul className="preventdefault flex items-center py-4 md:py-8 text-xs md:text-2xl px-4 md:pr-16  md:pl-8 rounded-xl relative hover:bg-[#23272Eff] transition-all delay-50 gap-2 md:gap-24 justify-between md:justify-start">
+        <li className="w-8 md:w-12">
           {favoriteCryptos.some(
             (favoritedCoin) => coin.id === favoritedCoin.id
           ) && (
@@ -116,21 +116,21 @@ export default function Crypto({ coin }) {
             </svg>
           )}
         </li>
-        <li className="w-3 font-normal absolute top-1 md-bottom-2 left-2 text-xs md-text-sm">
+        <li className="w-3 font-normal absolute top-1 md:bottom-2 left-2 text-xs md:text-sm">
           {coinRank}.
         </li>
-        <li className="w-1/6 md-w-64">
+        <li className="w-1/6 md:w-64">
           <span className="">{coinName} </span>(
-          <span className="font-extrabold text-[0.5rem] md-text-lg">
+          <span className="font-extrabold text-[0.5rem] md:text-lg">
             {coinSymbol}
           </span>
           )
         </li>
-        <li className="w-16 md-w-36 md-tracking-[0.1rem]">$ {coinValue}</li>
-        <li className="w-12 md-w-32">$ {coinMarketCap}</li>
-        <li className="hidden md-block w-20">$ {volumeInLast24Hours}</li>
+        <li className="w-16 md:w-36 md:tracking-[0.1rem]">$ {coinValue}</li>
+        <li className="w-12 md:w-32">$ {coinMarketCap}</li>
+        <li className="hidden md:block w-20">$ {volumeInLast24Hours}</li>
         <li
-          className={`w-1/6 md-w-32 flex items-center justify-end md-gap-2 ${
+          className={`w-1/6 md:w-32 flex items-center justify-end md:gap-2 ${
             changeInLast24Hours < -0.2 && "text-red-400"
           }  ${changeInLast24Hours > 0.2 && "text-green-400"} ${
             changeInLast24Hours >= -0.2 &&
@@ -140,15 +140,15 @@ export default function Crypto({ coin }) {
         >
           {changeInLast24Hours}%{" "}
           {changeInLast24Hours >= -0.2 && changeInLast24Hours <= 0.2 && (
-            <ArrowHorizontalIcon svgSize="1" />
+            <ArrowHorizontalIcon svgSize="1.7" />
           )}
-          {changeInLast24Hours < -0.2 && <ArrowDownIcon svgSize="1" />}
-          {changeInLast24Hours > 0.2 && <ArrowUpIcon svgSize="1" />}
+          {changeInLast24Hours < -0.2 && <ArrowDownIcon svgSize="1.7" />}
+          {changeInLast24Hours > 0.2 && <ArrowUpIcon svgSize="1.7" />}
         </li>
         <CryptoAction
           firstText="Buy"
           secondText="Trade"
-          width="w-10 md-w-16"
+          width="w-10 md:w-16"
           firstHash={`/crypto-list/${coin.id}`}
           secondHash={`/sell-crypto`}
         />
