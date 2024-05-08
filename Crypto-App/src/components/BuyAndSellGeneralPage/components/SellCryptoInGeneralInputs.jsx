@@ -3,33 +3,139 @@ import { CryptoContext } from "../../../store/crypto-context";
 import { Link } from "react-router-dom";
 import Modal from "../../Single Components/Modal";
 
-export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
+export default function BuyCryptoInGeneralInputs({
+  onSell,
+  onCancel,
+  changeModal,
+}) {
   const {
-    _mainCoinsList,
-    handleCustomToFixed,
-    handleBuyCryptoGeneral,
     userAccount,
+    handleCustomToFixed,
+    _mainCoinsList,
+    handleSellCryptoGeneral,
   } = useContext(CryptoContext);
   const [inputValueFirst, setInputValueFirst] = useState("");
   const [inputValueSecond, setInputValueSecond] = useState("");
-  const [firstSelection, setFirstSelection] = useState("cash");
-  const [secondSelection, setSecondSelection] = useState("bitcoin");
+  const [coinToSell, setCoinToSell] = useState("bitcoin");
   const [error, setError] = useState("");
 
-  let selectedCoin, selectedCoinWallet;
-  if (firstSelection !== "cash") {
-    selectedCoin = _mainCoinsList.find((coin) => coin.id === firstSelection);
-    selectedCoinWallet = userAccount.wallet.find(
-      (coin) => coin.id === firstSelection
+  if (!_mainCoinsList || _mainCoinsList.length === 0) {
+    return (
+      <div className="mt-8 w-full h-24 bg-[#1A1C22ff] grid place-content-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="2em"
+          height="2em"
+          viewBox="0 0 24 24"
+          className="text-yellow-400"
+        >
+          <rect width="2.8" height="12" x="1" y="6" fill="currentColor">
+            <animate
+              id="svgSpinnersBarsScale0"
+              attributeName="y"
+              begin="0;svgSpinnersBarsScale1.end-0.1s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="6;1;6"
+            />
+            <animate
+              attributeName="height"
+              begin="0;svgSpinnersBarsScale1.end-0.1s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="12;22;12"
+            />
+          </rect>
+          <rect width="2.8" height="12" x="5.8" y="6" fill="currentColor">
+            <animate
+              attributeName="y"
+              begin="svgSpinnersBarsScale0.begin+0.1s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="6;1;6"
+            />
+            <animate
+              attributeName="height"
+              begin="svgSpinnersBarsScale0.begin+0.1s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="12;22;12"
+            />
+          </rect>
+          <rect width="2.8" height="12" x="10.6" y="6" fill="currentColor">
+            <animate
+              attributeName="y"
+              begin="svgSpinnersBarsScale0.begin+0.2s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="6;1;6"
+            />
+            <animate
+              attributeName="height"
+              begin="svgSpinnersBarsScale0.begin+0.2s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="12;22;12"
+            />
+          </rect>
+          <rect width="2.8" height="12" x="15.4" y="6" fill="currentColor">
+            <animate
+              attributeName="y"
+              begin="svgSpinnersBarsScale0.begin+0.3s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="6;1;6"
+            />
+            <animate
+              attributeName="height"
+              begin="svgSpinnersBarsScale0.begin+0.3s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="12;22;12"
+            />
+          </rect>
+          <rect width="2.8" height="12" x="20.2" y="6" fill="currentColor">
+            <animate
+              id="svgSpinnersBarsScale1"
+              attributeName="y"
+              begin="svgSpinnersBarsScale0.begin+0.4s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="6;1;6"
+            />
+            <animate
+              attributeName="height"
+              begin="svgSpinnersBarsScale0.begin+0.4s"
+              calcMode="spline"
+              dur="0.6s"
+              keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+              values="12;22;12"
+            />
+          </rect>
+        </svg>
+      </div>
     );
   }
-  console.log(_mainCoinsList);
 
-  let secondSelectedCoin = _mainCoinsList.find(
-    (coin) => coin.id === secondSelection
+  let selectedCoin = _mainCoinsList.find((coin) => coin.id === coinToSell);
+  let selectedCoinWallet = userAccount.wallet.find(
+    (coin) => coin.id === coinToSell
   );
 
-  function handleInputFirst(event) {
+  function handleSetCoin(event) {
+    setCoinToSell(event.target.value);
+  }
+
+  function handleSetFirstInput(event) {
     let value = event.target.value;
 
     value = value.replace(/[^0-9.]/g, "").replace(/^0+/, "");
@@ -44,37 +150,12 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
       return;
     }
 
-    handleShowResult(event.target.value, "firstValue");
+    setInputValueSecond(
+      handleCustomToFixed(Number(value) * Number(selectedCoin.priceUsd))
+    );
   }
 
-  function handleShowResult(quantity, type) {
-    let firstValue;
-    if (firstSelection === "cash") firstValue = 1;
-    else firstValue = selectedCoin.priceUsd;
-
-    const secondValue = secondSelectedCoin.priceUsd;
-
-    type === "firstValue" &&
-      setInputValueSecond(
-        handleCustomToFixed(
-          (Number(firstValue) * Number(quantity)) / Number(secondValue)
-        )
-      );
-    type === "secondValue" &&
-      setInputValueFirst(
-        handleCustomToFixed(
-          (Number(secondValue) * Number(quantity)) / Number(firstValue)
-        )
-      );
-  }
-
-  function handleSelectionFirst(e) {
-    setFirstSelection(e.target.value);
-    setInputValueFirst("");
-    setInputValueSecond("");
-  }
-
-  function handleInputSecond(event) {
+  function handleSetSecondInput(event) {
     let value = event.target.value;
 
     value = value.replace(/[^0-9.]/g, "").replace(/^0+/, "");
@@ -89,50 +170,17 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
       return;
     }
 
-    handleShowResult(event.target.value, "secondValue");
+    setInputValueFirst(
+      handleCustomToFixed(Number(value) / Number(selectedCoin.priceUsd))
+    );
   }
 
-  function handleSelectionSecond(e) {
-    setSecondSelection(e.target.value);
-    setInputValueFirst("");
-    setInputValueSecond("");
-  }
-
-  function handleBuyGeneralCrypto() {
-    setTimeout(() => {
-      setError("");
-    }, 1000);
-
-    if (firstSelection === secondSelection) {
-      setError("Can't use same currency.");
-      return;
-    }
-    if (!inputValueFirst || inputValueFirst === ".") {
-      setError("Invalid input entry.");
-      return;
-    }
-    if (
-      firstSelection === "cash" &&
-      Number(inputValueFirst?.replaceAll(",", "")) > userAccount.balance
-    ) {
-      setError("Insufficient balance in your wallet.");
-      return;
-    }
-    if (
-      firstSelection === "cash" &&
-      selectedCoinWallet?.amountOfCoins < inputValueFirst
-    ) {
-      setError("Insufficient amount of coins in wallet.");
-      return;
-    }
-
-    selectedCoin = firstSelection !== "cash" ? selectedCoin : "cash";
-
+  function handleSellCrypto() {
     onSell(
       <Modal onCancel={onCancel} height="h-[36rem]" width="w-[25rem]">
         <div className="border-[0.1rem] border-[#23272Eff] w-full p-8 rounded-xl h-full flex gap-5 items-center justify-center flex-col">
           <h1 className="text-2xl text-center font-bold uppercase tracking-[0.1rem]">
-            Purchase successful!
+            Sale successful!
           </h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -184,83 +232,13 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
               </path>
             </g>
           </svg>
-          <p className="mb-8">Purchase details:</p>
+          <p className="mb-8">Sale details:</p>
           <ul className="flex flex-col gap-2">
             <li className="flex gap-2 items-center text-sm ">
-              Transaction type:{" "}
-              <span className="tracking-[0.1rem]">
-                {selectedCoin === "cash" &&
-                  `CASH to ${secondSelectedCoin.symbol}`}
-                {selectedCoin !== "cash" &&
-                  `${selectedCoin.symbol} to ${secondSelectedCoin.symbol}`}
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-                className="text-green-400"
-              >
-                <defs>
-                  <mask id="lineMdCheckAll0">
-                    <g
-                      fill="none"
-                      stroke="#fff"
-                      stroke-dasharray="22"
-                      stroke-dashoffset="22"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    >
-                      <path d="M2 13.5l4 4l10.75 -10.75">
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path
-                        stroke="#000"
-                        stroke-width="4"
-                        d="M7.5 13.5l4 4l10.75 -10.75"
-                        opacity="0"
-                      >
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                    </g>
-                  </mask>
-                </defs>
-                <rect
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  mask="url(#lineMdCheckAll0)"
-                />
-              </svg>
-            </li>
-            <li className="flex gap-2 items-center text-sm ">
-              Bought:
+              Sold:
               <span className="tracking-[0.1rem] uppercase">
-                {secondSelectedCoin.id[0].toUpperCase() +
-                  secondSelectedCoin.id.slice(1)}
+                {selectedCoinWallet.id.slice(0, 1).toUpperCase() +
+                  selectedCoinWallet.id.slice(1)}
               </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -325,9 +303,9 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
               </svg>
             </li>
             <li className="flex gap-2 items-center text-sm ">
-              Bought at:
+              Sold at:
               <span className="tracking-[0.1rem]">
-                ${handleCustomToFixed(Number(secondSelectedCoin.priceUsd))}
+                ${handleCustomToFixed(Number(selectedCoin.priceUsd))}
               </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -392,85 +370,152 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
               </svg>
             </li>
             <li className="flex gap-2 items-center text-sm ">
-              Amount bought: {secondSelectedCoin.coinSymbol}:{" "}
+              Amount sold: {selectedCoin.coinSymbol}:{" "}
+              <span className="tracking-[0.1rem]">
+                {handleCustomToFixed(Number(inputValueFirst))}
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2em"
+                height="2em"
+                viewBox="0 0 24 24"
+                className="text-green-400"
+              >
+                <defs>
+                  <mask id="lineMdCheckAll0">
+                    <g
+                      fill="none"
+                      stroke="#fff"
+                      stroke-dasharray="22"
+                      stroke-dashoffset="22"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                    >
+                      <path d="M2 13.5l4 4l10.75 -10.75">
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          dur="0.4s"
+                          values="22;0"
+                        />
+                      </path>
+                      <path
+                        stroke="#000"
+                        stroke-width="4"
+                        d="M7.5 13.5l4 4l10.75 -10.75"
+                        opacity="0"
+                      >
+                        <set attributeName="opacity" begin="0.4s" to="1" />
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          begin="0.4s"
+                          dur="0.4s"
+                          values="22;0"
+                        />
+                      </path>
+                      <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
+                        <set attributeName="opacity" begin="0.4s" to="1" />
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          begin="0.4s"
+                          dur="0.4s"
+                          values="22;0"
+                        />
+                      </path>
+                    </g>
+                  </mask>
+                </defs>
+                <rect
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  mask="url(#lineMdCheckAll0)"
+                />
+              </svg>
+            </li>
+            <li className="flex gap-2 items-center text-sm ">
+              Money gained:{" "}
+              <span className="tracking-[0.1rem]">
+                $
+                {handleCustomToFixed(
+                  Number(inputValueFirst.replaceAll(",", "")) *
+                    Number(selectedCoin.priceUsd)
+                )}
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2em"
+                height="2em"
+                viewBox="0 0 24 24"
+                className="text-green-400"
+              >
+                <defs>
+                  <mask id="lineMdCheckAll0">
+                    <g
+                      fill="none"
+                      stroke="#fff"
+                      stroke-dasharray="22"
+                      stroke-dashoffset="22"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                    >
+                      <path d="M2 13.5l4 4l10.75 -10.75">
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          dur="0.4s"
+                          values="22;0"
+                        />
+                      </path>
+                      <path
+                        stroke="#000"
+                        stroke-width="4"
+                        d="M7.5 13.5l4 4l10.75 -10.75"
+                        opacity="0"
+                      >
+                        <set attributeName="opacity" begin="0.4s" to="1" />
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          begin="0.4s"
+                          dur="0.4s"
+                          values="22;0"
+                        />
+                      </path>
+                      <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
+                        <set attributeName="opacity" begin="0.4s" to="1" />
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          begin="0.4s"
+                          dur="0.4s"
+                          values="22;0"
+                        />
+                      </path>
+                    </g>
+                  </mask>
+                </defs>
+                <rect
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  mask="url(#lineMdCheckAll0)"
+                />
+              </svg>
+            </li>
+            <li className="flex gap-2 items-center text-sm ">
+              Price change since buying:{" "}
               <span className="tracking-[0.1rem]">
                 {handleCustomToFixed(
-                  Number(inputValueSecond.replaceAll(",", ""))
-                )}{" "}
-                {secondSelectedCoin.symbol}
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-                className="text-green-400"
-              >
-                <defs>
-                  <mask id="lineMdCheckAll0">
-                    <g
-                      fill="none"
-                      stroke="#fff"
-                      stroke-dasharray="22"
-                      stroke-dashoffset="22"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    >
-                      <path d="M2 13.5l4 4l10.75 -10.75">
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path
-                        stroke="#000"
-                        stroke-width="4"
-                        d="M7.5 13.5l4 4l10.75 -10.75"
-                        opacity="0"
-                      >
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                    </g>
-                  </mask>
-                </defs>
-                <rect
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  mask="url(#lineMdCheckAll0)"
-                />
-              </svg>
-            </li>
-            <li className="flex gap-2 items-center text-sm ">
-              Spent:{" "}
-              <span className="tracking-[0.1rem]">
-                {selectedCoin === "cash" && `$ ${inputValueFirst}`}
-                {selectedCoin !== "cash" &&
-                  handleCustomToFixed(
-                    Number(inputValueFirst.replaceAll(",", ""))
-                  ) +
-                    " " +
-                    selectedCoin.symbol}
+                  ((selectedCoin.priceUsd - selectedCoinWallet.purchasedPrice) /
+                    selectedCoinWallet.purchasedPrice) *
+                    100
+                )}
+                %
               </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -543,39 +588,39 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
       </Modal>
     );
 
-    handleBuyCryptoGeneral(
-      selectedCoin,
-      secondSelectedCoin,
-      Number(inputValueFirst.replaceAll(",", "")),
-      Number(inputValueSecond.replaceAll(",", ""))
-    );
-
     setInputValueFirst("");
     setInputValueSecond("");
+
+    handleSellCryptoGeneral(
+      selectedCoin,
+      Number(inputValueFirst.replaceAll(",", ""))
+    );
   }
 
   return (
-    <div className="flex flex-col justify-between h-full">
-      <div className="flex flex-col gap-2">
-        <div className="relative w-full">
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder="Enter Amount"
-            value={inputValueFirst}
-            maxLength="11"
-            onChange={handleInputFirst}
-            className={`${
-              error ? "border-red-400" : "border-[#1A1C22ff]"
-            } pt-10 pb-8 px-4 text-xl w-full bg-[#1A1C22ff] rounded-lg focus:outline-none border-[0.1rem]  focus:border-yellow-400`}
-          />
-          {firstSelection !== "cash" && (
+    <>
+      <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col gap-2">
+          <div className="relative w-full">
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder="Enter Amount"
+              value={inputValueFirst}
+              onChange={handleSetFirstInput}
+              maxLength="11"
+              className={`${
+                error ? "border-red-400" : "border-[#1A1C22ff]"
+              } pt-10 pb-8 px-4 text-xl w-full bg-[#1A1C22ff] rounded-lg focus:outline-none border-[0.1rem]  focus:border-yellow-400`}
+            />
             <div className="flex absolute bottom-1 left-4 items-center gap-3">
               <p className="text-sm text-gray-300">
                 In wallet:{" "}
-                {firstSelection !== "cash" && selectedCoinWallet?.amountOfCoins
-                  ? handleCustomToFixed(selectedCoinWallet.amountOfCoins)
+                {selectedCoinWallet
+                  ? handleCustomToFixed(
+                      Number(selectedCoinWallet.amountOfCoins)
+                    )
                   : 0}{" "}
                 {selectedCoin.symbol}
               </p>
@@ -586,63 +631,51 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
                 Add
               </Link>
             </div>
-          )}
-          <p className="absolute top-3 left-4 text-sm">Spend</p>
-          <select
-            className="bg-[#1A1C22ff] text-white focus:outline-none absolute right-1 bottom-8"
-            name=""
-            id=""
-            onChange={handleSelectionFirst}
-          >
-            <option value="cash">CASH</option>
-            {_mainCoinsList.map((coin) => (
-              <option
-                selected={
-                  firstSelection !== "cash" && coin.id === selectedCoin.id
-                }
-                key={coin.priceUsd}
-                value={`${coin.id}`}
-              >
-                {coin.symbol}
-              </option>
-            ))}
-          </select>
+            <p className="absolute top-3 left-4 text-sm">Spend</p>
+            <select
+              className="bg-[#1A1C22ff] text-white focus:outline-none absolute right-1 bottom-8"
+              name=""
+              id=""
+              onChange={handleSetCoin}
+            >
+              {_mainCoinsList.map((coin) => (
+                <option
+                  selected={
+                    coinToSell !== "bitcoin" && coin.id === selectedCoin.id
+                  }
+                  key={coin.priceUsd}
+                  value={`${coin.id}`}
+                >
+                  {coin.symbol}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="w-full relative">
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder="0.00"
+              value={inputValueSecond}
+              onChange={handleSetSecondInput}
+              maxLength="11"
+              className={`${
+                error ? "border-red-400" : "border-[#1A1C22ff]"
+              } pt-10 pb-4 px-4 text-xl w-full bg-[#1A1C22ff] rounded-lg focus:outline-none border-[0.1rem]  focus:border-yellow-400`}
+            />
+            <p className="absolute top-3 left-4 text-sm">Receive</p>
+            <p className="absolute right-7 bottom-4">CASH</p>
+          </div>
+          {error && <p className="text-red-400">{error}</p>}
         </div>
-        <div className="w-full relative">
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder="0.00"
-            value={inputValueSecond}
-            maxLength="11"
-            onChange={handleInputSecond}
-            className={`${
-              error ? "border-red-400" : "border-[#1A1C22ff]"
-            } pt-10 pb-4 px-4 text-xl w-full bg-[#1A1C22ff] rounded-lg focus:outline-none border-[0.1rem]  focus:border-yellow-400`}
-          />
-          <p className="absolute top-3 left-4 text-sm">Receive</p>
-          <select
-            className="bg-[#1A1C22ff] text-white focus:outline-none absolute right-1 bottom-4"
-            name=""
-            id=""
-            onChange={handleSelectionSecond}
-          >
-            {_mainCoinsList.map((coin) => (
-              <option key={coin.id} value={`${coin.id}`}>
-                {coin.symbol}
-              </option>
-            ))}
-          </select>
-        </div>
-        {error && <p className="text-red-400">{error}</p>}
+        <button
+          onClick={handleSellCrypto}
+          className="bg-yellow-400  text-black py-3 text-xl rounded-lg font-bold"
+        >
+          Sell
+        </button>
       </div>
-      <button
-        onClick={handleBuyGeneralCrypto}
-        className="bg-yellow-400 text-black py-3 text-xl rounded-lg font-bold"
-      >
-        Buy
-      </button>
-    </div>
+    </>
   );
 }

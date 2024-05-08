@@ -5,6 +5,8 @@ import UserBalance from "../Single Components/UserBalance";
 import Title from "../BuyCryptoPage/BuyCryptoLeftSide/components/Title";
 import InterestingCrytpos from "../Single Components/InterestingCryptos";
 import BuyCryptoInGeneralInputs from "./components/BuyCryptoInGeneralInputs";
+import SellCryptoInGeneralInputs from "./components/SellCryptoInGeneralInputs";
+import { useState } from "react";
 import Buy1 from "/public/buy1.svg";
 import Buy2 from "/public/buy2.svg";
 import Buy3 from "/public/buy3.svg";
@@ -14,11 +16,24 @@ import Sell3 from "/public/sell3.svg";
 import Image from "../Single Components/Image";
 
 export default function BuyGeneralCrypto({ type }) {
+  const [action, setAction] = useState(false);
+  const [modal, setModal] = useState("");
+
+  function handleSetAction(modal) {
+    setModal(modal);
+    setAction(true);
+  }
+
+  function handleRemoveAction() {
+    setAction(false);
+  }
+
   return (
     <>
+      {action && modal}
       <Header />
       <main className="bg-[#1A1C22ff] text-white h-full min-h-screen w-full min-w-screen flex flex-col items-center mt-16">
-        <div className="flex flex-col w-[80rem] mt-16">
+        <div className="flex flex-col max-w-full w-[80rem] mt-16">
           <div className="flex w-full justify-between items-center">
             <p className="flex items-center gap-3 text-md font-bold text-yellow-400 my-8">
               <Link to="/" className="cursor-pointer hover:underline">
@@ -45,7 +60,7 @@ export default function BuyGeneralCrypto({ type }) {
               <UserBalance />
             </div>
           </div>
-          <div className="flex w-full justify-between">
+          <div className="flex w-full justify-center lg:justify-between flex-wrap">
             <div className="w-1/2">
               <h1 className="text-4xl tracking-[0.1rem] my-8 font-bold">
                 {`${type.slice(0, 1).toUpperCase() + type.slice(1)}`} Crypto
@@ -56,12 +71,12 @@ export default function BuyGeneralCrypto({ type }) {
                 amount="3"
               />
             </div>
-            <div className="w-1/3 h-[30rem] my-16 rounded-lg bg-[#23272Eff] flex flex-col p-8 pt-0">
+            <div className="w-1/3 min-w-[27rem] h-[30rem] my-16 rounded-lg bg-[#23272Eff] flex flex-col p-8 pt-0">
               <div className="flex justify-between mb-4">
                 <Link
                   to="/buy-crypto"
                   className={`font-bold text-center w-1/2 text-xl py-4 border-b-[0.2rem] border-transparent ${
-                    type === "buy" && "border-yellow-400"
+                    type === "buy" && "border-yellow-400 bg-[#1A1C22ff]"
                   }`}
                 >
                   Buy
@@ -69,14 +84,24 @@ export default function BuyGeneralCrypto({ type }) {
                 <Link
                   to="/sell-crypto"
                   className={`font-bold text-center w-1/2 text-xl py-4 border-b-[0.2rem] border-transparent ${
-                    type === "sell" && "border-yellow-400"
+                    type === "sell" && "border-yellow-400 bg-[#1A1C22ff]"
                   }`}
                 >
                   Sell
                 </Link>
               </div>
-              {type === "buy" && <BuyCryptoInGeneralInputs type={type} />}
-              {/* {type === "sell" && <SellCryptoInGeneralInputs type={type} />} */}
+              {type === "buy" && (
+                <BuyCryptoInGeneralInputs
+                  onSell={handleSetAction}
+                  onCancel={handleRemoveAction}
+                />
+              )}
+              {type === "sell" && (
+                <SellCryptoInGeneralInputs
+                  onSell={handleSetAction}
+                  onCancel={handleRemoveAction}
+                />
+              )}
             </div>
           </div>
           <Title
@@ -84,7 +109,7 @@ export default function BuyGeneralCrypto({ type }) {
               type.slice(0, 1).toUpperCase() + type.slice(1)
             } Crypto`}
           />
-          <div className="w-full flex justify-between mb-16">
+          <div className="w-full flex justify-between mb-16 flex-wrap">
             <div className="w-[30%] border-[0.1rem] border-[#23272Eff] rounded-xl p-8 flex-col flex gap-3">
               {type === "buy" ? (
                 <Image className="w-32" image={Buy1} svgSize="2" />

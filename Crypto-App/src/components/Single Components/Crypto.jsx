@@ -32,32 +32,82 @@ export default function Crypto({ coin }) {
             (favoritedCoin) => coin.id === favoritedCoin.id
           ) && (
             <svg
-              onClick={() => addFavorite(coin)}
               xmlns="http://www.w3.org/2000/svg"
-              width="1.5em"
-              height="1.5em"
-              viewBox="0 0 256 256"
+              width="2em"
+              height="2em"
+              viewBox="0 0 24 24"
+              onClick={() => addFavorite(coin)}
             >
               <path
                 fill="currentColor"
-                d="M240 102c0 70-103.79 126.66-108.21 129a8 8 0 0 1-7.58 0C119.79 228.66 16 172 16 102a62.07 62.07 0 0 1 62-62c20.65 0 38.73 8.88 50 23.89C139.27 48.88 157.35 40 178 40a62.07 62.07 0 0 1 62 62"
-              />
+                fill-opacity="0"
+                d="M12 20L20.5 11V7L17 5.5L12 7L7 5.5L3.5 7V11L12 20Z"
+              >
+                <animate
+                  fill="freeze"
+                  attributeName="fill-opacity"
+                  begin="0.5s"
+                  dur="0.5s"
+                  values="0;1"
+                />
+              </path>
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-dasharray="30"
+                stroke-dashoffset="30"
+                stroke-linecap="round"
+                stroke-width="2"
+                d="M12 8C12 8 12 8 12.7578 7C13.6343 5.84335 14.9398 5 16.5 5C18.9853 5 21 7.01472 21 9.5C21 10.4251 20.7209 11.285 20.2422 12C19.435 13.206 12 21 12 21M12 8C12 8 12 8 11.2422 7C10.3657 5.84335 9.06021 5 7.5 5C5.01472 5 3 7.01472 3 9.5C3 10.4251 3.27914 11.285 3.75777 12C4.56504 13.206 12 21 12 21"
+              >
+                <animate
+                  fill="freeze"
+                  attributeName="stroke-dashoffset"
+                  dur="0.5s"
+                  values="30;0"
+                />
+              </path>
             </svg>
           )}{" "}
           {!favoriteCryptos.some(
             (favoritedCoin) => coin.id === favoritedCoin.id
           ) && (
             <svg
-              onClick={() => addFavorite(coin)}
               xmlns="http://www.w3.org/2000/svg"
-              width="1.5em"
-              height="1.5em"
-              viewBox="0 0 256 256"
+              width="2em"
+              height="2em"
+              viewBox="0 0 24 24"
+              onClick={() => addFavorite(coin)}
             >
               <path
                 fill="currentColor"
-                d="M178 42c-21 0-39.26 9.47-50 25.34C117.26 51.47 99 42 78 42a60.07 60.07 0 0 0-60 60c0 29.2 18.2 59.59 54.1 90.31a334.68 334.68 0 0 0 53.06 37a6 6 0 0 0 5.68 0a334.68 334.68 0 0 0 53.06-37C219.8 161.59 238 131.2 238 102a60.07 60.07 0 0 0-60-60m-50 175.11c-16.41-9.47-98-59.39-98-115.11a48.05 48.05 0 0 1 48-48c20.28 0 37.31 10.83 44.45 28.27a6 6 0 0 0 11.1 0C140.69 64.83 157.72 54 178 54a48.05 48.05 0 0 1 48 48c0 55.72-81.59 105.64-98 115.11"
-              />
+                fill-opacity="0"
+                d="M12 20L20.5 11V7L17 5.5L12 7L7 5.5L3.5 7V11L12 20Z"
+              >
+                <animate
+                  fill="freeze"
+                  attributeName="fill-opacity"
+                  begin="0.5s"
+                  dur="0.15s"
+                  values="0;0.3"
+                />
+              </path>
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-dasharray="30"
+                stroke-dashoffset="30"
+                stroke-linecap="round"
+                stroke-width="2"
+                d="M12 8C12 8 12 8 12.7578 7C13.6343 5.84335 14.9398 5 16.5 5C18.9853 5 21 7.01472 21 9.5C21 10.4251 20.7209 11.285 20.2422 12C19.435 13.206 12 21 12 21M12 8C12 8 12 8 11.2422 7C10.3657 5.84335 9.06021 5 7.5 5C5.01472 5 3 7.01472 3 9.5C3 10.4251 3.27914 11.285 3.75777 12C4.56504 13.206 12 21 12 21"
+              >
+                <animate
+                  fill="freeze"
+                  attributeName="stroke-dashoffset"
+                  dur="0.5s"
+                  values="30;0"
+                />
+              </path>
             </svg>
           )}
         </li>
@@ -123,7 +173,7 @@ export default function Crypto({ coin }) {
         </li>
         <CryptoAction
           firstText="Buy"
-          secondText="Short"
+          secondText="Trade"
           width="w-16"
           firstHash={`/crypto-list/${coin.id}`}
           secondHash={`/sell-crypto`}

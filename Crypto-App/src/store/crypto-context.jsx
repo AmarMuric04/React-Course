@@ -18,6 +18,7 @@ export const CryptoContext = createContext({
   handleBuyCrypto: () => {},
   handleFilterCoins: () => {},
   handleBuyCryptoGeneral: () => {},
+  handleSellCryptoGeneral: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
@@ -29,7 +30,7 @@ export default function CryptoContextProvider({ children }) {
   const [userAccount, setUserAccount] = useState({
     firstName: "",
     lastName: "",
-    balance: 150000000000,
+    balance: 150000,
     purchaseHistory: [],
     wallet: [],
   });
@@ -72,8 +73,51 @@ export default function CryptoContextProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    console.log(userAccount);
+    setUserAccount(userAccount);
   }, [userAccount]);
+
+  function handleSellCryptoGeneral(coin, amount) {
+    // const time = `${new Date().getDate()}/${
+    //   new Date().getMonth() + 1
+    // }/${new Date().getFullYear()}`;
+
+    const coinToRemoveId = coin.id;
+    const coinToRemoveValue = Number(coin.priceUsd);
+
+    console.log(coin);
+    console.log(userAccount);
+
+    let coinToRemove = userAccount.wallet.find(
+      (purchasedCoin) => purchasedCoin.id === coinToRemoveId
+    );
+
+    console.log(coinToRemove);
+
+    coinToRemove.amountOfCoins = coinToRemove.amountOfCoins - amount;
+    coinToRemove.moneySpent =
+      Number(coinToRemove.purchasedPrice) * Number(coinToRemove.amountOfCoins);
+
+    const newWallet = userAccount.wallet;
+
+    newWallet.forEach(
+      (coin) => (coin = coin.id === coinToRemoveId && coinToRemove)
+    );
+
+    if (coinToRemove.amountOfCoins <= 0.000000001)
+      newWallet.splice(
+        newWallet.findIndex((coin) => coin.id === coinToRemoveId),
+        1
+      );
+
+    setUserAccount((prevUserAccount) => {
+      return {
+        ...prevUserAccount,
+        balance: userAccount.balance + coinToRemoveValue * amount,
+        wallet: newWallet,
+        purchaseHistory: userAccount.purchaseHistory,
+      };
+    });
+  }
 
   function handleBuyCryptoGeneral(
     firstCoin,
@@ -87,11 +131,6 @@ export default function CryptoContextProvider({ children }) {
 
       handleBuyCrypto({ coinId, coinValue }, quantityFirst, quantitySecond);
     } else {
-      //second coin is the one thats being bought
-      //take away the first coin from wallet,
-      //if quantityFirst === total quantity of that coin in our wallet, then remove the whole coin from wallet
-      //add the second coin to our wallet... easyyyy...!!!!
-
       const time = `${new Date().getDate()}/${
         new Date().getMonth() + 1
       }/${new Date().getFullYear()}`;
@@ -108,11 +147,17 @@ export default function CryptoContextProvider({ children }) {
         Number(coinToRemove.purchasedPrice) *
         Number(coinToRemove.amountOfCoins);
 
-      const newWallet = [...userAccount.wallet];
+      const newWallet = userAccount.wallet;
 
       newWallet.forEach(
         (coin) => (coin = coin.id === coinToRemoveId && coinToRemove)
       );
+
+      if (coinToRemove.amountOfCoins <= 0.000000001)
+        newWallet.splice(
+          newWallet.findIndex((coin) => coin.id === coinToRemoveId),
+          1
+        );
 
       setUserAccount((prevUserAccount) => {
         return {
@@ -271,9 +316,9 @@ export default function CryptoContextProvider({ children }) {
   function handleFavorite(coin) {
     const newFavoriteCryptos = [...favoriteCryptos];
 
-    if (newFavoriteCryptos.includes(coin)) {
+    if (newFavoriteCryptos.some((favorite) => favorite.id === coin.id)) {
       newFavoriteCryptos.splice(
-        newFavoriteCryptos.findIndex((el) => el === coin),
+        newFavoriteCryptos.findIndex((el) => el.id === coin.id),
         1
       );
     } else newFavoriteCryptos.push(coin);
@@ -417,6 +462,7 @@ export default function CryptoContextProvider({ children }) {
     handleBuyCrypto,
     handleFilterCoins,
     handleBuyCryptoGeneral,
+    handleSellCryptoGeneral,
   };
 
   return (

@@ -6,7 +6,10 @@ export default function MainList() {
   const { handleShowCryptoList, showCryptoList } = useContext(CryptoContext);
 
   return (
-    <div className="w-full flex justify-between items-center" id="menu">
+    <div
+      className="w-full flex-wrap flex justify-between items-center"
+      id="menu"
+    >
       <ul className="flex gap-10 text-md px-12">
         <li
           className={`cursor-pointer border-b-[0.2rem] border-transparent py-2 ${
@@ -47,6 +50,14 @@ export default function MainList() {
           onClick={() => handleShowCryptoList("bp")}
         >
           BP Cryptos
+        </li>
+        <li
+          className={`cursor-pointer border-b-[0.2rem] border-transparent py-2 ${
+            showCryptoList === "activetrades" && "border-yellow-400"
+          }`}
+          onClick={() => handleShowCryptoList("activetrades")}
+        >
+          Active Trades
         </li>
       </ul>
       <SearchedCryptos />
