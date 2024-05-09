@@ -11,13 +11,13 @@ export default function CryptoInfoTable({ coin }) {
     <Table>
       <thead className="bg-stone-800 text-white text-sm">
         <TableRow>
-          <TableColumn classes="px-4 py-4 text-start w-[45%]">
+          <TableColumn classes="px-4 py-4 text-start w-[33%] lg:w-[45%]">
             Date comparison
           </TableColumn>
-          <TableColumn classes="px-4 py-4 text-start w-[40%]">
+          <TableColumn classes=" text-center lg:text-start px-4 py-4 text-start w-[33%] lg:w-[40%]">
             Amount change
           </TableColumn>
-          <TableColumn classes=" px-4 py-4 text-start w-[15%]">
+          <TableColumn classes=" text-end lg:text-start  px-4 py-4 text-start w-[33%] lg:w-[15%]">
             % Change
           </TableColumn>
         </TableRow>
@@ -26,7 +26,7 @@ export default function CryptoInfoTable({ coin }) {
         <TableRow classes="bg-[#23272Eff] text-white">
           <TableColumn classes="px-4 py-2">Today</TableColumn>
           <TableColumn
-            classes={`px-4 py-2 ${
+            classes={`px-4 py-2 text-center lg:text-start  ${
               handleCustomToFixed(
                 Number(coin.coinValue * Number(coin.changeInLast24Hours / 1000))
               ) > 0
@@ -40,7 +40,7 @@ export default function CryptoInfoTable({ coin }) {
             )}
           </TableColumn>
           <TableColumn
-            classes={`px-4 py-2 ${
+            classes={`px-4 text-end lg:text-start py-2 ${
               handleCustomToFixed(
                 Number(coin.coinValue * Number(coin.changeInLast24Hours / 1000))
               ) > 0
@@ -55,7 +55,7 @@ export default function CryptoInfoTable({ coin }) {
         <TableRow classes="bg-[#23272Eff] text-white">
           <TableColumn classes="px-4 py-2">30 Days</TableColumn>
           <TableColumn
-            classes={`px-4 py-2 ${
+            classes={`px-4 py-2 text-center lg:text-start ${
               Number(
                 coin.coinValue * Number((-coin.changeInLast24Hours + 2) / 100)
               ) > 0
@@ -70,7 +70,7 @@ export default function CryptoInfoTable({ coin }) {
             )}
           </TableColumn>
           <TableColumn
-            classes={`px-4 py-2 ${
+            classes={`px-4 py-2  text-end lg:text-start ${
               Number(coin.coinValue) *
                 Number((-coin.changeInLast24Hours + 2) / 100) >
               0
@@ -90,7 +90,7 @@ export default function CryptoInfoTable({ coin }) {
         <TableRow classes="bg-[#23272Eff] text-white">
           <TableColumn classes="px-4 py-2">60 Days</TableColumn>
           <TableColumn
-            classes={`px-4 py-2 ${
+            classes={`px-4 py-2 text-center lg:text-start   ${
               Number(
                 coin.coinValue * Number((-coin.changeInLast24Hours - 1) / 100)
               ) > 0
@@ -105,7 +105,7 @@ export default function CryptoInfoTable({ coin }) {
             )}
           </TableColumn>
           <TableColumn
-            classes={`px-4 py-2 ${
+            classes={`px-4 py-2  text-end lg:text-start  ${
               Number(coin.coinValue) *
                 Number((-coin.changeInLast24Hours - 1) / 100) >
               0
@@ -123,7 +123,7 @@ export default function CryptoInfoTable({ coin }) {
         <TableRow classes="bg-[#23272Eff] text-white">
           <TableColumn classes="px-4 py-2">90 Days</TableColumn>
           <TableColumn
-            classes={`px-4 py-2 ${
+            classes={`px-4 py-2  text-center lg:text-start ${
               Number(
                 coin.coinValue * Number((coin.changeInLast24Hours * 7) / 100)
               ) > 0
@@ -138,7 +138,7 @@ export default function CryptoInfoTable({ coin }) {
             )}
           </TableColumn>
           <TableColumn
-            classes={`px-4 py-2 ${
+            classes={`px-4 py-2  text-end lg:text-start ${
               Number(coin.coinValue) *
                 Number((coin.changeInLast24Hours * 7) / 100) >
               0

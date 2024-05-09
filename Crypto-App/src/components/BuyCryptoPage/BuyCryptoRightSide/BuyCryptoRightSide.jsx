@@ -184,7 +184,7 @@ export default function BuyCryptoRightSide({ id }) {
   const priceChange7d = handleGetRandomNumber(0.1, 0.15).toFixed(2);
 
   return (
-    <div className="flex flex-col w-1/3 ">
+    <div className="flex flex-col w-[95%] sm:w-[75%] md:w-[50%] lg:w-2/5 lg:p-8">
       <BuyCryptoContainer
         coin={{
           coinName,
@@ -203,9 +203,21 @@ export default function BuyCryptoRightSide({ id }) {
         }}
       />
       <div className="w-full flex flex-col gap-16 mt-32">
-        <InterestingCryptos filterBy="volume" amount="10" />
-        <InterestingCryptos filterBy="marketcap" amount="6" />
-        <InterestingCryptos filterBy="change" amount="4" />
+        <InterestingCryptos
+          classes="w-[98%] md:w-[30rem]"
+          filterBy="volume"
+          amount="10"
+        />
+        <InterestingCryptos
+          classes="w-[98%] md:w-[30rem]"
+          filterBy="marketcap"
+          amount="6"
+        />
+        <InterestingCryptos
+          classes="w-[98%] md:w-[30rem]"
+          filterBy="change"
+          amount="4"
+        />
       </div>
     </div>
   );

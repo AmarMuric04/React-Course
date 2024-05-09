@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <main className="bg-[#1A1C22ff] text-white max-w-screen mt-16 h-auto min-h-screen flex flex-col justify-center items-center">
+      <main className="bg-[#1A1C22ff] overflow-hidden text-white max-w-screen mt-16 h-auto min-h-screen flex flex-col justify-center items-center">
         <Header />
         <div className="flex flex-col w-[100rem] max-w-full mt-8">
           <div className="flex justify-between items-center flex-col md:flex-row my-8">

@@ -1,31 +1,124 @@
+// import { Link } from "react-router-dom";
+import Header from "./Single Components/Header";
+import Footer from "./Single Components/Footer";
+import { useContext } from "react";
+import { CryptoContext } from "../store/crypto-context";
+import InteresetingCryptos from "./Single Components/InterestingCryptos";
+import { cryptoQuestions } from "../assets/mainQuestions";
+import FAQ from "./BuyCryptoPage/BuyCryptoLeftSide/components/FAQ";
+import image1 from "/public/main1.jpeg";
+import Image from "./Single Components/Image";
+import image2 from "/public/main2.jpg";
+import image3 from "/public/main3.png";
+import image4 from "/public/main4.jpg";
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
+  const { userAccount, handleCustomToFixed, _mainCoinsList } =
+    useContext(CryptoContext);
+
   document.title = `Blajvinance | Crypto Currency Exchange Platform`;
 
   return (
-    <div className="bg-stone-800 text-white w-screen h-screen flex flex-col items-center justify-center">
-      <h1 className="text-xl flex gap-3 items-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="2em"
-          height="2em"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="currentColor"
-            d="m18.9 21l-5.475-5.475l2.1-2.1L21 18.9zM5.1 21L3 18.9L9.9 12l-1.7-1.7l-.7.7l-1.275-1.275v2.05l-.7.7L2.5 9.45l.7-.7h2.05L4 7.5l3.55-3.55q.5-.5 1.075-.725T9.8 3t1.175.225t1.075.725l-2.3 2.3L11 7.5l-.7.7L12 9.9l2.25-2.25q-.1-.275-.162-.575t-.063-.6q0-1.475 1.013-2.488t2.487-1.012q.375 0 .713.075t.687.225L16.45 5.75l1.8 1.8l2.475-2.475q.175.35.238.687t.062.713q0 1.475-1.012 2.488t-2.488 1.012q-.3 0-.6-.05t-.575-.175z"
-          />
-        </svg>
-        Landing page under construction
-      </h1>
-      <p>
-        Go to{" "}
-        <Link className="font-bold" to="crypto-list">
-          localhost:5173/crypto-list
-        </Link>{" "}
-        for now
-      </p>
-    </div>
+    <>
+      <Header />
+      <main className="w-full pb-96 mt-16 min-h-screen text-white bg-[#1A1C22ff] grid place-items-center">
+        <div className="flex pt-24 w-[80rem] h-full gap-40">
+          <div className="w-1/2 flex flex-col gap-10 items-start">
+            <h1 className="font-bold text-[4rem] leading-tight">
+              <span className="text-yellow-400">Join us</span> and Start{" "}
+              <span className="text-yellow-400">Your</span> Crypto Journey
+            </h1>
+            <div className="flex flex-col gap-2 ">
+              <p>Your Estimated Balance</p>
+              <p className="truncate-[0.2rem] text-xl font-bold">
+                $ {handleCustomToFixed(userAccount.balance)}
+              </p>
+              <p>
+                Wallet worth: ${" "}
+                {handleCustomToFixed(
+                  userAccount.wallet.reduce((accumulator, currentValue) => {
+                    return (
+                      accumulator +
+                      currentValue.amountOfCoins * currentValue.moneySpent
+                    );
+                  }, 0)
+                )}
+              </p>
+            </div>
+            <Link
+              to="/crypto-list"
+              className="bg-yellow-400 font-bold text-center text-black py-3 px-6 rounded-md"
+            >
+              Invest more
+            </Link>
+          </div>
+          <div className="w-1/2">
+            <InteresetingCryptos
+              classes="w-full"
+              filterBy="change"
+              amount="3"
+            />
+          </div>
+        </div>
+        <div className="w-3/4 mt-16 justify-around  flex gap-2 mb-64">
+          <div className="w-1/4 h-96  border-[0.1rem] border-[#23272Eff] bg-[#1A1C22ff]  rounded-lg flex flex-col items-center p-8 justify-center hover:bg-[#23272Eff] hover:scale-[1.1] transition-all">
+            <Image image={image1} className="h-32" />
+            <span className="flex font-bold text-3xl tracking-[0.2rem] text-nowrap">
+              ${" "}
+              {handleCustomToFixed(
+                _mainCoinsList.reduce(
+                  (accumulator, currentValue) =>
+                    accumulator + Number(currentValue.volumeUsd24Hr),
+                  0
+                )
+              )}{" "}
+            </span>
+            <h1 className="text-lg text-center text-gray-400 mt-4">
+              Was invested into crypto in the last 24 hours
+            </h1>
+          </div>
+          <div className="w-1/4 h-96 justify-center  border-[0.1rem] border-[#23272Eff] bg-[#1A1C22ff]  rounded-lg flex flex-col items-center p-8 hover:bg-[#23272Eff] hover:scale-[1.1] transition-all">
+            {handleCustomToFixed(
+              _mainCoinsList.reduce(
+                (accumulator, currentValue) =>
+                  accumulator + Number(currentValue.changePercent24Hr),
+                0
+              )
+            ) > 0 ? (
+              <Image image={image3} className="h-32" />
+            ) : (
+              <Image image={image4} className="h-32" />
+            )}
+            <span className="text-4xl tracking-[0.2rem] font-bold">
+              {handleCustomToFixed(
+                _mainCoinsList.reduce(
+                  (accumulator, currentValue) =>
+                    accumulator + Number(currentValue.changePercent24Hr),
+                  0
+                )
+              )}
+              %{" "}
+            </span>
+            <h1 className="text-gray-400 text-lg mt-4">
+              Status of Crypto in the last 24 hours
+            </h1>
+          </div>{" "}
+          <div className="w-1/4 h-96 justify-center  border-[0.1rem] border-[#23272Eff] bg-[#1A1C22ff]  rounded-lg flex flex-col items-center p-8 hover:bg-[#23272Eff] hover:scale-[1.1] transition-all">
+            <Image image={image2} className="h-32" />
+            <span className="text-4xl font-bold tracking-[0.2rem] truncate-[0.2rem] w-full text-center">
+              590 Trillion
+            </span>
+            <h1 className="mt-4 text-lg text-center text-gray-400">
+              Worth of crypto supply ready to be bought
+            </h1>
+          </div>
+        </div>
+        <div className="w-1/2">
+          <FAQ questions={cryptoQuestions} />
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }

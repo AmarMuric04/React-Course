@@ -16,6 +16,8 @@ import Sell3 from "/public/sell3.svg";
 import Image from "../Single Components/Image";
 
 export default function BuyGeneralCrypto({ type }) {
+  window.scrollTo(0, 0);
+
   const [action, setAction] = useState(false);
   const [modal, setModal] = useState("");
 
@@ -31,13 +33,31 @@ export default function BuyGeneralCrypto({ type }) {
   return (
     <>
       {action && modal}
-      <Header />
+      {type === "buy" && <Header />}
+      {type === "sell" && <Header />}
       <main className="bg-[#1A1C22ff] text-white h-full min-h-screen w-full min-w-screen flex flex-col items-center mt-16">
         <div className="flex flex-col max-w-full w-[80rem] mt-16">
           <div className="flex w-full justify-between items-center flex-col md:flex-row">
             <p className="flex items-center gap-3 text-md font-bold text-yellow-400 my-8">
               <Link to="/" className="cursor-pointer hover:underline">
                 Home
+              </Link>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M9.879 17.243a1 1 0 0 1-.707-1.707L12.707 12L9.172 8.464a1 1 0 0 1 1.414-1.414l4.242 4.243a1 1 0 0 1 0 1.414l-4.242 4.243a.997.997 0 0 1-.707.293"
+                />
+              </svg>
+              <Link
+                to="/crypto-list"
+                className="cursor-pointer hover:underline"
+              >
+                Crypto List
               </Link>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -63,15 +83,15 @@ export default function BuyGeneralCrypto({ type }) {
           <h1 className="ml-8 md:ml-0 text-4xl tracking-[0.1rem] my-8 font-bold">
             {`${type.slice(0, 1).toUpperCase() + type.slice(1)}`} Crypto
           </h1>
-          <div className="flex justify-center lg:justify-between flex-wrap-reverse">
-            <div className="w-1/2">
+          <div className="flex justify-center gap-32 md:gap-0 lg:justify-between flex-wrap-reverse">
+            <div className="w-[98%] md:w-1/2">
               <InterestingCrytpos
-                classes="w-full bg-red-400"
+                classes="w-full"
                 filterBy="change"
                 amount="3"
               />
             </div>
-            <div className="w-[95%] md:w-1/3 md:h-[30rem] my-16 rounded-lg bg-[#23272Eff] flex flex-col p-8 pt-0">
+            <div className="w-[95%] md:w-1/3 h-[30rem] md:h-[30rem] md:my-16 rounded-lg bg-[#23272Eff] flex flex-col p-8 pt-0">
               <div className="flex justify-between mb-4">
                 <Link
                   to="/buy-crypto"

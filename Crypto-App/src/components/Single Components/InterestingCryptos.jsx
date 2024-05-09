@@ -164,7 +164,7 @@ export default function InteresetingCryptos({ filterBy, classes, amount }) {
     <div
       className={`${classes} h-auto md:min-w-64 border-[0.1rem] border-[#23272Eff] py-4 rounded-lg`}
     >
-      <header className="flex justify-between px-8">
+      <header className="flex justify-between md:px-8">
         <h2>{message}</h2>
         <p
           onClick={handleReverseFilter}
@@ -184,7 +184,7 @@ export default function InteresetingCryptos({ filterBy, classes, amount }) {
           </svg>
         </p>
       </header>
-      <ul key={newCoins} className="flex flex-col gap-3 h-full">
+      <ul key={newCoins} className="flex flex-col md:gap-3 h-full">
         {newCoins.map((coin) => {
           const coinRank = coin.rank;
           const coinSymbol = coin.symbol;
@@ -206,15 +206,21 @@ export default function InteresetingCryptos({ filterBy, classes, amount }) {
               href={`${coin.explorer}`}
               onClick={handlePreventDefault}
             >
-              <ul className="flex rounded-lg items-center gap-5 px-8 py-2 relative h-20 transition-all delay-50 hover:bg-[#23272Eff]">
+              <ul className="flex rounded-lg items-center md:gap-5 md:px-8 py-2 relative h-20 transition-all delay-50 hover:bg-[#23272Eff]">
                 <li className="w-3 font-normal text-xs">{coinRank}.</li>
-                <li className="w-48 text-xs">
+                <li className="w-40 md:w-48 overflow-hidden text-xs">
                   <span className="">{coinName} </span>(
                   <span className="font-extrabold text-sm">{coinSymbol}</span>)
                 </li>
-                <li className="w-32 text-xs">{coinValue}$</li>
-                <li className="w-32 text-xs">{coinMarketCap}$</li>
-                <li className="w-32 text-xs">{volumeInLast24Hours}$</li>
+                <li className="w-24 md:w-32 overflow-hidden text-xs">
+                  {coinValue}$
+                </li>
+                <li className="w-20 md:w-32 overflow-hidden text-xs">
+                  {coinMarketCap}$
+                </li>
+                <li className="w-16 md:w-32 overflow-hidden text-xs">
+                  {volumeInLast24Hours}$
+                </li>
                 <li
                   className={`w-32 flex items-center justify-end gap-2 ${
                     changeInLast24Hours < -0.2 && "text-red-400"

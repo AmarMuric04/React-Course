@@ -1,11 +1,18 @@
 import { useContext } from "react";
-import { Link, useParams } from "react-router-dom";
 import { CryptoContext } from "../../../../store/crypto-context";
-import UserBalance from "../../../Single Components/UserBalance";
+import { useParams } from "react-router-dom";
+import Logo from "/public/btcLogo.png";
+import Image from "../../../Single Components/Image";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  ArrowHorizontalIcon,
+} from "../../../../assets/icons";
 
-export default function Navigation() {
+export default function CoinPrice() {
+  const { _mainCoinsList, handleCustomToFixed } = useContext(CryptoContext);
+
   const { id } = useParams();
-  const { _mainCoinsList } = useContext(CryptoContext);
 
   if (!_mainCoinsList || _mainCoinsList.length === 0) {
     return (
@@ -114,90 +121,51 @@ export default function Navigation() {
     );
   }
 
-  let coinName = _mainCoinsList.find((item) => item.id === id);
+  const coin = _mainCoinsList.find((mainCoin) => mainCoin.id === id);
 
-  if (!coinName) {
-    return (
-      <div className="w-screen h-screen bg-[#1A1C22ff] flex justify-center items-center flex-col">
-        <p className="flex items-center gap-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="2em"
-            height="2em"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="currentColor"
-              fill-rule="evenodd"
-              d="M6.697 6.697a7.5 7.5 0 0 1 12.794 4.927A4.002 4.002 0 0 1 18.5 19.5h-12a5 5 0 0 1-1.667-9.715a7.47 7.47 0 0 1 1.864-3.088m4.01 3.596a1 1 0 0 0-1.414 1.414L10.586 13l-1.293 1.293a1 1 0 1 0 1.414 1.414L12 14.414l1.293 1.293a1 1 0 0 0 1.414-1.414L13.414 13l1.293-1.293a1 1 0 0 0-1.414-1.414L12 11.586z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          Page not found...
-        </p>
-        <p className="text-sm">Are you sure you are in the right place?</p>
-        <Link className="flex items-center gap-2 mt-8" to="/crypto-list">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.78em"
-            height="1em"
-            viewBox="0 0 16 9"
-          >
-            <path
-              fill="currentColor"
-              d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"
-            />
-            <path
-              fill="currentColor"
-              d="M6 8.5a.47.47 0 0 1-.35-.15l-3.5-3.5c-.2-.2-.2-.51 0-.71L5.65.65c.2-.2.51-.2.71 0s.2.51 0 .71L3.21 4.51l3.15 3.15c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z"
-            />
-          </svg>
-          Go back
-        </Link>
-      </div>
-    );
-  }
-
-  coinName =
-    coinName.id.slice(0, 1).toUpperCase() +
-    coinName.id.slice(1, coinName.id.length).replace("-", " ");
+  const coinName =
+    coin.id.slice(0, 1).toUpperCase() +
+    coin.id.slice(1, coin.id.length).replace("-", " ");
+  const coinValue = Number(coin.priceUsd);
+  const changeInLast24Hours = Number(coin.changePercent24Hr).toFixed(2);
+  const coinSymbol = coin.symbol.toUpperCase();
 
   return (
-    <div className="flex w-full justify-between items-center flex-col mb-16 md:mb-0 lg:flex-row my-8">
-      <p className="flex items-center gap-3 text-md font-bold text-yellow-400 my-8">
-        <Link to="/" className="cursor-pointer hover:underline">
-          Home
-        </Link>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          viewBox="0 0 24 24"
+    <div className="flex flex-col w-full">
+      <div className="flex gap-3 items-center mb-8">
+        <Image image={Logo} className="w-16" svgSize="2em" />
+        <h1 className="text-4xl flex gap-2 items-end">
+          {coinName} Price
+          <span className="text-lg">
+            (
+            <span className="text-lg font-extrabold uppercase">
+              {coinSymbol}
+            </span>
+            )
+          </span>
+        </h1>
+      </div>
+      <div className="flex gap-3 items-end">
+        <h2 className="text-white font-extrabold text-3xl">
+          $ {handleCustomToFixed(Number(coinValue))}
+        </h2>
+        <p
+          className={`flex items-center justify-end text-xl ${
+            changeInLast24Hours < -0.2 && "text-red-400"
+          }  ${changeInLast24Hours > 0.2 && "text-green-400"} ${
+            changeInLast24Hours >= -0.2 &&
+            changeInLast24Hours <= 0.2 &&
+            "text-stone-500"
+          }`}
         >
-          <path
-            fill="currentColor"
-            d="M9.879 17.243a1 1 0 0 1-.707-1.707L12.707 12L9.172 8.464a1 1 0 0 1 1.414-1.414l4.242 4.243a1 1 0 0 1 0 1.414l-4.242 4.243a.997.997 0 0 1-.707.293"
-          />
-        </svg>
-        <Link to="/crypto-list" className="cursor-pointer hover:underline">
-          Crypto List
-        </Link>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="currentColor"
-            d="M9.879 17.243a1 1 0 0 1-.707-1.707L12.707 12L9.172 8.464a1 1 0 0 1 1.414-1.414l4.242 4.243a1 1 0 0 1 0 1.414l-4.242 4.243a.997.997 0 0 1-.707.293"
-          />
-        </svg>
-        {coinName} Price
-      </p>
-      <div className="flex gap-2 items-end">
-        <p>Bal:</p>
-        <UserBalance />
+          {changeInLast24Hours}%{" "}
+          {changeInLast24Hours >= -0.2 && changeInLast24Hours <= 0.2 && (
+            <ArrowHorizontalIcon svgSize="1" />
+          )}
+          {changeInLast24Hours < -0.2 && <ArrowDownIcon svgSize="1.5" />}
+          {changeInLast24Hours > 0.2 && <ArrowUpIcon svgSize="1.5" />}
+        </p>
+        <p className="text-stone-400 font-bold">24hr</p>
       </div>
     </div>
   );

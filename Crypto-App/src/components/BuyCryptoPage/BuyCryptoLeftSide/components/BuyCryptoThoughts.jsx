@@ -40,7 +40,7 @@ export default function BuyCryptoThoughts({ coin }) {
           </button>
         </div>
       </div>
-      <div className="flex flex-col gap-3 justify-between rounded-md mt-8 px-2 py-1 bg-[#23272Eff]">
+      <div className="flex flex-col h-16 gap-3 justify-between rounded-md mt-8 px-2 py-1 bg-[#23272Eff]">
         <div className="flex w-full h-full">
           <div className="flex items-center gap-3 w-1/6 justify-start">
             <LikeIcon svgSize="1" />

@@ -23,13 +23,21 @@ export default function InterestingCryptosContainer() {
       </div>
       <section
         className={`flex flex-wrap w-full ${
-          hide ? "h-0" : "h-[80rem] md:h-auto"
+          hide ? "h-0" : "h-[72rem] md:h-auto"
         } overflow-hidden justify-center gap-2 mb-16 transition-all`}
       >
-        <InterestingCryptos classes="w-[30rem]" filterBy="volume" amount="4" />
-        <InterestingCryptos classes="w-[30rem]" filterBy="change" amount="4" />
         <InterestingCryptos
-          classes="w-[30rem]"
+          classes="w-[98%] md:w-[30rem]"
+          filterBy="volume"
+          amount="4"
+        />
+        <InterestingCryptos
+          classes="w-[98%] md:w-[30rem]"
+          filterBy="change"
+          amount="4"
+        />
+        <InterestingCryptos
+          classes="w-[98%] md:w-[30rem]"
           filterBy="marketcap"
           amount="4"
         />

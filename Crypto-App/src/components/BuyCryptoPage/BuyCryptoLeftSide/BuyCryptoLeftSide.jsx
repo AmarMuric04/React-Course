@@ -13,14 +13,7 @@ import TableColumn from "../../Single Components/TableColumn";
 import FAQ from "./components/FAQ";
 import { extendedCryptoObject } from "../../../assets/extendedCryptoObject";
 
-import {
-  ArrowDownIcon,
-  ArrowHorizontalIcon,
-  ArrowUpIcon,
-  BookIcon,
-  GlobeIcon,
-  InfoIcon,
-} from "../../../assets/icons";
+import { BookIcon, GlobeIcon, InfoIcon } from "../../../assets/icons";
 
 export default function BuyCryptoLeftSide({ id }) {
   const {
@@ -226,42 +219,7 @@ export default function BuyCryptoLeftSide({ id }) {
   document.title = `${coinSymbol} Price | ${coinName} Index | ${coinName} Popularity`;
 
   return (
-    <div className="flex flex-col w-2/3 ">
-      <div className="flex gap-3 items-center mb-8">
-        <Image image={Logo} className="w-16" svgSize="2em" />
-        <h1 className="text-4xl flex gap-2 items-end">
-          {coinName} Price
-          <span className="text-lg">
-            (
-            <span className="text-lg font-extrabold uppercase">
-              {coinSymbol}
-            </span>
-            )
-          </span>
-        </h1>
-      </div>
-      <div className="flex gap-3 items-end">
-        <h2 className="text-white font-extrabold text-3xl">
-          $ {handleCustomToFixed(Number(coinValue))}
-        </h2>
-        <p
-          className={`flex items-center justify-end text-xl ${
-            changeInLast24Hours < -0.2 && "text-red-400"
-          }  ${changeInLast24Hours > 0.2 && "text-green-400"} ${
-            changeInLast24Hours >= -0.2 &&
-            changeInLast24Hours <= 0.2 &&
-            "text-stone-500"
-          }`}
-        >
-          {changeInLast24Hours}%{" "}
-          {changeInLast24Hours >= -0.2 && changeInLast24Hours <= 0.2 && (
-            <ArrowHorizontalIcon svgSize="1" />
-          )}
-          {changeInLast24Hours < -0.2 && <ArrowDownIcon svgSize="1.5" />}
-          {changeInLast24Hours > 0.2 && <ArrowUpIcon svgSize="1.5" />}
-        </p>
-        <p className="text-stone-400 font-bold">24hr</p>
-      </div>
+    <div className="flex w-[95%] sm:w-[75%] md:w-[50%] lg:w-3/5  flex-col">
       <BuyCryptoThoughts coin={coin} />
       <div className="flex flex-col mt-16">
         <div className="my-16">
@@ -293,7 +251,7 @@ export default function BuyCryptoLeftSide({ id }) {
           <p className="flex items-center gap-3">
             24h Low & High <InfoIcon svgSize="1" />
           </p>
-          <div className="flex w-2/3 justify-between gap-3">
+          <div className="flex w-full lg:w-2/3 justify-between gap-3">
             <p className="w-1/4 text-nowrap">
               Low: $ {handleCustomToFixed(coinValue - coinValue * 0.097)}
             </p>
@@ -419,9 +377,9 @@ export default function BuyCryptoLeftSide({ id }) {
           <Title title={`People Also Ask: Other Questions About ${coinName}`} />
           <FAQ questions={extendedCoin.frequentlyAskedQuestions} />
         </div>
-        <div className="flex flex-col mb-16">
+        <div className="flex items-center lg:items-start flex-col mb-16">
           <Title title={`${coinSymbol} to Local Currency`} />
-          <Table classes="w-2/3 text-lg">
+          <Table classes="w-[98%] lg:w-2/3 text-lg">
             <TableRow classes="bg-[#23272Eff] text-white">
               <TableColumn classes="py-2 px-4">
                 1 {coinSymbol} to TRY
