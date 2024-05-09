@@ -33,7 +33,9 @@ export default function Header() {
               Buy Crypto
             </Link>
             <li className="cursor-pointer">My Wallet</li>
-            <li className="cursor-pointer">Earn</li>
+            <Link to="/earn" className="cursor-pointer">
+              Earn
+            </Link>
             <li className="cursor-pointer">Contact</li>
             <Link to="/sell-crypto" className="cursor-pointer">
               Sell Crypto
@@ -233,7 +235,7 @@ export default function Header() {
               </svg>
               Buy Cryptos
             </Link>
-            <Link to="/" className="flex gap-2 items-center">
+            <Link to="/earn" className="flex gap-2 items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="1em"

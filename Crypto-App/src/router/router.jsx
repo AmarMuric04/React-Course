@@ -2,8 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import CredentialsPage from "../components/Credentials/CredentialsPage";
 import BuyCryptoPage from "../components/BuyCryptoPage/BuyCryptoPage";
 import App from "../App";
-import LandingPage from "../components/LandingPage";
+import LandingPage from "../components/LandingPage/LandingPage";
 import BuyAndSellGeneralPage from "../components/BuyAndSellGeneralPage/BuyAndSellGeneralPage";
+import EarnPage from "../components/EarnPage";
 
 export const router = createBrowserRouter([
   {
@@ -33,5 +34,9 @@ export const router = createBrowserRouter([
   {
     path: "/sell-crypto",
     element: <BuyAndSellGeneralPage type="sell" />,
+  },
+  {
+    path: "/earn",
+    element: <EarnPage />,
   },
 ]);
