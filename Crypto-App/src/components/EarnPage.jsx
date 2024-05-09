@@ -1,12 +1,68 @@
 import Header from "./Single Components/Header";
 import Footer from "./Single Components/Footer";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CryptoContext } from "../store/crypto-context";
+import Image from "./Single Components/Image";
+import Logo from "/FinalLogo.png";
 
 export default function EarnPage() {
   const { userAccount, handleCustomToFixed, _mainCoinsList } =
     useContext(CryptoContext);
+
+  const [amountOfMoney, setAmountOfMoney] = useState(10000);
+  const [investedCoin, setInvestedCoin] = useState("bitcoin");
+  const [period, setPeriod] = useState("year");
+  const [percentageChange, setPercentageChange] = useState(3);
+  const [amountOfYears, setAmountOfYears] = useState(10);
+
+  function handleInputs(input) {
+    let value = input;
+
+    value = value.replace(/[^0-9.]/g, "").replace(/^0+/, "");
+
+    if (value.split(".").length > 2) {
+      value = value.substring(0, value.lastIndexOf("."));
+    }
+    return value;
+  }
+
+  function handleAmountOfMoney(event) {
+    setAmountOfMoney(handleInputs(event.target.value));
+  }
+
+  function handlePercentage(event) {
+    setPercentageChange(handleInputs(event.target.value));
+  }
+
+  function handlePeriod(event) {
+    setPeriod(event.target.value);
+  }
+
+  function handleAmountOfYears(event) {
+    setAmountOfYears(event.target.value);
+  }
+
+  function handleSetCoin(event) {
+    setInvestedCoin(event.target.value);
+  }
+
+  function handleGetResult() {
+    console.log(`I want to invest $ 
+${amountOfMoney}
+ into 
+${investedCoin}
+
+I'm hoping the price goes up by 
+${percentageChange}
+ % every 
+${period}
+
+for the next 
+${amountOfYears}
+years`);
+  }
+
   return (
     <>
       <Header />
@@ -204,17 +260,20 @@ export default function EarnPage() {
             </div>
           </div>
         </div>
-        <div className="w-full flex flex-col items-center">
-          <div className="w-[80rem] py-24">
-            <h1 className="text-4xl font-semibold">
-              Start creating your own plan
+        <div className="w-full flex justify-between px-16">
+          <div className="w-2/3 py-24">
+            <h1 className="text-4xl font-semibold tracking-[0.1rem] uppercase">
+              Create your plan:
             </h1>
-            <div className="w-2/3 p-16 text-xl border-[0.1rem] border-[#23272Eff] rounded-xl m-8">
+            <div className="w-full p-16 text-xl border-[0.1rem] border-[#23272Eff] rounded-xl m-8">
               <p className="border-b-[0.1rem] border-[#23272Eff] py-8">
                 I want to invest ${" "}
                 <input
                   type="text"
                   placeholder="10,000.00"
+                  defaultValue={10000}
+                  value={amountOfMoney}
+                  onChange={handleAmountOfMoney}
                   className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-32 focus:outline-none"
                 />{" "}
                 into{" "}
@@ -222,6 +281,7 @@ export default function EarnPage() {
                   className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-16 focus:outline-none"
                   name=""
                   id=""
+                  onChange={handleSetCoin}
                 >
                   {_mainCoinsList.map((coin) => (
                     <option
@@ -239,13 +299,17 @@ export default function EarnPage() {
                 <input
                   type="text"
                   placeholder="3.00"
-                  className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-12 focus:outline-none "
+                  defaultValue={3}
+                  className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-12 focus:outline-none"
+                  onChange={handlePercentage}
+                  value={percentageChange}
                 />{" "}
                 % every{" "}
                 <select
                   className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-16 focus:outline-none"
                   name=""
                   id=""
+                  onChange={handlePeriod}
                 >
                   <option className="bg-[#1A1C22ff]" value="year">
                     year
@@ -262,21 +326,77 @@ export default function EarnPage() {
                 </select>
                 <br />
                 for the next{" "}
-                <input
-                  type="text"
-                  placeholder="5"
-                  className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-8 focus:outline-none"
-                />{" "}
+                <select
+                  name=""
+                  className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-12 focus:outline-none"
+                  id=""
+                  onChange={handleAmountOfYears}
+                >
+                  {_mainCoinsList.map((_, index) => (
+                    <option
+                      className="bg-[#1A1C22ff]"
+                      value={index + 1}
+                      key={index}
+                    >
+                      {index + 1}
+                    </option>
+                  ))}
+                </select>
                 years
               </p>
               <p className="border-b-[0.1rem] border-[#23272Eff] py-8 flex">
                 <span className="text-yellow-400">If this outcome happens</span>
                 , how much money would I have at the end of each year?
               </p>
-              <button className="mt-8 bg-yellow-400 rounded-lg font-bold py-2 px-4 text-black">
+              <button
+                onClick={handleGetResult}
+                className="mt-8 bg-yellow-400 rounded-lg font-bold py-2 px-4 text-black"
+              >
                 Get results
               </button>
             </div>
+          </div>
+          <div className="w-1/3 p-16 flex gap-2 items-start justify-end">
+            <div className="flex items-center">
+              <Image image={Logo} className="w-32 h-32" />
+              <div className="flex">
+                <h1 className="text-xl text-yellow-400 tracking-[0.3rem]">
+                  B<span className="text-stone-700 ">LAJV</span>
+                  INANCE{" "}
+                </h1>
+                <p className="font-bold underline">Earn</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full flex justify-center">
+          <div className="w-2/3 flex items-center border-[0.1rem] border-[#23272Eff] rounded-xl p-8 mb-32">
+            <div className="w-[10%]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="5em"
+                height="5em"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  d="M10 1.944A11.954 11.954 0 0 1 2.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0 1 10 1.944M11 14a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-7a1 1 0 1 0-2 0v3a1 1 0 1 0 2 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <h1 className="w-[90%] text-gray-400">
+              <strong>Disclaimer</strong>: The information provided in this tool
+              is for educational and entertainment purposes only. Any investment
+              decisions made based on the hypothetical outcomes generated by
+              this tool are done so at your own risk. The projections and
+              predictions presented here are purely speculative and should not
+              be considered as financial advice. Actual investment outcomes may
+              vary significantly from the simulated results. Always conduct
+              thorough research and consult with a qualified financial advisor
+              before making any investment decisions.
+            </h1>
           </div>
         </div>
       </main>
