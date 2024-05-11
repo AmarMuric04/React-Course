@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { CryptoContext } from "../../../store/crypto-context";
 
 export default function WalletWorth() {
-  const { userAccount, handleCustomToFixed } = useContext(CryptoContext);
+  const { userAccount, handleCustomToFixed, _mainCoinsList } =
+    useContext(CryptoContext);
   return (
     <div className="flex flex-col gap-2 ">
       <p>Your Estimated Balance</p>
@@ -12,11 +13,17 @@ export default function WalletWorth() {
       <p>
         Wallet worth: ${" "}
         {handleCustomToFixed(
-          userAccount.wallet.reduce((accumulator, currentValue) => {
-            return (
-              accumulator + currentValue.amountOfCoins * currentValue.moneySpent
-            );
-          }, 0)
+          Number(
+            userAccount.wallet.reduce((accumulator, currentValue) => {
+              const coin = _mainCoinsList.find(
+                (coin) => coin.id === currentValue.id
+              );
+              return (
+                accumulator +
+                Number(currentValue.amountOfCoins) * Number(coin.priceUsd)
+              );
+            }, 0)
+          )
         )}
       </p>
     </div>

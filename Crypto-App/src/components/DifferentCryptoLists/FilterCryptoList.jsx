@@ -16,7 +16,7 @@ export default function FilterCryptoList() {
     if (showCryptoList === "favorite" && favoriteCryptos.length === 0)
       return false;
     if (
-      !_mainCoinsList.some((coin) => Number(coin.changePercent24Hr) > 0.2) &&
+      !_mainCoinsList.some((coin) => Number(coin.changePercent24Hr) > 0.2) ||
       !_mainCoinsList.some((coin) => Number(coin.changePercent24Hr) < -0.2)
     )
       return false;

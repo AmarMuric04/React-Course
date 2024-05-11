@@ -36,7 +36,9 @@ export default function Header() {
             <Link to="/earn" className="cursor-pointer">
               Earn
             </Link>
-            <li className="cursor-pointer">Contact</li>
+            <Link to="/contact" className="cursor-pointer">
+              Contact
+            </Link>
             <Link to="/sell-crypto" className="cursor-pointer">
               Sell Crypto
             </Link>
@@ -131,7 +133,7 @@ export default function Header() {
                 <animate
                   fill="freeze"
                   attributeName="d"
-                  dur="0.4s"
+                  dur="0.2s"
                   values="M5 5L19 19;M5 5L19 5"
                 />
               </path>
@@ -139,8 +141,8 @@ export default function Header() {
                 <animate
                   fill="freeze"
                   attributeName="d"
-                  begin="0.2s"
-                  dur="0.4s"
+                  begin="0.1s"
+                  dur="0.2s"
                   values="M12 12H12;M5 12H19"
                 />
                 <set attributeName="opacity" begin="0.2s" to="1" />
@@ -149,7 +151,7 @@ export default function Header() {
                 <animate
                   fill="freeze"
                   attributeName="d"
-                  dur="0.4s"
+                  dur="0.2s"
                   values="M5 19L19 5;M5 19L19 19"
                 />
               </path>
@@ -175,8 +177,8 @@ export default function Header() {
                 <animate
                   fill="freeze"
                   attributeName="d"
-                  begin="0.2s"
-                  dur="0.4s"
+                  begin="0.1s"
+                  dur="0.2s"
                   values="M5 5L19 5;M5 5L19 19"
                 />
               </path>
@@ -184,7 +186,7 @@ export default function Header() {
                 <animate
                   fill="freeze"
                   attributeName="d"
-                  dur="0.4s"
+                  dur="0.2s"
                   values="M5 12H19;M12 12H12"
                 />
                 <set attributeName="opacity" begin="0.4s" to="0" />
@@ -193,8 +195,8 @@ export default function Header() {
                 <animate
                   fill="freeze"
                   attributeName="d"
-                  begin="0.2s"
-                  dur="0.4s"
+                  begin="0.1s"
+                  dur="0.2s"
                   values="M5 19L19 19;M5 19L19 5"
                 />
               </path>

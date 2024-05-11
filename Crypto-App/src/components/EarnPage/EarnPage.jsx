@@ -1,25 +1,26 @@
-import Header from "./Single Components/Header";
-import Footer from "./Single Components/Footer";
+import Header from "../Single Components/Header";
+import Footer from "../Single Components/Footer";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import { CryptoContext } from "../store/crypto-context";
-import Image from "./Single Components/Image";
-import Logo from "/FinalLogo.png";
+import { CryptoContext } from "../../store/crypto-context";
+import EarnResults from "./EarnResults";
 
 export default function EarnPage() {
   const { userAccount, handleCustomToFixed, _mainCoinsList } =
     useContext(CryptoContext);
 
   const [amountOfMoney, setAmountOfMoney] = useState(10000);
-  const [investedCoin, setInvestedCoin] = useState("bitcoin");
-  const [period, setPeriod] = useState("year");
+  const [annualInvestment, setAnnualInvestment] = useState(1000);
   const [percentageChange, setPercentageChange] = useState(3);
-  const [amountOfYears, setAmountOfYears] = useState(10);
+  const [amountOfYears, setAmountOfYears] = useState(1);
+  const [result, setResult] = useState(false);
 
   function handleInputs(input) {
     let value = input;
 
-    value = value.replace(/[^0-9.]/g, "").replace(/^0+/, "");
+    value = value.replace(/[^0-9.-]/g, "").replace(/^0+/, "");
+
+    if (!value) return 0;
 
     if (value.split(".").length > 2) {
       value = value.substring(0, value.lastIndexOf("."));
@@ -29,38 +30,26 @@ export default function EarnPage() {
 
   function handleAmountOfMoney(event) {
     setAmountOfMoney(handleInputs(event.target.value));
+    setResult(false);
   }
 
   function handlePercentage(event) {
     setPercentageChange(handleInputs(event.target.value));
+    setResult(false);
   }
 
-  function handlePeriod(event) {
-    setPeriod(event.target.value);
+  function handleAnnualInvestment(event) {
+    setAnnualInvestment(handleInputs(event.target.value));
+    setResult(false);
   }
 
   function handleAmountOfYears(event) {
     setAmountOfYears(event.target.value);
-  }
-
-  function handleSetCoin(event) {
-    setInvestedCoin(event.target.value);
+    setResult(false);
   }
 
   function handleGetResult() {
-    console.log(`I want to invest $ 
-${amountOfMoney}
- into 
-${investedCoin}
-
-I'm hoping the price goes up by 
-${percentageChange}
- % every 
-${period}
-
-for the next 
-${amountOfYears}
-years`);
+    setResult(true);
   }
 
   return (
@@ -70,7 +59,7 @@ years`);
         <div className="w-full bg-black h-auto flex flex-col items-center">
           <div className="w-[80rem] py-24">
             <div className="flex justify-between items-center flex-col md:flex-row my-8">
-              <p className="flex items-center gap-3 text-md font-bold text-yellow-400 my-8">
+              <p className="flex items-center gap-3 text-sm font-bold text-yellow-400 my-8">
                 <Link to="/" className="cursor-pointer hover:underline">
                   Home
                 </Link>
@@ -260,93 +249,104 @@ years`);
             </div>
           </div>
         </div>
-        <div className="w-full flex justify-between px-16">
-          <div className="w-2/3 py-24">
+        <div className="w-full flex justify-center px-16">
+          <div className="w-2/5 py-24">
             <h1 className="text-4xl font-semibold tracking-[0.1rem] uppercase">
               Create your plan:
             </h1>
-            <div className="w-full p-16 text-xl border-[0.1rem] border-[#23272Eff] rounded-xl m-8">
-              <p className="border-b-[0.1rem] border-[#23272Eff] py-8">
-                I want to invest ${" "}
-                <input
-                  type="text"
-                  placeholder="10,000.00"
-                  defaultValue={10000}
-                  value={amountOfMoney}
-                  onChange={handleAmountOfMoney}
-                  className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-32 focus:outline-none"
-                />{" "}
-                into{" "}
-                <select
-                  className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-16 focus:outline-none"
-                  name=""
-                  id=""
-                  onChange={handleSetCoin}
-                >
-                  {_mainCoinsList.map((coin) => (
-                    <option
-                      className="bg-[#1A1C22ff]"
-                      key={coin.id}
-                      value={coin.id}
-                    >
-                      {coin.symbol}
-                    </option>
-                  ))}
-                </select>
-              </p>
-              <p className="border-b-[0.1rem] border-[#23272Eff] py-8">
-                I'm hoping the price goes up by{" "}
-                <input
-                  type="text"
-                  placeholder="3.00"
-                  defaultValue={3}
-                  className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-12 focus:outline-none"
-                  onChange={handlePercentage}
-                  value={percentageChange}
-                />{" "}
-                % every{" "}
-                <select
-                  className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-16 focus:outline-none"
-                  name=""
-                  id=""
-                  onChange={handlePeriod}
-                >
-                  <option className="bg-[#1A1C22ff]" value="year">
-                    year
-                  </option>
-                  <option className="bg-[#1A1C22ff]" value="month">
-                    month
-                  </option>
-                  <option className="bg-[#1A1C22ff]" value="week">
-                    week
-                  </option>
-                  <option className="bg-[#1A1C22ff]" value="day">
-                    day
-                  </option>
-                </select>
-                <br />
-                for the next{" "}
-                <select
-                  name=""
-                  className="pt-4 bg-transparent border-b-[0.1rem] border-yellow-400 w-12 focus:outline-none"
-                  id=""
-                  onChange={handleAmountOfYears}
-                >
-                  {_mainCoinsList.map((_, index) => (
-                    <option
-                      className="bg-[#1A1C22ff]"
-                      value={index + 1}
-                      key={index}
-                    >
-                      {index + 1}
-                    </option>
-                  ))}
-                </select>
-                years
-              </p>
-              <p className="border-b-[0.1rem] border-[#23272Eff] py-8 flex">
-                <span className="text-yellow-400">If this outcome happens</span>
-                , how much money would I have at the end of each year?
+            <div className="w-full bg-[#23272Eff] p-16 text-xl border-[0.1rem] border-[#23272Eff] rounded-xl m-8">
+              <div className="w-full flex justify-between items-center mb-8">
+                <div className="flex w-2/5 flex-col">
+                  <label
+                    htmlFor="amountOfMoney"
+                    className="uppercase text-sm text-gray-400"
+                  >
+                    initial investment
+                  </label>
+                  <div className="flex items-center">
+                    <input
+                      id="amountOfMoney"
+                      type="text"
+                      placeholder="10,000.00"
+                      className="w-full bg-[#1A1C22ff] pt-2 px-2 rounded-lg"
+                      defaultValue={10000}
+                      value={amountOfMoney}
+                      onChange={handleAmountOfMoney}
+                    />
+                    <span>$</span>
+                  </div>
+                </div>
+                <div className="flex w-2/5 flex-col">
+                  <label
+                    htmlFor="priceChange"
+                    className="uppercase text-sm text-gray-400"
+                  >
+                    Expected annual return
+                  </label>
+                  <div className="flex items-center">
+                    <input
+                      id="priceChange"
+                      type="text"
+                      className="w-full bg-[#1A1C22ff] pt-2 px-2 rounded-lg"
+                      placeholder="3.00"
+                      defaultValue={3}
+                      onChange={handlePercentage}
+                      value={percentageChange}
+                    />
+                    <span>%</span>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full flex justify-between items-center">
+                <div className="flex w-2/5 flex-col">
+                  <label
+                    htmlFor="annualInvestment"
+                    className="uppercase text-sm text-gray-400"
+                  >
+                    Annual investment
+                  </label>
+                  <div className="flex items-center">
+                    <input
+                      id="annualInvestment"
+                      type="text"
+                      className="w-full bg-[#1A1C22ff] pt-2 px-2 rounded-lg"
+                      placeholder="1000"
+                      defaultValue={1000}
+                      onChange={handleAnnualInvestment}
+                      value={annualInvestment}
+                    />
+                    <span>$</span>
+                  </div>
+                </div>
+                <div className="flex w-2/5 flex-col">
+                  <label
+                    htmlFor="amountOfYears"
+                    className="uppercase text-sm text-gray-400"
+                  >
+                    Duration (yr)
+                  </label>
+                  <select
+                    name=""
+                    className="w-full bg-[#1A1C22ff] pt-2 px-2 rounded-lg"
+                    id="amountOfYears"
+                    onChange={handleAmountOfYears}
+                  >
+                    {_mainCoinsList.map((_, index) => (
+                      <option
+                        className="bg-[#1A1C22ff]"
+                        value={index + 1}
+                        key={index}
+                      >
+                        {index + 1}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <p className="py-8 flex">
+                If this outcome happens, how much money would I have at the end
+                of each year?
               </p>
               <button
                 onClick={handleGetResult}
@@ -354,18 +354,6 @@ years`);
               >
                 Get results
               </button>
-            </div>
-          </div>
-          <div className="w-1/3 p-16 flex gap-2 items-start justify-end">
-            <div className="flex items-center">
-              <Image image={Logo} className="w-32 h-32" />
-              <div className="flex">
-                <h1 className="text-xl text-yellow-400 tracking-[0.3rem]">
-                  B<span className="text-stone-700 ">LAJV</span>
-                  INANCE{" "}
-                </h1>
-                <p className="font-bold underline">Earn</p>
-              </div>
             </div>
           </div>
         </div>
@@ -399,6 +387,16 @@ years`);
             </h1>
           </div>
         </div>
+        {result && (
+          <EarnResults
+            input={{
+              amountOfMoney,
+              annualInvestment,
+              percentageChange,
+              amountOfYears,
+            }}
+          />
+        )}
       </main>
       <Footer />
     </>

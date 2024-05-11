@@ -126,6 +126,11 @@ export default function CryptoListContainer() {
     if (showCryptoList === "favorite" && favoriteCryptos.length === 0)
       return false;
     if (showCryptoList === "activetrades") return false;
+    if (
+      !_mainCoinsList.some((coin) => Number(coin.changePercent24Hr) > 0.2) ||
+      !_mainCoinsList.some((coin) => Number(coin.changePercent24Hr) < -0.2)
+    )
+      return false;
     return true;
   }
 
@@ -153,15 +158,15 @@ export default function CryptoListContainer() {
         (showCryptoList === "mywallet" ||
           showCryptoList === "activetrades") && (
           <ul className="flex gap-2 md:gap-16 md:px-8 relative text-xs md:text-sm text-gray-400 text-center">
-            <li className="w-1/6">Name</li>
-            <li className="w-1/6">
+            <li className="w-1/6 text-start">Name</li>
+            <li className="w-1/6 text-start">
               <span className="hidden md:block">Avg. Buying Price</span>
               <span className="md:hidden">Buy price</span>
             </li>
-            <li className="w-1/6">
+            <li className="w-1/6 flex gap-2">
               Amount<span className="hidden md:block"> of Coins</span>
             </li>
-            <li className="w-1/6">
+            <li className="w-1/6 flex gap-2">
               <span className="hidden md:block">Money</span> Spent
             </li>
             <li className="w-1/6">

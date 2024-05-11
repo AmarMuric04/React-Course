@@ -4,7 +4,8 @@ import BuyCryptoPage from "../components/BuyCryptoPage/BuyCryptoPage";
 import App from "../App";
 import LandingPage from "../components/LandingPage/LandingPage";
 import BuyAndSellGeneralPage from "../components/BuyAndSellGeneralPage/BuyAndSellGeneralPage";
-import EarnPage from "../components/EarnPage";
+import EarnPage from "../components/EarnPage/EarnPage";
+import ContactPage from "../components/ContactPage";
 
 export const router = createBrowserRouter([
   {
@@ -38,5 +39,9 @@ export const router = createBrowserRouter([
   {
     path: "/earn",
     element: <EarnPage />,
+  },
+  {
+    path: `/contact`,
+    element: <ContactPage />,
   },
 ]);

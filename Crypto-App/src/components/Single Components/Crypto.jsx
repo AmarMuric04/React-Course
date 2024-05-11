@@ -128,7 +128,7 @@ export default function Crypto({ coin }) {
         </li>
         <li className="w-16 md:w-36 md:tracking-[0.1rem]">$ {coinValue}</li>
         <li className="w-12 md:w-32">$ {coinMarketCap}</li>
-        <li className="hidden md:block w-20">$ {volumeInLast24Hours}</li>
+        <li className="hidden md:block w-32">$ {volumeInLast24Hours}</li>
         <li
           className={`w-1/6 md:w-32 flex items-center justify-end md:gap-2 ${
             changeInLast24Hours < -0.2 && "text-red-400"

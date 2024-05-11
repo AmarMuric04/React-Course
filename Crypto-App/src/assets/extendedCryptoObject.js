@@ -497,4 +497,79 @@ export const extendedCryptoObject = [
       },
     ],
   },
+  {
+    id: "unus-sed-leo",
+    allTimeHigh: "3.89",
+    moreInformation:
+      "UNUS SED LEO (LEO) is a utility token issued by Bitfinex, one of the world's largest cryptocurrency exchanges. It is designed to provide various benefits to users of the Bitfinex platform, including discounts on trading fees, enhanced liquidity, and access to exclusive features and services. LEO tokens can be used for trading, staking, and participation in platform governance.",
+    moreInformation2:
+      "As a native token of Bitfinex, LEO plays a crucial role in the ecosystem by incentivizing platform usage and promoting user engagement. With its robust utility and growing adoption, LEO has become an integral part of the cryptocurrency trading landscape.",
+    frequentlyAskedQuestions: [
+      {
+        question: "What is UNUS SED LEO?",
+        answer:
+          "UNUS SED LEO (LEO) is a utility token issued by Bitfinex, providing various benefits and privileges to users of the Bitfinex platform.",
+      },
+      {
+        question: "How can I use UNUS SED LEO?",
+        answer:
+          "LEO tokens can be used for trading, staking, and participation in platform governance on the Bitfinex exchange.",
+      },
+      {
+        question: "What are the benefits of holding UNUS SED LEO?",
+        answer:
+          "Holding LEO tokens provides users with discounts on trading fees, enhanced liquidity, and access to exclusive features and services on the Bitfinex platform.",
+      },
+    ],
+  },
+  {
+    id: "dai",
+    allTimeHigh: "1.38",
+    moreInformation:
+      "Dai (DAI) is a decentralized stablecoin pegged to the value of the US dollar. It is created and managed by the MakerDAO decentralized autonomous organization (DAO) through a system of smart contracts on the Ethereum blockchain. Dai maintains its stability through over-collateralization of assets and an algorithmic stabilization mechanism.",
+    moreInformation2:
+      "As a decentralized stablecoin, Dai offers users a censorship-resistant, borderless, and programmable form of digital money. It can be used for payments, remittances, lending, and other decentralized finance (DeFi) applications.",
+    frequentlyAskedQuestions: [
+      {
+        question: "What is Dai?",
+        answer:
+          "Dai (DAI) is a decentralized stablecoin pegged to the value of the US dollar, created and managed by the MakerDAO decentralized autonomous organization.",
+      },
+      {
+        question: "How is Dai different from other stablecoins?",
+        answer:
+          "Dai maintains its stability through a decentralized system of smart contracts and over-collateralization of assets, making it more resilient to external factors compared to centralized stablecoins.",
+      },
+      {
+        question: "Where can I use Dai?",
+        answer:
+          "Dai can be used for payments, remittances, lending, and other decentralized finance (DeFi) applications on various platforms and protocols that support the Ethereum blockchain.",
+      },
+    ],
+  },
+  {
+    id: "uniswap",
+    allTimeHigh: "44.97",
+    moreInformation:
+      "Uniswap (UNI) is a decentralized exchange (DEX) protocol built on the Ethereum blockchain. It allows users to trade cryptocurrencies directly from their wallets without the need for intermediaries or centralized exchanges. Uniswap utilizes automated market-making (AMM) algorithms to provide liquidity and enable seamless token swaps.",
+    moreInformation2:
+      "As a decentralized exchange protocol, Uniswap offers users high liquidity, low fees, and censorship-resistant trading. UNI tokens are used for governance, fee-sharing, and incentivizing liquidity providers on the platform.",
+    frequentlyAskedQuestions: [
+      {
+        question: "What is Uniswap?",
+        answer:
+          "Uniswap (UNI) is a decentralized exchange (DEX) protocol that enables users to trade cryptocurrencies directly from their wallets without intermediaries.",
+      },
+      {
+        question: "How does Uniswap work?",
+        answer:
+          "Uniswap utilizes automated market-making (AMM) algorithms and liquidity pools to facilitate token swaps and provide liquidity for various trading pairs on the platform.",
+      },
+      {
+        question: "What are the benefits of using Uniswap?",
+        answer:
+          "Using Uniswap provides users with high liquidity, low fees, and censorship-resistant trading, as well as the ability to earn rewards through liquidity provision and governance participation.",
+      },
+    ],
+  },
 ];
