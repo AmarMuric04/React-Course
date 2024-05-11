@@ -23,7 +23,6 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
       (coin) => coin.id === firstSelection
     );
   }
-  console.log(_mainCoinsList);
 
   let secondSelectedCoin = _mainCoinsList.find(
     (coin) => coin.id === secondSelection

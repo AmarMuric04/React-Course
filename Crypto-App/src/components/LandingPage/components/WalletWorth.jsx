@@ -5,7 +5,7 @@ export default function WalletWorth() {
   const { userAccount, handleCustomToFixed, _mainCoinsList } =
     useContext(CryptoContext);
   return (
-    <div className="flex flex-col gap-2 ">
+    <div className="flex flex-col gap-2 items-center lg:items-start">
       <p>Your Estimated Balance</p>
       <p className="truncate-[0.2rem] text-xl font-bold">
         $ {handleCustomToFixed(userAccount.balance)}

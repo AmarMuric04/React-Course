@@ -5,7 +5,8 @@ import App from "../App";
 import LandingPage from "../components/LandingPage/LandingPage";
 import BuyAndSellGeneralPage from "../components/BuyAndSellGeneralPage/BuyAndSellGeneralPage";
 import EarnPage from "../components/EarnPage/EarnPage";
-import ContactPage from "../components/ContactPage";
+import ContactPage from "../components/ContactPage/ContactPage";
+import WalletPage from "../components/WalletPage";
 
 export const router = createBrowserRouter([
   {
@@ -43,5 +44,9 @@ export const router = createBrowserRouter([
   {
     path: `/contact`,
     element: <ContactPage />,
+  },
+  {
+    path: "/my-wallet",
+    element: <WalletPage />,
   },
 ]);

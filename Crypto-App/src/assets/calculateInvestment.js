@@ -14,7 +14,5 @@ export function calculateInvestmentResults(
       valueEndOfYear: investmentValue,
       annualInvestment: annualInvestment,
     });
-
-    console.log(results);
   }
 }

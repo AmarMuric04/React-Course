@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { CryptoContext } from "../../store/crypto-context";
 
-export default function InteresetingCryptos({ filterBy, classes, amount }) {
+export default function InterestingCryptos({ filterBy, classes, amount }) {
   const {
     _mainCoinsList,
     handleFormatNumber,

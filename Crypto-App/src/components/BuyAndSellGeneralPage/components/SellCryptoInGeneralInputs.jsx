@@ -3,11 +3,7 @@ import { CryptoContext } from "../../../store/crypto-context";
 import { Link } from "react-router-dom";
 import Modal from "../../Single Components/Modal";
 
-export default function BuyCryptoInGeneralInputs({
-  onSell,
-  onCancel,
-  changeModal,
-}) {
+export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
   const {
     userAccount,
     handleCustomToFixed,

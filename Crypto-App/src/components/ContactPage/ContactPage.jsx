@@ -1,12 +1,12 @@
-import Header from "../components/Single Components/Header";
-import Footer from "./Single Components/Footer";
+import Header from "../Single Components/Header";
+import Footer from "../Single Components/Footer";
 
 export default function ContactPage() {
   return (
     <>
       <Header />
-      <main className="w-full h-screen max-h-full bg-[#1A1C22ff] mt-16 text-white">
-        <div className="h-1/2 w-full">
+      <main className="w-full h-full lg:h-screen max-h-full bg-[#1A1C22ff] mt-16 text-white">
+        <div className="h-[25rem] lg:h-1/2 w-full">
           <div className="w-full h-full flex justify-center gap-5 items-center flex-col">
             <h1 className="font-extrabold text-4xl">Contact</h1>
             <p className="text-gray-400 text-center">
@@ -17,9 +17,9 @@ export default function ContactPage() {
             </p>
           </div>
         </div>
-        <div className="h-1/2 w-full bg-[#23272Eff]">
-          <div className="flex w-full justify-center gap-5 translate-y-[-5rem]">
-            <div className="relative w-72 h-96 bg-white rounded-md flex flex-col items-center justify-start gap-3 p-5 text-black">
+        <div className="w-full bg-[#23272Eff]">
+          <div className="flex w-full justify-center gap-5 translate-y-[-5rem] flex-col items-center lg:flex-row lg:items-start">
+            <div className="relative w-[80%]  sm:w-72 h-96 bg-white rounded-md flex flex-col items-center justify-start gap-3 p-5 text-black">
               <div className="p-4 rounded-full shadow-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +156,7 @@ export default function ContactPage() {
                 </svg>
               </a>
             </div>
-            <div className="relative w-72 h-96 bg-white rounded-md flex flex-col items-center justify-start gap-3 p-5 text-black">
+            <div className="relative w-[80%] sm:w-72 h-96 bg-white rounded-md flex flex-col items-center justify-start gap-3 p-5 text-black">
               <div className="p-4 rounded-full shadow-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -270,7 +270,7 @@ export default function ContactPage() {
                 </svg>
               </a>
             </div>
-            <div className="relative w-72 h-96 bg-white rounded-md flex flex-col items-center justify-start gap-3 p-5 text-black">
+            <div className="relative w-[80%] sm:w-72 h-96 bg-white rounded-md flex flex-col items-center justify-start gap-3 p-5 text-black">
               <div className="p-4 rounded-full shadow-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

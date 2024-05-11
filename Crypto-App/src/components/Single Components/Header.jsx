@@ -20,14 +20,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="hidden md:flex absolute top-0 left-0 right-0 bg-[#1A1C22ff] px-16 h-16 items-center justify-between flex-wrap">
+      <header className="hidden lg:flex absolute top-0 left-0 right-0 bg-[#1A1C22ff] px-16 h-16 items-center justify-between flex-wrap">
         <div className="flex items-center h-full gap-3 cursor-pointer">
           <Image image={Logo} className="w-10" svgSize="1.5" />
           <h1 className="text-2xl text-yellow-400 tracking-[0.3rem]">
             B<span className="text-stone-700 text-2xl">LAJV</span>
             INANCE
           </h1>
-          <ul className="hidden md:flex  text-white gap-5 items-center ml-8 font-bold text-md">
+          <ul className="hidden lg:flex  text-white gap-5 items-center ml-8 font-bold text-md">
             <Link to="/crypto-list">List of Cryptos</Link>
             <Link to="/buy-crypto" className="cursor-pointer">
               Buy Crypto
@@ -60,7 +60,7 @@ export default function Header() {
           </Link>
         </div>
       </header>
-      <header className="md:hidden absolute top-0 left-0 w-full h-16 bg-[#1A1C22ff] flex items-center text-white justify-between px-4">
+      <header className="lg:hidden absolute top-0 left-0 w-full h-16 bg-[#1A1C22ff] flex items-center text-white justify-between px-4 pl-8">
         <div className="flex items-center h-full gap-1 cursor-pointer z-50">
           <Image image={Logo} className="w-5" svgSize="1.5" />
           <h1 className="text-xs text-yellow-400 tracking-[0.3rem]">
@@ -205,7 +205,7 @@ export default function Header() {
         )}
         <div
           className={`fixed top-0 bottom-0 z-10 flex items-center justify-center ${
-            openHeader === "open" ? "left-0" : "left-full"
+            openHeader === "open" ? "left-4" : "left-full"
           } bg-[#23272Eff] w-full h-screen transition-all`}
         >
           <ul className="mt-32 flex flex-col w-[90%] h-[90%] gap-5 text-lg font-semibold">
@@ -265,7 +265,7 @@ export default function Header() {
               </svg>
               My Wallet
             </Link>
-            <Link to="/" className="flex gap-2 items-center">
+            <Link to="/contact" className="flex gap-2 items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="1em"
