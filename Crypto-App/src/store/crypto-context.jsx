@@ -73,25 +73,20 @@ export default function CryptoContextProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    setUserAccount(userAccount);
+    console.log(userAccount.purchaseHistory);
   }, [userAccount]);
 
   function handleSellCryptoGeneral(coin, amount) {
-    // const time = `${new Date().getDate()}/${
-    //   new Date().getMonth() + 1
-    // }/${new Date().getFullYear()}`;
+    const time = `${new Date().getDate()}/${
+      new Date().getMonth() + 1
+    }/${new Date().getFullYear()}`;
 
     const coinToRemoveId = coin.id;
     const coinToRemoveValue = Number(coin.priceUsd);
 
-    console.log(coin);
-    console.log(userAccount);
-
     let coinToRemove = userAccount.wallet.find(
       (purchasedCoin) => purchasedCoin.id === coinToRemoveId
     );
-
-    console.log(coinToRemove);
 
     coinToRemove.amountOfCoins = coinToRemove.amountOfCoins - amount;
     coinToRemove.moneySpent =
@@ -109,12 +104,35 @@ export default function CryptoContextProvider({ children }) {
         1
       );
 
+    const percentageChange = Number(
+      handleCustomToFixed(
+        ((coin.priceUsd - coinToRemove.purchasedPrice) /
+          coinToRemove.purchasedPrice) *
+          100
+      )
+    );
+
+    const newPurchaseHistory = [
+      ...userAccount.purchaseHistory,
+      {
+        type: "SOLD",
+        first: coin.id,
+        price: coinToRemoveValue,
+        priceSecond: coin.priceUsd,
+        amountOfCoins: amount,
+        second: "CASH",
+        percentageChange,
+        moneyChange: Number(amount) * Number(coinToRemoveValue),
+        time: [time],
+      },
+    ];
+
     setUserAccount((prevUserAccount) => {
       return {
         ...prevUserAccount,
         balance: userAccount.balance + coinToRemoveValue * amount,
         wallet: newWallet,
-        purchaseHistory: userAccount.purchaseHistory,
+        purchaseHistory: newPurchaseHistory,
       };
     });
   }
@@ -174,6 +192,7 @@ export default function CryptoContextProvider({ children }) {
       let coinToAdd = userAccount.wallet.find(
         (purchasedCoin) => purchasedCoin.id === coinToAddId
       );
+
       if (!coinToAdd)
         setUserAccount((prevUserAccount) => {
           return {
@@ -192,10 +211,13 @@ export default function CryptoContextProvider({ children }) {
             purchaseHistory: [
               ...userAccount.purchaseHistory,
               {
-                id: coinToAddId,
-                purchasedPrice: coinToAddValue,
+                second: coinToAddId,
+                type: "TRADED",
+                price: coinToAddValue,
+                priceSecond: firstCoin.priceUsd,
                 amountOfCoins: quantitySecond,
-                moneySpent: Number(quantitySecond) * Number(coinToAddValue),
+                first: firstCoin.id,
+                moneyChange: quantityFirst,
                 time: [time],
               },
             ],
@@ -213,23 +235,12 @@ export default function CryptoContextProvider({ children }) {
           (coin) => (coin = coin.id === coinToAddId && coinToAdd)
         );
 
-        const newPurchaseHistory = [
-          ...userAccount.purchaseHistory,
-          {
-            id: coinToAddId,
-            purchasedPrice: coinToAddValue,
-            amountOfCoins: quantitySecond,
-            moneySpent: Number(quantitySecond) * Number(coinToAddValue),
-            time: [time],
-          },
-        ];
-
         setUserAccount((prevUserAccount) => {
           return {
             ...prevUserAccount,
             balance: userAccount.balance,
             wallet: newWallet,
-            purchaseHistory: newPurchaseHistory,
+            purchaseHistory: userAccount.purchaseHistory,
           };
         });
       }
@@ -265,10 +276,12 @@ export default function CryptoContextProvider({ children }) {
           purchaseHistory: [
             ...userAccount.purchaseHistory,
             {
-              id: coin.coinId,
-              purchasedPrice: coin.coinValue,
+              second: coin.coinId,
+              type: "BOUGHT",
+              price: coin.coinValue,
               amountOfCoins: coinAmount,
-              moneySpent: cashAmount,
+              moneyChange: cashAmount,
+              first: "CASH",
               time: [time],
             },
           ],
