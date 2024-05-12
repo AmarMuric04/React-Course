@@ -24,21 +24,31 @@ export default function TransactionsList() {
           if (coin.second === "CASH") secondActualCoin = "CASH";
           if (coin.first === "CASH") actualCoin = "CASH";
 
+          console.log(actualCoin, coin);
+
           return (
             <ul
-              className="flex py-4 px-2 rounded-lg hover:bg-[#23272Eff] transition-all"
+              className="flex gap-5 py-4 px-2 rounded-lg hover:bg-[#23272Eff] transition-all"
               key={coin.id}
             >
-              <li className="w-1/6 md:w-1/6 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
-                {handleCustomToFixed(coin.type)}
+              <li className="w-32 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
+                <span
+                  className={`py-2 px-4 rounded-xl ${
+                    coin.type === "BOUGHT" && "text-green-200 bg-green-800"
+                  }
+                  ${coin.type === "SOLD" && "text-red-200 bg-red-800"}
+                  ${coin.type === "TRADED" && "text-yellow-200 bg-yellow-800"}`}
+                >
+                  {coin.type}
+                </span>
               </li>
-              <li className="w-1/6">
+              <li className="w-32">
                 {actualCoin === "CASH" ? actualCoin : actualCoin.symbol} to{" "}
                 {secondActualCoin === "CASH"
                   ? secondActualCoin
                   : secondActualCoin.symbol}
               </li>
-              <li className="w-1/6 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
+              <li className="w-48 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
                 {coin.type !== "SOLD"
                   ? handleCustomToFixed(coin.amountOfCoins)
                   : handleCustomToFixed(Number(coin.moneyChange))}{" "}
@@ -51,7 +61,7 @@ export default function TransactionsList() {
                   </span>
                 )}
               </li>
-              <li className="w-1/6 md:w-1/6 md:tracking-[0.1rem]">
+              <li className="w-48 md:w-1/6 md:tracking-[0.1rem]">
                 {coin.type !== "SOLD"
                   ? handleCustomToFixed(Number(coin.moneyChange))
                   : handleCustomToFixed(coin.amountOfCoins)}{" "}
@@ -65,13 +75,16 @@ export default function TransactionsList() {
                 )}
               </li>
 
-              <li className="w-1/6 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
+              <li className="w-20 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
+                {coin.date}
+              </li>
+              <li className="w-20 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
                 {coin.time}
               </li>
 
-              {coin.percentageChange && (
+              {(coin.percentageChange || coin.percentageChange === 0) && (
                 <li
-                  className={`w-16 md:w-1/6 flex items-center md:gap-2 overflow-hidden truncate whitespace-nowrap ${
+                  className={`w-8 md:w-1/6 flex items-center md:gap-2 overflow-hidden truncate whitespace-nowrap ${
                     coin.percentageChange < -0.2 && "text-red-400"
                   } ${coin.percentageChange > 0.2 && "text-green-400"} ${
                     coin.percentageChange >= -0.2 &&
@@ -79,7 +92,7 @@ export default function TransactionsList() {
                     "text-stone-500"
                   }`}
                 >
-                  {coin.percentageChange}%{" "}
+                  {handleCustomToFixed(Number(coin.percentageChange))}%{" "}
                   {coin.percentageChange < -0.2 && (
                     <ArrowDownIcon svgSize="1.7" />
                   )}

@@ -114,24 +114,25 @@ export default function WalletPage() {
               <button className="py-2 px-4">Active Trades</button>
               <button className="py-2 px-4">Trade History</button>
             </div>
-            <ul className="flex gap-2 md:gap-16 md:px-8 relative text-xs md:text-sm text-gray-400 text-center">
-              <li className="w-1/6 text-start">Transaction type</li>
-              <li className="w-1/6 text-start">
+            <ul className="flex gap-2 md:gap-5 relative text-xs md:text-sm text-gray-400 text-center">
+              <li className="w-32 text-start">Transaction type</li>
+              <li className="w-32 text-start">
                 <span className="hidden md:block">Transaction</span>
                 <span className="md:hidden">Buy price</span>
               </li>
-              <li className="w-1/6 flex gap-2">
+              <li className="w-48 flex gap-2">
                 <p>Got</p>
               </li>
-              <li className="w-1/6 flex gap-2">
+              <li className="w-48 flex gap-2">
                 <span>Spent</span>
               </li>
-              <li className="w-1/6">
-                <p>Time</p>
+              <li className="w-20 text-start">
+                <p>Date</p>
               </li>
-              <li className="w-20">Action</li>
+              <li className="w-20 text-start">Time</li>
+              <li className="w-20 text-end">Change</li>
             </ul>
-            <TransactionsList />
+            <WalletCryptoList />
           </div>
         </div>
       </main>

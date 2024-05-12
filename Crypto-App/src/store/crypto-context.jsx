@@ -77,9 +77,11 @@ export default function CryptoContextProvider({ children }) {
   }, [userAccount]);
 
   function handleSellCryptoGeneral(coin, amount) {
-    const time = `${new Date().getDate()}/${
+    const date = `${new Date().getDate()}/${
       new Date().getMonth() + 1
     }/${new Date().getFullYear()}`;
+
+    const time = `${new Date().getHours()}:${new Date().getMinutes()}`;
 
     const coinToRemoveId = coin.id;
     const coinToRemoveValue = Number(coin.priceUsd);
@@ -113,7 +115,6 @@ export default function CryptoContextProvider({ children }) {
     );
 
     const newPurchaseHistory = [
-      ...userAccount.purchaseHistory,
       {
         type: "SOLD",
         first: coin.id,
@@ -123,8 +124,10 @@ export default function CryptoContextProvider({ children }) {
         second: "CASH",
         percentageChange,
         moneyChange: Number(amount) * Number(coinToRemoveValue),
-        time: [time],
+        date: date,
+        time: time,
       },
+      ...userAccount.purchaseHistory,
     ];
 
     setUserAccount((prevUserAccount) => {
@@ -149,9 +152,11 @@ export default function CryptoContextProvider({ children }) {
 
       handleBuyCrypto({ coinId, coinValue }, quantityFirst, quantitySecond);
     } else {
-      const time = `${new Date().getDate()}/${
+      const date = `${new Date().getDate()}/${
         new Date().getMonth() + 1
       }/${new Date().getFullYear()}`;
+
+      const time = `${new Date().getHours()}:${new Date().getMinutes()}`;
 
       const coinToRemoveId = firstCoin.id;
       const coinToRemoveValue = Number(firstCoin.priceUsd);
@@ -205,11 +210,11 @@ export default function CryptoContextProvider({ children }) {
                 purchasedPrice: coinToAddValue,
                 amountOfCoins: quantitySecond,
                 moneySpent: Number(quantitySecond) * Number(coinToAddValue),
-                time: [time],
+                date: date,
+                time: time,
               },
             ],
             purchaseHistory: [
-              ...userAccount.purchaseHistory,
               {
                 second: coinToAddId,
                 type: "TRADED",
@@ -218,8 +223,10 @@ export default function CryptoContextProvider({ children }) {
                 amountOfCoins: quantitySecond,
                 first: firstCoin.id,
                 moneyChange: quantityFirst,
-                time: [time],
+                date: date,
+                time: time,
               },
+              ...userAccount.purchaseHistory,
             ],
           };
         });
@@ -240,7 +247,20 @@ export default function CryptoContextProvider({ children }) {
             ...prevUserAccount,
             balance: userAccount.balance,
             wallet: newWallet,
-            purchaseHistory: userAccount.purchaseHistory,
+            purchaseHistory: [
+              {
+                second: coinToAddId,
+                type: "TRADED",
+                price: coinToAddValue,
+                priceSecond: firstCoin.priceUsd,
+                amountOfCoins: quantitySecond,
+                first: firstCoin.id,
+                moneyChange: quantityFirst,
+                date: date,
+                time: time,
+              },
+              ...userAccount.purchaseHistory,
+            ],
           };
         });
       }
@@ -248,9 +268,11 @@ export default function CryptoContextProvider({ children }) {
   }
 
   function handleBuyCrypto(coin, cashAmount, coinAmount) {
-    const time = `${new Date().getDate()}/${
+    const date = `${new Date().getDate()}/${
       new Date().getMonth() + 1
     }/${new Date().getFullYear()}`;
+
+    const time = `${new Date().getHours()}:${new Date().getMinutes()}`;
 
     let alreadyBoughtCoin =
       userAccount &&
@@ -270,11 +292,10 @@ export default function CryptoContextProvider({ children }) {
               purchasedPrice: coin.coinValue,
               amountOfCoins: coinAmount,
               moneySpent: cashAmount,
-              time: [time],
+              date: [date],
             },
           ],
           purchaseHistory: [
-            ...userAccount.purchaseHistory,
             {
               second: coin.coinId,
               type: "BOUGHT",
@@ -282,8 +303,10 @@ export default function CryptoContextProvider({ children }) {
               amountOfCoins: coinAmount,
               moneyChange: cashAmount,
               first: "CASH",
-              time: [time],
+              date: date,
+              time: time,
             },
+            ...userAccount.purchaseHistory,
           ],
         };
       });
@@ -295,7 +318,7 @@ export default function CryptoContextProvider({ children }) {
       alreadyBoughtCoin.amountOfCoins =
         alreadyBoughtCoin.amountOfCoins + coinAmount;
       alreadyBoughtCoin.moneySpent = alreadyBoughtCoin.moneySpent + cashAmount;
-      alreadyBoughtCoin.time.push(time);
+      alreadyBoughtCoin.date.push(date);
 
       const newWallet = [...userAccount.wallet];
 
@@ -305,14 +328,17 @@ export default function CryptoContextProvider({ children }) {
       );
 
       const newPurchaseHistory = [
-        ...userAccount.purchaseHistory,
         {
-          id: coin.coinId,
-          purchasedPrice: coin.coinValue,
+          second: coin.coinId,
+          type: "BOUGHT",
+          price: coin.coinValue,
           amountOfCoins: coinAmount,
-          moneySpent: cashAmount,
-          time: [time],
+          moneyChange: cashAmount,
+          first: "CASH",
+          date: date,
+          time: time,
         },
+        ...userAccount.purchaseHistory,
       ];
 
       setUserAccount((prevUserAccount) => {

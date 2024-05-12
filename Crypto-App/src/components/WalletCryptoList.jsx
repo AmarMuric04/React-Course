@@ -27,7 +27,7 @@ export default function WalletCryptoList() {
 
           return (
             <ul
-              className="preventdefault flex items-center py-4 md:py-8 text-xs md:text-2xl px-2 md:pr-16 md:pl-8 rounded-xl relative hover:bg-[#23272Eff] transition-all delay-50 gap-2 md:gap-24 justify-between md:justify-start"
+              className="flex gap-5 py-4 px-2 rounded-lg hover:bg-[#23272Eff] transition-all"
               key={coin.id}
             >
               <li className="w-1/6">
