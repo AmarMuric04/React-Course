@@ -27,7 +27,7 @@ export default function WalletCryptoList() {
 
           return (
             <ul
-              className="flex gap-5 py-4 px-2 rounded-lg hover:bg-[#23272Eff] transition-all"
+              className="flex justify-between gap-5 py-4 px-2 rounded-lg hover:bg-[#23272Eff] transition-all"
               key={coin.id}
             >
               <li className="w-1/6">
@@ -65,7 +65,7 @@ export default function WalletCryptoList() {
               <CryptoAction
                 firstText="Buy more"
                 secondText="Sell"
-                width="w-10 md:w-20"
+                width="w-10 md:w-16"
                 firstHash={`/crypto-list/${coin.id}`}
                 secondHash={`/sell-crypto`}
               />
