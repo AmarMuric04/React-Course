@@ -28,12 +28,12 @@ export default function TransactionsList() {
 
           return (
             <ul
-              className="flex gap-2 md:gap-5 py-4 md:px-2 rounded-lg hover:bg-[#23272Eff] transition-all text-xs md:text-md"
+              className="flex gap-2 md:gap-5 py-4 md:px-2 rounded-lg hover:bg-[#23272Eff] transition-all text-xs md:text-md items-center"
               key={coin.id}
             >
-              <li className="w-32 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
+              <li className="w-32 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap flex items-center">
                 <span
-                  className={`py-2 px-4 rounded-xl ${
+                  className={`py-1 px-2 rounded-md ${
                     coin.type === "BOUGHT" && "text-green-200 bg-green-800"
                   }
                   ${coin.type === "SOLD" && "text-red-200 bg-red-800"}
@@ -78,7 +78,7 @@ export default function TransactionsList() {
               <li className="w-20 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
                 {coin.date}
               </li>
-              <li className="w-20 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
+              <li className="w-20 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap hidden md:block">
                 {coin.time}
               </li>
 
@@ -103,7 +103,7 @@ export default function TransactionsList() {
                     )}{" "}
                 </li>
               ) : (
-                <li className="w-20 md:w-1/6 flex items-center md:gap-2 overflow-hidden truncate whitespace-nowrap">
+                <li className="w-20 md:w-1/6 flex justify-center md:gap-2 overflow-hidden truncate whitespace-nowrap">
                   /
                 </li>
               )}

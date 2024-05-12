@@ -17,7 +17,7 @@ export default function WalletPage() {
     <CryptoWalletContextProvider>
       <Header />
       <main className="flex flex-col lg:flex-row justify-between w-full h-full bg-[#1A1C22ff] mt-16">
-        <div className="w-full lg:w-1/3 bg-black min-h-auto flex lg:flex-col gap-3 sm:items-start lg:items-center p-8 text-white flex-col items-center sm:flex-row">
+        <div className="w-full lg:w-1/3 bg-black min-h-auto flex lg:flex-col gap-3 sm:items-start lg:items-center py-8 md:p-8 text-white flex-col items-center sm:flex-row">
           <div className="bg-[#23272Eff] min-w-64 md:min-w-48 h-48 w-[90%] rounded-lg p-8 flex flex-col justify-between">
             <h1 className="font-bold text-lg">This wallet belongs to:</h1>
             <div className="flex gap-5 items-center">

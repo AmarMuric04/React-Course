@@ -39,7 +39,7 @@ export default function CardsContainer() {
         ) : (
           <Image image={image4} className="h-32" />
         )}
-        <span className="text-4xl tracking-[0.2rem] font-bold">
+        <span className="text-4xl tracking-[0.2rem] font-bold  text-nowrap">
           {handleCustomToFixed(
             _mainCoinsList.reduce(
               (accumulator, currentValue) =>

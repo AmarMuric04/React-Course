@@ -19,7 +19,7 @@ export default function LandingPage() {
       <Header />
       <main className="w-full overflow-hidden pb-96 mt-16 min-h-screen text-white bg-[#1A1C22ff] grid place-items-center">
         <div className="flex pt-24 w-full max-w-full overflow-hidden lg:w-3/4 h-full justify-between gap-40 lg:gap-0 items-center lg:items-start flex-wrap flex-col lg:flex-row">
-          <div className="w-2/3 lg:w-[38%] flex flex-col gap-10 items-center lg:items-start">
+          <div className="w-4/5 lg:w-[38%] flex flex-col gap-10 items-center lg:items-start">
             <h1 className="font-bold text-[3.5rem] md:text-[4rem] leading-tight text-center lg:text-start">
               <span className="text-yellow-400">Join us</span> and Start{" "}
               <span className="text-yellow-400">Your</span> Crypto Journey
