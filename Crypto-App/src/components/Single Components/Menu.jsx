@@ -12,7 +12,7 @@ export default function MainList() {
     >
       <ul className="flex w-full gap-3 justify-between md:justify-start md:gap-10 text-xs md:text-lg px-2 md:px-12">
         <li
-          className={`cursor-pointer border-b-[0.2rem] border-transparent py-2 ${
+          className={`cursor-pointer border-b-[0.2rem] border-transparent py-2    overflow-hidden truncate whitespace-nowrap ${
             showCryptoList === "main" && "border-yellow-400"
           }`}
           onClick={() => handleShowCryptoList("main")}
@@ -53,7 +53,7 @@ export default function MainList() {
           BP <span className="hidden md:block">Cryptos</span>
         </li>
         <li
-          className={`cursor-pointer border-b-[0.2rem] border-transparent py-2 ${
+          className={`cursor-pointer border-b-[0.2rem] border-transparent py-2   overflow-hidden truncate whitespace-nowrap ${
             showCryptoList === "activetrades" && "border-yellow-400"
           }`}
           onClick={() => handleShowCryptoList("activetrades")}

@@ -158,22 +158,26 @@ export default function CryptoListContainer() {
         (showCryptoList === "mywallet" ||
           showCryptoList === "activetrades") && (
           <ul className="flex gap-2 md:gap-16 md:px-8 relative text-xs md:text-sm text-gray-400 text-center">
-            <li className="w-1/6 text-start">Name</li>
-            <li className="w-1/6 text-start">
+            <li className="w-1/6 text-start  overflow-hidden truncate whitespace-nowrap">
+              Name
+            </li>
+            <li className="w-1/6 text-start  overflow-hidden truncate whitespace-nowrap">
               <span className="hidden md:block">Avg. Buying Price</span>
               <span className="md:hidden">Buy price</span>
             </li>
-            <li className="w-1/6 flex gap-2">
+            <li className="w-1/6 flex gap-2  overflow-hidden truncate whitespace-nowrap">
               Amount<span className="hidden md:block"> of Coins</span>
             </li>
-            <li className="w-1/6 flex gap-2">
+            <li className="w-1/6 flex gap-2  overflow-hidden truncate whitespace-nowrap">
               <span className="hidden md:block">Money</span> Spent
             </li>
-            <li className="w-1/6">
+            <li className="w-1/6  overflow-hidden truncate whitespace-nowrap">
               <span className="hidden md:block">Price Change</span>
               <span className="md:hidden">Changed</span>
             </li>
-            <li className="w-20">Action</li>
+            <li className="w-20  overflow-hidden truncate whitespace-nowrap">
+              Action
+            </li>
           </ul>
         )}
       {(showCryptoList === "gp" || showCryptoList === "bp") && (

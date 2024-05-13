@@ -7,7 +7,7 @@ export default function WalletCryptoTellers() {
   return (
     <>
       {cryptoWalletList === "main" && (
-        <ul className="flex gap-2 md:gap-5 relative text-xs md:text-sm text-gray-400 text-center">
+        <ul className="flex gap-2 md:gap-5 relative text-xs md:text-md lg:text-xs xl:text-md text-gray-400 text-center">
           <li className="w-1/6 text-start">Name</li>
           <li className="w-1/6 text-start">
             <span className="hidden md:block">Avg. Buying Price</span>
@@ -17,10 +17,11 @@ export default function WalletCryptoTellers() {
             <p>Amount</p> <p className="hidden md:block">of Coins</p>
           </li>
           <li className="w-1/6 flex gap-2">
-            <span>Money Spent</span>
+            <span className="hidden md:block">Money</span> Spent
           </li>
           <li className="w-1/6 text-start">
-            <p>Change</p>
+            <span className="hidden md:block">Price Change</span>
+            <span className="md:hidden">Changed</span>
           </li>
           <li className="w-16 text-end">Action</li>
         </ul>

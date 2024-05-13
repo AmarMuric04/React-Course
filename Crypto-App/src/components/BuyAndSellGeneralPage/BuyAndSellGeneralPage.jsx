@@ -83,7 +83,7 @@ export default function BuyGeneralCrypto({ type }) {
           <h1 className="ml-8 md:ml-0 text-4xl tracking-[0.1rem] my-8 font-bold">
             {`${type.slice(0, 1).toUpperCase() + type.slice(1)}`} Crypto
           </h1>
-          <div className="flex justify-center gap-32 md:gap-0 lg:justify-between flex-wrap-reverse">
+          <div className="flex justify-center gap-32 md:gap-16 lg:justify-between flex-wrap-reverse">
             <div className="w-[98%] md:w-1/2">
               <InterestingCrytpos
                 classes="w-full"
@@ -91,7 +91,7 @@ export default function BuyGeneralCrypto({ type }) {
                 amount="3"
               />
             </div>
-            <div className="w-[95%] md:w-1/3 h-[30rem] md:h-[30rem] md:my-16 rounded-lg bg-[#23272Eff] flex flex-col p-8 pt-0">
+            <div className="w-[95%] sm:w-3/5 md:w-2/5 h-[30rem] md:h-[30rem] md:my-16 rounded-lg bg-[#23272Eff] flex flex-col p-8 pt-0">
               <div className="flex justify-between mb-4">
                 <Link
                   to="/buy-crypto"
@@ -129,8 +129,8 @@ export default function BuyGeneralCrypto({ type }) {
               type.slice(0, 1).toUpperCase() + type.slice(1)
             } Crypto`}
           />
-          <div className="w-full gap-5 md:gap-0 flex justify-between mb-16 flex-wrap">
-            <div className="w-full md:w-[30%] border-[0.1rem] border-[#23272Eff] rounded-xl p-8 flex-col flex gap-3">
+          <div className="w-full gap-5 md:gap-0 flex justify-center md:justify-between mb-16 flex-wrap">
+            <div className="w-full sm:w-1/2 md:w-[30%] border-[0.1rem] border-[#23272Eff] rounded-xl p-8 flex-col flex gap-3">
               {type === "buy" ? (
                 <Image className="w-32" image={Buy1} svgSize="2" />
               ) : (
@@ -143,7 +143,7 @@ export default function BuyGeneralCrypto({ type }) {
                 {type === "buy" ? "bind the payment" : "receive the payment"}.
               </p>
             </div>
-            <div className="w-full md:w-[30%] border-[0.1rem] border-[#23272Eff] rounded-xl p-8 flex-col flex gap-3">
+            <div className="w-full sm:w-1/2 md:w-[30%] border-[0.1rem] border-[#23272Eff] rounded-xl p-8 flex-col flex gap-3">
               {type === "buy" ? (
                 <Image className="w-32" image={Buy2} svgSize="2" />
               ) : (
@@ -155,7 +155,7 @@ export default function BuyGeneralCrypto({ type }) {
                 trading pair quotes, fees, and other explanatory tips.
               </p>
             </div>
-            <div className="w-full md:w-[30%] border-[0.1rem] border-[#23272Eff] rounded-xl p-8 flex-col flex gap-3">
+            <div className="w-full sm:w-1/2 md:w-[30%] border-[0.1rem] border-[#23272Eff] rounded-xl p-8 flex-col flex gap-3">
               {type === "buy" ? (
                 <Image className="w-32" image={Buy3} svgSize="2" />
               ) : (

@@ -22,7 +22,7 @@ export default function Performers({ type }) {
       {coins.length === 0 ? (
         <div className="text-4xl text-center md:m-8 w-full h-96 grid place-items-center">
           {type === "bp" ? (
-            <div className="border-[0.1rem] border-[#23272Eff] rounded-xl w-96 md:w-96 h-full flex flex-col items-center justify-between gap-3 pb-16">
+            <div className="border-[0.1rem] border-[#23272Eff] rounded-xl w-[95%] md:w-96 h-full flex flex-col items-center justify-between gap-3 pb-16">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="5em"

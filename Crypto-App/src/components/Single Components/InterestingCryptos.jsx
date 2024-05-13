@@ -206,23 +206,23 @@ export default function InterestingCryptos({ filterBy, classes, amount }) {
               href={`${coin.explorer}`}
               onClick={handlePreventDefault}
             >
-              <ul className="flex rounded-lg items-center md:gap-5 md:px-8 py-2 relative h-20 transition-all delay-50 hover:bg-[#23272Eff]">
+              <ul className="flex rounded-lg items-center gap-2 md:gap-5 md:px-8 py-2 relative h-20 transition-all delay-50 hover:bg-[#23272Eff]">
                 <li className="w-3 font-normal text-xs">{coinRank}.</li>
-                <li className="w-40 md:w-48 overflow-hidden text-xs">
+                <li className="w-40 md:w-48 text-xs   overflow-hidden truncate whitespace-nowrap">
                   <span className="">{coinName} </span>(
                   <span className="font-extrabold text-sm">{coinSymbol}</span>)
                 </li>
-                <li className="w-24 md:w-32 overflow-hidden text-xs">
+                <li className="w-24 md:w-32  text-xs overflow-hidden truncate whitespace-nowraptext-xs">
                   {coinValue}$
                 </li>
-                <li className="w-20 md:w-32 overflow-hidden text-xs">
+                <li className="w-20 md:w-32 text-xs   overflow-hidden truncate whitespace-nowraptext-xs">
                   {coinMarketCap}$
                 </li>
-                <li className="w-16 md:w-32 overflow-hidden text-xs">
+                <li className="w-16 md:w-32 text-xs  overflow-hidden truncate whitespace-nowraptext-xs ">
                   {volumeInLast24Hours}$
                 </li>
                 <li
-                  className={`w-32 flex items-center justify-end gap-2 ${
+                  className={`w-32 flex items-center justify-end gap-2  overflow-hidden truncate whitespace-nowrap ${
                     changeInLast24Hours < -0.2 && "text-red-400"
                   }  ${changeInLast24Hours > 0.2 && "text-green-400"} ${
                     changeInLast24Hours > -0.2 &&
