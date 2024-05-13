@@ -31,7 +31,7 @@ export default function Crypto({ coin }) {
 
   return (
     <a key={coin.id} href={`${coin.explorer}`} onClick={handlePreventDefault}>
-      <ul className="preventdefault flex items-center py-4 md:py-8 text-xs md:text-2xl px-4 md:pr-16  md:pl-8 rounded-xl relative hover:bg-[#23272Eff] transition-all delay-50 gap-2 md:gap-24 justify-between md:justify-start">
+      <ul className="preventdefault flex items-center py-4 md:py-8 text-xs md:text-md lg:text-2xl px-4 md:pr-16  md:pl-8 rounded-xl relative hover:bg-[#23272Eff] transition-all delay-50 gap-2 xl:gap-24 justify-between md:justify-start">
         <li className="w-8 md:w-12 ">
           {favoriteCryptos.some(
             (favoritedCoin) => coin.id === favoritedCoin.id
@@ -126,7 +126,7 @@ export default function Crypto({ coin }) {
           </span>
           )
         </li>
-        <li className="w-16 md:w-36 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
+        <li className="w-16  md:w-36 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
           $ <span>{coinValue}</span>
         </li>
         <li className="w-12 md:w-32 text-nowrap overflow-hidden truncate whitespace-nowrap">

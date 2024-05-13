@@ -1,6 +1,10 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { CryptoCredentialsContext } from "../../store/cryptoCredentials-context";
 
 export default function LogIn({ onChange }) {
+  const { handleCreateAccount } = useContext(CryptoCredentialsContext);
+
   return (
     <div className="bg-[#23272Eff] text-white rounded-lg w-[28rem] h-[40rem] flex flex-col items-start px-20 py-8 gap-6 shadow-2xl">
       <h1 className="text-yellow-400 text-3xl mb-8">Log in</h1>
@@ -27,8 +31,11 @@ export default function LogIn({ onChange }) {
           Forgot password?
         </p>
       </div>
-      <button className="bg-yellow-400 px-4 py-2 w-auto text-[#1A1C22ff] font-bold rounded-md focus:outline-none hover:bg-yellow-500 transition-all">
-        Sign up
+      <button
+        onClick={handleCreateAccount}
+        className="bg-yellow-400 px-4 py-2 w-auto text-[#1A1C22ff] font-bold rounded-md focus:outline-none hover:bg-yellow-500 transition-all"
+      >
+        Log in
       </button>
       <p>
         Don't have an account?{" "}
