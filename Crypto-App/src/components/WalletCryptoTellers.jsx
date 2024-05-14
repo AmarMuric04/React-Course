@@ -1,8 +1,22 @@
 import { useContext } from "react";
 import { CryptoWalletContext } from "../store/cryptoWallet-context";
+import { CryptoContext } from "../store/crypto-context";
 
 export default function WalletCryptoTellers() {
   const { cryptoWalletList } = useContext(CryptoWalletContext);
+  const { userAccount } = useContext(CryptoContext);
+
+  if (!userAccount) return;
+
+  if (cryptoWalletList === "main" && userAccount.wallet.length === 0) {
+    return;
+  }
+  if (
+    cryptoWalletList === "transactions" &&
+    userAccount.purchaseHistory.length === 0
+  ) {
+    return;
+  }
 
   return (
     <>

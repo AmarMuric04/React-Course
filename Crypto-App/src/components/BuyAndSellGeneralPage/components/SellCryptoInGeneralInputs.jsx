@@ -122,10 +122,14 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
     );
   }
 
+  let selectedCoinWallet;
   let selectedCoin = _mainCoinsList.find((coin) => coin.id === coinToSell);
-  let selectedCoinWallet = userAccount.wallet.find(
-    (coin) => coin.id === coinToSell
-  );
+
+  if (userAccount) {
+    selectedCoinWallet = userAccount.wallet.find(
+      (coin) => coin.id === coinToSell
+    );
+  }
 
   function handleSetCoin(event) {
     setCoinToSell(event.target.value);
@@ -172,6 +176,7 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
   }
 
   function handleSellCrypto() {
+    console.log("11");
     onSell(
       <Modal onCancel={onCancel} height="h-[36rem]" width="w-[25rem]">
         <div className="border-[0.1rem] border-[#23272Eff] w-full p-8 rounded-xl h-full flex gap-5 items-center justify-center flex-col">
@@ -613,11 +618,13 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
             <div className="flex absolute bottom-1 left-4 items-center gap-3">
               <p className="text-sm text-gray-300">
                 In wallet:{" "}
-                {selectedCoinWallet
-                  ? handleCustomToFixed(
-                      Number(selectedCoinWallet.amountOfCoins)
-                    )
-                  : 0}{" "}
+                {userAccount
+                  ? selectedCoinWallet
+                    ? handleCustomToFixed(
+                        Number(selectedCoinWallet.amountOfCoins)
+                      )
+                    : 0
+                  : "***"}{" "}
                 {selectedCoin.symbol}
               </p>
               <Link
@@ -665,12 +672,21 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
           </div>
           {error && <p className="text-red-400">{error}</p>}
         </div>
-        <button
-          onClick={handleSellCrypto}
-          className="bg-yellow-400  text-black py-3 text-xl rounded-lg font-bold"
-        >
-          Sell
-        </button>
+        {userAccount ? (
+          <button
+            onClick={handleSellCrypto}
+            className="bg-yellow-400  text-black py-3 text-xl rounded-lg font-bold hover:bg-yellow-500 transition-all"
+          >
+            Sell
+          </button>
+        ) : (
+          <Link
+            to="/login"
+            className="bg-yellow-400 text-center text-black py-3 text-xl rounded-lg font-bold hover:bg-yellow-500 transition-all"
+          >
+            Log in & Sell
+          </Link>
+        )}{" "}
       </div>
     </>
   );

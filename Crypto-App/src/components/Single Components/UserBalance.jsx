@@ -6,7 +6,7 @@ export default function UserBalance() {
 
   return (
     <p className="text-2xl tracking-[0.1rem]">
-      ${handleCustomToFixed(userAccount.balance)}
+      ${userAccount ? handleCustomToFixed(userAccount.balance) : "******"}
     </p>
   );
 }

@@ -27,14 +27,16 @@ export default function WalletPage() {
               />
               <div className="flex flex-col overflow-hidden  whitespace-nowrap">
                 <div className="flex gap-3">
-                  <p className="font-semibold tracking-[0.1rem]">Amar,</p>
+                  <p className="font-semibold tracking-[0.1rem]">
+                    {userAccount ? userAccount.firstName : "*****,"}
+                  </p>
                   <p className="font-semibold tracking-[0.1rem] truncate">
-                    Muric
+                    {userAccount ? userAccount.lastName : "*****"}
                   </p>
                 </div>
                 <div className="flex ">
                   <p className="text-gray-400 truncate">
-                    muricamar2004@gmail.com
+                    {userAccount ? userAccount.email : "********"}
                   </p>
                 </div>
               </div>
@@ -64,7 +66,10 @@ export default function WalletPage() {
                 </div>
                 <div className="flex">
                   <p className="font-semibold tracking-[0.1rem]">
-                    $ {handleCustomToFixed(userAccount.balance)}
+                    ${" "}
+                    {userAccount
+                      ? handleCustomToFixed(userAccount.balance)
+                      : "*****"}
                   </p>
                 </div>
               </div>
@@ -79,13 +84,20 @@ export default function WalletPage() {
               </p>
               <p className="uppercase tracking-[0.1rem] font-bold text-lg md:text-4xl">
                 ${" "}
-                {handleCustomToFixed(
-                  Number(
-                    userAccount.wallet.reduce((accumulator, currentValue) => {
-                      return accumulator + Number(currentValue.moneySpent);
-                    }, 0)
-                  )
-                )}
+                {userAccount
+                  ? handleCustomToFixed(
+                      Number(
+                        userAccount.wallet.reduce(
+                          (accumulator, currentValue) => {
+                            return (
+                              accumulator + Number(currentValue.moneySpent)
+                            );
+                          },
+                          0
+                        )
+                      )
+                    )
+                  : "*****"}
               </p>
             </div>
             <div className="flex justify-between px-4 md:px-16">
@@ -94,20 +106,25 @@ export default function WalletPage() {
               </p>
               <p className="uppercase tracking-[0.1rem] font-bold text-xs md:text-2xl text-gray-400">
                 ${" "}
-                {handleCustomToFixed(
-                  Number(
-                    userAccount.wallet.reduce((accumulator, currentValue) => {
-                      const coin = _mainCoinsList.find(
-                        (coin) => coin.id === currentValue.id
-                      );
-                      return (
-                        accumulator +
-                        Number(currentValue.amountOfCoins) *
-                          Number(coin.priceUsd)
-                      );
-                    }, 0)
-                  )
-                )}
+                {userAccount
+                  ? handleCustomToFixed(
+                      Number(
+                        userAccount.wallet.reduce(
+                          (accumulator, currentValue) => {
+                            const coin = _mainCoinsList.find(
+                              (coin) => coin.id === currentValue.id
+                            );
+                            return (
+                              accumulator +
+                              Number(currentValue.amountOfCoins) *
+                                Number(coin.priceUsd)
+                            );
+                          },
+                          0
+                        )
+                      )
+                    )
+                  : "*****"}
               </p>
             </div>
           </div>

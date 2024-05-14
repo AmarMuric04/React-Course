@@ -1,28 +1,13 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
+import { CryptoContext } from "./crypto-context";
 
 export const CryptoCredentialsContext = createContext({
-  account: {},
-  userAccounts: [],
   handleCreateAccount: () => {},
 });
 
 export default function CryptoCredentialsContextProvider({ children }) {
-  const [account, setAccount] = useState({});
-  const [loggedInAs, setLoggedInAs] = useState({});
-
-  const userAccounts =
-    JSON.parse(localStorage.getItem("Blajvinance-User-Accounts")) || [];
-
-  useEffect(() => {
-    const alreadyLoggedIn = JSON.parse(
-      localStorage.getItem("Blajvinance-Logged-In-As")
-    );
-
-    if (alreadyLoggedIn) {
-      setAccount(alreadyLoggedIn);
-      setLoggedInAs(alreadyLoggedIn);
-    }
-  }, []);
+  const { userAccounts, handleSetUserAccount, handleSetUserAccounts } =
+    useContext(CryptoContext);
 
   function handleCreateAccount(firstName, lastName, email, password) {
     const newAccount = {
@@ -30,12 +15,16 @@ export default function CryptoCredentialsContextProvider({ children }) {
       lastName,
       email,
       password,
+      balance: 150000,
+      wallet: [],
+      purchaseHistory: [],
+      favoritedCryptos: [],
     };
 
-    setAccount(newAccount);
-    setLoggedInAs(newAccount);
-
     userAccounts.push(newAccount);
+    handleSetUserAccounts(userAccounts);
+
+    handleSetUserAccount(newAccount);
 
     localStorage.setItem(
       "Blajvinance-User-Accounts",
@@ -48,8 +37,6 @@ export default function CryptoCredentialsContextProvider({ children }) {
   }
 
   const credentialsContextValue = {
-    userAccounts,
-    account,
     handleCreateAccount,
   };
 

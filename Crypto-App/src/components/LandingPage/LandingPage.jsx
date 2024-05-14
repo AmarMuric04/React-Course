@@ -10,6 +10,9 @@ import WalletWorth from "./components/WalletWorth";
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
+  const userAccount =
+    JSON.parse(localStorage.getItem("Blajvinance-Logged-In-As")) || null;
+
   window.scrollTo(0, 0);
 
   document.title = `Blajvinance | Crypto Currency Exchange Platform`;
@@ -25,12 +28,21 @@ export default function LandingPage() {
               <span className="text-yellow-400">Your</span> Crypto Journey
             </h1>
             <WalletWorth />
-            <Link
-              to="/crypto-list"
-              className="bg-yellow-400 font-bold text-center text-black py-3 px-6 rounded-md"
-            >
-              Invest more
-            </Link>
+            {userAccount ? (
+              <Link
+                to="/crypto-list"
+                className="bg-yellow-400 font-bold text-center text-black py-3 px-6 rounded-md"
+              >
+                Invest more
+              </Link>
+            ) : (
+              <Link
+                to="/log-in"
+                className="bg-yellow-400 font-bold text-center text-black py-3 px-6 rounded-md"
+              >
+                Log in & invest
+              </Link>
+            )}
           </div>
           <div className="w-[95%] lg:w-1/2">
             <InterestingCryptos classes="w-full" filterBy="change" amount="3" />
@@ -44,7 +56,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="w-full lg:w-3/4 mt-48 justify-around flex flex-col gap-2 mb-64">
-          <h1 className="text-[3rem] font-bold my-4 text-center">
+          <h1 className="text-[3rem] font-bold my-4 text-center md:text-start">
             What's going on in the crypto world today?
           </h1>
           <CardsContainer />

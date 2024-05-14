@@ -10,7 +10,7 @@ import Modal from "../Single Components/Modal";
 import ActiveTradesCryptoList from "../DifferentCryptoLists/ActiveTradesCryptoList";
 
 export default function CryptoListContainer() {
-  const { showCryptoList, _mainCoinsList, favoriteCryptos, userAccount } =
+  const { showCryptoList, _mainCoinsList, userAccount } =
     useContext(CryptoContext);
 
   if (!_mainCoinsList || _mainCoinsList.length === 0) {
@@ -121,9 +121,16 @@ export default function CryptoListContainer() {
   }
 
   function handleShowUl() {
-    if (showCryptoList === "mywallet" && userAccount.wallet.length === 0)
+    if (
+      (showCryptoList === "mywallet" && !userAccount) ||
+      (showCryptoList === "mywallet" && userAccount.wallet.length === 0)
+    )
       return false;
-    if (showCryptoList === "favorite" && favoriteCryptos.length === 0)
+    if (
+      (showCryptoList === "favorite" && !userAccount) ||
+      (showCryptoList === "favorite" &&
+        userAccount.favoritedCryptos.length === 0)
+    )
       return false;
     if (showCryptoList === "activetrades") return false;
     if (

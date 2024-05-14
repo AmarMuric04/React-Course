@@ -5,9 +5,11 @@ export const CryptoContext = createContext({
   coinFilter: "",
   userWallet: [],
   showCryptoList: [],
-  favoriteCryptos: [],
   isLoading: true,
   userAccount: {},
+  loggedInAs: {},
+  account: {},
+  userAccounts: [],
   addFavorite: () => {},
   handleSetFilters: () => {},
   handleFormatNumber: () => {},
@@ -19,21 +21,18 @@ export const CryptoContext = createContext({
   handleFilterCoins: () => {},
   handleBuyCryptoGeneral: () => {},
   handleSellCryptoGeneral: () => {},
+  handleSetUserAccounts: () => {},
+  handleSetUserAccount: () => {},
+  handleLogOut: () => {},
 });
 
 export default function CryptoContextProvider({ children }) {
   const [coins, setCoins] = useState([]);
   const [coinFilter, setCoinFilter] = useState("");
-  const [favoriteCryptos, setFavoriteCryptos] = useState([]);
   const [showCryptoList, setShowCryptoList] = useState("main");
   const [isLoading, setIsLoading] = useState(true);
-  const [userAccount, setUserAccount] = useState({
-    firstName: "",
-    lastName: "",
-    balance: 150000,
-    purchaseHistory: [],
-    wallet: [],
-  });
+  const [userAccounts, setUserAccounts] = useState([]);
+  const [userAccount, setUserAccount] = useState(null);
 
   useEffect(() => {
     async function fetchCrypto() {
@@ -47,16 +46,39 @@ export default function CryptoContextProvider({ children }) {
 
         setCoins(data.data);
 
-        setFavoriteCryptos((prevFavoriteCryptos) => {
-          return prevFavoriteCryptos.map((favoriteCrypto) => {
-            const favoritedCrypto = data.data.find(
-              (coin) => coin.id === favoriteCrypto.id
-            );
+        setUserAccount((prevUserAccount) => {
+          if (!prevUserAccount) return prevUserAccount;
 
-            return {
-              ...favoritedCrypto,
-            };
-          });
+          localStorage.setItem(
+            "Blajvinance-Logged-In-As",
+            JSON.stringify(prevUserAccount)
+          );
+
+          const newUserAccounts = JSON.parse(
+            localStorage.getItem("Blajvinance-User-Accounts")
+          ).map((account) =>
+            account.email === prevUserAccount.email ? prevUserAccount : account
+          );
+
+          localStorage.setItem(
+            "Blajvinance-User-Accounts",
+            JSON.stringify(newUserAccounts)
+          );
+          setUserAccounts(newUserAccounts);
+
+          const updatedFavoriteCryptos = prevUserAccount.favoritedCryptos.map(
+            (favoriteCrypto) => {
+              const favoritedCrypto = data.data.find(
+                (coin) => coin.id === favoriteCrypto.id
+              );
+              return { ...favoritedCrypto };
+            }
+          );
+
+          return {
+            ...prevUserAccount,
+            favoritedCryptos: updatedFavoriteCryptos,
+          };
         });
 
         setIsLoading(false);
@@ -73,8 +95,34 @@ export default function CryptoContextProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    console.log(userAccount.purchaseHistory);
-  }, [userAccount]);
+    const alreadyLoggedIn = JSON.parse(
+      localStorage.getItem("Blajvinance-Logged-In-As")
+    );
+
+    const accounts = JSON.parse(
+      localStorage.getItem("Blajvinance-User-Accounts")
+    );
+
+    if (alreadyLoggedIn) {
+      setUserAccount(alreadyLoggedIn);
+    }
+
+    if (accounts && accounts.length > 0) setUserAccounts(accounts);
+  }, []);
+
+  function handleSetUserAccounts(userAccounts) {
+    setUserAccounts(userAccounts);
+  }
+
+  function handleLogOut() {
+    setUserAccount(null);
+
+    localStorage.setItem("Blajvinance-Logged-In-As", JSON.stringify(null));
+  }
+
+  function handleSetUserAccount(userAccount) {
+    setUserAccount(userAccount);
+  }
 
   function handleSellCryptoGeneral(coin, amount) {
     const date = `${new Date().getDate()}/${
@@ -138,6 +186,20 @@ export default function CryptoContextProvider({ children }) {
         purchaseHistory: newPurchaseHistory,
       };
     });
+
+    localStorage.setItem(
+      "Blajvinance-Logged-In-As",
+      JSON.stringify(userAccount)
+    );
+
+    const newUserAccounts = JSON.parse(
+      localStorage.getItem("Blajvinance-User-Accounts")
+    ).forEach(
+      (account) =>
+        (account = account.email === userAccount.email ? userAccount : account)
+    );
+
+    setUserAccounts(newUserAccounts);
   }
 
   function handleBuyCryptoGeneral(
@@ -191,6 +253,21 @@ export default function CryptoContextProvider({ children }) {
         };
       });
 
+      localStorage.setItem(
+        "Blajvinance-Logged-In-As",
+        JSON.stringify(userAccount)
+      );
+
+      const newUserAccounts = JSON.parse(
+        localStorage.getItem("Blajvinance-User-Accounts")
+      ).forEach(
+        (account) =>
+          (account =
+            account.email === userAccount.email ? userAccount : account)
+      );
+
+      setUserAccounts(newUserAccounts);
+
       const coinToAddId = secondCoin.id;
       const coinToAddValue = Number(secondCoin.priceUsd);
 
@@ -198,7 +275,7 @@ export default function CryptoContextProvider({ children }) {
         (purchasedCoin) => purchasedCoin.id === coinToAddId
       );
 
-      if (!coinToAdd)
+      if (!coinToAdd) {
         setUserAccount((prevUserAccount) => {
           return {
             ...prevUserAccount,
@@ -230,7 +307,21 @@ export default function CryptoContextProvider({ children }) {
             ],
           };
         });
-      else {
+        localStorage.setItem(
+          "Blajvinance-Logged-In-As",
+          JSON.stringify(userAccount)
+        );
+
+        const newUserAccounts = JSON.parse(
+          localStorage.getItem("Blajvinance-User-Accounts")
+        ).forEach(
+          (account) =>
+            (account =
+              account.email === userAccount.email ? userAccount : account)
+        );
+
+        setUserAccounts(newUserAccounts);
+      } else {
         coinToAdd.amountOfCoins = coinToAdd.amountOfCoins + quantitySecond;
         coinToAdd.moneySpent =
           Number(coinToRemove.amountOfCoins) *
@@ -263,6 +354,20 @@ export default function CryptoContextProvider({ children }) {
             ],
           };
         });
+        localStorage.setItem(
+          "Blajvinance-Logged-In-As",
+          JSON.stringify(userAccount)
+        );
+
+        const newUserAccounts = JSON.parse(
+          localStorage.getItem("Blajvinance-User-Accounts")
+        ).forEach(
+          (account) =>
+            (account =
+              account.email === userAccount.email ? userAccount : account)
+        );
+
+        setUserAccounts(newUserAccounts);
       }
     }
   }
@@ -280,7 +385,7 @@ export default function CryptoContextProvider({ children }) {
         (purchasedCoin) => purchasedCoin.id === coin.coinId
       );
 
-    if (!alreadyBoughtCoin)
+    if (!alreadyBoughtCoin) {
       setUserAccount((prevUserAccount) => {
         return {
           ...prevUserAccount,
@@ -310,7 +415,22 @@ export default function CryptoContextProvider({ children }) {
           ],
         };
       });
-    else {
+
+      localStorage.setItem(
+        "Blajvinance-Logged-In-As",
+        JSON.stringify(userAccount)
+      );
+
+      const newUserAccounts = JSON.parse(
+        localStorage.getItem("Blajvinance-User-Accounts")
+      ).forEach(
+        (account) =>
+          (account =
+            account.email === userAccount.email ? userAccount : account)
+      );
+
+      setUserAccounts(newUserAccounts);
+    } else {
       alreadyBoughtCoin.purchasedPrice =
         (alreadyBoughtCoin.purchasedPrice * alreadyBoughtCoin.amountOfCoins +
           coin.coinValue * coinAmount) /
@@ -349,11 +469,26 @@ export default function CryptoContextProvider({ children }) {
           purchaseHistory: newPurchaseHistory,
         };
       });
+
+      localStorage.setItem(
+        "Blajvinance-Logged-In-As",
+        JSON.stringify(userAccount)
+      );
+
+      const newUserAccounts = JSON.parse(
+        localStorage.getItem("Blajvinance-User-Accounts")
+      ).forEach(
+        (account) =>
+          (account =
+            account.email === userAccount.email ? userAccount : account)
+      );
+
+      setUserAccounts(newUserAccounts);
     }
   }
 
   function handleFavorite(coin) {
-    const newFavoriteCryptos = [...favoriteCryptos];
+    const newFavoriteCryptos = [...userAccount.favoritedCryptos];
 
     if (newFavoriteCryptos.some((favorite) => favorite.id === coin.id)) {
       newFavoriteCryptos.splice(
@@ -362,7 +497,26 @@ export default function CryptoContextProvider({ children }) {
       );
     } else newFavoriteCryptos.push(coin);
 
-    setFavoriteCryptos(newFavoriteCryptos);
+    setUserAccount((prevUserAccount) => {
+      return {
+        ...prevUserAccount,
+        favoritedCryptos: newFavoriteCryptos,
+      };
+    });
+
+    localStorage.setItem(
+      "Blajvinance-Logged-In-As",
+      JSON.stringify(userAccount)
+    );
+
+    const newUserAccounts = JSON.parse(
+      localStorage.getItem("Blajvinance-User-Accounts")
+    ).forEach(
+      (account) =>
+        (account = account.email === userAccount.email ? userAccount : account)
+    );
+
+    setUserAccounts(newUserAccounts);
   }
 
   function handleCustomToFixed(number) {
@@ -488,9 +642,9 @@ export default function CryptoContextProvider({ children }) {
     userWallet: [],
     coinFilter,
     showCryptoList,
-    favoriteCryptos,
     isLoading,
     userAccount,
+    userAccounts,
     addFavorite: handleFavorite,
     handleSetFilters,
     handleFormatNumber,
@@ -503,6 +657,9 @@ export default function CryptoContextProvider({ children }) {
     handleFilterCoins,
     handleBuyCryptoGeneral,
     handleSellCryptoGeneral,
+    handleSetUserAccount,
+    handleSetUserAccounts,
+    handleLogOut,
   };
 
   return (

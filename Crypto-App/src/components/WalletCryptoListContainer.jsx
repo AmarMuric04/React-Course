@@ -1,14 +1,12 @@
 import { useContext } from "react";
 import { CryptoWalletContext } from "../store/cryptoWallet-context";
-import WalletCryptoList from "./WalletCryptoList";
 import TransactionsList from "./TransactionsList";
 import Modal from "./Single Components/Modal";
 import ActiveTradesCryptoList from "./DifferentCryptoLists/ActiveTradesCryptoList";
+import WalletCryptoList from "./WalletCryptoList";
 
 export default function WalletCryptoListContainer() {
   const { cryptoWalletList } = useContext(CryptoWalletContext);
-
-  console.log(cryptoWalletList);
 
   return (
     <>

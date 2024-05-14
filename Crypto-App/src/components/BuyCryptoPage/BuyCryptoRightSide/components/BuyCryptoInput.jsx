@@ -4,6 +4,7 @@ import Image from "../../../Single Components/Image";
 
 import Logo from "/public/btcLogo.png";
 import Modal from "../../../Single Components/Modal";
+import { Link } from "react-router-dom";
 
 export default function BuyCryptoInput({ coin, type }) {
   const { handleCustomToFixed, handleBuyCrypto, userAccount } =
@@ -400,7 +401,7 @@ export default function BuyCryptoInput({ coin, type }) {
       {bought && modal}
       <div className="w-full relative my-4">
         <input
-          className={`bg-[#23272Eff] pb-4 py-12 w-full text-white px-4 rounded-lg focus:outline-none placeholder-white border-[0.1rem] ${
+          className={`bg-[#23272Eff] pb-4 py-12 w-full text-white px-4 rounded-lg focus:outline-none placeholder-white  ${
             error && "border-red-400"
           }`}
           type="text"
@@ -475,16 +476,25 @@ export default function BuyCryptoInput({ coin, type }) {
           : `USDT/${coin.coinSymbol}`}{" "}
         spot trading pair.
       </p>
-      <button
-        onClick={
-          type === "crypto"
-            ? () => handleBuyCryptoHelper(coin, inputValue, "")
-            : () => handleBuyCryptoHelper(coin, "", inputValue)
-        }
-        className="bg-yellow-400 rounded-md py-4 font-bold hover:bg-yellow-500 transition-all"
-      >
-        Buy {coin.coinSymbol}
-      </button>
+      {userAccount ? (
+        <button
+          onClick={
+            type === "crypto"
+              ? () => handleBuyCryptoHelper(coin, inputValue, "")
+              : () => handleBuyCryptoHelper(coin, "", inputValue)
+          }
+          className="bg-yellow-400 text-black rounded-md py-4 font-bold hover:bg-yellow-500 transition-all"
+        >
+          Buy {coin.coinSymbol}
+        </button>
+      ) : (
+        <Link
+          to="/login"
+          className="bg-yellow-400 text-black text-center rounded-md py-4 font-bold hover:bg-yellow-500 transition-all"
+        >
+          Log in & Buy {coin.coinSymbol}
+        </Link>
+      )}
     </>
   );
 }

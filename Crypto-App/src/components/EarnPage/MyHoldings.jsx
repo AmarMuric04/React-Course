@@ -101,7 +101,7 @@ export default function MyHoldings() {
           In cash
         </p>
         <p className="tracking-[0.1rem] text-gray-400">
-          $ {handleCustomToFixed(userAccount.balance)}
+          $ {userAccount ? handleCustomToFixed(userAccount.balance) : "*****"}
         </p>
       </div>
       <div className="py-4">
@@ -121,29 +121,33 @@ export default function MyHoldings() {
         </p>
         <p className="tracking-[0.1rem] text-gray-400">
           ${" "}
-          {handleCustomToFixed(
-            Number(
-              userAccount.wallet.reduce((accumulator, currentValue) => {
-                return accumulator + Number(currentValue.moneySpent);
-              }, 0)
-            )
-          )}
+          {userAccount
+            ? handleCustomToFixed(
+                Number(
+                  userAccount.wallet.reduce((accumulator, currentValue) => {
+                    return accumulator + Number(currentValue.moneySpent);
+                  }, 0)
+                )
+              )
+            : "*****"}
         </p>
         <p className="tracking-[0.1rem] text-gray-700 text-sm">
           ${" "}
-          {handleCustomToFixed(
-            Number(
-              userAccount.wallet.reduce((accumulator, currentValue) => {
-                const coin = _mainCoinsList.find(
-                  (coin) => coin.id === currentValue.id
-                );
-                return (
-                  accumulator +
-                  Number(currentValue.amountOfCoins) * Number(coin.priceUsd)
-                );
-              }, 0)
-            )
-          )}
+          {userAccount
+            ? handleCustomToFixed(
+                Number(
+                  userAccount.wallet.reduce((accumulator, currentValue) => {
+                    const coin = _mainCoinsList.find(
+                      (coin) => coin.id === currentValue.id
+                    );
+                    return (
+                      accumulator +
+                      Number(currentValue.amountOfCoins) * Number(coin.priceUsd)
+                    );
+                  }, 0)
+                )
+              )
+            : "*****"}
         </p>
       </div>
     </div>

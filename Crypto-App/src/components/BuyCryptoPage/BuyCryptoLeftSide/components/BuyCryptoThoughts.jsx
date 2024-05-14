@@ -41,8 +41,8 @@ export default function BuyCryptoThoughts({ coin }) {
         </div>
       </div>
       <div className="flex flex-col h-16 gap-3 justify-between rounded-md mt-8 px-2 py-1 bg-[#23272Eff]">
-        <div className="flex w-full h-full">
-          <div className="flex items-center gap-3 w-1/6 justify-start">
+        <div className="flex w-full h-full justify-between">
+          <div className="flex items-center gap-3 w-1/3 md:w-1/6 justify-start">
             <LikeIcon svgSize="1" />
             <p className="flex gap-2">
               Good{" "}
@@ -51,7 +51,7 @@ export default function BuyCryptoThoughts({ coin }) {
               </span>
             </p>
           </div>
-          <div className="flex w-4/6 gap-2 h-full items-center justify-center">
+          <div className="flex w-1/3 md:w-4/6 gap-2 h-full items-center justify-center">
             <div
               className={`h-1/2 skew-x-[-45deg] transition-all w-${
                 clickedGood ? "2/3" : clickedBad ? "1/3" : "1/2"
@@ -63,7 +63,7 @@ export default function BuyCryptoThoughts({ coin }) {
               } bg-red-400`}
             ></div>
           </div>
-          <div className="flex items-center gap-3 w-1/6 justify-end">
+          <div className="flex items-center gap-3 w-1/3 md:w-1/6 justify-end">
             <DislikeIcon svgSize="1" />
             <p className="flex gap-2">
               Bad{" "}

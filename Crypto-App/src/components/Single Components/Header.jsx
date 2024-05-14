@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import Logo from "/public/FinalLogo.png";
 import Image from "./Image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CryptoContext } from "../../store/crypto-context";
 
 export default function Header() {
+  const { userAccount, handleLogOut } = useContext(CryptoContext);
+
   const [openHeader, setOpenHeader] = useState("");
 
   useEffect(() => {
@@ -21,49 +24,84 @@ export default function Header() {
   return (
     <>
       <header className="hidden lg:flex absolute top-0 left-0 right-0 bg-[#1A1C22ff] px-16 h-16 items-center justify-between flex-wrap">
-        <div className="flex items-center h-full gap-3 cursor-pointer">
+        <div className="flex items-center h-full gap-3">
           <Image image={Logo} className="w-10" svgSize="1.5" />
           <h1 className="text-2xl text-yellow-400 tracking-[0.3rem]">
             B<span className="text-stone-700 text-2xl">LAJV</span>
             INANCE
           </h1>
-          <ul className="hidden lg:flex  text-white gap-5 items-center ml-8 font-bold text-md">
-            <Link to="/crypto-list">List of Cryptos</Link>
-            <Link to="/buy-crypto" className="cursor-pointer">
+          <ul className="hidden lg:flex text-xs xl:text-lg text-white gap-5 items-center ml-8 font-bold ">
+            <Link
+              to="/"
+              className="cursor-pointer hover:text-yellow-400 transition-all"
+            >
+              Home
+            </Link>
+            <Link
+              to="/crypto-list"
+              className="cursor-pointer hover:text-yellow-400 transition-all"
+            >
+              List of Cryptos
+            </Link>
+            <Link
+              to="/buy-crypto"
+              className="cursor-pointer hover:text-yellow-400 transition-all"
+            >
               Buy Crypto
             </Link>
-            <Link to="/my-wallet" className="cursor-pointer">
+            <Link
+              to="/my-wallet"
+              className="cursor-pointer hover:text-yellow-400 transition-all"
+            >
               My Wallet
             </Link>
-            <Link to="/earn" className="cursor-pointer">
+            <Link
+              to="/earn"
+              className="cursor-pointer hover:text-yellow-400 transition-all"
+            >
               Earn
             </Link>
-            <Link to="/contact" className="cursor-pointer">
+            <Link
+              to="/contact"
+              className="cursor-pointer hover:text-yellow-400 transition-all"
+            >
               Contact
             </Link>
-            <Link to="/sell-crypto" className="cursor-pointer">
+            <Link
+              to="/sell-crypto"
+              className="cursor-pointer hover:text-yellow-400 transition-all"
+            >
               Sell Crypto
             </Link>
           </ul>
         </div>
 
-        <div className="flex gap-4 text-[#1A1C22ff]">
-          <Link
-            className="bg-yellow-400 py-2 px-4 rounded-md hover:bg-yellow-500 transition-all font-bold"
-            to="/login"
+        {!userAccount ? (
+          <div className="flex gap-4 text-[#1A1C22ff]">
+            <Link
+              className="bg-yellow-400 py-2 px-4 rounded-md hover:bg-yellow-500 transition-all font-bold"
+              to="/login"
+            >
+              Log in
+            </Link>
+            <Link
+              className="bg-yellow-400 py-2 px-4 rounded-md hover:bg-yellow-500 transition-all font-bold"
+              to="/signup"
+            >
+              Sign up
+            </Link>
+          </div>
+        ) : (
+          <button
+            onClick={handleLogOut}
+            className="text-[#1A1C22ff] bg-yellow-400 py-2 px-4 rounded-md hover:bg-yellow-500 transition-all font-bold"
           >
-            Log in
-          </Link>
-          <Link
-            className="bg-yellow-400 py-2 px-4 rounded-md hover:bg-yellow-500 transition-all font-bold"
-            to="/signup"
-          >
-            Sign up
-          </Link>
-        </div>
+            Log out
+          </button>
+        )}
       </header>
       <header className="lg:hidden absolute top-0 left-0 w-full h-16 bg-[#1A1C22ff] flex items-center text-white justify-between px-4 pl-8">
-        <div className="flex items-center h-full gap-1 cursor-pointer z-50">
+        <div className="flex items-center h-full gap-1 z-50">
           <Image image={Logo} className="w-5" svgSize="1.5" />
           <h1 className="text-xs text-yellow-400 tracking-[0.3rem]">
             B<span className="text-stone-700 text-xs">LAJV</span>
@@ -211,6 +249,88 @@ export default function Header() {
           } bg-[#23272Eff] w-full h-screen transition-all`}
         >
           <ul className="mt-32 flex flex-col w-[90%] h-[90%] gap-5 text-lg font-semibold">
+            <Link to="/" className="flex gap-2 items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  fill-opacity="0"
+                  d="M5 8.5L12 3L19 8.5V21H15V13L14 12H10L9 13V21H5V8.5Z"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="fill-opacity"
+                    begin="0.9s"
+                    dur="0.15s"
+                    values="0;0.3"
+                  />
+                </path>
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    stroke-dasharray="15"
+                    stroke-dashoffset="15"
+                    d="M4.5 21.5h15"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="stroke-dashoffset"
+                      dur="0.2s"
+                      values="15;0"
+                    />
+                  </path>
+                  <path
+                    stroke-dasharray="15"
+                    stroke-dashoffset="15"
+                    d="M4.5 21.5V8M19.5 21.5V8"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="stroke-dashoffset"
+                      begin="0.2s"
+                      dur="0.2s"
+                      values="15;0"
+                    />
+                  </path>
+                  <path
+                    stroke-dasharray="24"
+                    stroke-dashoffset="24"
+                    d="M9.5 21.5V12.5H14.5V21.5"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="stroke-dashoffset"
+                      begin="0.4s"
+                      dur="0.4s"
+                      values="24;0"
+                    />
+                  </path>
+                  <path
+                    stroke-dasharray="30"
+                    stroke-dashoffset="30"
+                    stroke-width="2"
+                    d="M2 10L12 2L22 10"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="stroke-dashoffset"
+                      begin="0.5s"
+                      dur="0.4s"
+                      values="30;0"
+                    />
+                  </path>
+                </g>
+              </svg>
+              Home
+            </Link>
             <Link to="/crypto-list" className="flex gap-2 items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

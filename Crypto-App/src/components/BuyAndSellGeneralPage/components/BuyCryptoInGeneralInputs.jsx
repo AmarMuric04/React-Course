@@ -19,9 +19,12 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
   let selectedCoin, selectedCoinWallet;
   if (firstSelection !== "cash") {
     selectedCoin = _mainCoinsList.find((coin) => coin.id === firstSelection);
-    selectedCoinWallet = userAccount.wallet.find(
-      (coin) => coin.id === firstSelection
-    );
+
+    if (userAccount) {
+      selectedCoinWallet = userAccount.wallet.find(
+        (coin) => coin.id === firstSelection
+      );
+    }
   }
 
   let secondSelectedCoin = _mainCoinsList.find(
@@ -574,9 +577,12 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
             <div className="flex absolute bottom-1 left-4 items-center gap-3">
               <p className="text-sm text-gray-300">
                 In wallet:{" "}
-                {firstSelection !== "cash" && selectedCoinWallet?.amountOfCoins
-                  ? handleCustomToFixed(selectedCoinWallet.amountOfCoins)
-                  : 0}{" "}
+                {userAccount
+                  ? firstSelection !== "cash" &&
+                    selectedCoinWallet?.amountOfCoins
+                    ? handleCustomToFixed(selectedCoinWallet.amountOfCoins)
+                    : 0
+                  : "***"}{" "}
                 {selectedCoin.symbol}
               </p>
               <Link
@@ -637,12 +643,21 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
         </div>
         {error && <p className="text-red-400">{error}</p>}
       </div>
-      <button
-        onClick={handleBuyGeneralCrypto}
-        className="bg-yellow-400 text-black py-3 text-xl rounded-lg font-bold"
-      >
-        Buy
-      </button>
+      {userAccount ? (
+        <button
+          onClick={handleBuyGeneralCrypto}
+          className="bg-yellow-400 text-black py-3 text-xl rounded-lg font-bold hover:bg-yellow-500 transition-all"
+        >
+          Buy
+        </button>
+      ) : (
+        <Link
+          className="bg-yellow-400 text-center text-black py-3 text-xl rounded-lg font-bold hover:bg-yellow-500 transition-all"
+          to="/login"
+        >
+          Log in & Buy
+        </Link>
+      )}
     </div>
   );
 }

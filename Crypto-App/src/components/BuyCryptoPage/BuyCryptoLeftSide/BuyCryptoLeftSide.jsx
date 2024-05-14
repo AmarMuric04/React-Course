@@ -1,6 +1,4 @@
 import { useContext } from "react";
-import Image from "../../Single Components/Image";
-import Logo from "/btcLogo.png";
 import { CryptoContext } from "../../../store/crypto-context";
 import BuyCryptoThoughts from "./components/BuyCryptoThoughts";
 import CryptoInfoTable from "./components/CryptoInfoTable";
@@ -251,13 +249,13 @@ export default function BuyCryptoLeftSide({ id }) {
           <p className="flex items-center gap-3">
             24h Low & High <InfoIcon svgSize="1" />
           </p>
-          <div className="flex w-full lg:w-2/3 justify-between gap-3">
-            <p className="w-1/4 text-nowrap">
+          <div className="flex w-full lg:w-2/3 flex-col justify-between gap-3">
+            <p className="w-1/4 text-nowrap ">
               Low: $ {handleCustomToFixed(coinValue - coinValue * 0.097)}
             </p>
             <div className="w-1/3 flex items-center">
-              <div className="w-2/5 h-1/3 bg-red-400"></div>
-              <div className="w-3/5 h-1/3 bg-green-400"></div>
+              <div className="w-2/5 h-1/3 min-h-2 bg-red-400"></div>
+              <div className="w-3/5 h-1/3 min-h-2 bg-green-400"></div>
             </div>
             <p className="w-1/4 text-nowrap">
               High: $ {handleCustomToFixed(coinValue + coinValue * 0.074)}
@@ -359,7 +357,7 @@ export default function BuyCryptoLeftSide({ id }) {
         </div>
         <div className="my-32 flex flex-col">
           <h1 className="text-3xl font-bold my-8">{coinName} Resources</h1>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 overflow-hidden truncate whitespace-nowrap">
             <a href={coinResource} className="flex gap-3 items-center">
               <BookIcon svgSize="1.5" />
               {coinResource}
