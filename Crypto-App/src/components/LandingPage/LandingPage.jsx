@@ -8,12 +8,11 @@ import CardsContainer from "./components/CardsContainer";
 import WalletWorth from "./components/WalletWorth";
 
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CryptoContext } from "../../store/crypto-context";
 
 export default function LandingPage() {
-  const userAccount =
-    JSON.parse(localStorage.getItem("Blajvinance-Logged-In-As")) || null;
-
-  window.scrollTo(0, 0);
+  const { userAccount } = useContext(CryptoContext);
 
   document.title = `Blajvinance | Crypto Currency Exchange Platform`;
 
@@ -37,7 +36,7 @@ export default function LandingPage() {
               </Link>
             ) : (
               <Link
-                to="/log-in"
+                to="/login"
                 className="bg-yellow-400 font-bold text-center text-black py-3 px-6 rounded-md"
               >
                 Log in & invest

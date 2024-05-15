@@ -91,7 +91,7 @@ export default function BuyGeneralCrypto({ type }) {
                 amount="3"
               />
             </div>
-            <div className="w-[95%] sm:w-3/5 md:w-2/5 h-[30rem] md:h-[30rem] md:my-16 rounded-lg bg-[#23272Eff] flex flex-col p-8 pt-0">
+            <div className="w-[95%] sm:w-3/5 md:w-2/5 lg:w-1/3 h-[30rem] md:h-[30rem] md:my-16 rounded-lg bg-[#23272Eff] flex flex-col p-8 pt-0">
               <div className="flex justify-between mb-4">
                 <Link
                   to="/buy-crypto"

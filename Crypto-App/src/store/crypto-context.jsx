@@ -604,10 +604,12 @@ export default function CryptoContextProvider({ children }) {
   function handleFormatNumber(amount) {
     let newAmount = amount;
 
-    if (amount > 1000) newAmount = (amount / 1000).toFixed(2) + "K";
-    if (amount > 1000000) newAmount = (amount / 1000000).toFixed(2) + "M";
-    if (amount > 1000000000) newAmount = (amount / 1000000000).toFixed(2) + "B";
-    if (amount > 1000000000000)
+    if (amount < 1000) newAmount = amount.toFixed(2);
+    if (amount >= 1000) newAmount = (amount / 1000).toFixed(2) + "K";
+    if (amount >= 1000000) newAmount = (amount / 1000000).toFixed(2) + "M";
+    if (amount >= 1000000000)
+      newAmount = (amount / 1000000000).toFixed(2) + "B";
+    if (amount >= 1000000000000)
       newAmount = (amount / 1000000000000).toFixed(2) + "T";
 
     return newAmount;

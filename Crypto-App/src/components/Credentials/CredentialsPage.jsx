@@ -15,7 +15,7 @@ export default function CredentialsPage({ page }) {
       >
         <div
           id="signup-inner"
-          className="w-[95%] h-[90%] rounded-xl flex justify-between px-8 pt-16 pb-32 flex-wrap relative"
+          className="w-[95%] h-[90%] rounded-xl flex justify-center xl:justify-between md:px-8 md:pt-16 md:pb-32 flex-wrap relative"
         >
           <p className="gap-3 absolute top-3 right-10 cursor-pointer text-white">
             <Link to="/" className="flex items-center">
@@ -37,7 +37,7 @@ export default function CredentialsPage({ page }) {
               Back to site
             </Link>
           </p>
-          <div className="flex flex-col gap-3 w-[40rem] ml-16 ">
+          <div className=" hidden xl:flex flex-col gap-3 w-[40rem] md:ml-16 ">
             <Image image={Logo} className="w-32 mb-16 ml-16" svgSize="5em" />
             <h1 id="signup-text" className="text-5xl font-thin text-yellow-400">
               Your Path to Financial Freedom

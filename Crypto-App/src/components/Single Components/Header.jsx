@@ -415,6 +415,188 @@ export default function Header() {
               </svg>
               Sell Cryptos
             </Link>
+            {!userAccount ? (
+              <div className="flex gap-3 w-full flex-col">
+                <Link to="/login" className="w-full flex gap-2 items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-dasharray="46"
+                        stroke-dashoffset="46"
+                        d="M8 5V4C8 3.44772 8.44772 3 9 3H18C18.5523 3 19 3.44772 19 4V20C19 20.5523 18.5523 21 18 21H9C8.44771 21 8 20.5523 8 20V19"
+                      >
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          dur="0.5s"
+                          values="46;0"
+                        />
+                      </path>
+                      <path
+                        stroke-dasharray="12"
+                        stroke-dashoffset="12"
+                        d="M4 12h11"
+                        opacity="0"
+                      >
+                        <set attributeName="opacity" begin="0.6s" to="1" />
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          begin="0.6s"
+                          dur="0.2s"
+                          values="12;0"
+                        />
+                      </path>
+                      <path
+                        stroke-dasharray="6"
+                        stroke-dashoffset="6"
+                        d="M15 12l-3.5 -3.5M15 12l-3.5 3.5"
+                        opacity="0"
+                      >
+                        <set attributeName="opacity" begin="0.8s" to="1" />
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          begin="0.8s"
+                          dur="0.2s"
+                          values="6;0"
+                        />
+                      </path>
+                    </g>
+                  </svg>
+                  Log in
+                </Link>
+                <Link to="/signup" className="w-full flex gap-2 items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-dasharray="20"
+                        stroke-dashoffset="20"
+                        d="M3 21H21"
+                      >
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          dur="0.3s"
+                          values="20;0"
+                        />
+                      </path>
+                      <path
+                        stroke-dasharray="44"
+                        stroke-dashoffset="44"
+                        d="M7 17V13L17 3L21 7L11 17H7"
+                      >
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          begin="0.4s"
+                          dur="0.6s"
+                          values="44;0"
+                        />
+                      </path>
+                      <path
+                        stroke-dasharray="8"
+                        stroke-dashoffset="8"
+                        d="M14 6L18 10"
+                      >
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          begin="1s"
+                          dur="0.2s"
+                          values="8;0"
+                        />
+                      </path>
+                    </g>
+                  </svg>{" "}
+                  Sign up
+                </Link>
+              </div>
+            ) : (
+              <Link
+                onClick={handleLogOut}
+                className="w-full flex gap-2 items-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-dasharray="46"
+                      stroke-dashoffset="46"
+                      d="M16 5V4C16 3.44772 15.5523 3 15 3H6C5.44771 3 5 3.44772 5 4V20C5 20.5523 5.44772 21 6 21H15C15.5523 21 16 20.5523 16 20V19"
+                    >
+                      <animate
+                        fill="freeze"
+                        attributeName="stroke-dashoffset"
+                        dur="0.5s"
+                        values="46;0"
+                      />
+                    </path>
+                    <path
+                      stroke-dasharray="12"
+                      stroke-dashoffset="12"
+                      d="M10 12h11"
+                      opacity="0"
+                    >
+                      <set attributeName="opacity" begin="0.6s" to="1" />
+                      <animate
+                        fill="freeze"
+                        attributeName="stroke-dashoffset"
+                        begin="0.6s"
+                        dur="0.2s"
+                        values="12;0"
+                      />
+                    </path>
+                    <path
+                      stroke-dasharray="6"
+                      stroke-dashoffset="6"
+                      d="M21 12l-3.5 -3.5M21 12l-3.5 3.5"
+                      opacity="0"
+                    >
+                      <set attributeName="opacity" begin="0.8s" to="1" />
+                      <animate
+                        fill="freeze"
+                        attributeName="stroke-dashoffset"
+                        begin="0.8s"
+                        dur="0.2s"
+                        values="6;0"
+                      />
+                    </path>
+                  </g>
+                </svg>
+                Sign out
+              </Link>
+            )}
           </ul>
           <p className="absolute top-[95%] flex gap-2 text-gray-400 items-center text-xs text-center">
             <svg

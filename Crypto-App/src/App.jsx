@@ -46,8 +46,8 @@ function App() {
             </CryptoSearchContextProvider>
           </section>
         </div>
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

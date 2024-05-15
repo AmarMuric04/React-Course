@@ -13,7 +13,7 @@ export default function CardsContainer() {
     <div className="w-full flex justify-around flex-col items-center gap-10 lg:gap-4 lg:flex-row flex:items-start">
       <div className="w-[50%] lg:w-1/4 min-w-64 h-96  border-[0.1rem] border-[#23272Eff] bg-[#1A1C22ff]  rounded-lg flex flex-col items-center p-8 justify-center hover:bg-[#23272Eff] hover:scale-[1.1] transition-all">
         <Image image={image1} className="h-32" />
-        <span className="flex font-bold text-3xl tracking-[0.2rem] text-nowrap">
+        <span className="flex font-bold text-3xl tracking-[0.2rem] text-nowrap whitespace-nowrap">
           ${" "}
           {handleCustomToFixed(
             _mainCoinsList.reduce(

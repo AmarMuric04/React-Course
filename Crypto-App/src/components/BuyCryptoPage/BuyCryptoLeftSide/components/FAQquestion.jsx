@@ -29,7 +29,7 @@ export default function FAQquestion({ question, props }) {
       </p>
       <p
         className={`${
-          showAnswer ? "h-36 py-2" : "h-0 py-0"
+          showAnswer ? "h-64 md:h-32 py-2" : "h-0 py-0"
         } pl-8 text-md transition-all overflow-hidden border-b-[0.1rem] border-stone-800`}
       >
         {question.answer}

@@ -509,7 +509,7 @@ export default function LogIn({ onChange }) {
   return (
     <>
       {loggedIn && modal}
-      <div className="bg-[#23272Eff] text-white rounded-lg w-[28rem] h-[40rem] flex flex-col items-start px-20 py-8 gap-6 shadow-2xl">
+      <div className="bg-[#23272Eff] text-white rounded-lg w-full sm:w-[28rem] h-full sm:h-[40rem] flex flex-col items-start px-10 sm:px-20 py-8 gap-6 shadow-2xl ">
         <h1 className="text-yellow-400 text-3xl mb-8">Log in</h1>
         <div className="flex flex-col w-full">
           <label

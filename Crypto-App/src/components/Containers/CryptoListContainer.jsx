@@ -134,8 +134,14 @@ export default function CryptoListContainer() {
       return false;
     if (showCryptoList === "activetrades") return false;
     if (
-      !_mainCoinsList.some((coin) => Number(coin.changePercent24Hr) > 0.2) ||
+      showCryptoList === "bp" &&
       !_mainCoinsList.some((coin) => Number(coin.changePercent24Hr) < -0.2)
+    )
+      return false;
+
+    if (
+      showCryptoList === "gp" &&
+      !_mainCoinsList.some((coin) => Number(coin.changePercent24Hr) > 0.2)
     )
       return false;
     return true;
