@@ -213,7 +213,9 @@ export default function TransactionsList() {
 
           return (
             <ul
-              className="flex gap-2 md:gap-5 py-4 md:px-2 rounded-lg hover:bg-[#23272Eff] transition-all text-xs md:text-md items-center"
+              className="flex gap-2 md:gap-5 py-4 md:px-2 rounded-lg
+               hover:bg-[#23272Eff] transition-all text-xs
+                md:text-md items-center"
               key={coin.id}
             >
               <li className="w-32 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap flex items-center">
@@ -263,7 +265,7 @@ export default function TransactionsList() {
               <li className="w-20 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap">
                 {coin.date}
               </li>
-              <li className="w-20 md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap hidden md:block">
+              <li className="w-20 text-center md:tracking-[0.1rem] overflow-hidden truncate whitespace-nowrap hidden md:block">
                 {coin.time}
               </li>
 

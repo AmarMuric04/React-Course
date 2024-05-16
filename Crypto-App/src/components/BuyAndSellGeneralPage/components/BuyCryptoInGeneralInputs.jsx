@@ -123,7 +123,8 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
     if (
       firstSelection !== "cash" &&
       (!selectedCoinWallet ||
-        selectedCoinWallet?.amountOfCoins < inputValueFirst)
+        selectedCoinWallet.amountOfCoins <
+          Number(inputValueFirst.replaceAll(",", "")))
     ) {
       setError("Insufficient amount of coins in wallet.");
       return;

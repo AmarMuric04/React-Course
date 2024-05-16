@@ -21,7 +21,11 @@ export default function WalletCryptoTellers() {
   return (
     <>
       {cryptoWalletList === "main" && (
-        <ul className="flex gap-2 md:gap-5 relative text-xs md:text-md lg:text-xs xl:text-md text-gray-400 text-center">
+        <ul
+          className="flex gap-2 md:gap-5
+        relative text-xs
+          md:text-md lg:text-xs xl:text-md text-gray-400 text-center"
+        >
           <li className="w-1/6 text-start">Name</li>
           <li className="w-1/6 text-start">
             <span className="hidden md:block">Avg. Buying Price</span>
@@ -41,25 +45,25 @@ export default function WalletCryptoTellers() {
         </ul>
       )}
       {cryptoWalletList === "transactions" && (
-        <ul className="flex gap-2 md:gap-5 relative text-xs md:text-sm text-gray-400 text-center">
-          <li className="w-32 text-start">
-            <span className="hidden md:block">Transaction type</span>
-            <span className="md:hidden">Type</span>
+        <ul className="flex gap-2  md:px-2  md:gap-5 relative text-xs md:text-sm text-gray-400 text-center">
+          <li className="w-28 text-start">
+            <span className="hidden lg:block">Transaction type</span>
+            <span className="lg:hidden">Type</span>
           </li>
-          <li className="w-32 text-start">
+          <li className="w-28 text-start">
             <span>Transaction</span>
           </li>
-          <li className="w-32 md:w-48 flex gap-2">
+          <li className="w-28 md:w-40 flex gap-2">
             <p>Got</p>
           </li>
-          <li className="w-32 md:w-1/6 flex gap-2">
+          <li className="w-32 md:w-24 flex gap-2">
             <span>Spent</span>
           </li>
           <li className="w-20 text-start">
             <p>Date</p>
           </li>
           <li className="w-20 text-start hidden md:block">Time</li>
-          <li className="w-20 text-end">Change</li>
+          <li className="w-20 text-center">Change</li>
         </ul>
       )}
     </>
