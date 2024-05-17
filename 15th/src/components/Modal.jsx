@@ -16,6 +16,38 @@ export default function Modal() {
     }
   }, [modalState]);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const buyerInformation = Object.fromEntries(formData.entries());
+
+    console.log(buyerInformation);
+
+    if (
+      !buyerInformation.name ||
+      !buyerInformation.street ||
+      !buyerInformation.city ||
+      !buyerInformation["postal-code"]
+    )
+      return;
+
+    fetch("http://localhost:3000/orders", {
+      method: "POST",
+      body: JSON.stringify({
+        order: {
+          items: cart,
+          customer: buyerInformation,
+        },
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    handleChangeModalState("endMessage");
+  }
+
   const totalCartCost = cart.reduce(
     (accumulator, currentValue) =>
       accumulator + Number(currentValue.price) * currentValue.quantity,
@@ -69,7 +101,8 @@ export default function Modal() {
                 CANCEL
               </p>
               <button
-                className="button"
+                className={`button ${cart.length === 0 && "disabled"}`}
+                disabled={cart.length === 0}
                 onClick={() => handleChangeModalState("control")}
               >
                 Proceed
@@ -80,46 +113,42 @@ export default function Modal() {
       )}
       {modalState === "control" && (
         <dialog ref={modal} className="modal">
-          <div>
-            <h2>Checkout</h2>
-            <p>Total amount: {totalCartCost}</p>
+          <h2>Checkout</h2>
+          <p>Total amount: {totalCartCost}</p>
+          <form onSubmit={handleSubmit}>
             <div className="control">
-              <label htmlFor="">Full name</label>
-              <input type="text" name="" id="" />
+              <label htmlFor="name">Full name</label>
+              <input type="text" name="name" id="name" />
             </div>
             <div className="control">
-              <label htmlFor="">E-mail address</label>
-              <input type="text" name="" id="" />
+              <label htmlFor="email">E-mail address</label>
+              <input type="email" required name="email" id="email" />
             </div>
             <div className="control">
-              <label htmlFor="">Street</label>
-              <input type="text" name="" id="" />
+              <label htmlFor="street">Street</label>
+              <input type="text" name="street" id="street" />
             </div>
             <div className="control-row">
               <div className="control">
-                <label htmlFor="">Postal code</label>
-                <input type="text" name="" id="" />
+                <label htmlFor="postal-code">Postal code</label>
+                <input type="text" name="postal-code" id="postal-code" />
               </div>
               <div className="control">
-                <label htmlFor="">City</label>
-                <input type="text" name="" id="" />
+                <label htmlFor="city">City</label>
+                <input type="text" name="city" id="city" />
               </div>
             </div>
             <div className="modal-actions">
               <p
                 className="text-button"
+                type="button"
                 onClick={() => handleChangeModalState("")}
               >
                 CANCEL
               </p>
-              <button
-                className="button"
-                onClick={() => handleChangeModalState("endMessage")}
-              >
-                Proceed
-              </button>
+              <button className="button">Proceed</button>
             </div>
-          </div>
+          </form>
         </dialog>
       )}
       {modalState === "endMessage" && (
