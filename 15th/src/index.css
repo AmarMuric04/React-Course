@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  padding: 0px;
 }
 
 body {
@@ -105,6 +106,14 @@ h1 {
 
 .meal-item-actions {
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 2rem;
+}
+
+.meal-item-actions p {
+  margin: 0px;
 }
 
 .cart h2 {

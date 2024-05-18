@@ -30,24 +30,31 @@ export default function Meals() {
         </div>
       )}
       {!isLoading &&
-        fetchedData.map((meal) => (
-          <div key={meal.id} className="meal-item">
-            <article>
-              {/* <img src={meal.image} alt="" /> */}
-              <h3>{meal.name}</h3>
-              <p className="meal-item-price">{formatNumber(meal.price)}</p>
-              <p className="meal-item-description">{meal.description}</p>
-              <div className="meal-item-actions">
-                <button
-                  className="button"
-                  onClick={() => handleAddToCart(meal)}
-                >
-                  Buy
-                </button>
-              </div>
-            </article>
-          </div>
-        ))}
+        fetchedData.map((meal) => {
+          const thatMeal = cart.find((cartMeal) => cartMeal.id === meal.id);
+
+          console.log(thatMeal);
+
+          return (
+            <div key={meal.id} className="meal-item">
+              <article>
+                {/* <img src={meal.image} alt="" /> */}
+                <h3>{meal.name}</h3>
+                <p className="meal-item-price">{formatNumber(meal.price)}</p>
+                <p className="meal-item-description">{meal.description}</p>
+                <div className="meal-item-actions">
+                  <button
+                    className="button"
+                    onClick={() => handleAddToCart(meal)}
+                  >
+                    Add to cart
+                  </button>
+                  <p>{thatMeal && "In cart: " + thatMeal.quantity}</p>
+                </div>
+              </article>
+            </div>
+          );
+        })}
     </main>
   );
 }
