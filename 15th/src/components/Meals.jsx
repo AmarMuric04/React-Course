@@ -1,60 +1,41 @@
-import { useState, useEffect } from "react";
 import { Loader } from "../assets/icons";
-import { useContext } from "react";
-import { CartContext } from "../store/cartContext";
+import { formatNumber } from "../util/formatNumber";
+import { fetchMeals } from "../util/http.js";
+import useFetch from "../hooks/useFetch";
+import { useCart } from "../hooks/useCart.js";
+import { addToCart } from "../util/helpers.js";
 
 export default function Meals() {
-  const [meals, setMeals] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { handleUpdateCart, cart } = useCart();
 
-  const { cart, handleUpdateCart } = useContext(CartContext);
-
-  useEffect(() => {
-    async function handleFetch() {
-      const response = await fetch("http://localhost:3000/meals");
-
-      if (!response.ok) console.log("NOOO!!");
-
-      const data = await response.json();
-
-      setIsLoading(false);
-      setMeals(data);
-    }
-    handleFetch();
-  }, []);
+  const { isLoading, fetchedData, error } = useFetch(
+    fetchMeals,
+    [],
+    "FETCH",
+    "Failed to load meals..."
+  );
 
   function handleAddToCart(meal) {
-    const newCart = [...cart];
-
-    const thatMeal = newCart.find((cartMeal) => cartMeal.id === meal.id);
-    if (thatMeal) {
-      thatMeal.quantity++;
-      const thatMealIndex = newCart.findIndex(
-        (cartMeal) => cartMeal === meal.id
-      );
-      newCart[thatMealIndex] = thatMeal;
-    } else {
-      meal.quantity = 1;
-      newCart.push(meal);
-    }
+    const newCart = addToCart(cart, meal);
 
     handleUpdateCart(newCart);
   }
 
   return (
     <main id="meals">
+      {error && <p>{error}</p>}
       {isLoading && (
         <div className="loader-div">
           <Loader />
         </div>
       )}
       {!isLoading &&
-        meals.map((meal) => (
+        fetchedData.map((meal) => (
           <div key={meal.id} className="meal-item">
             <article>
               {/* <img src={meal.image} alt="" /> */}
               <h3>{meal.name}</h3>
-              <p className="meal-item-price">{meal.price} $</p>
+              <p className="meal-item-price">{formatNumber(meal.price)}</p>
               <p className="meal-item-description">{meal.description}</p>
               <div className="meal-item-actions">
                 <button

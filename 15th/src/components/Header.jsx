@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import Image from "/public/logo.jpg";
-import { CartContext } from "../store/cartContext";
+import { useCart } from "../hooks/useCart";
 
 export default function Header() {
-  const { handleChangeModalState, cart } = useContext(CartContext);
+  const { handleChangeModalState, cart } = useCart();
 
   return (
     <header id="main-header">

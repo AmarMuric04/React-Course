@@ -7,15 +7,7 @@
         "price": "8.99",
         "description": "Creamy cheddar cheese mixed with perfectly cooked macaroni, topped with crispy breadcrumbs. A classic comfort food.",
         "image": "images/mac-and-cheese.jpg",
-        "quantity": 1
-      },
-      {
-        "id": "m2",
-        "name": "Margherita Pizza",
-        "price": "12.99",
-        "description": "A classic pizza with fresh mozzarella, tomatoes, and basil on a thin and crispy crust.",
-        "image": "images/margherita-pizza.jpg",
-        "quantity": 1
+        "quantity": 8
       }
     ],
     "customer": {
@@ -25,6 +17,6 @@
       "postal-code": "36300",
       "city": "Novi Pazar"
     },
-    "id": "168.8884306143097"
+    "id": "136.86931795577183"
   }
 ]
