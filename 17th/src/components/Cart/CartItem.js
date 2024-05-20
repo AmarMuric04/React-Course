@@ -1,17 +1,18 @@
 import classes from "./CartItem.module.css";
-import { useDispatch, useSelector } from "react-redux";
-
-import { orderActions } from "../../store";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store";
 
 const CartItem = (props) => {
   const { title, quantity, total, price } = props.item;
 
   const dispatchFn = useDispatch();
-  const orderCost = useSelector((state) => state.order.cost);
-  const orderQuantity = useSelector((state) => state.order.amount);
 
   const handleAdd = () => {
-    dispatchFn(orderActions.increaseOrder(price));
+    dispatchFn(cartActions.addToCart({ price, title }));
+  };
+
+  const handleRemove = () => {
+    dispatchFn(cartActions.removeFromCart({ title }));
   };
 
   return (
@@ -19,16 +20,16 @@ const CartItem = (props) => {
       <header>
         <h3>{title}</h3>
         <div className={classes.price}>
-          ${((orderQuantity + quantity) * price).toFixed(2)}{" "}
+          ${total.toFixed(2)}{" "}
           <span className={classes.itemprice}>(${price.toFixed(2)}/item)</span>
         </div>
       </header>
       <div className={classes.details}>
         <div className={classes.quantity}>
-          x <span>{orderQuantity + quantity}</span>
+          x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button>-</button>
+          <button onClick={handleRemove}>-</button>
           <button onClick={handleAdd}>+</button>
         </div>
       </div>
