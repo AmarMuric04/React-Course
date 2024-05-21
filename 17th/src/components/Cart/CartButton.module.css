@@ -2,6 +2,8 @@
   background-color: transparent;
   border-color: #1ad1b9;
   color: #1ad1b9;
+
+  transition: all 0.3s;
 }
 
 .button:hover,
@@ -18,4 +20,9 @@
   border-radius: 30px;
   padding: 0.15rem 1.25rem;
   color: #1d1d1d;
+}
+
+.button:hover .badge {
+  background-color: white;
+  color: black;
 }

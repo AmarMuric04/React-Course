@@ -1,7 +1,8 @@
 import Card from "../UI/Card";
 import classes from "./ProductItem.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { cartActions } from "../../store";
+import { cartActions } from "../../store/redux";
+import { formatNumber } from "../../utils/transferToCurrency";
 
 const ProductItem = (props) => {
   const { title, price, description } = props;
@@ -19,7 +20,7 @@ const ProductItem = (props) => {
       <Card>
         <header>
           <h3>{title}</h3>
-          <div className={classes.price}>${price.toFixed(2)}</div>
+          <div className={classes.price}>{formatNumber(price)}</div>
         </header>
         <p>{description}</p>
         <div className={classes.actions}>

@@ -1,6 +1,7 @@
 import classes from "./CartItem.module.css";
 import { useDispatch } from "react-redux";
-import { cartActions } from "../../store";
+import { cartActions } from "../../store/redux";
+import { formatNumber } from "../../utils/transferToCurrency";
 
 const CartItem = (props) => {
   const { title, quantity, total, price } = props.item;
@@ -20,8 +21,10 @@ const CartItem = (props) => {
       <header>
         <h3>{title}</h3>
         <div className={classes.price}>
-          ${total.toFixed(2)}{" "}
-          <span className={classes.itemprice}>(${price.toFixed(2)}/item)</span>
+          {formatNumber(total)}{" "}
+          <span className={classes.itemprice}>
+            ({formatNumber(price)}/item)
+          </span>
         </div>
       </header>
       <div className={classes.details}>

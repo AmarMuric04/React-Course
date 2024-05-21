@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 
 const Cart = (props) => {
   const cartItems = useSelector((state) => state.cart.items);
+  const toggleCart = useSelector((state) => state.cart.toggle);
+
+  if (!toggleCart) return;
 
   return (
     <Card className={classes.cart}>
