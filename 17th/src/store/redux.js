@@ -10,15 +10,22 @@ const initialCartState = {
       total: 18,
     },
   ],
+  changed: false,
   toggle: false,
 };
 
 const cartSlice = createSlice({
-  name: "order",
+  name: "cart",
   initialState: initialCartState,
   reducers: {
     toggleCart(state) {
       state.toggle = !state.toggle;
+    },
+
+    replaceCart(state, action) {
+      console.log(action.payload.items);
+
+      state.items = action.payload.items;
     },
 
     addToCart(state, action) {
@@ -26,6 +33,8 @@ const cartSlice = createSlice({
       const thatItem = state.items.find(
         (item) => item.title === action.payload.title
       );
+
+      state.changed = true;
 
       if (thatItem) {
         const thatItemIndex = state.items.findIndex(
@@ -54,6 +63,8 @@ const cartSlice = createSlice({
       const thatItemIndex = state.items.findIndex(
         (item) => item.title === action.payload.title
       );
+
+      state.changed = true;
 
       if (thatItem.quantity === 1)
         state.items = state.items.filter(

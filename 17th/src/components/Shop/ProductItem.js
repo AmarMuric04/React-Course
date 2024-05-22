@@ -13,7 +13,7 @@ const ProductItem = (props) => {
     dispatchFn(cartActions.addToCart({ price, title, description }));
   };
 
-  if (cartItems.some((item) => item.title === title)) return;
+  if (cartItems && cartItems.some((item) => item.title === title)) return;
 
   return (
     <li className={classes.item}>

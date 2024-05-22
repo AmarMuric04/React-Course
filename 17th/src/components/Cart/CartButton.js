@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../../store/redux";
 
 const CartButton = (props) => {
-  const cart = useSelector((state) => state.cart.items);
+  const cartItems = useSelector((state) => state.cart.items);
   const toggleCart = useSelector((state) => state.cart.toggle);
   const dispatchFn = useDispatch();
 
@@ -13,10 +13,11 @@ const CartButton = (props) => {
     <button onClick={toggleCartShowing} className={classes.button}>
       <span>{toggleCart ? "Hide" : "Show"} Cart</span>
       <span className={classes.badge}>
-        {cart.reduce(
-          (accumulator, currentValue) => accumulator + currentValue.quantity,
-          0
-        )}
+        {cartItems &&
+          cartItems.reduce(
+            (accumulator, currentValue) => accumulator + currentValue.quantity,
+            0
+          )}
       </span>
     </button>
   );

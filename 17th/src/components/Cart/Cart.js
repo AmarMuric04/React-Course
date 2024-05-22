@@ -13,19 +13,20 @@ const Cart = (props) => {
     <Card className={classes.cart}>
       <h2>Your Shopping Cart</h2>
       <ul>
-        {cartItems.map((item) => {
-          return (
-            <CartItem
-              key={item.title}
-              item={{
-                title: item.title,
-                quantity: item.quantity,
-                total: item.total,
-                price: item.price,
-              }}
-            />
-          );
-        })}
+        {cartItems &&
+          cartItems.map((item) => {
+            return (
+              <CartItem
+                key={item.title}
+                item={{
+                  title: item.title,
+                  quantity: item.quantity,
+                  total: item.total,
+                  price: item.price,
+                }}
+              />
+            );
+          })}
       </ul>
     </Card>
   );
