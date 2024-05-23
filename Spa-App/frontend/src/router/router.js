@@ -1,8 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
-import Events from "../pages/Events";
-import EventDetails from "../pages/EventDetails";
+import Events, { loader as eventLoader } from "../pages/Events";
+import EventDetails, {
+  loader as eventDetailLoader,
+} from "../pages/EventDetails";
 import EditEvent from "../pages/EditEvent";
+import Error from "../pages/Error";
 import NewEvent from "../pages/NewEvent";
 import MainNavigation from "../components/MainNavigation";
 import EventNavigation from "../components/EventsNavigation";
@@ -11,6 +14,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainNavigation />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -23,15 +27,7 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <Events />,
-            async loader() {
-              const response = await fetch("http://localhost:8080/events");
-
-              if (!response.ok) {
-              } else {
-                const resData = await response.json();
-                return resData.events;
-              }
-            },
+            loader: eventLoader,
           },
           {
             path: "new-event",
@@ -40,6 +36,7 @@ export const router = createBrowserRouter([
           {
             path: ":eventId",
             element: <EventDetails />,
+            loader: eventDetailLoader,
           },
           {
             path: ":eventId/edit-event",
