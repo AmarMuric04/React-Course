@@ -1,19 +1,36 @@
-import classes from './MainNavigation.module.css';
+import { Fragment } from "react";
+import classes from "./MainNavigation.module.css";
+import { NavLink, Outlet } from "react-router-dom";
 
 function MainNavigation() {
   return (
-    <header className={classes.header}>
-      <nav>
-        <ul className={classes.list}>
-          <li>
-            <a>Home</a>
-          </li>
-          <li>
-            <a>Events</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <Fragment>
+      <header className={classes.header}>
+        <nav>
+          <ul className={classes.list}>
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) => isActive && classes.active}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/events"
+                className={({ isActive }) => isActive && classes.active}
+              >
+                Events
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <Outlet />
+      </main>
+    </Fragment>
   );
 }
 

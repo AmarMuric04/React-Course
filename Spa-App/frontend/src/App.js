@@ -1,3 +1,6 @@
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/router";
+
 /* Challenge / Exercise
 
  1. Add five new (dummy) page components (content can be simple <h1> elements)
@@ -26,7 +29,7 @@
 
 */
 function App() {
-  return <div></div>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
