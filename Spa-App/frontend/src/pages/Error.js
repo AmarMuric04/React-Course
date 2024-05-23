@@ -7,6 +7,8 @@ import MainNavigation from "../components/MainNavigation";
 export default function Error() {
   const error = useRouteError();
 
+  console.log(error);
+
   let title = "An error occured";
   let message = "Something went wrong";
 

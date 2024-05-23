@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import { useLoaderData, json } from "react-router-dom";
+import { json, useRouteLoaderData, redirect } from "react-router-dom";
 import EventItem from "../components/EventItem";
 
 export default function EventDetails() {
-  const data = useLoaderData();
+  const data = useRouteLoaderData("event-detail");
 
   return (
     <Fragment>
@@ -26,4 +26,23 @@ export async function loader({ request, params }) {
       }
     );
   else return response;
+}
+
+export async function action({ params, request }) {
+  const id = params.eventId;
+
+  const response = await fetch("http://localhost:8080/events/" + id, {
+    method: request.method,
+  });
+
+  if (!response.ok)
+    return json(
+      {
+        message: "Could not delete event.",
+      },
+      {
+        status: 500,
+      }
+    );
+  else return redirect("/events");
 }
