@@ -1,14 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
-import Events, { loader as eventLoader,action as deleteEventAction } from "../pages/Events";
+import Events, { loader as eventLoader } from "../pages/Events";
 import EventDetails, {
   loader as eventDetailLoader,
+  action as deleteEventAction,
 } from "../pages/EventDetails";
 import EditEvent from "../pages/EditEvent";
 import Error from "../pages/Error";
-import NewEvent, { action as newEventAction } from "../pages/NewEvent";
+import NewEvent from "../pages/NewEvent";
 import MainNavigation from "../components/MainNavigation";
 import EventNavigation from "../components/EventsNavigation";
+import NewsletterPage, {
+  action as newsletterAction,
+} from "../pages/Newsletter";
+
+import { action as manipulateEventAction } from "../components/EventForm";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +25,11 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "newsletter",
+        element: <NewsletterPage />,
+        action: newsletterAction,
       },
       {
         path: "/events",
@@ -32,7 +43,7 @@ export const router = createBrowserRouter([
           {
             path: "new-event",
             element: <NewEvent />,
-            action: newEventAction,
+            action: manipulateEventAction,
           },
           {
             path: ":eventId",
@@ -47,6 +58,7 @@ export const router = createBrowserRouter([
               {
                 path: "edit-event",
                 element: <EditEvent />,
+                action: manipulateEventAction,
               },
             ],
           },
