@@ -25,6 +25,7 @@ export async function action({ request }) {
   const authData = {
     email: data.get("email"),
     password: data.get("password"),
+    data: "i am a legend",
   };
 
   const response = await fetch("http://localhost:8080/" + mode, {

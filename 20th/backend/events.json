@@ -1,1 +1,62 @@
-{"events":[{"title":"123","image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNhdLKyFb20kVpfFEFt2r9d2nx39WxLONpTbf8V10TsA&s","date":"2024-05-11","description":"123","id":"1fd098a2-59ff-4fe1-9250-d079392b2619"}],"users":[{"email":"muricamar2004@gmail.com","password":"$2a$12$CUu6dz8TMFku8vYXc36A5.iv19bKnYfaHV/8B2cUYWviH19xstpxu","id":"ca5c4734-16da-4693-a0a8-205c97fc3db5"},{"email":"muricamar2005@gmail.com","password":"$2a$12$RZDixqwcYoz.xLCRG4TJSeNRNb.PVC4hJwp07QwuybB2X0plIX/me","id":"7dc6fd88-d475-4318-b626-2164f63ec928"},{"email":"amar@gmail.com","password":"$2a$12$VN7j.j6zQHUB6Vd9E8/.Me1qV/CevQTLA6QgAT/WmHdyj/7PTo0D2","id":"6113e654-2ae9-4b52-bed3-65fa8a416dc0"}]}
+{
+  "events": [
+    {
+      "title": "123",
+      "image": "https://picture-cdn.twic.pics/contentful/images/1oZeqCHbG8RY6azssReOyu/2114890404bc5f534c4c9a109231436d/H1_Wave_05.jpg?twic=v1/focus=bottom/cover=810x810",
+      "date": "2024-05-08",
+      "description": "45",
+      "id": "7c0beff4-765b-4139-80ca-b6b0cff90ce9"
+    },
+    {
+      "title": "123",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNhdLKyFb20kVpfFEFt2r9d2nx39WxLONpTbf8V10TsA&s",
+      "date": "0002-12-31",
+      "description": "123",
+      "id": "84bfefb7-416f-45af-8f0f-69e2119e7c4a"
+    },
+    {
+      "title": "123",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNhdLKyFb20kVpfFEFt2r9d2nx39WxLONpTbf8V10TsA&s",
+      "date": "2024-05-11",
+      "description": "123",
+      "id": "1fd098a2-59ff-4fe1-9250-d079392b2619"
+    }
+  ],
+  "users": [
+    {
+      "email": "muricamar2004@gmail.com",
+      "password": "$2a$12$CUu6dz8TMFku8vYXc36A5.iv19bKnYfaHV/8B2cUYWviH19xstpxu",
+      "id": "ca5c4734-16da-4693-a0a8-205c97fc3db5",
+      "events": [
+        {
+          "title": "123",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNhdLKyFb20kVpfFEFt2r9d2nx39WxLONpTbf8V10TsA&s",
+          "date": "2024-05-11",
+          "description": "123",
+          "id": "1fd098a2-59ff-4fe1-9250-d079392b2619"
+        }
+      ]
+    },
+    {
+      "email": "muricamar2005@gmail.com",
+      "password": "$2a$12$RZDixqwcYoz.xLCRG4TJSeNRNb.PVC4hJwp07QwuybB2X0plIX/me",
+      "id": "7dc6fd88-d475-4318-b626-2164f63ec928"
+    },
+    {
+      "email": "amar@gmail.com",
+      "password": "$2a$12$VN7j.j6zQHUB6Vd9E8/.Me1qV/CevQTLA6QgAT/WmHdyj/7PTo0D2",
+      "id": "6113e654-2ae9-4b52-bed3-65fa8a416dc0"
+    },
+    {
+      "email": "muricamar2000@gmail.com",
+      "password": "$2a$12$d8wMXJudv7cCBNKRJJ2bo.RFlETIwNJ5N2lYwwFiWkJtfnOtcJM9K",
+      "id": "fda2171a-26ca-4e51-8269-fab3f2a99c03"
+    },
+    {
+      "email": "murga@gmail.com",
+      "password": "$2a$12$IVhD25L3/Aq8S9Ckk9uAtuCTcF/MS8XPeyerV0mivjJaCPxI4Ln8i",
+      "data": "i am a legend",
+      "id": "6daceeda-34dc-4bea-b632-cdf72c15248d"
+    }
+  ]
+}

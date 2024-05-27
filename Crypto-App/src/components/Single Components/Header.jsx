@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Logo from "/public/FinalLogo.png";
 import Image from "./Image";
-import { useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { CryptoContext } from "../../store/crypto-context";
 
 export default function Header() {
@@ -416,7 +416,7 @@ export default function Header() {
               Sell Cryptos
             </Link>
             {!userAccount ? (
-              <div className="flex gap-3 w-full flex-col">
+              <Fragment>
                 <Link to="/login" className="w-full flex gap-2 items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -532,7 +532,7 @@ export default function Header() {
                   </svg>{" "}
                   Sign up
                 </Link>
-              </div>
+              </Fragment>
             ) : (
               <Link
                 onClick={handleLogOut}
