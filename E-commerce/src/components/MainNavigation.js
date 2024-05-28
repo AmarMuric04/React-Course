@@ -2,14 +2,14 @@ import { NavLink } from "react-router-dom";
 
 export default function MainNavigation() {
   return (
-    <header className="h-16 flex items-center justify-center px-8">
+    <header className="h-16 flex items-center justify-center px-8 bg-green-400">
       <nav>
         <ul className="flex gap-3">
           <li>
             <NavLink
               to="/"
               className={({ isActive }) =>
-                isActive ? "text-green-400 underline" : "opacity-50"
+                isActive ? "text-white underline" : "opacity-50"
               }
               end
             >
@@ -20,7 +20,7 @@ export default function MainNavigation() {
             <NavLink
               to="/shop"
               className={({ isActive }) =>
-                isActive ? "text-green-400 underline" : "opacity-50"
+                isActive ? "text-white underline" : "opacity-50"
               }
             >
               Shop

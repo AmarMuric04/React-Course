@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 
 export default function RootLayout() {
   return (
-    <main className="bg-stone-800">
+    <main>
       <MainNavigation />
       <main className="flex">
         <Sidebar />
