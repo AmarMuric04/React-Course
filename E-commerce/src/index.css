@@ -17,3 +17,11 @@
 .poppins {
   font-family: "Poppins", sans-serif;
 }
+
+.scrollbar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}

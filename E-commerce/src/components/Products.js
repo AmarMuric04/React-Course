@@ -2,12 +2,13 @@ import { convertToCurrency } from "../util/dataModifiers";
 import StarRating from "./StarRating";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/redux";
+import { Link } from "react-router-dom";
 
 export default function Products({ products }) {
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
-    dispatch(cartActions.addToCart(product));
+    dispatch(cartActions.increaseQuantity(product));
   };
 
   return (
@@ -61,7 +62,9 @@ export default function Products({ products }) {
                 {convertToCurrency(product.price)}
               </p>
               <p className="text-gray-400 text-xs whitespace-nowrap">
-                +{(product.price / 10).toFixed(0)}€ delivery
+                {"+" + product.price.toFixed(0) / 10 < 0.99
+                  ? "FREE delivery"
+                  : "+" + product.price.toFixed(0) / 10 + "€ delivery"}
               </p>
             </div>
             <div className="flex flex-col gap-1">
@@ -73,13 +76,14 @@ export default function Products({ products }) {
               >
                 Add to cart
               </button>
-              <button
+              <Link
+                to={`${product.id}`}
                 className="poppins font-semibold text-sm text-black
                  mr-2 py-2 px-6 self-end border-2 border-green-400 rounded-md
                 transition-all hover:bg-zinc-200"
               >
                 See details
-              </button>
+              </Link>
             </div>
           </section>
         </li>
