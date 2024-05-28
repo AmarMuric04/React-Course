@@ -1,8 +1,14 @@
 import { convertToCurrency } from "../util/dataModifiers";
 import StarRating from "./StarRating";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../redux/redux";
 
 export default function Products({ products }) {
-  console.log(products);
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    dispatch(cartActions.addToCart(product));
+  };
 
   return (
     <ul className="flex flex-wrap w-full h-full gap-8">
@@ -11,7 +17,7 @@ export default function Products({ products }) {
           className="w-64 h-96 flex flex-col items-center bg-zinc-100
           border-b-[0.4rem] border-transparent rounded-2xl overflow-hidden
         hover:border-green-400 hover:pb-[0.4rem] hover:translate-y-[-0.4rem]
-          transition-all justify-between relative poppins"
+          transition-all justify-between relative poppins shadow-md"
           key={product.id}
         >
           <section className="w-full h-48 bg-green-400 grid place-items-center">
@@ -55,15 +61,26 @@ export default function Products({ products }) {
                 {convertToCurrency(product.price)}
               </p>
               <p className="text-gray-400 text-xs whitespace-nowrap">
-                +{convertToCurrency(product.price / 10)} delivery
+                +{(product.price / 10).toFixed(0)}€ delivery
               </p>
             </div>
-            <button
-              className="poppins font-semibold text-sm text-black mr-2 py-2 px-8 self-end bg-green-400 rounded-full
-            hover:bg-green-600 transition-all"
-            >
-              Add to cart
-            </button>
+            <div className="flex flex-col gap-1">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="poppins font-semibold text-sm text-black
+                 mr-2 py-2 px-6 self-end bg-green-400 rounded-md
+               hover:bg-green-600 transition-all border-2 border-green-400"
+              >
+                Add to cart
+              </button>
+              <button
+                className="poppins font-semibold text-sm text-black
+                 mr-2 py-2 px-6 self-end border-2 border-green-400 rounded-md
+                transition-all hover:bg-zinc-200"
+              >
+                See details
+              </button>
+            </div>
           </section>
         </li>
       ))}
