@@ -176,426 +176,434 @@ export default function BuyCryptoInGeneralInputs({ onSell, onCancel }) {
   }
 
   function handleSellCrypto() {
-    console.log("11");
-    onSell(
-      <Modal onCancel={onCancel} height="h-[36rem]" width="w-[25rem]">
-        <div className="border-[0.1rem] border-[#23272Eff] w-full p-8 rounded-xl h-full flex gap-5 items-center justify-center flex-col">
-          <h1 className="text-2xl text-center font-bold uppercase tracking-[0.1rem]">
-            Sale successful!
-          </h1>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="5em"
-            height="5em"
-            viewBox="0 0 24 24"
-            className="text-green-400"
-          >
-            <g
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            >
-              <path
-                fill="currentColor"
-                fill-opacity="0"
-                stroke-dasharray="60"
-                stroke-dashoffset="60"
-                d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z"
-              >
-                <animate
-                  fill="freeze"
-                  attributeName="stroke-dashoffset"
-                  dur="0.5s"
-                  values="60;0"
-                />
-                <animate
-                  fill="freeze"
-                  attributeName="fill-opacity"
-                  begin="0.8s"
-                  dur="0.15s"
-                  values="0;0.3"
-                />
-              </path>
-              <path
-                fill="none"
-                stroke-dasharray="14"
-                stroke-dashoffset="14"
-                d="M8 12L11 15L16 10"
-              >
-                <animate
-                  fill="freeze"
-                  attributeName="stroke-dashoffset"
-                  begin="0.6s"
-                  dur="0.2s"
-                  values="14;0"
-                />
-              </path>
-            </g>
-          </svg>
-          <p className="mb-8">Sale details:</p>
-          <ul className="flex flex-col gap-2">
-            <li className="flex gap-2 items-center text-sm ">
-              Sold:
-              <span className="tracking-[0.1rem] uppercase">
-                {selectedCoinWallet.id.slice(0, 1).toUpperCase() +
-                  selectedCoinWallet.id.slice(1)}
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-                className="text-green-400"
-              >
-                <defs>
-                  <mask id="lineMdCheckAll0">
-                    <g
-                      fill="none"
-                      stroke="#fff"
-                      stroke-dasharray="22"
-                      stroke-dashoffset="22"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    >
-                      <path d="M2 13.5l4 4l10.75 -10.75">
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path
-                        stroke="#000"
-                        stroke-width="4"
-                        d="M7.5 13.5l4 4l10.75 -10.75"
-                        opacity="0"
-                      >
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                    </g>
-                  </mask>
-                </defs>
-                <rect
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  mask="url(#lineMdCheckAll0)"
-                />
-              </svg>
-            </li>
-            <li className="flex gap-2 items-center text-sm ">
-              Sold at:
-              <span className="tracking-[0.1rem]">
-                ${handleCustomToFixed(Number(selectedCoin.priceUsd))}
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-                className="text-green-400"
-              >
-                <defs>
-                  <mask id="lineMdCheckAll0">
-                    <g
-                      fill="none"
-                      stroke="#fff"
-                      stroke-dasharray="22"
-                      stroke-dashoffset="22"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    >
-                      <path d="M2 13.5l4 4l10.75 -10.75">
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path
-                        stroke="#000"
-                        stroke-width="4"
-                        d="M7.5 13.5l4 4l10.75 -10.75"
-                        opacity="0"
-                      >
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                    </g>
-                  </mask>
-                </defs>
-                <rect
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  mask="url(#lineMdCheckAll0)"
-                />
-              </svg>
-            </li>
-            <li className="flex gap-2 items-center text-sm ">
-              Amount sold: {selectedCoin.coinSymbol}:{" "}
-              <span className="tracking-[0.1rem]">
-                {handleCustomToFixed(Number(inputValueFirst))}
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-                className="text-green-400"
-              >
-                <defs>
-                  <mask id="lineMdCheckAll0">
-                    <g
-                      fill="none"
-                      stroke="#fff"
-                      stroke-dasharray="22"
-                      stroke-dashoffset="22"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    >
-                      <path d="M2 13.5l4 4l10.75 -10.75">
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path
-                        stroke="#000"
-                        stroke-width="4"
-                        d="M7.5 13.5l4 4l10.75 -10.75"
-                        opacity="0"
-                      >
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                    </g>
-                  </mask>
-                </defs>
-                <rect
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  mask="url(#lineMdCheckAll0)"
-                />
-              </svg>
-            </li>
-            <li className="flex gap-2 items-center text-sm ">
-              Money gained:{" "}
-              <span className="tracking-[0.1rem]">
-                $
-                {handleCustomToFixed(
-                  Number(inputValueFirst.replaceAll(",", "")) *
-                    Number(selectedCoin.priceUsd)
-                )}
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-                className="text-green-400"
-              >
-                <defs>
-                  <mask id="lineMdCheckAll0">
-                    <g
-                      fill="none"
-                      stroke="#fff"
-                      stroke-dasharray="22"
-                      stroke-dashoffset="22"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    >
-                      <path d="M2 13.5l4 4l10.75 -10.75">
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path
-                        stroke="#000"
-                        stroke-width="4"
-                        d="M7.5 13.5l4 4l10.75 -10.75"
-                        opacity="0"
-                      >
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                    </g>
-                  </mask>
-                </defs>
-                <rect
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  mask="url(#lineMdCheckAll0)"
-                />
-              </svg>
-            </li>
-            <li className="flex gap-2 items-center text-sm ">
-              Price change since buying:{" "}
-              <span className="tracking-[0.1rem]">
-                {handleCustomToFixed(
-                  ((selectedCoin.priceUsd - selectedCoinWallet.purchasedPrice) /
-                    selectedCoinWallet.purchasedPrice) *
-                    100
-                )}
-                %
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-                className="text-green-400"
-              >
-                <defs>
-                  <mask id="lineMdCheckAll0">
-                    <g
-                      fill="none"
-                      stroke="#fff"
-                      stroke-dasharray="22"
-                      stroke-dashoffset="22"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    >
-                      <path d="M2 13.5l4 4l10.75 -10.75">
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path
-                        stroke="#000"
-                        stroke-width="4"
-                        d="M7.5 13.5l4 4l10.75 -10.75"
-                        opacity="0"
-                      >
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                      <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
-                        <set attributeName="opacity" begin="0.4s" to="1" />
-                        <animate
-                          fill="freeze"
-                          attributeName="stroke-dashoffset"
-                          begin="0.4s"
-                          dur="0.4s"
-                          values="22;0"
-                        />
-                      </path>
-                    </g>
-                  </mask>
-                </defs>
-                <rect
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  mask="url(#lineMdCheckAll0)"
-                />
-              </svg>
-            </li>
-          </ul>
-          <p className="text-xs text-gray-400 text-center">
-            Thank you for choosing us as your dedicated crypto exchange platform
-            and best of luck with your future investments!
-          </p>
-        </div>
-      </Modal>
-    );
+    if (
+      selectedCoinWallet.amountOfCoins <
+      Number(inputValueFirst.replaceAll(",", ""))
+    ) {
+      setError("Insufficiant funds in wallet.");
+      return;
+    }
 
-    setInputValueFirst("");
-    setInputValueSecond("");
+     onSell(
+       <Modal onCancel={onCancel} height="h-[36rem]" width="w-[25rem]">
+         <div className="border-[0.1rem] border-[#23272Eff] w-full p-8 rounded-xl h-full flex gap-5 items-center justify-center flex-col">
+           <h1 className="text-2xl text-center font-bold uppercase tracking-[0.1rem]">
+             Sale successful!
+           </h1>
+           <svg
+             xmlns="http://www.w3.org/2000/svg"
+             width="5em"
+             height="5em"
+             viewBox="0 0 24 24"
+             className="text-green-400"
+           >
+             <g
+               stroke="currentColor"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               stroke-width="2"
+             >
+               <path
+                 fill="currentColor"
+                 fill-opacity="0"
+                 stroke-dasharray="60"
+                 stroke-dashoffset="60"
+                 d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z"
+               >
+                 <animate
+                   fill="freeze"
+                   attributeName="stroke-dashoffset"
+                   dur="0.5s"
+                   values="60;0"
+                 />
+                 <animate
+                   fill="freeze"
+                   attributeName="fill-opacity"
+                   begin="0.8s"
+                   dur="0.15s"
+                   values="0;0.3"
+                 />
+               </path>
+               <path
+                 fill="none"
+                 stroke-dasharray="14"
+                 stroke-dashoffset="14"
+                 d="M8 12L11 15L16 10"
+               >
+                 <animate
+                   fill="freeze"
+                   attributeName="stroke-dashoffset"
+                   begin="0.6s"
+                   dur="0.2s"
+                   values="14;0"
+                 />
+               </path>
+             </g>
+           </svg>
+           <p className="mb-8">Sale details:</p>
+           <ul className="flex flex-col gap-2">
+             <li className="flex gap-2 items-center text-sm ">
+               Sold:
+               <span className="tracking-[0.1rem] uppercase">
+                 {selectedCoinWallet.id.slice(0, 1).toUpperCase() +
+                   selectedCoinWallet.id.slice(1)}
+               </span>
+               <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="2em"
+                 height="2em"
+                 viewBox="0 0 24 24"
+                 className="text-green-400"
+               >
+                 <defs>
+                   <mask id="lineMdCheckAll0">
+                     <g
+                       fill="none"
+                       stroke="#fff"
+                       stroke-dasharray="22"
+                       stroke-dashoffset="22"
+                       stroke-linecap="round"
+                       stroke-linejoin="round"
+                       stroke-width="2"
+                     >
+                       <path d="M2 13.5l4 4l10.75 -10.75">
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                       <path
+                         stroke="#000"
+                         stroke-width="4"
+                         d="M7.5 13.5l4 4l10.75 -10.75"
+                         opacity="0"
+                       >
+                         <set attributeName="opacity" begin="0.4s" to="1" />
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           begin="0.4s"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                       <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
+                         <set attributeName="opacity" begin="0.4s" to="1" />
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           begin="0.4s"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                     </g>
+                   </mask>
+                 </defs>
+                 <rect
+                   width="24"
+                   height="24"
+                   fill="currentColor"
+                   mask="url(#lineMdCheckAll0)"
+                 />
+               </svg>
+             </li>
+             <li className="flex gap-2 items-center text-sm ">
+               Sold at:
+               <span className="tracking-[0.1rem]">
+                 ${handleCustomToFixed(Number(selectedCoin.priceUsd))}
+               </span>
+               <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="2em"
+                 height="2em"
+                 viewBox="0 0 24 24"
+                 className="text-green-400"
+               >
+                 <defs>
+                   <mask id="lineMdCheckAll0">
+                     <g
+                       fill="none"
+                       stroke="#fff"
+                       stroke-dasharray="22"
+                       stroke-dashoffset="22"
+                       stroke-linecap="round"
+                       stroke-linejoin="round"
+                       stroke-width="2"
+                     >
+                       <path d="M2 13.5l4 4l10.75 -10.75">
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                       <path
+                         stroke="#000"
+                         stroke-width="4"
+                         d="M7.5 13.5l4 4l10.75 -10.75"
+                         opacity="0"
+                       >
+                         <set attributeName="opacity" begin="0.4s" to="1" />
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           begin="0.4s"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                       <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
+                         <set attributeName="opacity" begin="0.4s" to="1" />
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           begin="0.4s"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                     </g>
+                   </mask>
+                 </defs>
+                 <rect
+                   width="24"
+                   height="24"
+                   fill="currentColor"
+                   mask="url(#lineMdCheckAll0)"
+                 />
+               </svg>
+             </li>
+             <li className="flex gap-2 items-center text-sm ">
+               Amount sold: {selectedCoin.coinSymbol}:{" "}
+               <span className="tracking-[0.1rem]">
+                 {handleCustomToFixed(Number(inputValueFirst))}
+               </span>
+               <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="2em"
+                 height="2em"
+                 viewBox="0 0 24 24"
+                 className="text-green-400"
+               >
+                 <defs>
+                   <mask id="lineMdCheckAll0">
+                     <g
+                       fill="none"
+                       stroke="#fff"
+                       stroke-dasharray="22"
+                       stroke-dashoffset="22"
+                       stroke-linecap="round"
+                       stroke-linejoin="round"
+                       stroke-width="2"
+                     >
+                       <path d="M2 13.5l4 4l10.75 -10.75">
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                       <path
+                         stroke="#000"
+                         stroke-width="4"
+                         d="M7.5 13.5l4 4l10.75 -10.75"
+                         opacity="0"
+                       >
+                         <set attributeName="opacity" begin="0.4s" to="1" />
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           begin="0.4s"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                       <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
+                         <set attributeName="opacity" begin="0.4s" to="1" />
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           begin="0.4s"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                     </g>
+                   </mask>
+                 </defs>
+                 <rect
+                   width="24"
+                   height="24"
+                   fill="currentColor"
+                   mask="url(#lineMdCheckAll0)"
+                 />
+               </svg>
+             </li>
+             <li className="flex gap-2 items-center text-sm ">
+               Money gained:{" "}
+               <span className="tracking-[0.1rem]">
+                 $
+                 {handleCustomToFixed(
+                   Number(inputValueFirst.replaceAll(",", "")) *
+                     Number(selectedCoin.priceUsd)
+                 )}
+               </span>
+               <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="2em"
+                 height="2em"
+                 viewBox="0 0 24 24"
+                 className="text-green-400"
+               >
+                 <defs>
+                   <mask id="lineMdCheckAll0">
+                     <g
+                       fill="none"
+                       stroke="#fff"
+                       stroke-dasharray="22"
+                       stroke-dashoffset="22"
+                       stroke-linecap="round"
+                       stroke-linejoin="round"
+                       stroke-width="2"
+                     >
+                       <path d="M2 13.5l4 4l10.75 -10.75">
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                       <path
+                         stroke="#000"
+                         stroke-width="4"
+                         d="M7.5 13.5l4 4l10.75 -10.75"
+                         opacity="0"
+                       >
+                         <set attributeName="opacity" begin="0.4s" to="1" />
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           begin="0.4s"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                       <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
+                         <set attributeName="opacity" begin="0.4s" to="1" />
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           begin="0.4s"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                     </g>
+                   </mask>
+                 </defs>
+                 <rect
+                   width="24"
+                   height="24"
+                   fill="currentColor"
+                   mask="url(#lineMdCheckAll0)"
+                 />
+               </svg>
+             </li>
+             <li className="flex gap-2 items-center text-sm ">
+               Price change since buying:{" "}
+               <span className="tracking-[0.1rem]">
+                 {handleCustomToFixed(
+                   ((selectedCoin.priceUsd -
+                     selectedCoinWallet.purchasedPrice) /
+                     selectedCoinWallet.purchasedPrice) *
+                     100
+                 )}
+                 %
+               </span>
+               <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="2em"
+                 height="2em"
+                 viewBox="0 0 24 24"
+                 className="text-green-400"
+               >
+                 <defs>
+                   <mask id="lineMdCheckAll0">
+                     <g
+                       fill="none"
+                       stroke="#fff"
+                       stroke-dasharray="22"
+                       stroke-dashoffset="22"
+                       stroke-linecap="round"
+                       stroke-linejoin="round"
+                       stroke-width="2"
+                     >
+                       <path d="M2 13.5l4 4l10.75 -10.75">
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                       <path
+                         stroke="#000"
+                         stroke-width="4"
+                         d="M7.5 13.5l4 4l10.75 -10.75"
+                         opacity="0"
+                       >
+                         <set attributeName="opacity" begin="0.4s" to="1" />
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           begin="0.4s"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                       <path d="M7.5 13.5l4 4l10.75 -10.75" opacity="0">
+                         <set attributeName="opacity" begin="0.4s" to="1" />
+                         <animate
+                           fill="freeze"
+                           attributeName="stroke-dashoffset"
+                           begin="0.4s"
+                           dur="0.4s"
+                           values="22;0"
+                         />
+                       </path>
+                     </g>
+                   </mask>
+                 </defs>
+                 <rect
+                   width="24"
+                   height="24"
+                   fill="currentColor"
+                   mask="url(#lineMdCheckAll0)"
+                 />
+               </svg>
+             </li>
+           </ul>
+           <p className="text-xs text-gray-400 text-center">
+             Thank you for choosing us as your dedicated crypto exchange
+             platform and best of luck with your future investments!
+           </p>
+         </div>
+       </Modal>
+     );
 
     handleSellCryptoGeneral(
       selectedCoin,
       Number(inputValueFirst.replaceAll(",", ""))
     );
+
+    setInputValueFirst("");
+    setInputValueSecond("");
   }
 
   return (
