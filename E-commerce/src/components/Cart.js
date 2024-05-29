@@ -27,8 +27,6 @@ export default function Cart() {
     0
   );
 
-  console.log(delivery);
-
   let discountAmount = 0;
   let discountPercentage =
     Object.values(discounts)[
@@ -56,6 +54,7 @@ export default function Cart() {
       document.body.style.overflow = "";
     };
   }, [cartIsShowing]);
+
   return (
     <main className="relative">
       <div
@@ -81,6 +80,7 @@ export default function Cart() {
       )}
 
       <div
+        onClick={handleToggleCart}
         className={`z-20 text-black p-8 pt-16 absolute top-[-1rem]
          left-[-1.2rem] bg-white shadow-xl transition-all scrollbar ${
            !cartIsShowing

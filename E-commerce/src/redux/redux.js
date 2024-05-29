@@ -33,7 +33,7 @@ const cartSlice = createSlice({
 
         state.items[thatItemIndex].quantity++;
         state.items[thatItemIndex].total += newItem.price;
-        state.items[thatItemIndex].delivery += newItem.delivery;
+        state.items[thatItemIndex].delivery += newItem.price.toFixed(0) / 10;
       } else
         state.items.push({
           ...newItem,
@@ -63,7 +63,8 @@ const cartSlice = createSlice({
         const thatItem = state.items[thatItemIndex];
 
         thatItem.quantity--;
-        thatItem.total = thatItem.total - thatItem.price;
+        thatItem.total -= thatItem.price;
+        thatItem.delivery -= thatItem.price;
       }
     },
 
