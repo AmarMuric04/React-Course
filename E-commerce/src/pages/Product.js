@@ -1,5 +1,5 @@
 import { useLoaderData, defer, Await } from "react-router-dom";
-import store from "../redux/redux";
+import Product from "../components/Product";
 import { Suspense } from "react";
 import ProductDetails from "../components/ProductDetails";
 
@@ -7,10 +7,33 @@ export default function ProductPage() {
   const { product, sameCategory } = useLoaderData();
 
   return (
-    <main className="w-full h-full grid place-items-center poppins">
+    <main className="w-full h-full  poppins flex justify-between">
       <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
         <Await resolve={product}>
-          {(loadedEvent) => <ProductDetails product={loadedEvent} />}
+          {(loadedEvent) => (
+            <main className="w-4/5 h-screen max-h-screen flex items-center justify-center">
+              <ProductDetails product={loadedEvent} />
+            </main>
+          )}
+        </Await>
+      </Suspense>
+      <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
+        <Await resolve={sameCategory}>
+          {(loadedEvent) => {
+            console.log(loadedEvent);
+            return (
+              <main className="w-1/5 flex justify-center flex-col">
+                <h1 className="my-4 text-2xl text-green-400 uppercase">
+                  More from this category:
+                </h1>
+                <ul className="flex justify-center flex-wrap gap-8">
+                  {loadedEvent.map((product) => (
+                    <Product product={product} />
+                  ))}
+                </ul>
+              </main>
+            );
+          }}
         </Await>
       </Suspense>
     </main>
@@ -18,12 +41,12 @@ export default function ProductPage() {
 }
 
 const loadSameCategoryProducts = async (id) => {
-  const state = store.getState();
-  const product = state.cart.items.find((item) => item.id === id);
+  const productsResponse = await fetch("https://dummyjson.com/products");
 
+  const { products } = await productsResponse.json();
+
+  const product = products.find((prod) => prod.id == id);
   const category = product.category;
-
-  console.log(product, category);
 
   const response = await fetch(
     "https://dummyjson.com/products/category/" + category
@@ -31,7 +54,7 @@ const loadSameCategoryProducts = async (id) => {
 
   const data = await response.json();
 
-  return data;
+  return data.products;
 };
 
 const loadProduct = async (id) => {
