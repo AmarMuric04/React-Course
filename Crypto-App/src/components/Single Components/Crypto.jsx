@@ -119,7 +119,12 @@ export default function Crypto({ coin }) {
             )}
           </li>
         ) : null}
-        <li className="w-3 font-normal absolute top-1 md:bottom-2 left-2 text-xs md:text-sm">
+        <li
+          className={`font-normal ${
+            userAccount &&
+            "absolute top-1 md:bottom-2 left-2 text-xs md:text-sm w-3"
+          } ${!userAccount && "text-sm md:text-md w-8 md:w-12"}`}
+        >
           {coinRank}.
         </li>
         <li className="w-1/6 md:w-64  overflow-hidden truncate whitespace-nowrap">

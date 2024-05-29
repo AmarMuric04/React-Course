@@ -155,7 +155,9 @@ export default function CryptoListContainer() {
         showCryptoList !== "mywallet" &&
         showCryptoList !== "activetrades" && (
           <ul className="flex gap-2 text-xs px-0 md:px-8 relative md:gap-16 md:text-sm text-gray-400">
-            <li className="w-1/6 md:w-24">Favorite</li>
+            <li className="w-1/6 md:w-24">
+              {userAccount ? "Favorite" : "Rank"}
+            </li>
             <li className="w-1/6 md:w-80">Name</li>
             <li className="w-1/6 md:w-40">Value</li>
             <li className="w-1/6 md:w-40">

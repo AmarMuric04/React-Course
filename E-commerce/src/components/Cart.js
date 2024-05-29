@@ -74,13 +74,13 @@ export default function Cart() {
       </div>
       {cartIsShowing && (
         <div
+          onClick={handleToggleCart}
           className="z-10 absolute top-[-1rem] left-[-2rem]
          w-screen h-screen bg-black opacity-50"
         ></div>
       )}
 
       <div
-        onClick={handleToggleCart}
         className={`z-20 text-black p-8 pt-16 absolute top-[-1rem]
          left-[-1.2rem] bg-white shadow-xl transition-all scrollbar ${
            !cartIsShowing

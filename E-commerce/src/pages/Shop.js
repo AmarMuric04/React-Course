@@ -1,7 +1,8 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Await } from "react-router-dom";
 import Products from "../components/Products";
 import { Fragment } from "react";
 import Sidebar from "../components/Sidebar";
+import { Suspense } from "react";
 
 export default function ShopPage() {
   const { products } = useLoaderData();
@@ -16,7 +17,11 @@ export default function ShopPage() {
         >
           Available products
         </h1>
-        <Products products={products} />
+        <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
+          <Await resolve={products}>
+            {(loadedData) => <Products products={loadedData} />}
+          </Await>
+        </Suspense>
       </main>
     </Fragment>
   );
