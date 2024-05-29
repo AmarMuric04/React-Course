@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { convertToCurrency } from "../util/dataModifiers";
+import { convertToCurrency, formatISODate } from "../util/dataModifiers";
 import ProductMenu from "./ProductMenu";
 import StarRating from "./StarRating";
 import { useSelector } from "react-redux";
@@ -31,7 +31,7 @@ export default function ProductDetails({ product }) {
 
   if (product)
     return (
-      <div className="shadow-lg flex rounded-xl w-[80rem] h-[40rem]">
+      <div className="shadow-lg flex rounded-xl w-4/5 h-[50rem]">
         <div className="flex items-center p-16 justify-center w-1/2 relative">
           <img
             className="w-96 h-96 object-contain"
@@ -41,8 +41,11 @@ export default function ProductDetails({ product }) {
           <p className="absolute top-4 left-4 text-gray-400 px-4 py-2 border border-gray-400 rounded-md">
             {productInCart.sku}
           </p>
+          <p className="absolute bottom-4 left-4 text-gray-400 px-4 py-2">
+            Created: {formatISODate(productInCart.meta.createdAt)}
+          </p>
         </div>
-        <div className="w-1/2 p-16 bg-gray-700 text-white flex flex-col justify-between">
+        <div className="w-1/2 p-16 rounded-r-xl bg-gray-700 text-white flex flex-col justify-between">
           <section>
             <p className="text-md text-green-400 uppercase font-bold">
               {productInCart.category}

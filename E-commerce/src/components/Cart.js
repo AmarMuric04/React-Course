@@ -157,17 +157,18 @@ export default function Cart() {
                 If you have a promotion code, please enter it here:
               </p>
               <div className="flex justify-between">
-                <div className="flex items-start">
+                <div className="flex items-start gap-2">
                   <input
                     ref={discountInput}
-                    className="border-2 border-zinc-200 py-[0.5rem] px-4"
+                    className="border-2 border-zinc-200 py-[0.5rem] px-4  rounded-md"
                     type="text"
                     placeholder="Discount..."
                   />
                   <button
                     onClick={handleChangeDiscount}
                     className="bg-green-400 border-2
-               border-green-400 text-white py-2 px-4 hover:bg-green-700 transition-all"
+               border-green-400 text-white py-2 px-4 hover:bg-green-700
+                transition-all rounded-md"
                   >
                     Apply Discount
                   </button>
@@ -175,13 +176,14 @@ export default function Cart() {
                 <div className="flex flex-col gap-2">
                   <button
                     className="bg-green-400 border-2 border-green-400 px-4 py-2 text-white
-              hover:bg-green-700 transition-all"
+              hover:bg-green-700 transition-all rounded-md"
                   >
                     Checkout
                   </button>
                   <button
                     onClick={handleToggleCart}
-                    className="border-2 border-green-400 hover:bg-zinc-200 transition-all px-4 py-2"
+                    className="border-2 border-green-400 hover:bg-zinc-200
+                     transition-all px-4 py-2 rounded-md"
                   >
                     Continue Shopping
                   </button>

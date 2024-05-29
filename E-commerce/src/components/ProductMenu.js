@@ -1,4 +1,6 @@
 import { useState } from "react";
+import StarRating from "./StarRating";
+import { formatISODate } from "../util/dataModifiers";
 
 export default function ProductMenu({ product }) {
   const [activeButton, setActiveButton] = useState("description");
@@ -150,7 +152,9 @@ export default function ProductMenu({ product }) {
                       d="m7 16l-4-4l4-4l1.425 1.4l-1.6 1.6h10.35L15.6 9.4L17 8l4 4l-4 4l-1.4-1.4l1.575-1.6H6.825L8.4 14.6z"
                     />
                   </svg>
-                  Width: {product.dimensions.width}
+                  <p>Width: </p>
+                  {product.dimensions.width}
+                  <span className="text-xs">cm</span>
                 </li>
                 <li className="flex gap-1 items-center">
                   <svg
@@ -165,7 +169,9 @@ export default function ProductMenu({ product }) {
                       d="m12 21l-4-4l1.4-1.4l1.6 1.575V6.825L9.4 8.4L8 7l4-4l4 4l-1.4 1.425l-1.6-1.6v10.35l1.6-1.575L16 17z"
                     />
                   </svg>
-                  Height: {product.dimensions.height}
+                  <p>Height: </p>
+                  {product.dimensions.height}
+                  <span className="text-xs">cm</span>
                 </li>
                 <li className="flex gap-1 items-center">
                   <svg
@@ -184,11 +190,77 @@ export default function ProductMenu({ product }) {
                       d="M2 20h20M5 4h14M3 16.01l.01-.011m18 .011l-.01-.011M4 12.01l.01-.011m16 .011l-.01-.011M5 8.01l.01-.011m14 .011L19 7.999M12 7v10m0-10l-1.5 1.5M12 7l1.5 1.5M12 17l-3-3m3 3l3-3"
                     />
                   </svg>
-                  Depth: {product.dimensions.depth}
+                  <p>Depth:</p> {product.dimensions.depth}
+                  <span className="text-xs">cm</span>
                 </li>
               </ul>
+              <div className="flex gap-2 items-center">
+                <p className="text-sm font-bold flex gap-1 items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 48 48"
+                  >
+                    <defs>
+                      <mask id="ipSWeight0">
+                        <g fill="none">
+                          <path
+                            fill="#fff"
+                            stroke="#fff"
+                            stroke-linejoin="round"
+                            stroke-width="4"
+                            d="M41 4H7a3 3 0 0 0-3 3v34a3 3 0 0 0 3 3h34a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Z"
+                          />
+                          <path
+                            stroke="#000"
+                            stroke-linecap="round"
+                            stroke-width="4"
+                            d="M12 19.054c3.325-4 7.325-6 12-6s8.675 2 12 6"
+                          />
+                          <path
+                            fill="#000"
+                            d="M24 31a3 3 0 1 0 0-6a3 3 0 0 0 0 6"
+                          />
+                          <path
+                            stroke="#000"
+                            stroke-linecap="round"
+                            stroke-width="4"
+                            d="m19 21l5.008 7"
+                          />
+                        </g>
+                      </mask>
+                    </defs>
+                    <path
+                      fill="currentColor"
+                      d="M0 0h48v48H0z"
+                      mask="url(#ipSWeight0)"
+                    />
+                  </svg>{" "}
+                  Weight:{" "}
+                </p>
+                <p>{product.weight}</p>
+                <span className="text-xs">lbs</span>
+              </div>
             </div>
           </section>
+        )}
+        {activeButton === "reviews" && (
+          <ul className="flex flex-col gap-2">
+            {product.reviews.map((review) => (
+              <li className="border-l-2 border-green-400 pl-4" key={product.id}>
+                <p className="flex justify-between items-center">
+                  <p className="font-bold">{review.reviewerName}</p>
+                  <StarRating rating={review.rating} />
+                </p>
+                <p className="italic text-sm">"{review.comment}"</p>
+                <p className="text-sm italic text-gray-400">
+                  {review.reviewerEmail}
+                </p>
+                <p className="text-xs">{formatISODate(review.date)}</p>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </section>
