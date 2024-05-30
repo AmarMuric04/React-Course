@@ -4,7 +4,7 @@ import Cart from "./Cart";
 
 export default function MainNavigation() {
   return (
-    <header className="h-16 flex items-center px-8">
+    <header className="h-16 flex items-center px-8 bg-zinc-200">
       <nav className="flex items-center justify-between w-full h-full">
         <Cart />
         <ul className="flex gap-3">

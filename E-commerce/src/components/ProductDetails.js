@@ -3,9 +3,13 @@ import { convertToCurrency, formatISODate } from "../util/dataModifiers";
 import ProductMenu from "./ProductMenu";
 import StarRating from "./StarRating";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../redux/redux";
+import MagnifyingGlass from "./MagnifyingGlass";
 
 export default function ProductDetails({ product }) {
   const cart = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrease = () => {
@@ -21,6 +25,17 @@ export default function ProductDetails({ product }) {
     setQuantity(newQuantity);
   };
 
+  const handleAddToCart = () => {
+    dispatch(
+      cartActions.increaseQuantity({
+        item: product,
+        quantityIncrease: quantity,
+      })
+    );
+
+    setQuantity(1);
+  };
+
   let productInCart = cart.find((item) => item.id === product.id);
 
   if (!productInCart) productInCart = product;
@@ -31,13 +46,17 @@ export default function ProductDetails({ product }) {
 
   if (product)
     return (
-      <div className="shadow-lg flex rounded-xl w-4/5 h-[50rem]">
-        <div className="flex items-center p-16 justify-center w-1/2 relative">
-          <img
-            className="w-96 h-96 object-contain"
+      <div className="shadow-lg flex rounded-xl w-4/5 h-auto">
+        <div
+          className="img-container flex items-center
+         p-16 justify-center w-1/2 relative"
+        >
+          <MagnifyingGlass imageSrc={productInCart.images[0]} />
+          {/* <img
+            className="zoom-img w-96 h-96 object-contain"
             src={productInCart.images[0]}
             alt="productInCart"
-          />
+          /> */}
           <p className="absolute top-4 left-4 text-gray-400 px-4 py-2 border border-gray-400 rounded-md">
             {productInCart.sku}
           </p>
@@ -149,6 +168,7 @@ export default function ProductDetails({ product }) {
               </div>
             </div>
             <button
+              onClick={handleAddToCart}
               className="bg-green-400 text-white w-full rounded-full 
           py-3 px-4 hover:bg-green-700 transition-all"
             >

@@ -6,7 +6,12 @@ export default function CartItem({ product }) {
   const dispatch = useDispatch();
 
   const handleIncrease = (product) =>
-    dispatch(cartActions.increaseQuantity(product));
+    dispatch(
+      cartActions.increaseQuantity({
+        item: product,
+        quantityIncrease: 1,
+      })
+    );
   const handleDecrease = (product) =>
     dispatch(cartActions.decreaseQuantity(product));
   const handleRemove = (product) =>

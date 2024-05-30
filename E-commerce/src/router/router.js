@@ -20,11 +20,12 @@ export const router = createBrowserRouter([
       {
         path: "shop",
         element: <ShopRoot />,
+        id: "shoproot",
+        loader: productsLoader,
         children: [
           {
             index: true,
             element: <ShopPage />,
-            loader: productsLoader,
           },
           {
             path: ":id",

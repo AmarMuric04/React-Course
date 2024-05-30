@@ -44,7 +44,7 @@ export default function ProductMenu({ product }) {
           Reviews
         </button>
       </menu>
-      <div className="text-gray-200">
+      <div className="text-gray-200 h-36 overflow-auto custom-scrollbar">
         {activeButton === "description" && <p>{product.description}</p>}
         {activeButton === "details" && (
           <section>
@@ -138,7 +138,7 @@ export default function ProductMenu({ product }) {
                 </svg>{" "}
                 Dimensions:{" "}
               </p>
-              <ul className="flex gap-2 text-sm px-2">
+              <ul className="flex text-sm px-2 flex-col">
                 <li className="flex gap-1 items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

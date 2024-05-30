@@ -2,9 +2,12 @@ import { useLoaderData, defer, Await } from "react-router-dom";
 import Product from "../components/Product";
 import { Suspense } from "react";
 import ProductDetails from "../components/ProductDetails";
+import store from "../redux/redux";
+import { useSelector } from "react-redux";
 
 export default function ProductPage() {
   const { product, sameCategory } = useLoaderData();
+  const category = useSelector((state) => state.misc.category);
 
   return (
     <main className="w-full h-full  poppins flex justify-between">
@@ -20,11 +23,10 @@ export default function ProductPage() {
       <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
         <Await resolve={sameCategory}>
           {(loadedEvent) => {
-            console.log(loadedEvent);
             return (
               <main className="w-1/5 flex justify-center flex-col">
-                <h1 className="my-4 text-2xl text-green-400 uppercase">
-                  More from this category:
+                <h1 className="my-4 text-md lg:text-2xl text-green-400 uppercase whitespace-nowrap">
+                  More from {category}:
                 </h1>
                 <ul className="flex justify-center flex-wrap gap-8">
                   {loadedEvent.map((product) => (
@@ -41,18 +43,19 @@ export default function ProductPage() {
 }
 
 const loadSameCategoryProducts = async (id) => {
-  const productsResponse = await fetch("https://dummyjson.com/products");
+  const state = store.getState();
+  let category = state.misc.category;
 
-  const { products } = await productsResponse.json();
-
-  const product = products.find((prod) => prod.id == id);
-  const category = product.category;
+  if (!category) category = JSON.parse(localStorage.getItem("category"));
 
   const response = await fetch(
     "https://dummyjson.com/products/category/" + category
   );
 
   const data = await response.json();
+  const productIndex = data.products.findIndex((product) => product.id == id);
+
+  data.products.splice(productIndex, 1);
 
   return data.products;
 };

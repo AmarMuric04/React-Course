@@ -1,4 +1,5 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { miscSlice } from "./misc";
 
 const initialCartState = {
   items: [],
@@ -19,28 +20,30 @@ const cartSlice = createSlice({
     },
 
     increaseQuantity(state, action) {
-      const newItem = action.payload;
-      const thatItem = state.items.find(
-        (item) => item.title === action.payload.title
-      );
+      const newItem = action.payload.item;
+
+      const thatItem = state.items.find((item) => item.title === newItem.title);
 
       state.changed = true;
 
       if (thatItem) {
         const thatItemIndex = state.items.findIndex(
-          (item) => item.title === action.payload.title
+          (item) => item.title === newItem.title
         );
 
-        state.items[thatItemIndex].quantity++;
+        state.items[thatItemIndex].quantity += action.payload.quantityIncrease;
         state.items[thatItemIndex].total += newItem.price;
         state.items[thatItemIndex].delivery += newItem.price.toFixed(0) / 10;
       } else
         state.items.push({
           ...newItem,
-          quantity: 1,
-          total: newItem.price,
+          quantity: action.payload.quantityIncrease,
+          total: newItem.price * action.payload.quantityIncrease,
           delivery:
-            newItem.price / 10 < 0.99 ? 0 : newItem.price.toFixed(0) / 10,
+            newItem.price / 10 < 0.99
+              ? 0
+              : (newItem.price * action.payload.quantityIncrease).toFixed(0) /
+                10,
         });
     },
 
@@ -62,9 +65,11 @@ const cartSlice = createSlice({
       else {
         const thatItem = state.items[thatItemIndex];
 
+        console.log(thatItem);
+
         thatItem.quantity--;
         thatItem.total -= thatItem.price;
-        thatItem.delivery -= thatItem.price;
+        thatItem.delivery -= thatItem.price.toFixed(0) / 10;
       }
     },
 
@@ -81,6 +86,7 @@ const cartSlice = createSlice({
 const store = configureStore({
   reducer: {
     cart: cartSlice.reducer,
+    misc: miscSlice.reducer,
   },
 });
 

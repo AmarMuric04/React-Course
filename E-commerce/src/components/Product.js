@@ -4,12 +4,19 @@ import { useDispatch } from "react-redux";
 import { convertToCurrency } from "../util/dataModifiers";
 import StarRating from "./StarRating";
 import { Link } from "react-router-dom";
+import { miscActions } from "../redux/misc";
 
 export default function Product({ product }) {
   const dispatch = useDispatch();
 
-  const handleAddToCart = (product) => {
-    dispatch(cartActions.increaseQuantity(product));
+  const handleAddToCart = (product) =>
+    dispatch(
+      cartActions.increaseQuantity({ item: product, quantityIncrease: 1 })
+    );
+
+  const handleChangeCategory = (category) => {
+    localStorage.setItem("category", JSON.stringify(category));
+    dispatch(miscActions.putCategory(category));
   };
 
   return (
@@ -76,6 +83,7 @@ export default function Product({ product }) {
             Add to cart
           </button>
           <Link
+            onClick={() => handleChangeCategory(product.category)}
             to={`/shop/${product.id}`}
             className="poppins font-semibold text-sm text-black
                  mr-2 py-2 px-6 self-end border-2 border-green-400 rounded-md
