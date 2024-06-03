@@ -5,7 +5,8 @@ import {
   DropdownItem,
   Button,
 } from "@nextui-org/react";
-import { useMemo, useState } from "react";
+
+import { useState } from "react";
 
 export default function MainDropDown({ list }) {
   const [selectedKeys, setSelectedKeys] = useState(list[0]);
@@ -24,11 +25,11 @@ export default function MainDropDown({ list }) {
         selectionMode="single"
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
-        className="bg-zinc-200 rounded-xl"
+        className="bg-white rounded-xl"
       >
         {list.map((item) => (
           <DropdownItem
-            className="px-8 my-2 py-1 hover:bg-green-400 hover:text-white transition-all"
+            className="px-8 my-1 py-1 hover:bg-zinc-100 transition-all"
             key={item}
           >
             {item}
