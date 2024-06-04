@@ -59,12 +59,13 @@ export default function Cart() {
     <main className="relative">
       <div
         onClick={handleToggleCart}
-        className="flex items-center h-full relative cursor-pointer"
+        className="flex items-center h-full relative
+        p-1 rounded-full cursor-pointer z-50 bg-green-400 hover:bg-green-600 transition-all"
       >
         <CartIcon />
         <p
-          className="z-50 absolute top-4 right-[-0.3rem] bg-red-400 rounded-full text-white
-          px-1 text-xs font-bold"
+          className="absolute bottom-[-1.5rem] left-1/2 translate-x-[-50%]
+           bg-red-400 rounded-full text-white px-1 text-xs font-bold"
         >
           {cart.reduce(
             (accumulator, currValue) => accumulator + currValue.quantity,
@@ -75,14 +76,14 @@ export default function Cart() {
       {cartIsShowing && (
         <div
           onClick={handleToggleCart}
-          className="z-10 absolute top-[-1rem] left-[-2rem]
+          className="z-10 absolute top-[-1rem] right-[-2rem]
          w-screen h-screen bg-black opacity-50"
         ></div>
       )}
 
       <div
         className={`z-20 text-black p-8 pt-16 absolute top-[-1rem]
-         left-[-1.2rem] bg-white shadow-xl transition-all scrollbar ${
+         right-[-1.2rem] bg-white shadow-xl transition-all scrollbar ${
            !cartIsShowing
              ? "rounded-full opacity-0 rounded-tl-none h-0 w-0 overflow-hidden "
              : "rounded-none opacity-100 h-[50rem] w-[40rem] shadow-xl overflow-auto"

@@ -345,3 +345,39 @@ a {
   transform: translateX(110%);
   transition: all var(--speed) ease;
 }
+
+.blue-gradient {
+  background: rgb(80, 32, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(80, 32, 0, 1) 10%,
+    rgba(85, 45, 2, 1) 90%
+  );
+}
+
+.purple-gradient {
+  background: rgb(180, 2, 2);
+  background: linear-gradient(
+    90deg,
+    rgba(180, 2, 2, 1) 10%,
+    rgba(221, 5, 5, 1) 90%
+  );
+}
+
+.yellow-gradient {
+  background: rgb(180, 133, 2);
+  background: linear-gradient(
+    90deg,
+    rgba(180, 133, 2, 1) 10%,
+    rgba(221, 161, 5, 1) 90%
+  );
+}
+
+.green-gradient {
+  background: rgb(74, 222, 128);
+  background: linear-gradient(
+    90deg,
+    rgba(74, 222, 128, 1) 0%,
+    rgba(122, 246, 167, 1) 100%
+  );
+}

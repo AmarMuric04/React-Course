@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { miscActions } from "./redux/misc";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
   const dispatch = useDispatch();
 
