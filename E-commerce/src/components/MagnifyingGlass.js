@@ -26,11 +26,11 @@ const MagnifyingGlass = ({ imageSrc }) => {
 
   return (
     <div
-      className="img-container"
+      className="img-container w-full h-full grid place-items-center"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <img src={imageSrc} alt="Zoom" className="zoom-img" />
+      <img src={imageSrc} alt="Zoom" className="zoom-img h-64" />
       <div className="magnifier" style={magnifierStyle}></div>
     </div>
   );

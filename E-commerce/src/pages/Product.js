@@ -10,11 +10,11 @@ export default function ProductPage() {
   const category = useSelector((state) => state.misc.category);
 
   return (
-    <main className="w-full h-full  poppins flex justify-between">
+    <main className="w-full h-full poppins flex flex-col items-center">
       <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
         <Await resolve={product}>
           {(loadedEvent) => (
-            <main className="w-4/5 h-screen max-h-screen flex items-center justify-center">
+            <main className="w-3/5 h-screen max-h-screen flex items-center justify-center">
               <ProductDetails product={loadedEvent} />
             </main>
           )}
@@ -24,11 +24,15 @@ export default function ProductPage() {
         <Await resolve={sameCategory}>
           {(loadedEvent) => {
             return (
-              <main className="w-1/5 flex justify-center flex-col">
-                <h1 className="my-4 text-md lg:text-2xl text-green-400 uppercase whitespace-nowrap">
-                  More from {category}:
+              <main className="w-3/5 flex justify-center flex-col">
+                <h1
+                  className="mt-4 text-md lg:text-2xl green-gradient
+                 uppercase whitespace-nowrap text-white py-16 text-center rounded-3xl
+                 mb-16"
+                >
+                  More from {category}
                 </h1>
-                <ul className="flex justify-center flex-wrap gap-8">
+                <ul className="flex justify-between flex-wrap gap-4 p-0">
                   {loadedEvent.map((product) => (
                     <Product product={product} />
                   ))}

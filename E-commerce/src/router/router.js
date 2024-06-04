@@ -5,6 +5,7 @@ import HomePage from "../pages/Home";
 import ShopPage, { loader as productsLoader } from "../pages/Shop";
 import ProductPage, { loader as productLoader } from "../pages/Product";
 import ShopRoot from "../pages/ShopRoot";
+import { loader as categoryProductLoader } from "../pages/Category";
 
 export const router = createBrowserRouter([
   {
@@ -21,16 +22,21 @@ export const router = createBrowserRouter([
         path: "shop",
         element: <ShopRoot />,
         id: "shoproot",
-        loader: productsLoader,
         children: [
           {
             index: true,
             element: <ShopPage />,
+            loader: productsLoader,
           },
           {
-            path: ":id",
+            path: "product/:id",
             element: <ProductPage />,
             loader: productLoader,
+          },
+          {
+            path: "category/:category",
+            element: <ShopPage />,
+            loader: categoryProductLoader,
           },
         ],
       },

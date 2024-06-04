@@ -6,8 +6,8 @@ export default function HomePage() {
   return (
     <main className="w-full flex flex-col items-center h-screen poppins">
       <div className="w-3/5 green-gradient rounded-3xl h-auto py-16 p-8">
-        <div className="w-full flex items-center flex-col">
-          <h1 className="tracking-[-0.1rem] uppercase font-bold">Discover</h1>
+        <div className="w-full flex items-center flex-col text-white">
+          <h1 className="uppercase font-bold  text-[3rem]">Discover</h1>
           <h2 className="uppercase text-4xl">Your dream products</h2>
           <p>Explore & Buy Your Favorites to Suit Your Style & Preferences</p>
         </div>

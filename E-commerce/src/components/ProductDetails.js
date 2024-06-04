@@ -46,7 +46,7 @@ export default function ProductDetails({ product }) {
 
   if (product)
     return (
-      <div className="shadow-lg flex rounded-xl w-4/5 h-auto">
+      <div className="shadow-lg flex rounded-xl w-full h-auto">
         <div
           className="img-container flex items-center
          p-16 justify-center w-1/2 relative"
@@ -112,7 +112,7 @@ export default function ProductDetails({ product }) {
                       </path>
                     </svg>
                   </button>
-                  <p className="w-8 text-center">{quantity}</p>
+                  <p className="w-8 m-0 text-center">{quantity}</p>
                   <button
                     onClick={handleIncrease}
                     className="p-2 text-white bg-green-400 border-2 rounded-md

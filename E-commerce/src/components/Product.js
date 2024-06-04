@@ -27,7 +27,7 @@ export default function Product({ product }) {
           transition-all justify-between relative poppins shadow-md"
       key={product.id}
     >
-      <section className="w-full h-48 bg-green-400 grid place-items-center">
+      <section className="w-full h-48 green-gradient grid place-items-center">
         <ImageLoader
           className="w-32 h-32 object-contain"
           image={product.images[0]}
@@ -84,10 +84,10 @@ export default function Product({ product }) {
           </button>
           <Link
             onClick={() => handleChangeCategory(product.category)}
-            to={`/shop/${product.id}`}
+            to={`/shop/product/${product.id}`}
             className="poppins font-semibold text-sm text-black
                  mr-2 py-2 px-6 self-end border-2 border-green-400 rounded-md
-                transition-all hover:bg-zinc-200"
+                transition-all hover:bg-zinc-200 no-underline"
           >
             See details
           </Link>

@@ -1,42 +1,39 @@
-import {
-  Await,
-  useRouteLoaderData,
-  useActionData,
-  Link,
-} from "react-router-dom";
+import { Await, useLoaderData } from "react-router-dom";
 import Products from "../components/Products";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import Sidebar from "../components/Sidebar";
 import { Suspense } from "react";
 
 export default function ShopPage() {
-  const { products } = useRouteLoaderData("shoproot");
+  const { products } = useLoaderData();
 
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
   return (
-    <Fragment>
-      <Sidebar />
-      <main className="w-[85%] px-16 pt-16">
-        <h1
-          className="uppercase monsterrat tracking-[0.1rem] font-thin text-4xl
-       mb-16 text-green-400 flex flex-col"
-        >
-          Available products
-        </h1>
+    <main className="w-full flex flex-col items-center">
+      <Sidebar
+        title={
+          <Fragment>
+            <h1 className="uppercase font-bold text-[3rem]">Welcome</h1>
+            <h2 className="uppercase text-4xl">to the shop</h2>
+            <p>Explore & Buy Your Favorites to Suit Your Style & Preferences</p>
+          </Fragment>
+        }
+      />
+      <div className="w-3/5 my-16">
         <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
           <Await resolve={products}>
             {(loadedData) => <Products products={loadedData} />}
           </Await>
         </Suspense>
-        <Link to={`page=${1}`}>+21312312312321</Link>
-      </main>
-    </Fragment>
+      </div>
+      {/* <Link to={`page=${1}`}>+21312312312321</Link> */}
+    </main>
   );
 }
 
 export const action = async (request, params) => {};
 
 export const loader = async () => {
-  return fetch("https://dummyjson.com/products?limit=30&skip=60");
+  return fetch("https://dummyjson.com/products");
 };
