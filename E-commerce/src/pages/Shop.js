@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 export default function ShopPage() {
   const { products } = useLoaderData();
   const category = useSelector((state) => state.misc.category);
+  console.log(category);
 
   // const [page, setPage] = useState(1);
 
@@ -85,7 +86,7 @@ export default function ShopPage() {
 
 // export const action = async (request, params) => {};
 
-export const loader = async () => {
+export const loader = async ({ request, params }) => {
   store.dispatch(putCategory(null));
 
   return fetch("https://dummyjson.com/products");

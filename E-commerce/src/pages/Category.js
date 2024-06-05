@@ -6,5 +6,7 @@ export const loader = async ({ request, params }) => {
 
   store.dispatch(putCategory(category));
 
+  console.log(store.getState().misc.category, "+++");
+
   return fetch("https://dummyjson.com/products/category/" + category);
 };
