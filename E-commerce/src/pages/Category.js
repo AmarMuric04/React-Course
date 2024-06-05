@@ -1,8 +1,10 @@
+import store from "../redux/redux";
+import { putCategory } from "../redux/misc";
+
 export const loader = async ({ request, params }) => {
-  console.log(params);
   const category = params.category;
 
-  console.log(category);
+  store.dispatch(putCategory(category));
 
   return fetch("https://dummyjson.com/products/category/" + category);
 };

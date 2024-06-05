@@ -29,13 +29,13 @@ export default function CartItem({ product }) {
           alt="Product"
         />
         <div className="w-full flex flex-col overflow-hidden">
-          <p className="font-bold whitespace-nowrap truncate">
+          <p className="font-bold whitespace-nowrap truncate m-0">
             {product.title}
           </p>
-          <p className="font-thin whitespace-nowrap truncate text-sm">
+          <p className="font-thin whitespace-nowrap truncate text-sm m-0">
             {product.returnPolicy}
           </p>
-          <p className="font-thin whitespace-nowrap truncate text-xs">
+          <p className="font-thin whitespace-nowrap truncate text-xs m-0 italic">
             {product.shippingInformation}
           </p>
         </div>
@@ -69,7 +69,7 @@ export default function CartItem({ product }) {
             </path>
           </svg>
         </button>
-        <p>{product.quantity}</p>
+        <p className="m-0">{product.quantity}</p>
         <button
           onClick={() => handleIncrease(product)}
           className="p-2 text-white bg-green-400 border-2 rounded-md

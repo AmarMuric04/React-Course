@@ -19,9 +19,9 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "shop",
+        path: "store",
         element: <ShopRoot />,
-        id: "shoproot",
+        id: "storeroot",
         children: [
           {
             index: true,

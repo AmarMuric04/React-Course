@@ -15,7 +15,6 @@ export default function Product({ product }) {
     );
 
   const handleChangeCategory = (category) => {
-    localStorage.setItem("category", JSON.stringify(category));
     dispatch(miscActions.putCategory(category));
   };
 
@@ -37,20 +36,20 @@ export default function Product({ product }) {
       <section className="px-4 flex w-full flex-col items-start">
         <p
           className="font-bold text-xl w-full truncate
-           overflow-hidden whitespace-nowrap poppins"
+           overflow-hidden whitespace-nowrap poppins m-0"
         >
           {product.title}
         </p>
         <div className="ml-[0.1rem] text-gray-400 text-[0.6rem] flex gap-2 items-center">
-          <p className="font-bold">Category:</p>
-          <p className=" border-[0.1rem] text-gray-700 border-green-400 rounded-full px-2">
+          <p className="font-bold m-0">Category:</p>
+          <p className=" m-0 border-[0.1rem] text-gray-700 border-green-400 rounded-full px-2">
             {product.category}
           </p>
         </div>
       </section>
 
       <section className="px-4 w-full flex flex-col">
-        <p className="text-sm truncate overflow-hidden whitespace-nowrap w-full">
+        <p className="text-sm m-0 truncate overflow-hidden whitespace-nowrap w-full">
           {product.description}
         </p>
         <p>
@@ -58,16 +57,16 @@ export default function Product({ product }) {
         </p>
       </section>
       {product.discountPercentage > 1 && (
-        <p className="absolute top-0 right-0 py-[0.2rem] px-4 font-bold text-white rounded-md">
+        <p className="absolute top-0 m-0 right-0 py-[0.2rem] px-4 font-bold text-white rounded-md">
           {"- " + product.discountPercentage.toFixed(0) + " %"}
         </p>
       )}
       <section className="flex w-full justify-between items-center">
         <div className="flex flex-col w-1/3 text-center px-2">
-          <p className="text-green-400 font-bold">
+          <p className="text-green-400 m-0 font-bold">
             {convertToCurrency(product.price)}
           </p>
-          <p className="text-gray-400 text-xs whitespace-nowrap">
+          <p className="text-gray-400 m-0 text-xs whitespace-nowrap">
             {"+" + product.price.toFixed(0) / 10 < 0.99
               ? "FREE delivery"
               : "+" + product.price.toFixed(0) / 10 + "€ delivery"}
@@ -84,7 +83,7 @@ export default function Product({ product }) {
           </button>
           <Link
             onClick={() => handleChangeCategory(product.category)}
-            to={`/shop/product/${product.id}`}
+            to={`/store/product/${product.id}`}
             className="poppins font-semibold text-sm text-black
                  mr-2 py-2 px-6 self-end border-2 border-green-400 rounded-md
                 transition-all hover:bg-zinc-200 no-underline"

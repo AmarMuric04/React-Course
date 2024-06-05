@@ -114,8 +114,8 @@ export default function Cart() {
                   className="px-3 py-4 border-2 border-zinc-200 rounded-md flex
           justify-between items-center"
                 >
-                  <p className="text-sm">Discount:</p>
-                  <p className="font-bold flex gap-2 items-center">
+                  <p className="text-sm m-0">Discount:</p>
+                  <p className="font-bold flex gap-2 items-center m-0">
                     {convertToCurrency(discountAmount)}
                     {discountPercentage && (
                       <p className="text-gray-400 text-xs font-thin">
@@ -128,8 +128,8 @@ export default function Cart() {
                   className="px-3 py-4 border-2 border-zinc-200 rounded-md flex
           justify-between items-center"
                 >
-                  <p className="text-sm">Delivery:</p>
-                  <p className="font-bold">
+                  <p className="text-sm m-0">Delivery:</p>
+                  <p className="font-bold m-0">
                     {delivery < 1 ? "FREE" : convertToCurrency(delivery)}
                   </p>
                 </div>
@@ -139,8 +139,8 @@ export default function Cart() {
                   className="px-3 py-4 border-2 border-zinc-200 rounded-md flex
           justify-between items-center"
                 >
-                  <p className="text-sm">Subtotal:</p>
-                  <p className="font-bold">
+                  <p className="text-sm m-0">Subtotal:</p>
+                  <p className="font-bold m-0">
                     {convertToCurrency(subtotalPrice)}
                   </p>
                 </div>
@@ -148,20 +148,22 @@ export default function Cart() {
                   className="px-3 py-4 border-2 border-zinc-200 rounded-md flex
           justify-between items-center"
                 >
-                  <p className="text-sm">Total:</p>
-                  <p className="font-bold">{convertToCurrency(totalPrice)}</p>
+                  <p className="text-sm m-0">Total:</p>
+                  <p className="font-bold m-0">
+                    {convertToCurrency(totalPrice)}
+                  </p>
                 </div>
               </div>
             </section>
             <section className="flex flex-col">
-              <p className="p-4 text-sm text-gray-400">
+              <p className="p-4 text-sm text-gray-400 m-0">
                 If you have a promotion code, please enter it here:
               </p>
-              <div className="flex justify-between">
-                <div className="flex items-start gap-2">
+              <div className="flex gap-10 justify-between">
+                <div className="flex flex-col gap-2 w-1/2">
                   <input
                     ref={discountInput}
-                    className="border-2 border-zinc-200 py-[0.5rem] px-4  rounded-md"
+                    className="border-2 outline-none border-zinc-200 py-[0.5rem] px-4  rounded-md"
                     type="text"
                     placeholder="Discount..."
                   />
@@ -174,7 +176,7 @@ export default function Cart() {
                     Apply Discount
                   </button>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/2">
                   <button
                     className="bg-green-400 border-2 border-green-400 px-4 py-2 text-white
               hover:bg-green-700 transition-all rounded-md"

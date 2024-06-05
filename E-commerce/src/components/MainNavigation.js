@@ -29,7 +29,7 @@ export default function MainNavigation() {
           <span className="text-white">|</span>
           <li>
             <NavLink
-              to="/shop"
+              to="/store"
               className={({ isActive }) =>
                 isActive
                   ? "font-bold no-underline text-white"
@@ -37,7 +37,7 @@ export default function MainNavigation() {
               }
               end
             >
-              Shop
+              Store
             </NavLink>
           </li>
         </ul>

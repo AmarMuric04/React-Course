@@ -1,9 +1,11 @@
-import { useLoaderData, defer, Await } from "react-router-dom";
+import { useLoaderData, NavLink, defer, Await } from "react-router-dom";
 import Product from "../components/Product";
-import { Suspense } from "react";
+import { Suspense, Fragment } from "react";
 import ProductDetails from "../components/ProductDetails";
 import store from "../redux/redux";
 import { useSelector } from "react-redux";
+import { putCategory } from "../redux/misc";
+import { LoaderIcon } from "../assets/icons";
 
 export default function ProductPage() {
   const { product, sameCategory } = useLoaderData();
@@ -11,10 +13,59 @@ export default function ProductPage() {
 
   return (
     <main className="w-full h-full poppins flex flex-col items-center">
+      <section className="flex gap-2 justify-start w-3/5 text-xs my-8 px-8">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `no-underline uppercase ${
+              isActive ? "text-green-400 font-bold" : "font-thin text-black"
+            }`
+          }
+          end
+        >
+          Home
+        </NavLink>
+        <span> - </span>
+        <NavLink
+          to="/store"
+          className={({ isActive }) =>
+            `no-underline uppercase ${
+              isActive ? "text-green-400 font-bold" : "font-thin text-black"
+            }`
+          }
+          end
+        >
+          Store
+        </NavLink>
+        <span> - </span>
+        <NavLink
+          to={`/store/category/${category}`}
+          className={({ isActive }) =>
+            `no-underline uppercase ${
+              isActive ? "text-green-400 font-bold" : "font-thin text-black"
+            }`
+          }
+          end
+        >
+          {category.replaceAll("-", " ")}
+        </NavLink>
+        <span> - </span>
+        <NavLink
+          to={`/store/product/${product.id}`}
+          className={({ isActive }) =>
+            `no-underline uppercase ${
+              isActive ? "text-green-400 font-bold" : "font-thin text-black"
+            }`
+          }
+          end
+        >
+          {product.title}
+        </NavLink>
+      </section>
       <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
         <Await resolve={product}>
           {(loadedEvent) => (
-            <main className="w-3/5 h-screen max-h-screen flex items-center justify-center">
+            <main className="w-3/5 h-auto mb-16 flex items-center justify-center">
               <ProductDetails product={loadedEvent} />
             </main>
           )}
@@ -30,7 +81,8 @@ export default function ProductPage() {
                  uppercase whitespace-nowrap text-white py-16 text-center rounded-3xl
                  mb-16"
                 >
-                  More from {category}
+                  {category && "More from " + category.replaceAll("-", " ")}
+                  {!category && "Travelling..."}
                 </h1>
                 <ul className="flex justify-between flex-wrap gap-4 p-0">
                   {loadedEvent.map((product) => (
@@ -46,17 +98,27 @@ export default function ProductPage() {
   );
 }
 
+const loadProduct = async (id) => {
+  const response = await fetch("https://dummyjson.com/products/" + id);
+
+  const data = await response.json();
+
+  store.dispatch(putCategory(data.category));
+  console.log(store.getState().misc.category, "<- loadProduct");
+
+  return data;
+};
+
 const loadSameCategoryProducts = async (id) => {
   const state = store.getState();
-  let category = state.misc.category;
-
-  if (!category) category = JSON.parse(localStorage.getItem("category"));
+  const category = state.misc.category;
 
   const response = await fetch(
     "https://dummyjson.com/products/category/" + category
   );
 
   const data = await response.json();
+
   const productIndex = data.products.findIndex((product) => product.id == id);
 
   data.products.splice(productIndex, 1);
@@ -64,19 +126,11 @@ const loadSameCategoryProducts = async (id) => {
   return data.products;
 };
 
-const loadProduct = async (id) => {
-  const response = await fetch("https://dummyjson.com/products/" + id);
-
-  const data = await response.json();
-
-  return data;
-};
-
 export async function loader({ request, params }) {
   const id = params.id;
 
   return defer({
-    product: loadProduct(id),
+    product: await loadProduct(id),
     sameCategory: loadSameCategoryProducts(id),
   });
 }

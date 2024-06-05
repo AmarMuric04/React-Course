@@ -7,10 +7,11 @@ export const miscSlice = createSlice({
   },
   reducers: {
     putCategory(state, action) {
-      console.log(action.payload);
       state.category = action.payload;
     },
   },
 });
+
+export const { putCategory } = miscSlice.actions;
 
 export const miscActions = miscSlice.actions;

@@ -10,6 +10,7 @@ const StarRating = ({ rating }) => {
         width="1em"
         height="1em"
         viewBox="0 0 24 24"
+        key={i + 1}
       >
         <path
           fill="currentColor"
@@ -40,7 +41,7 @@ const StarRating = ({ rating }) => {
     );
   }
 
-  return <div className="flex gap-[0.1rem] text-yellow-700">{stars}</div>;
+  return <span className="flex gap-[0.1rem] text-yellow-700 m-0">{stars}</span>;
 };
 
 export default StarRating;

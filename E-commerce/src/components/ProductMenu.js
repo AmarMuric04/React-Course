@@ -249,15 +249,15 @@ export default function ProductMenu({ product }) {
           <ul className="flex flex-col gap-2">
             {product.reviews.map((review) => (
               <li className="border-l-2 border-green-400 pl-4" key={product.id}>
-                <p className="flex justify-between items-center">
-                  <p className="font-bold">{review.reviewerName}</p>
+                <p className="flex justify-between items-center m-0">
+                  <p className="font-bold m-0">{review.reviewerName}</p>
                   <StarRating rating={review.rating} />
                 </p>
-                <p className="italic text-sm">"{review.comment}"</p>
-                <p className="text-sm italic text-gray-400">
+                <p className="italic text-sm m-0">"{review.comment}"</p>
+                <p className="text-sm italic text-gray-400 m-0">
                   {review.reviewerEmail}
                 </p>
-                <p className="text-xs">{formatISODate(review.date)}</p>
+                <p className="text-xs m-0">{formatISODate(review.date)}</p>
               </li>
             ))}
           </ul>
