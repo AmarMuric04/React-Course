@@ -19,6 +19,11 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: "product/:id",
+        element: <ProductPage />,
+        loader: productLoader,
+      },
+      {
         path: "store",
         element: <ShopRoot />,
         id: "storeroot",
@@ -27,11 +32,6 @@ export const router = createBrowserRouter([
             path: "page/:page",
             element: <ShopPage />,
             loader: pageLoader,
-          },
-          {
-            path: "product/:id",
-            element: <ProductPage />,
-            loader: productLoader,
           },
           {
             path: "category/:category",

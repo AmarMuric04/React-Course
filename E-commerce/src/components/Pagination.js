@@ -5,7 +5,7 @@ import { miscActions } from "../redux/misc";
 export default function Pagination() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const page = useSelector((state) => state.misc.page);
+  const page = +useSelector((state) => state.misc.page);
 
   const nextPage = () => {
     dispatch(miscActions.changePage("NEXT"));

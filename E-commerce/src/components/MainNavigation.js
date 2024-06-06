@@ -31,17 +31,17 @@ export default function MainNavigation() {
           </li>
           <span className="text-white">|</span>
           <li>
-            <Link
+            <NavLink
               to="/store/page/1"
-              className={
-                !category
+              className={({ isActive }) =>
+                isActive
                   ? "font-bold no-underline text-white"
                   : "font-thin no-underline text-white"
               }
               end
             >
               Store
-            </Link>
+            </NavLink>
           </li>
         </ul>
 

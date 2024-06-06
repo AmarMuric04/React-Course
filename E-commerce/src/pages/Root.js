@@ -90,7 +90,5 @@ export default function RootLayout() {
 }
 
 export const loader = () => {
-  store.dispatch(putCategory("beauty"));
-
   return fetch("https://dummyjson.com/products/category-list");
 };

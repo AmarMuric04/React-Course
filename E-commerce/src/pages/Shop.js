@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import Sidebar from "../components/Sidebar";
 import { Suspense } from "react";
 import store from "../redux/redux";
-import { putCategory } from "../redux/misc";
+import { changePage, putCategory } from "../redux/misc";
 import { useSelector } from "react-redux";
 import Pagination from "../components/Pagination";
 
@@ -29,14 +29,16 @@ export default function ShopPage() {
           Home
         </NavLink>
         <span> - </span>
-        <Link
-          to={`/store/page/1`}
-          className={`no-underline uppercase ${
-            !category ? "text-green-400 font-bold" : "font-thin text-black"
-          }`}
+        <NavLink
+          to={"/store/page/1"}
+          className={({ isActive }) =>
+            `no-underline uppercase ${
+              isActive ? "text-green-400 font-bold" : "font-thin text-black"
+            }`
+          }
         >
           Store
-        </Link>
+        </NavLink>
         {category && (
           <Fragment>
             <span> - </span>
@@ -87,8 +89,10 @@ export const loader = async ({ request, params }) => {
   if (page < 1 || page > 10) return null;
 
   store.dispatch(putCategory(null));
+  store.dispatch(changePage(page));
+  console.log(page, store.getState().misc.page);
 
   return fetch(
-    "https://dummyjson.com/products?limit=30&skip=" + (page - 1) * 30
+    "https://dummyjson.com/products?limit=24&skip=" + (page - 1) * 24
   );
 };
