@@ -1,6 +1,8 @@
 import { CopyrightIcon, GithubIcon, LinkedinIcon } from "../assets/icons";
 import MainNavigation from "../components/MainNavigation";
 import { Outlet, Link, useRouteLoaderData } from "react-router-dom";
+import store from "../redux/redux";
+import { putCategory } from "../redux/misc";
 
 export default function RootLayout() {
   const categories = useRouteLoaderData("root");
@@ -88,5 +90,7 @@ export default function RootLayout() {
 }
 
 export const loader = () => {
+  store.dispatch(putCategory("beauty"));
+
   return fetch("https://dummyjson.com/products/category-list");
 };

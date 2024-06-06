@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import RootLayout, { loader as categoryLoader } from "../pages/Root";
 import HomePage from "../pages/Home";
-import ShopPage, { loader as productsLoader } from "../pages/Shop";
+import ShopPage, { loader as pageLoader } from "../pages/Shop";
 import ProductPage, { loader as productLoader } from "../pages/Product";
 import ShopRoot from "../pages/ShopRoot";
 import { loader as categoryProductLoader } from "../pages/Category";
@@ -24,9 +24,9 @@ export const router = createBrowserRouter([
         id: "storeroot",
         children: [
           {
-            index: true,
+            path: "page/:page",
             element: <ShopPage />,
-            loader: productsLoader,
+            loader: pageLoader,
           },
           {
             path: "product/:id",

@@ -1,8 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import Cart from "./Cart";
+import { useSelector } from "react-redux";
 
 export default function MainNavigation() {
+  const category = useSelector((state) => state.misc.category);
+  console.log(category);
   return (
     <header className="h-16 flex items-center px-8 justify-center">
       <nav className="flex items-center justify-between w-3/5 h-full">
@@ -28,17 +31,17 @@ export default function MainNavigation() {
           </li>
           <span className="text-white">|</span>
           <li>
-            <NavLink
-              to="/store"
-              className={({ isActive }) =>
-                isActive
+            <Link
+              to="/store/page/1"
+              className={
+                !category
                   ? "font-bold no-underline text-white"
                   : "font-thin no-underline text-white"
               }
               end
             >
               Store
-            </NavLink>
+            </Link>
           </li>
         </ul>
 

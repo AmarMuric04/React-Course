@@ -31,7 +31,7 @@ export default function Sidebar({ title }) {
               >
                 <NavLink
                   className={({ isActive }) =>
-                    `no-underline rounded-[2rem] text-black h-full w-full
+                    `no-underline hover:bg-red-400 transition-all rounded-[2rem] text-black h-full w-full
                      grid place-items-center border-2 border-white ${
                        isActive ? "green-gradient text-white" : "bg-white"
                      }`

@@ -11,6 +11,8 @@ export default function ProductPage() {
   const { product, sameCategory } = useLoaderData();
   const category = useSelector((state) => state.misc.category);
 
+  window.scrollTo(0, 0);
+
   return (
     <main className="w-full h-full poppins flex flex-col items-center">
       <section className="flex gap-2 justify-start w-3/5 text-xs my-8 px-8">
@@ -84,7 +86,7 @@ export default function ProductPage() {
                   {category && "More from " + category.replaceAll("-", " ")}
                   {!category && "Travelling..."}
                 </h1>
-                <ul className="flex justify-between flex-wrap gap-4 p-0">
+                <ul className="flex justify-center flex-wrap gap-4 p-0">
                   {loadedEvent.map((product) => (
                     <Product product={product} />
                   ))}

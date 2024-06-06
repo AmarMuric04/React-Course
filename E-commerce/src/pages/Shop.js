@@ -1,4 +1,4 @@
-import { Await, NavLink, useLoaderData } from "react-router-dom";
+import { Await, NavLink, Link, useLoaderData } from "react-router-dom";
 import Products from "../components/Products";
 import { Fragment } from "react";
 import Sidebar from "../components/Sidebar";
@@ -6,13 +6,13 @@ import { Suspense } from "react";
 import store from "../redux/redux";
 import { putCategory } from "../redux/misc";
 import { useSelector } from "react-redux";
+import Pagination from "../components/Pagination";
 
 export default function ShopPage() {
   const { products } = useLoaderData();
   const category = useSelector((state) => state.misc.category);
-  console.log(category);
 
-  // const [page, setPage] = useState(1);
+  window.scrollTo(0, 0);
 
   return (
     <main className="w-full flex flex-col items-center">
@@ -29,17 +29,14 @@ export default function ShopPage() {
           Home
         </NavLink>
         <span> - </span>
-        <NavLink
-          to="/store"
-          className={({ isActive }) =>
-            `no-underline uppercase ${
-              isActive ? "text-green-400 font-bold" : "font-thin text-black"
-            }`
-          }
-          end
+        <Link
+          to={`/store/page/1`}
+          className={`no-underline uppercase ${
+            !category ? "text-green-400 font-bold" : "font-thin text-black"
+          }`}
         >
           Store
-        </NavLink>
+        </Link>
         {category && (
           <Fragment>
             <span> - </span>
@@ -79,15 +76,19 @@ export default function ShopPage() {
           </Await>
         </Suspense>
       </div>
-      {/* <Link to={`page=${1}`}>+21312312312321</Link> */}
+      {!category && <Pagination />}
     </main>
   );
 }
 
-// export const action = async (request, params) => {};
-
 export const loader = async ({ request, params }) => {
+  const page = params.page;
+
+  if (page < 1 || page > 10) return null;
+
   store.dispatch(putCategory(null));
 
-  return fetch("https://dummyjson.com/products");
+  return fetch(
+    "https://dummyjson.com/products?limit=30&skip=" + (page - 1) * 30
+  );
 };

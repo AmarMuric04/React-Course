@@ -1,7 +1,5 @@
 import Button from "@mui/material/Button";
 
-import image from "../assets/homeimg.jpeg";
-
 export default function HomePage() {
   return (
     <main className="w-full flex flex-col items-center h-screen poppins">
