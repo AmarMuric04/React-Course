@@ -1,8 +1,10 @@
 import Button from "@mui/material/Button";
 import { useRouteLoaderData, NavLink } from "react-router-dom";
 
-export default function Sidebar({ title }) {
+export default function Sidebar({ title, iterable }) {
   const categories = useRouteLoaderData("root");
+
+  console.log(iterable);
 
   return (
     <div className="w-3/5 poppins green-gradient rounded-3xl h-auto py-16 p-8">
@@ -19,31 +21,58 @@ export default function Sidebar({ title }) {
           </p>
         </div>
         <ul className="m-0 thin-scrollbar p-0 flex pb-4 w-4/5 justify-evenly items-end overflow-auto gap-3">
-          {categories.map((category) => (
-            <li
-              key={category}
-              className="min-h-32 min-w-32 overflow-hidden rounded-[2em]
+          {iterable &&
+            iterable.map((item) => (
+              <li
+                key={item}
+                className="min-h-32 min-w-32 overflow-hidden rounded-[2em]
              grid place-items-center font-bold"
-            >
-              <Button
-                className="w-full h-full uppercase rounded-[2em]
-              text-black p-0 m-0"
               >
-                <NavLink
-                  className={({ isActive }) =>
-                    `no-underline hover:bg-red-400 transition-all rounded-[2rem] text-black h-full w-full
+                <Button
+                  className="w-full h-full uppercase rounded-[2em]
+              text-black p-0 m-0"
+                >
+                  <NavLink
+                    className={({ isActive }) =>
+                      `no-underline hover:bg-red-400 transition-all rounded-[2rem] text-black h-full w-full
                      grid place-items-center border-2 border-white ${
                        isActive ? "green-gradient text-white" : "bg-white"
                      }`
-                  }
-                  to={`/store/category/${category}`}
-                  end
+                    }
+                    to={`/store/category/${item}`}
+                    end
+                  >
+                    {item.replaceAll("-", " ")}
+                  </NavLink>
+                </Button>
+              </li>
+            ))}
+          {!iterable &&
+            categories.map((category) => (
+              <li
+                key={category}
+                className="min-h-32 min-w-32 overflow-hidden rounded-[2em]
+             grid place-items-center font-bold"
+              >
+                <Button
+                  className="w-full h-full uppercase rounded-[2em]
+              text-black p-0 m-0"
                 >
-                  {category.replaceAll("-", " ")}
-                </NavLink>
-              </Button>
-            </li>
-          ))}
+                  <NavLink
+                    className={({ isActive }) =>
+                      `no-underline hover:bg-red-400 transition-all rounded-[2rem] text-black h-full w-full
+                     grid place-items-center border-2 border-white ${
+                       isActive ? "green-gradient text-white" : "bg-white"
+                     }`
+                    }
+                    to={`/store/category/${category}`}
+                    end
+                  >
+                    {category.replaceAll("-", " ")}
+                  </NavLink>
+                </Button>
+              </li>
+            ))}
         </ul>
       </div>
     </div>

@@ -1,11 +1,10 @@
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import Cart from "./Cart";
-import { useSelector } from "react-redux";
+import { CheckoutIcon } from "../assets/icons";
+import Searchbar from "./Searchbar";
 
 export default function MainNavigation() {
-  const category = useSelector((state) => state.misc.category);
-  console.log(category);
   return (
     <header className="h-16 flex items-center px-8 justify-center">
       <nav className="flex items-center justify-between w-3/5 h-full">
@@ -45,46 +44,18 @@ export default function MainNavigation() {
           </li>
         </ul>
 
-        <section className="flex justify-between gap-3 items-center">
-          <div
-            className="flex gap-2 items-center border-1 border-green-400
-             rounded-full py-1 px-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.5em"
-              height="1.5em"
-              viewBox="0 0 256 256"
-              className="hover:bg-zinc-200 rounded-full transition-all cursor-pointer h-full
-             "
+        <section className="flex justify-end gap-4 items-center w-[30rem]">
+          <Searchbar />
+          <div className="flex items-center gap-1">
+            <Cart />
+            <div
+              className="flex items-center h-full relative
+            p-1 rounded-full cursor-pointer z-50 border-1 border-green-400
+           hover:bg-zinc-200 transition-all bg-white"
             >
-              <path
-                fill="currentColor"
-                d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72"
-              />
-            </svg>
-            <input
-              type="text"
-              placeholder="Search for items..."
-              className="text-green-400 rounded-full outline-none"
-            />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 21 21"
-              className="cursor-pointer"
-            >
-              <path
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m15.5 15.5l-10-10zm0-10l-10 10"
-              />
-            </svg>
+              <CheckoutIcon />
+            </div>
           </div>
-          <Cart />
         </section>
       </nav>
     </header>

@@ -75,7 +75,7 @@ export default function Product({ product }) {
         <div className="flex flex-col gap-1">
           <button
             onClick={() => handleAddToCart(product)}
-            className="poppins font-semibold text-sm text-black
+            className="poppins font-semibold text-sm text-white
                  mr-2 py-2 px-6 self-end bg-green-400 rounded-md
                hover:bg-green-600 transition-all border-2 border-green-400"
           >
@@ -83,7 +83,7 @@ export default function Product({ product }) {
           </button>
           <Link
             onClick={() => handleChangeCategory(product.category)}
-            to={`/store/product/${product.id}`}
+            to={`/product/${product.id}`}
             className="poppins font-semibold text-sm text-black
                  mr-2 py-2 px-6 self-end border-2 border-green-400 rounded-md
                 transition-all hover:bg-zinc-200 no-underline"

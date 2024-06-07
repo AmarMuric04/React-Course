@@ -49,7 +49,7 @@ export default function ProductMenu({ product }) {
         {activeButton === "details" && (
           <section>
             <div className="flex gap-2">
-              <p className="text-sm font-bold flex gap-1 items-center">
+              <p className="text-sm font-bold flex gap-1 items-center m-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
@@ -66,10 +66,10 @@ export default function ProductMenu({ product }) {
                 </svg>{" "}
                 Availability:{" "}
               </p>
-              <p>{product.availabilityStatus}</p>
+              <p className="m-0">{product.availabilityStatus}</p>
             </div>
             <div className="flex gap-2">
-              <p className="text-sm font-bold flex gap-1 items-center">
+              <p className="text-sm font-bold flex gap-1 items-center m-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
@@ -85,10 +85,10 @@ export default function ProductMenu({ product }) {
                 </svg>{" "}
                 Warranty:{" "}
               </p>
-              <p>{product.warrantyInformation}</p>
+              <p className="m-0">{product.warrantyInformation}</p>
             </div>
             <div className="flex gap-2">
-              <p className="text-sm font-bold flex gap-1 items-center">
+              <p className="text-sm font-bold flex gap-1 items-center m-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
@@ -102,10 +102,10 @@ export default function ProductMenu({ product }) {
                 </svg>{" "}
                 Return policy:{" "}
               </p>
-              <p>{product.returnPolicy}</p>
+              <p className="m-0">{product.returnPolicy}</p>
             </div>
             <div className="flex gap-2">
-              <p className="text-sm font-bold flex gap-1 items-center">
+              <p className="text-sm font-bold flex gap-1 items-center m-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
@@ -119,10 +119,10 @@ export default function ProductMenu({ product }) {
                 </svg>{" "}
                 Shipping:{" "}
               </p>
-              <p>{product.shippingInformation}</p>
+              <p className="m-0">{product.shippingInformation}</p>
             </div>
             <div className="flex flex-col">
-              <p className="text-sm font-bold flex gap-1 items-center">
+              <p className="text-sm font-bold flex gap-1 items-center m-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
@@ -138,7 +138,7 @@ export default function ProductMenu({ product }) {
                 </svg>{" "}
                 Dimensions:{" "}
               </p>
-              <ul className="flex text-sm px-2 flex-col">
+              <ul className="flex text-sm px-2 flex-col mb-0">
                 <li className="flex gap-1 items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -152,7 +152,7 @@ export default function ProductMenu({ product }) {
                       d="m7 16l-4-4l4-4l1.425 1.4l-1.6 1.6h10.35L15.6 9.4L17 8l4 4l-4 4l-1.4-1.4l1.575-1.6H6.825L8.4 14.6z"
                     />
                   </svg>
-                  <p>Width: </p>
+                  <p className=" m-0">Width: </p>
                   {product.dimensions.width}
                   <span className="text-xs">cm</span>
                 </li>
@@ -169,7 +169,7 @@ export default function ProductMenu({ product }) {
                       d="m12 21l-4-4l1.4-1.4l1.6 1.575V6.825L9.4 8.4L8 7l4-4l4 4l-1.4 1.425l-1.6-1.6v10.35l1.6-1.575L16 17z"
                     />
                   </svg>
-                  <p>Height: </p>
+                  <p className=" m-0">Height: </p>
                   {product.dimensions.height}
                   <span className="text-xs">cm</span>
                 </li>
@@ -190,12 +190,12 @@ export default function ProductMenu({ product }) {
                       d="M2 20h20M5 4h14M3 16.01l.01-.011m18 .011l-.01-.011M4 12.01l.01-.011m16 .011l-.01-.011M5 8.01l.01-.011m14 .011L19 7.999M12 7v10m0-10l-1.5 1.5M12 7l1.5 1.5M12 17l-3-3m3 3l3-3"
                     />
                   </svg>
-                  <p>Depth:</p> {product.dimensions.depth}
+                  <p className=" m-0">Depth:</p> {product.dimensions.depth}
                   <span className="text-xs">cm</span>
                 </li>
               </ul>
               <div className="flex gap-2 items-center">
-                <p className="text-sm font-bold flex gap-1 items-center">
+                <p className="text-sm font-bold flex gap-1 items-center m-0">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="1em"
@@ -239,7 +239,7 @@ export default function ProductMenu({ product }) {
                   </svg>{" "}
                   Weight:{" "}
                 </p>
-                <p>{product.weight}</p>
+                <p className="m-0">{product.weight}</p>
                 <span className="text-xs">lbs</span>
               </div>
             </div>

@@ -20,7 +20,7 @@ export default function ProductPage() {
           to="/"
           className={({ isActive }) =>
             `no-underline uppercase ${
-              isActive ? "text-green-400 font-bold" : "font-thin text-black"
+              isActive ? "text-green-400 font-bold" : " text-zinc-300"
             }`
           }
           end
@@ -29,31 +29,31 @@ export default function ProductPage() {
         </NavLink>
         <span> - </span>
         <NavLink
-          to="/store"
+          to="/store/page/1"
           className={({ isActive }) =>
             `no-underline uppercase ${
-              isActive ? "text-green-400 font-bold" : "font-thin text-black"
+              isActive ? "text-green-400 font-bold" : " text-zinc-300"
             }`
           }
           end
         >
           Store
         </NavLink>
-        <span> - </span>
+        <span> {category && "-"} </span>
         <NavLink
           to={`/store/category/${category}`}
           className={({ isActive }) =>
             `no-underline uppercase ${
-              isActive ? "text-green-400 font-bold" : "font-thin text-black"
+              isActive ? "text-green-400 font-bold" : " text-zinc-300"
             }`
           }
           end
         >
-          {category.replaceAll("-", " ")}
+          {category && category.replaceAll("-", " ")}
         </NavLink>
-        <span> - </span>
+        <span> {category && "-"} </span>
         <NavLink
-          to={`/store/product/${product.id}`}
+          to={`/product/${product.id}`}
           className={({ isActive }) =>
             `no-underline uppercase ${
               isActive ? "text-green-400 font-bold" : "font-thin text-black"
@@ -61,7 +61,7 @@ export default function ProductPage() {
           }
           end
         >
-          {product.title}
+          {category && product.title}
         </NavLink>
       </section>
       <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
@@ -77,7 +77,7 @@ export default function ProductPage() {
         <Await resolve={sameCategory}>
           {(loadedEvent) => {
             return (
-              <main className="w-3/5 flex justify-center flex-col">
+              <main className="w-3/5 flex justify-center flex-col mb-16">
                 <h1
                   className="mt-4 text-md lg:text-2xl green-gradient
                  uppercase whitespace-nowrap text-white py-16 text-center rounded-3xl

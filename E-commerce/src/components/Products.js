@@ -2,7 +2,7 @@ import Product from "./Product";
 
 export default function Products({ products }) {
   return (
-    <ul className="p-0 flex flex-wrap w-full h-full justify-center gap-4">
+    <ul className="p-0 flex flex-wrap w-full h-full gap-[2.45rem]">
       {products.map((product) => (
         <Product product={product} />
       ))}

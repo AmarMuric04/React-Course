@@ -1,4 +1,4 @@
-import { Await, NavLink, Link, useLoaderData } from "react-router-dom";
+import { Await, NavLink, useParams, useLoaderData } from "react-router-dom";
 import Products from "../components/Products";
 import { Fragment } from "react";
 import Sidebar from "../components/Sidebar";
@@ -11,17 +11,90 @@ import Pagination from "../components/Pagination";
 export default function ShopPage() {
   const { products } = useLoaderData();
   const category = useSelector((state) => state.misc.category);
+  const params = useParams();
 
   window.scrollTo(0, 0);
 
+  if (params.search && (!products || products.length === 0))
+    return (
+      <main className="w-full poppins flex flex-col items-center mb-32">
+        <section className="flex gap-2 justify-start w-3/5 text-xs my-8 px-8">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `no-underline uppercase ${
+                isActive ? "text-green-400 font-bold" : " text-zinc-300"
+              }`
+            }
+            end
+          >
+            Home
+          </NavLink>
+          <span> - </span>
+          <NavLink
+            to={"/store/page/1"}
+            className={({ isActive }) =>
+              `no-underline uppercase ${
+                isActive ? "text-green-400 font-bold" : " text-zinc-300"
+              }`
+            }
+          >
+            Store
+          </NavLink>
+          {params.category && (
+            <Fragment>
+              <span> {category && "-"} </span>
+              <NavLink
+                to={`/store/category/${category}`}
+                className={({ isActive }) =>
+                  `no-underline uppercase ${
+                    isActive ? "text-green-400 font-bold" : " text-zinc-300"
+                  }`
+                }
+                end
+              >
+                {category && category.replaceAll("-", " ")}
+              </NavLink>
+            </Fragment>
+          )}
+
+          {params.search && (
+            <Fragment>
+              <span> - </span>
+              <NavLink
+                to={`/store/search/${params.search}`}
+                className={({ isActive }) =>
+                  `no-underline uppercase ${
+                    isActive ? "text-green-400 font-bold" : " text-zinc-300"
+                  }`
+                }
+                end
+              >
+                {params.search}
+              </NavLink>
+            </Fragment>
+          )}
+        </section>
+        <Sidebar
+          title={
+            <Fragment>
+              <h1 className="uppercase font-bold text-[3rem]">Oops!</h1>
+              <h2 className="uppercase text-4xl">No products found!</h2>
+              <p>Try searching up something else!</p>
+            </Fragment>
+          }
+        />
+      </main>
+    );
+
   return (
-    <main className="w-full flex flex-col items-center">
+    <main className="w-full poppins flex flex-col items-center">
       <section className="flex gap-2 justify-start w-3/5 text-xs my-8 px-8">
         <NavLink
           to="/"
           className={({ isActive }) =>
             `no-underline uppercase ${
-              isActive ? "text-green-400 font-bold" : "font-thin text-black"
+              isActive ? "text-green-400 font-bold" : " text-zinc-300"
             }`
           }
           end
@@ -33,25 +106,42 @@ export default function ShopPage() {
           to={"/store/page/1"}
           className={({ isActive }) =>
             `no-underline uppercase ${
-              isActive ? "text-green-400 font-bold" : "font-thin text-black"
+              isActive ? "text-green-400 font-bold" : " text-zinc-300"
             }`
           }
         >
           Store
         </NavLink>
-        {category && (
+        {params.category && (
           <Fragment>
-            <span> - </span>
+            <span> {category && "-"} </span>
             <NavLink
               to={`/store/category/${category}`}
               className={({ isActive }) =>
                 `no-underline uppercase ${
-                  isActive ? "text-green-400 font-bold" : "font-thin text-black"
+                  isActive ? "text-green-400 font-bold" : " text-zinc-300"
                 }`
               }
               end
             >
-              {category.replaceAll("-", " ")}
+              {category && category.replaceAll("-", " ")}
+            </NavLink>
+          </Fragment>
+        )}
+
+        {params.search && (
+          <Fragment>
+            <span> - </span>
+            <NavLink
+              to={`/store/search/${params.search}`}
+              className={({ isActive }) =>
+                `no-underline uppercase ${
+                  isActive ? "text-green-400 font-bold" : " text-zinc-300"
+                }`
+              }
+              end
+            >
+              {params.search}
             </NavLink>
           </Fragment>
         )}
@@ -71,7 +161,7 @@ export default function ShopPage() {
           </Fragment>
         }
       />
-      <div className="w-3/5 my-16">
+      <div className="w-3/5 my-16 mb-16">
         <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
           <Await resolve={products}>
             {(loadedData) => <Products products={loadedData} />}
@@ -85,11 +175,11 @@ export default function ShopPage() {
 
 export const loader = async ({ request, params }) => {
   const page = params.page;
+  store.dispatch(putCategory(null));
+  store.dispatch(changePage(page));
 
   if (page < 1 || page > 10) return null;
 
-  store.dispatch(putCategory(null));
-  store.dispatch(changePage(page));
   console.log(page, store.getState().misc.page);
 
   return fetch(

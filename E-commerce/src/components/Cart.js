@@ -76,14 +76,14 @@ export default function Cart() {
       {cartIsShowing && (
         <div
           onClick={handleToggleCart}
-          className="z-10 absolute top-[-1rem] right-[-2rem]
+          className="z-10 absolute top-[-1.2rem] right-[-27.1rem]
          w-screen h-screen bg-black opacity-50"
         ></div>
       )}
 
       <div
         className={`z-20 text-black p-8 pt-16 absolute top-[-1rem]
-         right-[-1.2rem] bg-white shadow-xl transition-all scrollbar ${
+         right-[-3rem] bg-white shadow-xl transition-all scrollbar ${
            !cartIsShowing
              ? "rounded-full opacity-0 rounded-tr-none h-0 w-0 overflow-hidden "
              : "rounded-none opacity-100 h-[50rem] w-[40rem] shadow-xl overflow-auto"
@@ -118,7 +118,7 @@ export default function Cart() {
                   <p className="font-bold flex gap-2 items-center m-0">
                     {convertToCurrency(discountAmount)}
                     {discountPercentage && (
-                      <p className="text-gray-400 text-xs font-thin">
+                      <p className="text-gray-400 text-xs font-thin m-0">
                         ( {discountPercentage}% )
                       </p>
                     )}

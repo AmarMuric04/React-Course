@@ -6,12 +6,18 @@ import ShopPage, { loader as pageLoader } from "../pages/Shop";
 import ProductPage, { loader as productLoader } from "../pages/Product";
 import ShopRoot from "../pages/ShopRoot";
 import { loader as categoryProductLoader } from "../pages/Category";
+import {
+  loader as searchProductLoader,
+  action as searchProductAction,
+} from "../pages/Search";
+import ErrorPage from "../pages/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     id: "root",
+    errorElement: <ErrorPage />,
     loader: categoryLoader,
     children: [
       {
@@ -37,6 +43,12 @@ export const router = createBrowserRouter([
             path: "category/:category",
             element: <ShopPage />,
             loader: categoryProductLoader,
+          },
+          {
+            path: "search/:search",
+            element: <ShopPage />,
+            loader: searchProductLoader,
+            action: searchProductAction,
           },
         ],
       },
