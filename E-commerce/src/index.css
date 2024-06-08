@@ -414,3 +414,18 @@ a {
     rgba(122, 246, 167, 1) 100%
   );
 }
+
+@keyframes moveIn {
+  from {
+    transform: translateY(-1rem) translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0rem) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+.moveInAnimation {
+  animation: moveIn forwards 0.3s;
+}

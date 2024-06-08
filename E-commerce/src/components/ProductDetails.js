@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/redux";
 import MagnifyingGlass from "./MagnifyingGlass";
+import { miscActions } from "../redux/misc";
 
 export default function ProductDetails({ product }) {
   const cart = useSelector((state) => state.cart.items);
@@ -34,6 +35,8 @@ export default function ProductDetails({ product }) {
     );
 
     setQuantity(1);
+
+    dispatch(miscActions.showNotification({ showing: true, clicked: true }));
   };
 
   let productInCart = cart.find((item) => item.id === product.id);

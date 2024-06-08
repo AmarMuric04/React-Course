@@ -82,8 +82,8 @@ export default function Cart() {
       {cartIsShowing && (
         <div
           onClick={handleToggleCart}
-          className="z-10 absolute top-[-1.2rem] right-[-28.2rem]
-         w-screen h-screen bg-black opacity-50"
+          className="z-10 absolute top-[-1.2rem] right-[-100.9rem]
+         w-[1000rem] h-screen bg-black opacity-50"
         ></div>
       )}
 

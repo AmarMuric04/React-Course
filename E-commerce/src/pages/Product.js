@@ -1,11 +1,9 @@
 import { useLoaderData, NavLink, defer, Await } from "react-router-dom";
-import Product from "../components/Product";
-import { Suspense, Fragment } from "react";
+import { Suspense } from "react";
 import ProductDetails from "../components/ProductDetails";
 import store from "../redux/redux";
 import { useSelector } from "react-redux";
 import { putCategory } from "../redux/misc";
-import { LoaderIcon } from "../assets/icons";
 import Products from "../components/Products";
 
 export default function ProductPage() {

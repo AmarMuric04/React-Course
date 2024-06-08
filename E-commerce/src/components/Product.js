@@ -9,10 +9,13 @@ import { miscActions } from "../redux/misc";
 export default function Product({ product }) {
   const dispatch = useDispatch();
 
-  const handleAddToCart = (product) =>
+  const handleAddToCart = (product) => {
     dispatch(
       cartActions.increaseQuantity({ item: product, quantityIncrease: 1 })
     );
+
+    dispatch(miscActions.showNotification({ showing: true, clicked: true }));
+  };
 
   const handleChangeCategory = (category) => {
     dispatch(miscActions.putCategory(category));

@@ -13,6 +13,8 @@ export default function ShopPage() {
   const category = useSelector((state) => state.misc.category);
   const params = useParams();
 
+  const page = useSelector((state) => state.misc.page);
+
   window.scrollTo(0, 0);
 
   if (params.search && (!products || products.length === 0))
@@ -103,7 +105,7 @@ export default function ShopPage() {
         </NavLink>
         <span> - </span>
         <NavLink
-          to={"/store/page/1"}
+          to={`/store/page/${page}`}
           className={({ isActive }) =>
             `no-underline uppercase ${
               isActive ? "text-green-400 font-bold" : " text-zinc-300"
@@ -178,9 +180,7 @@ export const loader = async ({ request, params }) => {
   store.dispatch(putCategory(null));
   store.dispatch(changePage(page));
 
-  if (page < 1 || page > 10) return null;
-
-  console.log(page, store.getState().misc.page);
+  if (page < 1 || page > 9) return null;
 
   return fetch(
     "https://dummyjson.com/products?limit=24&skip=" + (page - 1) * 24

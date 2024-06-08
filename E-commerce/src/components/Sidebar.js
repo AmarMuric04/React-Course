@@ -4,22 +4,22 @@ import { useRouteLoaderData, NavLink } from "react-router-dom";
 export default function Sidebar({ title, iterable }) {
   const categories = useRouteLoaderData("root");
 
-  console.log(iterable);
-
   return (
     <div className="w-3/5 poppins green-gradient rounded-3xl h-auto py-16 p-8">
       <div className="w-full flex items-center flex-col text-white">
         {title}
       </div>
       <div className="w-full flex flex-col items-center mt-8">
-        <div className="w-4/5 h-4 border-b-[0.1rem] mb-4 border-white relative">
-          <p
-            className="text-white uppercase text-sm absolute
+        {iterable && iterable.length !== 0 && (
+          <div className="w-4/5 h-4 border-b-[0.1rem] mb-4 border-white relative">
+            <p
+              className="text-white uppercase text-sm absolute
            bottom-[-1.65rem] px-2 left-1/2 translate-x-[-50%] bg-green-400"
-          >
-            Categories
-          </p>
-        </div>
+            >
+              Categories
+            </p>
+          </div>
+        )}
         <ul className="m-0 thin-scrollbar p-0 flex pb-4 w-4/5 justify-evenly items-end overflow-auto gap-3">
           {iterable &&
             iterable.map((item) => (

@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, Form, redirect } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { convertToCurrency } from "../util/dataModifiers";
@@ -7,7 +7,9 @@ import TextField from "@mui/material/TextField";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { discounts } from "../util/discounts";
 import { useRef } from "react";
-import { cartActions } from "../redux/redux";
+import store, { cartActions, replaceCart } from "../redux/redux";
+import { countries } from "../util/countries";
+import { miscActions } from "../redux/misc";
 
 export default function CheckoutPage() {
   const cart = useSelector((state) => state.cart.items);
@@ -210,9 +212,18 @@ export default function CheckoutPage() {
                 Or pay with card
               </p>
             </div>
-            <div className="flex flex-col w-full">
+            <Form
+              method="post"
+              action="/checkout"
+              className="flex flex-col w-full"
+            >
               <h3 className="text-[1rem] pt-8">Shipping Information</h3>
-              <TextField id="filled-basic" label="Email" variant="filled" />
+              <TextField
+                id="filled-basic"
+                label="Email"
+                variant="filled"
+                name="email"
+              />
               <p className="mt-4 mb-2 text-zinc-400 text-sm">
                 Shipping information
               </p>
@@ -223,6 +234,7 @@ export default function CheckoutPage() {
                     id="filled-basic"
                     label="Name"
                     variant="filled"
+                    name="name"
                   />
                   <FormControl
                     className="w-1/3"
@@ -230,24 +242,30 @@ export default function CheckoutPage() {
                     sx={{ m: 1, minWidth: 120 }}
                   >
                     <InputLabel id="demo-simple-select-filled-label">
-                      Age
+                      Country
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-filled-label"
                       id="demo-simple-select-filled"
-                      // value={age}
-                      // onChange={handleChange}
+                      name="country"
                     >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                      {countries.map((country) => (
+                        <MenuItem
+                          key={country}
+                          value={country.toLowerCase().replace(/\s+/g, "-")}
+                        >
+                          {country}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </div>
-                <TextField id="filled-basic" label="Address" variant="filled" />
+                <TextField
+                  id="filled-basic"
+                  label="Address"
+                  variant="filled"
+                  name="address"
+                />
               </div>
               <h3 className="text-[1rem] pt-8">Shipping details</h3>
               <div className="w-full flex flex-col">
@@ -255,6 +273,7 @@ export default function CheckoutPage() {
                   id="filled-basic"
                   label="Card number"
                   variant="filled"
+                  name="numbers"
                 />
                 <div className="flex gap-1">
                   <TextField
@@ -262,12 +281,14 @@ export default function CheckoutPage() {
                     id="filled-basic"
                     label="Expiration Date"
                     variant="filled"
+                    name="expiration-date"
                   />
                   <TextField
                     className="w-1/2"
                     id="filled-basic"
                     label="CVC"
                     variant="filled"
+                    name="cvc"
                   />
                 </div>
               </div>
@@ -277,10 +298,31 @@ export default function CheckoutPage() {
               >
                 Pay {convertToCurrency(totalPrice)}
               </button>
-            </div>
+            </Form>
           </section>
         </main>
       </div>
     </main>
   );
 }
+
+export const action = async ({ request, params }) => {
+  const data = await request.formData();
+
+  const dataObject = {
+    email: data.get("email"),
+    name: data.get("name"),
+    country: data.get("country"),
+    address: data.get("address"),
+    cardNumbers: data.get("numbers"),
+    expirationDate: data.get("expiration-date"),
+    cvc: data.get("cvc"),
+  };
+
+  console.log(dataObject);
+
+  store.dispatch(cartActions.replaceCart([]));
+  store.dispatch(miscActions.setPurchased(true));
+
+  return redirect("purchase-successful");
+};

@@ -21,13 +21,11 @@ const cartSlice = createSlice({
     },
 
     replaceCart(state, action) {
-      state.items = action.payload.items;
+      state.items = action.payload;
     },
 
     increaseQuantity(state, action) {
       const newItem = action.payload.item;
-
-      console.log(action.payload);
 
       const thatItem = state.items.find((item) => item.title === newItem.title);
 
@@ -37,8 +35,6 @@ const cartSlice = createSlice({
         const thatItemIndex = state.items.findIndex(
           (item) => item.title === newItem.title
         );
-
-        console.log(newItem.price / 10);
 
         state.items[thatItemIndex].quantity += action.payload.quantityIncrease;
         state.items[thatItemIndex].total += newItem.price;
@@ -74,8 +70,6 @@ const cartSlice = createSlice({
         );
       else {
         const thatItem = state.items[thatItemIndex];
-
-        console.log(thatItem);
 
         thatItem.quantity--;
         thatItem.total -= thatItem.price;

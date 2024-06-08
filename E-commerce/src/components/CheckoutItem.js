@@ -2,17 +2,20 @@ import { cartActions } from "../redux/redux";
 import { convertToCurrency } from "../util/dataModifiers";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { miscActions } from "../redux/misc";
 
 export default function CheckoutItem({ item }) {
   const dispatch = useDispatch();
 
-  const handleIncreaseQuantity = () =>
+  const handleIncreaseQuantity = () => {
     dispatch(
       cartActions.increaseQuantity({
         item,
         quantityIncrease: 1,
       })
     );
+    dispatch(miscActions.showNotification({ showing: true, clicked: true }));
+  };
   const handleDecreaseQuantity = () =>
     dispatch(cartActions.decreaseQuantity(item));
 

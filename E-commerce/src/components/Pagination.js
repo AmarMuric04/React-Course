@@ -18,7 +18,11 @@ export default function Pagination() {
   return (
     <div
       className={`w-3/5 flex items-center py-4 ${
-        page !== 1 ? "justify-between" : "justify-end"
+        page !== 1
+          ? page !== 9
+            ? "justify-between"
+            : "justify-start"
+          : "justify-end"
       }`}
     >
       {page !== 1 && (
@@ -30,12 +34,14 @@ export default function Pagination() {
           Prev Page
         </button>
       )}{" "}
-      <button
-        className="border-1 border-green-400 rounded-md px-2 py-1 hover:bg-green-400 transition-all"
-        onClick={nextPage}
-      >
-        Next Page
-      </button>
+      {page !== 9 && (
+        <button
+          className="border-1 border-green-400 rounded-md px-2 py-1 hover:bg-green-400 transition-all"
+          onClick={nextPage}
+        >
+          Next Page
+        </button>
+      )}
     </div>
   );
 }

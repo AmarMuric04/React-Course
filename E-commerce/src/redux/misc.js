@@ -5,12 +5,21 @@ export const miscSlice = createSlice({
   initialState: {
     category: null,
     page: 1,
+    notification: { clicked: false, showing: false },
+    purchased: false,
   },
   reducers: {
+    setPurchased(state, action) {
+      state.purchased = action.payload;
+    },
+
+    showNotification(state, action) {
+      state.notification.showing = action.payload.showing;
+      state.notification.clicked = action.payload.clicked;
+    },
+
     putCategory(state, action) {
       state.category = action.payload;
-
-      console.log(state.category, "<---");
     },
 
     changePage(state, action) {

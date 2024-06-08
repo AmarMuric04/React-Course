@@ -3,10 +3,15 @@ import Sidebar from "../components/Sidebar";
 import { LoaderIcon } from "../assets/icons";
 import MainNavigation from "../components/MainNavigation";
 import Footer from "../components/Footer";
+import { useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const error = useRouteError();
+
+  console.log(error);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -35,7 +40,9 @@ export default function ErrorPage() {
               title={
                 <Fragment>
                   <h1 className="uppercase font-bold text-[3rem]">Oops!</h1>
-                  <h2 className="uppercase text-4xl">Page not found!</h2>
+                  <h2 className="uppercase text-4xl">
+                    {error.message ? error.message : "Page not found!"}
+                  </h2>
                   <p>Go back and look for products!</p>
                 </Fragment>
               }
@@ -44,7 +51,7 @@ export default function ErrorPage() {
           )}
         </main>
       </main>
-      {isLoading ? <Footer iterable={[]} />: <Footer iterable={categories} />}
+      {isLoading ? <Footer iterable={[]} /> : <Footer iterable={categories} />}
     </main>
   );
 }
