@@ -6,6 +6,7 @@ import store from "../redux/redux";
 import { useSelector } from "react-redux";
 import { putCategory } from "../redux/misc";
 import { LoaderIcon } from "../assets/icons";
+import Products from "../components/Products";
 
 export default function ProductPage() {
   const { product, sameCategory } = useLoaderData();
@@ -86,11 +87,7 @@ export default function ProductPage() {
                   {category && "More from " + category.replaceAll("-", " ")}
                   {!category && "Travelling..."}
                 </h1>
-                <ul className="flex justify-center flex-wrap gap-4 p-0">
-                  {loadedEvent.map((product) => (
-                    <Product product={product} />
-                  ))}
-                </ul>
+                <Products products={loadedEvent} />
               </main>
             );
           }}

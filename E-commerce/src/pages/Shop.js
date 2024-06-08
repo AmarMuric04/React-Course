@@ -168,7 +168,7 @@ export default function ShopPage() {
           </Await>
         </Suspense>
       </div>
-      {!category && <Pagination />}
+      {!category && !params.search && <Pagination />}
     </main>
   );
 }

@@ -46,15 +46,16 @@ export default function MainNavigation() {
 
         <section className="flex justify-end gap-4 items-center w-[30rem]">
           <Searchbar />
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 px-2 py-1 shadow-md rounded-full bg-white">
             <Cart />
-            <div
+            <Link
+              to="/checkout"
               className="flex items-center h-full relative
             p-1 rounded-full cursor-pointer z-50 border-1 border-green-400
-           hover:bg-zinc-200 transition-all bg-white"
+           hover:bg-zinc-200 transition-all"
             >
               <CheckoutIcon />
-            </div>
+            </Link>
           </div>
         </section>
       </nav>

@@ -25,7 +25,7 @@ export default function Searchbar() {
             width="1.5em"
             height="1.5em"
             viewBox="0 0 256 256"
-            className="hover:bg-zinc-200 rounded-full transition-all cursor-pointer h-full"
+            className="hover:bg-zinc-200 text-green-400 rounded-full transition-all cursor-pointer h-full"
           >
             <path
               fill="currentColor"
@@ -52,7 +52,7 @@ export default function Searchbar() {
         width="1em"
         height="1em"
         viewBox="0 0 21 21"
-        className="cursor-pointer"
+        className="cursor-pointer hover:text-red-400"
       >
         <path
           fill="none"

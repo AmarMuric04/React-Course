@@ -1,21 +1,25 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CartIcon } from "../assets/icons";
 import CartItems from "./CartItems";
 import { convertToCurrency } from "../util/dataModifiers";
 import { discounts } from "../util/discounts";
 import CartEmpty from "../assets/cart-empty.png";
+import { Link } from "react-router-dom";
+import { cartActions } from "../redux/redux";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart.items);
+  const discount = useSelector((state) => state.cart.discount);
 
+  const dispatch = useDispatch();
   const [cartIsShowing, setCartIsShowing] = useState(false);
-  const [discount, setDiscount] = useState("");
 
   const discountInput = useRef();
 
   const handleToggleCart = () => setCartIsShowing(!cartIsShowing);
-  const handleChangeDiscount = () => setDiscount(discountInput.current.value);
+  const handleChangeDiscount = () =>
+    dispatch(cartActions.putDiscount(discountInput.current.value));
 
   const subtotalPrice = cart.reduce(
     (accumulator, currValue) => accumulator + currValue.total,
@@ -43,8 +47,10 @@ export default function Cart() {
       if (disable) {
         document.body.style.overflow = "hidden";
         window.scrollTo(0, 0);
+        document.body.style.paddingRight = "1.1rem";
       } else {
         document.body.style.overflow = "";
+        document.body.style.paddingRight = "0rem";
       }
     };
 
@@ -65,7 +71,7 @@ export default function Cart() {
         <CartIcon />
         <p
           className="absolute bottom-[-1.5rem] left-1/2 translate-x-[-50%]
-           bg-red-400 rounded-full text-white px-1 text-xs font-bold"
+           bg-white shadow-md text-green-400 rounded-full px-1 text-xs font-bold"
         >
           {cart.reduce(
             (accumulator, currValue) => accumulator + currValue.quantity,
@@ -76,7 +82,7 @@ export default function Cart() {
       {cartIsShowing && (
         <div
           onClick={handleToggleCart}
-          className="z-10 absolute top-[-1.2rem] right-[-27.1rem]
+          className="z-10 absolute top-[-1.2rem] right-[-28.2rem]
          w-screen h-screen bg-black opacity-50"
         ></div>
       )}
@@ -177,12 +183,14 @@ export default function Cart() {
                   </button>
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                  <button
+                  <Link
+                    onClick={handleToggleCart}
+                    to="/checkout"
                     className="bg-green-400 border-2 border-green-400 px-4 py-2 text-white
-              hover:bg-green-700 transition-all rounded-md"
+              hover:bg-green-700 transition-all rounded-md text-center no-underline"
                   >
                     Checkout
-                  </button>
+                  </Link>
                   <button
                     onClick={handleToggleCart}
                     className="border-2 border-green-400 hover:bg-zinc-200

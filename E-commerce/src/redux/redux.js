@@ -5,12 +5,17 @@ const initialCartState = {
   items: [],
   changed: false,
   toggle: false,
+  discount: "",
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialCartState,
   reducers: {
+    putDiscount(state, action) {
+      state.discount = action.payload;
+    },
+
     toggleCart(state) {
       state.toggle = !state.toggle;
     },
@@ -22,6 +27,8 @@ const cartSlice = createSlice({
     increaseQuantity(state, action) {
       const newItem = action.payload.item;
 
+      console.log(action.payload);
+
       const thatItem = state.items.find((item) => item.title === newItem.title);
 
       state.changed = true;
@@ -31,9 +38,12 @@ const cartSlice = createSlice({
           (item) => item.title === newItem.title
         );
 
+        console.log(newItem.price / 10);
+
         state.items[thatItemIndex].quantity += action.payload.quantityIncrease;
         state.items[thatItemIndex].total += newItem.price;
-        state.items[thatItemIndex].delivery += newItem.price.toFixed(0) / 10;
+        state.items[thatItemIndex].delivery +=
+          newItem.price / 10 < 0.99 ? 0 : newItem.price.toFixed(0) / 10;
       } else
         state.items.push({
           ...newItem,
@@ -69,7 +79,8 @@ const cartSlice = createSlice({
 
         thatItem.quantity--;
         thatItem.total -= thatItem.price;
-        thatItem.delivery -= thatItem.price.toFixed(0) / 10;
+        thatItem.delivery -=
+          thatItem.price / 10 < 0.99 ? 0 : thatItem.price.toFixed(0) / 10;
       }
     },
 

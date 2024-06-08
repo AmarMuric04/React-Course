@@ -11,6 +11,7 @@ import {
   action as searchProductAction,
 } from "../pages/Search";
 import ErrorPage from "../pages/Error";
+import CheckoutPage from "../pages/Checkout";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
         path: "product/:id",
         element: <ProductPage />,
         loader: productLoader,
+      },
+      {
+        path: "checkout",
+        element: <CheckoutPage />,
       },
       {
         path: "store",
