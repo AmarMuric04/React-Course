@@ -32,7 +32,7 @@ export default function RootLayout() {
   }
 
   return (
-    <main>
+    <main className="bg-white">
       {notification && <Notification />}
       <MainNavigation />
       <main className="flex">
