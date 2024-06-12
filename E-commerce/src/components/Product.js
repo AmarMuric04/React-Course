@@ -23,7 +23,7 @@ export default function Product({ product }) {
 
   return (
     <li
-      className="w-64 h-96 flex flex-col items-center bg-zinc-100
+      className="w-72 h-96 flex flex-col items-center bg-zinc-100
           border-b-[0.4rem] border-transparent rounded-2xl overflow-hidden
         hover:border-green-400 hover:pb-[0.4rem] hover:translate-y-[-0.4rem]
           transition-all justify-between relative poppins shadow-md"

@@ -163,7 +163,7 @@ export default function ShopPage() {
           </Fragment>
         }
       />
-      <div className="w-3/5 my-16 mb-16">
+      <div className="w-[80rem] my-16">
         <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
           <Await resolve={products}>
             {(loadedData) => <Products products={loadedData} />}
@@ -180,7 +180,7 @@ export const loader = async ({ request, params }) => {
   store.dispatch(putCategory(null));
   store.dispatch(changePage(page));
 
-  if (page < 1 || page > 9) return null;
+  if (page < 1 || page > 9) throw new Error();
 
   return fetch(
     "https://dummyjson.com/products?limit=24&skip=" + (page - 1) * 24

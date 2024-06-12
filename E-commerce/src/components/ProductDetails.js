@@ -13,6 +13,8 @@ export default function ProductDetails({ product }) {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
 
+  console.log(product);
+
   const handleIncrease = () => {
     const newQuantity = quantity + 1;
 
@@ -62,6 +64,15 @@ export default function ProductDetails({ product }) {
         <p className="absolute top-4 left-4 text-gray-400 px-4 py-2 border border-gray-400 rounded-md">
           {productInCart.sku}
         </p>
+        <div className="absolute bottom-8 right-4 flex flex-col items-center">
+          <img
+            src={productInCart.meta.qrCode}
+            className=" w-32"
+            alt="qr code"
+          />
+          <p className="m-0 text-md">{productInCart.meta.barcode}</p>
+        </div>
+
         <p className="absolute bottom-4 left-4 text-gray-400 px-4 py-2">
           Created: {formatISODate(productInCart.meta.createdAt)}
         </p>
@@ -154,16 +165,26 @@ export default function ProductDetails({ product }) {
                 </button>
               </p>
             </div>
-            <div className="flex gap-2 flex-col w-28">
-              <p className="text-green-400 text-sm font-bold">TOTAL PRICE</p>
-              <p className="px-4 h-full flex items-center text-white font-bold">
+            <div className="flex gap-2 flex-col w-28 items-center">
+              <p className="text-green-400 text-sm font-bold whitespace-nowrap">
+                SUBTOTAL
+              </p>
+              <p className="h-full flex items-center text-white font-bold">
                 {convertToCurrency(productInCart.price * quantity)}
               </p>
             </div>
-            <div className="flex gap-2 flex-col">
+            <div className="flex gap-2 flex-col w-28 items-center">
               <p className="text-green-400 text-sm font-bold">DELIVERY</p>
-              <p className="px-4 h-full flex items-center text-white font-bold">
+              <p className="h-full flex items-center text-white font-bold">
                 {deliveryCost ? convertToCurrency(deliveryCost) : "FREE"}
+              </p>
+            </div>
+            <div className="flex gap-2 flex-col w-28 items-center">
+              <p className="text-green-400 text-sm font-bold">TOTAL PRICE</p>
+              <p className="h-full flex items-center text-white font-bold">
+                {convertToCurrency(
+                  productInCart.price * quantity + deliveryCost
+                )}
               </p>
             </div>
           </div>

@@ -17,7 +17,7 @@ export default function Pagination() {
   };
   return (
     <div
-      className={`w-3/5 flex items-center py-4 ${
+      className={`w-[80rem] flex items-center py-4 ${
         page !== 1
           ? page !== 9
             ? "justify-between"

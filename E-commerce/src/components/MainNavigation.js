@@ -7,21 +7,24 @@ import Searchbar from "./Searchbar";
 export default function MainNavigation() {
   return (
     <header className="h-16 flex items-center px-8 justify-center">
-      <nav className="flex items-center justify-between w-3/5 h-full">
+      <nav className="flex items-center justify-between w-[80rem] h-full">
         <div className="h-full flex items-center">
           <img className="h-1/2" src={Logo} alt="Logo" />
           <p className="m-0 text-green-400 uppercase tracking-[0.1rem]">
             Shopping
           </p>
         </div>
-        <ul className="flex items-center gap-3 m-0 bg-green-400 rounded-full py-1 px-4">
+        <ul
+          className="px-0 py-1 flex items-center m-0 border-[0.1rem] border-green-400
+         bg-green-400 rounded-full"
+        >
           <li>
             <NavLink
               to="/"
               className={({ isActive }) =>
-                isActive
-                  ? "font-bold no-underline text-white"
-                  : "font-thin no-underline text-white"
+                `text-white px-4 py-1 rounded-l-full no-underline transition-all ${
+                  isActive ? "font-bold bg-green-600" : "font-thin"
+                }`
               }
               end
             >
@@ -33,9 +36,9 @@ export default function MainNavigation() {
             <NavLink
               to="/store/page/1"
               className={({ isActive }) =>
-                isActive
-                  ? "font-bold no-underline text-white"
-                  : "font-thin no-underline text-white"
+                `text-white px-4 py-1 rounded-r-full no-underline transition-all ${
+                  isActive ? "font-bold bg-green-600" : "font-thin"
+                }`
               }
               end
             >

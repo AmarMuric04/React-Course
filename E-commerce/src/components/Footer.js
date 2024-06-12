@@ -9,7 +9,7 @@ export default function Footer({ iterable }) {
 
   return (
     <footer className="w-full h-auto flex justify-center items-center text-white">
-      <div className="w-3/5 h-full green-gradient flex flex-col pt-8 pb-2 px-4  rounded-t-3xl">
+      <div className="w-[80rem] h-full green-gradient flex flex-col pt-8 pb-2 px-4  rounded-t-3xl">
         <div className="flex w-full justify-between">
           <div className="flex gap-5">
             <div className="flex flex-col items-center">

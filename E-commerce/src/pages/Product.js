@@ -14,7 +14,7 @@ export default function ProductPage() {
 
   return (
     <main className="w-full h-full poppins flex flex-col items-center">
-      <section className="flex gap-2 justify-start w-3/5 text-xs my-8 px-8">
+      <section className="flex gap-2 justify-start w-[80rem] text-xs my-8 px-8">
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -66,7 +66,7 @@ export default function ProductPage() {
       <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
         <Await resolve={product}>
           {(loadedEvent) => (
-            <main className="w-3/5 h-auto mb-16 flex items-center justify-center">
+            <main className="w-[80rem] h-auto mb-16 flex items-center justify-center">
               <ProductDetails product={loadedEvent} />
             </main>
           )}
@@ -76,7 +76,7 @@ export default function ProductPage() {
         <Await resolve={sameCategory}>
           {(loadedEvent) => {
             return (
-              <main className="w-3/5 flex justify-center flex-col mb-16">
+              <main className="w-[80rem] flex justify-center flex-col mb-16">
                 <h1
                   className="mt-4 text-md lg:text-2xl green-gradient
                  uppercase whitespace-nowrap text-white py-16 text-center rounded-3xl
