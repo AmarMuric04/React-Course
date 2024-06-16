@@ -1,104 +1,31 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-.font-oswald {
-  font-family: "Oswald", sans-serif;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
 }
 
 body {
-  margin: 0px;
-}
-
-#loader {
-  overflow: hidden;
+  font-family: "Kumbh Sans", sans-serif;
   width: 100%;
   height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  animation: nestani 1.5s linear forwards;
-  background-color: white;
-}
-
-#loader img {
-  width: 150px;
-  height: 200px;
-  object-fit: contain;
-}
-
-.logo-text {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-
-  align-items: center;
-  gap: 20px;
-}
-
-.loader-text {
-  text-align: start;
-  margin: 0px;
-}
-
-.loader-big {
-  font-size: 2rem;
-  font-weight: 500;
-  margin: 0px;
-}
-
-.loader-small {
-  font-size: 1.5rem;
-  margin-bottom: -10px;
-  color: gray;
-  font-weight: 300;
-}
-
-.linija {
-  animation: animacija 1.5s forwards ease-in;
-
-  background: green;
-  height: 5px;
-
-  margin-top: -20px;
-}
-
-@keyframes animacija {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes nestani {
-  0% {
-    display: flex;
-    opacity: 1;
-  }
-  90% {
-    opacity: 0;
-  }
-  100% {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .logo-text {
-    flex-direction: column;
-  }
-
-  #loader img {
-    height: 100px;
-  }
-
-  .linija {
-    margin-top: 20px;
-  }
+  background: #20002c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #adc9d1,
+    #049de4
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #adc9d1,
+    #049de4
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  scroll-behavior: smooth;
+  overflow: overlay;
+  overflow-x: hidden;
 }
 
 #novo {
@@ -110,8 +37,191 @@ body {
   font-family: "Montserrat", sans-serif;
 
   right: -3rem;
-  top: -0.5rem;
+  top: 1rem;
   font-size: 1.7rem;
 
   transform: rotate(45deg);
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.main-tekst {
+  font-size: 60px;
+  color: #1993cb;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 100px;
+  font-weight: 600;
+}
+
+.main-kartice {
+  display: flex;
+  gap: 2rem;
+}
+
+.kartica {
+  background-color: #222;
+  width: 426px;
+  height: 318px;
+  border-radius: 1rem;
+  position: relative;
+  color: gray;
+  padding: 1rem;
+}
+
+.unutar-kartice {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid;
+}
+
+.kartica ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 50%;
+  flex-wrap: wrap;
+}
+
+.kartica li {
+  font-size: 0.8rem;
+}
+
+.kartica h2 {
+  text-transform: uppercase;
+}
+
+.kartica:nth-child(1) h2 {
+  color: #1f96d5;
+}
+
+.kartica:nth-child(1) .unutar-kartice {
+  border-color: #104968;
+}
+
+.kartica:nth-child(2) .unutar-kartice {
+  border-color: #cfc376;
+}
+
+.kartica:nth-child(3) .unutar-kartice {
+  border-color: #80e019;
+}
+
+.kartica:nth-child(2) h2 {
+  color: #cfc376;
+}
+
+.kartica:nth-child(3) h2 {
+  color: #80e019;
+}
+
+.kartica button {
+  display: flex;
+  align-items: center;
+  background-color: yellow;
+  padding: 22px 36px;
+  width: 70%;
+  justify-content: center;
+  border: none;
+  border-radius: 10rem;
+  position: absolute;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #314360;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  gap: 1rem;
+
+  transition: all 0.3s;
+}
+
+.kartica button:hover,
+.kartica button:focus {
+  box-shadow: 0px 20px 60px 0px rgba(255, 172, 42, 0.59);
+
+  svg {
+    animation: levo-desno linear infinite 0.6s;
+  }
+}
+
+@keyframes levo-desno {
+  0% {
+    transform: translateX(0rem);
+  }
+  50% {
+    transform: translateX(0.6rem);
+  }
+  100% {
+    transform: translateX(0rem);
+  }
+}
+
+#main__img {
+  width: 100%;
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #3f4142;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 1250px) {
+  #main__img {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  footer {
+    margin-top: 10px;
+  }
+  .main {
+    padding-bottom: 300px;
+  }
+}
+
+footer {
+  height: 50px;
+  padding-top: 15px;
+  background-color: #272727;
+  border-top: 1px solid #000;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+footer p {
+  color: #989898;
+  font-size: 14px;
+  margin-left: 30px;
+}
+
+footer a {
+  color: #989898;
 }

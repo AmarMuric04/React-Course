@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-export default function ErrorPage() {
+export default function Error() {
   return (
     <main className="error">
-      <h1>Invalid inputs!</h1>
-      <p>Try again</p>
+      <h1>An error occurred!</h1>
+      <p>Failed to create meal.</p>
     </main>
   );
 }

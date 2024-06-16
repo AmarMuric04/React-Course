@@ -1,22 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <link
+      rel="icon"
+      href="./assets/img/zentorno.png"
+      sizes="16x16 32x32"
+      type="image/png"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
+    <link rel="shortcut icon" href="" />
+    <link rel="stylesheet" href="assets/css/navigation.css" />
+    <script src="../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="../cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <meta
+      name="description"
+      content="Zentorno Community, zavirite u svet prave roleplay avanture!"
+    />
+
+    <meta
+      name="keywords"
+      content="balkan, zentorno, zentornoroleplay, balkan zentorno, samp, portal, forum, zentornoforum, gordon, sampserver, balkansampserver, server, zentornoforum, najboljisampserver, roleplay, zentorno community, zentornorp, zentorno rp, rp zentorno, zentorno ogc, zentornoogc, nikolaus"
+    />
+
+    <meta name="author" content="Nikolaus" />
+
+    <link
+      rel="stylesheet"
+      href="../use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/loader.css" />
+    <title>Zvanična prezentacija - Zentorno RP</title>
   </head>
   <body>
+    <!-- <p id="novo">NOVO</p>
+
     <div id="loader">
       <div class="logo-text font-oswald">
-        <img src="./loaderimg.png" alt="logo" />
+        <img src="https://i.ibb.co/QYf77rG/loaderimg.png" alt="logo" />
         <div class="loader-text">
-          <p class="loader-small">Dobrodošli na</p>
+          <p class="loader-small">PREPOZNATLJIVO RAZLIČITI...</p>
           <p class="loader-big">ZENTORNO ROLEPLAY</p>
         </div>
       </div>
       <div class="linija"></div>
+    </div> -->
+
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-N2XWFT7T"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- 
+    <div class="navbar">
+      <div class="navbar__container">
+        <div class="logo">
+          <a href="index.html"
+            ><img id="navbar__logo" src="assets/img/logo_tdarko.png" alt=""
+          /></a>
+        </div>
+
+        <div class="navbar__toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="index.html" class="navbar__links"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.7em"
+                height="1.3em"
+                viewBox="0 0 24 24"
+              >
+                <mask id="lineMdCompassLoop0">
+                  <path
+                    fill="none"
+                    stroke="#fff"
+                    stroke-dasharray="60"
+                    stroke-dashoffset="60"
+                    stroke-linecap="round"
+                    stroke-width="2"
+                    d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="stroke-dashoffset"
+                      dur="0.5s"
+                      values="60;0"
+                    />
+                  </path>
+                  <path fill="#fff" d="M11 11L12 12L13 13L12 12z">
+                    <set attributeName="opacity" begin="0.6s" to="1" />
+                    <animate
+                      fill="freeze"
+                      attributeName="d"
+                      begin="0.6s"
+                      dur="0.3s"
+                      values="M11 11L12 12L13 13L12 12z;M10.2 10.2L17 7L13.8 13.8L7 17z"
+                    />
+                    <animateTransform
+                      attributeName="transform"
+                      begin="0.5s"
+                      dur="9s"
+                      repeatCount="indefinite"
+                      type="rotate"
+                      values="-180 12 12;0 12 12;0 12 12;0 12 12;0 12 12;270 12 12;-90 12 12;0 12 12;-180 12 12;-35 12 12;-40 12 12;-45 12 12;-45 12 12;-110 12 12;-135 12 12;-180 12 12"
+                    />
+                  </path>
+                  <circle cx="12" cy="12" r="1" fill-opacity="0">
+                    <animate
+                      fill="freeze"
+                      attributeName="fill-opacity"
+                      begin="0.8s"
+                      dur="0.3s"
+                      values="0;1"
+                    />
+                  </circle>
+                </mask>
+                <rect
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  mask="url(#lineMdCompassLoop0)"
+                /></svg
+              >Naslovna</a
+            >
+          </li>
+          <li class="navbar__item">
+            <a href="#" class="navbar__links"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.7em"
+                height="1.3em"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-dasharray="2 4"
+                    stroke-dashoffset="6"
+                    d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21"
+                  >
+                    <animate
+                      attributeName="stroke-dashoffset"
+                      dur="0.6s"
+                      repeatCount="indefinite"
+                      values="6;0"
+                    />
+                  </path>
+                  <path
+                    stroke-dasharray="30"
+                    stroke-dashoffset="30"
+                    d="M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="stroke-dashoffset"
+                      begin="0.1s"
+                      dur="0.3s"
+                      values="30;0"
+                    />
+                  </path>
+                  <path
+                    stroke-dasharray="10"
+                    stroke-dashoffset="10"
+                    d="M12 8v7.5"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="stroke-dashoffset"
+                      begin="0.5s"
+                      dur="0.2s"
+                      values="10;0"
+                    />
+                  </path>
+                  <path
+                    stroke-dasharray="6"
+                    stroke-dashoffset="6"
+                    d="M12 15.5l3.5 -3.5M12 15.5l-3.5 -3.5"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="stroke-dashoffset"
+                      begin="0.7s"
+                      dur="0.2s"
+                      values="6;0"
+                    />
+                  </path>
+                </g>
+              </svg>
+              Download Zona</a
+            >
+          </li>
+          <li class="navbar__item">
+            <a href="https://zentornorp.info/forum/" class="navbar__links"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.7em"
+                height="1.3em"
+                viewBox="0 0 24 24"
+              >
+                <circle cx="4" cy="12" r="3" fill="currentColor">
+                  <animate
+                    id="svgSpinners3DotsBounce0"
+                    attributeName="cy"
+                    begin="0;svgSpinners3DotsBounce1.end+0.25s"
+                    calcMode="spline"
+                    dur="0.6s"
+                    keySplines=".33,.66,.66,1;.33,0,.66,.33"
+                    values="12;6;12"
+                  />
+                </circle>
+                <circle cx="12" cy="12" r="3" fill="currentColor">
+                  <animate
+                    attributeName="cy"
+                    begin="svgSpinners3DotsBounce0.begin+0.1s"
+                    calcMode="spline"
+                    dur="0.6s"
+                    keySplines=".33,.66,.66,1;.33,0,.66,.33"
+                    values="12;6;12"
+                  />
+                </circle>
+                <circle cx="20" cy="12" r="3" fill="currentColor">
+                  <animate
+                    id="svgSpinners3DotsBounce1"
+                    attributeName="cy"
+                    begin="svgSpinners3DotsBounce0.begin+0.2s"
+                    calcMode="spline"
+                    dur="0.6s"
+                    keySplines=".33,.66,.66,1;.33,0,.66,.33"
+                    values="12;6;12"
+                  />
+                </circle></svg
+              >Forum</a
+            >
+          </li>
+          <li class="navbar__item">
+            <a href="#" class="navbar__links"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.9em"
+                height="1.9em"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="none"
+                  stroke="#e2e8f0"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="30"
+                  d="M344 256a88 88 0 1 1-88-88a88 88 0 0 1 88 88ZM200 116.9l-3.8 7.7A269.7 269.7 0 0 0 169 267h0m143.1 128l3.8-7.7A269.7 269.7 0 0 0 343.2 245h0"
+                >
+                  <animateTransform
+                    additive="sum"
+                    attributeName="transform"
+                    dur="4.5s"
+                    repeatCount="indefinite"
+                    type="rotate"
+                    values="1440 256 256; 0 256 256"
+                  />
+                </path></svg
+              >Donacije</a
+            >
+          </li>
+          <li class="navbar__item"><a href="kontakt.html" class="navbar__links">Kontakt</a></li>
+          <li class="navbar__item"><a href="galerija.html" class="navbar__links">Galerija</a></li>
+          <li class="navbar__btn">
+            <a href="pravila.html" class="button">Pravila</a>
+          </li>
+        </ul>
+      </div>
+    </div> -->
+
+    <div class="main">
+      <h1 class="main-tekst">Kako igrati?</h1>
+      <div class="main-kartice">
+        <div class="kartica">
+          <div class="unutar-kartice">
+            <h2>Neki tekst...</h2>
+            <ul>
+              <li>Korak 1</li>
+              <li>Korak 2</li>
+              <li>Korak 3</li>
+              <li>Korak 4</li>
+            </ul>
+          </div>
+          <button>
+            Neki tekst...
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 24 24"
+            >
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="2"
+              >
+                <path
+                  stroke-dasharray="2 4"
+                  stroke-dashoffset="6"
+                  d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21"
+                >
+                  <animate
+                    attributeName="stroke-dashoffset"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                    values="6;0"
+                  />
+                </path>
+                <path
+                  stroke-dasharray="30"
+                  stroke-dashoffset="30"
+                  d="M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.1s"
+                    dur="0.3s"
+                    values="30;0"
+                  />
+                </path>
+                <path
+                  stroke-dasharray="10"
+                  stroke-dashoffset="10"
+                  d="M12 8v7.5"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.5s"
+                    dur="0.2s"
+                    values="10;0"
+                  />
+                </path>
+                <path
+                  stroke-dasharray="6"
+                  stroke-dashoffset="6"
+                  d="M12 15.5l3.5 -3.5M12 15.5l-3.5 -3.5"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.7s"
+                    dur="0.2s"
+                    values="6;0"
+                  />
+                </path>
+              </g>
+            </svg>
+          </button>
+        </div>
+        <div class="kartica">
+          <div class="unutar-kartice">
+            <h2>Neki tekst...</h2>
+            <ul>
+              <li>Korak 1</li>
+              <li>Korak 2</li>
+              <li>Korak 3</li>
+              <li>Korak 4</li>
+            </ul>
+          </div>
+          <button>
+            Neki tekst...
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 24 24"
+            >
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="2"
+              >
+                <path
+                  stroke-dasharray="2 4"
+                  stroke-dashoffset="6"
+                  d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21"
+                >
+                  <animate
+                    attributeName="stroke-dashoffset"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                    values="6;0"
+                  />
+                </path>
+                <path
+                  stroke-dasharray="30"
+                  stroke-dashoffset="30"
+                  d="M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.1s"
+                    dur="0.3s"
+                    values="30;0"
+                  />
+                </path>
+                <path
+                  stroke-dasharray="10"
+                  stroke-dashoffset="10"
+                  d="M12 8v7.5"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.5s"
+                    dur="0.2s"
+                    values="10;0"
+                  />
+                </path>
+                <path
+                  stroke-dasharray="6"
+                  stroke-dashoffset="6"
+                  d="M12 15.5l3.5 -3.5M12 15.5l-3.5 -3.5"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.7s"
+                    dur="0.2s"
+                    values="6;0"
+                  />
+                </path>
+              </g>
+            </svg>
+          </button>
+        </div>
+        <div class="kartica">
+          <div class="unutar-kartice">
+            <h2>Neki tekst...</h2>
+            <ul>
+              <li>Korak 1</li>
+              <li>Korak 2</li>
+              <li>Korak 3</li>
+              <li>Korak 4</li>
+            </ul>
+          </div>
+          <button>
+            Neki tekst...
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 24 24"
+            >
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="2"
+              >
+                <path
+                  stroke-dasharray="2 4"
+                  stroke-dashoffset="6"
+                  d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21"
+                >
+                  <animate
+                    attributeName="stroke-dashoffset"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                    values="6;0"
+                  />
+                </path>
+                <path
+                  stroke-dasharray="30"
+                  stroke-dashoffset="30"
+                  d="M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.1s"
+                    dur="0.3s"
+                    values="30;0"
+                  />
+                </path>
+                <path
+                  stroke-dasharray="10"
+                  stroke-dashoffset="10"
+                  d="M12 8v7.5"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.5s"
+                    dur="0.2s"
+                    values="10;0"
+                  />
+                </path>
+                <path
+                  stroke-dasharray="6"
+                  stroke-dashoffset="6"
+                  d="M12 15.5l3.5 -3.5M12 15.5l-3.5 -3.5"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.7s"
+                    dur="0.2s"
+                    values="6;0"
+                  />
+                </path>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- <div class="main__img--container">
+          <img src="assets/img/nikola_i_darko.png" id="main__img" alt="" />
+        </div> -->
     </div>
-    <p id="novo">NOVO</p>
+
+    <footer>
+      <center>
+        <p>
+          Made by <span class="heart">♥</span>
+          <a href="nikolaus.html" target="_blank" style="text-decoration: none"
+            >Nikolaus</a
+          >
+        </p>
+      </center>
+    </footer>
   </body>
 </html>
