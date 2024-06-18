@@ -27,9 +27,15 @@ const DUMMY_MEETUPS = [
   },
 ];
 
-export default function HomePage() {
-  useEffect(()=>{
-    
-  },[])
-  return <MeetupList meetups={DUMMY_MEETUPS} />;
+export async function getStaticProps() {
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
+}
+
+export default function HomePage(props) {
+  useEffect(() => {}, []);
+  return <MeetupList meetups={props.meetups} />;
 }
