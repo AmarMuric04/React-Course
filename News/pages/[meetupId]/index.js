@@ -10,3 +10,37 @@ export default function MeetupDetails() {
     />
   );
 }
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      {
+        params: {
+          meetupId: "m1",
+        },
+      },
+      {
+        params: {
+          meetupId: "m2",
+        },
+      },
+    ],
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context) {
+  const params = context.params.meetupId;
+
+  return {
+    props: {
+      meetupData: {
+        image: "image.png",
+        description: "abc",
+        id: "1",
+        address: "2",
+        title: { params },
+      },
+    },
+  };
+}

@@ -1,0 +1,8 @@
+export default function handler(req, res) {
+  if (req !== "POST") return;
+
+  const data = req.body;
+  const { title, image, address, description } = data;
+
+  
+}
