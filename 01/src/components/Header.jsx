@@ -25,6 +25,7 @@ export default function Header() {
         <motion.button
           whileHover={{
             scale: 1.1,
+            backgroundColor: "#aaaaf0",
           }}
           transition={{
             type: "spring",
