@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
   const data = req.body;
 
-  await MongoClient.connect(
+  const client = await MongoClient.connect(
     "mongodb+srv://muricamar2004:Kolosseum123@cluster0.hhpzhqe.mongodb.net/meetups?retryWrites=true&w=majority&appName=Cluster0"
   );
 
@@ -15,5 +15,6 @@ export default async function handler(req, res) {
   const result = await meetupsCollection.insertOne(data);
 
   client.close();
+
   res.status(201).json({ message: "Meetup inserted." });
 }
