@@ -1,5 +1,5 @@
-import AccordionProvider from "../store/accordion-context";
-import { AccordionContext } from "../store/accordion-context";
+import AccordionProvider from "../../store/accordion-context";
+import { AccordionContext } from "../../store/accordion-context";
 import { useContext } from "react";
 import AccordionItem from "./AccordionItem";
 import AccordionContent from "./AccordionContent";
@@ -25,5 +25,5 @@ export default function Accordion({ children, className }) {
 }
 
 Accordion.Item = AccordionItem;
-Accordion.Content = AccordionContent;
 Accordion.Title = AccordionTitle;
+Accordion.Content = AccordionContent;
