@@ -5,6 +5,7 @@ import { convertToCurrency } from "../util/dataModifiers";
 import StarRating from "./StarRating";
 import { Link } from "react-router-dom";
 import { miscActions } from "../redux/misc";
+import { motion } from "framer-motion";
 
 export default function Product({ product }) {
   const dispatch = useDispatch();
@@ -22,7 +23,20 @@ export default function Product({ product }) {
   };
 
   return (
-    <li
+    <motion.li
+      variants={{
+        hidden: {
+          opacity: 0,
+          scale: 0.5,
+        },
+        visible: {
+          opacity: 1,
+          scale: [0.9, 1],
+        },
+      }}
+      transition={{
+        type: "spring",
+      }}
       className="w-72 h-96 flex flex-col items-center bg-zinc-100
           border-b-[0.4rem] border-transparent rounded-2xl overflow-hidden
         hover:border-green-400 hover:pb-[0.4rem] hover:translate-y-[-0.4rem]
@@ -95,6 +109,6 @@ export default function Product({ product }) {
           </Link>
         </div>
       </section>
-    </li>
+    </motion.li>
   );
 }

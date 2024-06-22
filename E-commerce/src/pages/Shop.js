@@ -7,6 +7,7 @@ import store from "../redux/redux";
 import { changePage, putCategory } from "../redux/misc";
 import { useSelector } from "react-redux";
 import Pagination from "../components/Pagination";
+import { motion } from "framer-motion";
 
 export default function ShopPage() {
   const { products } = useLoaderData();
@@ -163,19 +164,34 @@ export default function ShopPage() {
           </Fragment>
         }
       />
-      <div className="w-[80rem] my-16">
+      <motion.div
+        variants={{
+          hidden: {
+            opacity: 0,
+            y: 30,
+          },
+          visible: {
+            opacity: 1,
+            y: 0,
+          },
+        }}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        className="w-[80rem] my-16"
+      >
         <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
           <Await resolve={products}>
             {(loadedData) => <Products products={loadedData} />}
           </Await>
         </Suspense>
-      </div>
+      </motion.div>
       {!category && !params.search && <Pagination />}
     </main>
   );
 }
 
-export const loader = async ({ request, params }) => {
+export const loader = async ({ params }) => {
   const page = params.page;
   store.dispatch(putCategory(null));
   store.dispatch(changePage(page));
