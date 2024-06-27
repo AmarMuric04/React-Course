@@ -1,5 +1,3 @@
-import Footer from "../Single Components/Footer";
-import Header from "../Single Components/Header";
 import { Link } from "react-router-dom";
 import UserBalance from "../Single Components/UserBalance";
 import Title from "../BuyCryptoPage/BuyCryptoLeftSide/components/Title";
@@ -33,8 +31,6 @@ export default function BuyGeneralCrypto({ type }) {
   return (
     <>
       {action && modal}
-      {type === "buy" && <Header />}
-      {type === "sell" && <Header />}
       <main className="bg-[#1A1C22ff] text-white h-full min-h-screen w-full min-w-screen flex flex-col items-center mt-16">
         <div className="flex flex-col max-w-full w-[80rem] mt-16">
           <div className="flex w-full justify-between items-center flex-col md:flex-row">
@@ -173,7 +169,6 @@ export default function BuyGeneralCrypto({ type }) {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

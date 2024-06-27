@@ -48,7 +48,7 @@ export default function Footer() {
           </button>
         </div>
       </div>
-      <div className="bg-[#494D54ff] h-24 flex flex-col gap-2 items-center justify-center">
+      <div className="bg-[#1A1C22ff] h-24 flex flex-col gap-2 items-center justify-center">
         <p className="flex items-center gap-3">
           {" "}
           <svg

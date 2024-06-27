@@ -1,5 +1,3 @@
-import Header from "./Single Components/Header";
-import Footer from "./Single Components/Footer";
 import Image from "./Single Components/Image";
 import WalletCryptoListContainer from "./WalletCryptoListContainer";
 import WalletCryptoTellers from "./WalletCryptoTellers";
@@ -122,7 +120,6 @@ export default function WalletPage() {
 
   return (
     <CryptoWalletContextProvider>
-      <Header />
       <main className="flex flex-col min-h-screen lg:flex-row justify-between w-full h-full bg-[#1A1C22ff] mt-16">
         <div className="w-full lg:w-1/3 bg-black min-h-auto flex lg:flex-col gap-3 sm:items-start lg:items-center py-8 md:p-8 text-white flex-col items-center sm:flex-row">
           <div className="bg-[#23272Eff] min-w-64 md:min-w-48 h-48 w-[90%] rounded-lg p-8 flex flex-col justify-between">
@@ -243,7 +240,6 @@ export default function WalletPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </CryptoWalletContextProvider>
   );
 }

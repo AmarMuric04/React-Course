@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "/public/FinalLogo.png";
 import Image from "./Image";
 import { Fragment, useContext, useEffect, useState } from "react";
@@ -21,6 +21,8 @@ export default function Header() {
     setOpenHeader(identifier);
   }
 
+  const navLinkCSS = "cursor-pointer hover:text-yellow-400 transition-all";
+
   return (
     <>
       <header className="hidden lg:flex absolute top-0 left-0 right-0 bg-[#1A1C22ff] px-16 h-16 items-center justify-between flex-wrap">
@@ -31,55 +33,69 @@ export default function Header() {
             INANCE
           </h1>
           <ul className="hidden lg:flex text-xs xl:text-lg text-white gap-5 items-center ml-8 font-bold ">
-            <Link
+            <NavLink
               to="/"
-              className="cursor-pointer hover:text-yellow-400 transition-all"
+              className={({ isActive }) =>
+                `${navLinkCSS} ${isActive && "text-yellow-400"}`
+              }
             >
               Home
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/crypto-list"
-              className="cursor-pointer hover:text-yellow-400 transition-all"
+              className={({ isActive }) =>
+                `${navLinkCSS} ${isActive && "text-yellow-400"}`
+              }
             >
               List of Cryptos
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/buy-crypto"
-              className="cursor-pointer hover:text-yellow-400 transition-all"
+              className={({ isActive }) =>
+                `${navLinkCSS} ${isActive && "text-yellow-400"}`
+              }
             >
               Buy Crypto
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/my-wallet"
-              className="cursor-pointer hover:text-yellow-400 transition-all"
+              className={({ isActive }) =>
+                `${navLinkCSS} ${isActive && "text-yellow-400"}`
+              }
             >
               My Wallet
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/earn"
-              className="cursor-pointer hover:text-yellow-400 transition-all"
+              className={({ isActive }) =>
+                `${navLinkCSS} ${isActive && "text-yellow-400"}`
+              }
             >
               Earn
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/contact"
-              className="cursor-pointer hover:text-yellow-400 transition-all"
+              className={({ isActive }) =>
+                `${navLinkCSS} ${isActive && "text-yellow-400"}`
+              }
             >
               Contact
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/sell-crypto"
-              className="cursor-pointer hover:text-yellow-400 transition-all"
+              className={({ isActive }) =>
+                `${navLinkCSS} ${isActive && "text-yellow-400"}`
+              }
             >
               Sell Crypto
-            </Link>
+            </NavLink>
           </ul>
         </div>
 
         {!userAccount ? (
           <div className="flex gap-4 text-[#1A1C22ff]">
             <Link
-              className="bg-yellow-400 py-2 px-4 rounded-md hover:bg-yellow-500 transition-all font-bold"
+              className=" py-2 px-4 rounded-md text-yellow-400 hover:bg-gray-800 transition-all font-bold"
               to="/login"
             >
               Log in

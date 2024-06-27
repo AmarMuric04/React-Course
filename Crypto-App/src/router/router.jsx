@@ -7,46 +7,53 @@ import BuyAndSellGeneralPage from "../components/BuyAndSellGeneralPage/BuyAndSel
 import EarnPage from "../components/EarnPage/EarnPage";
 import ContactPage from "../components/ContactPage/ContactPage";
 import WalletPage from "../components/WalletPage";
+import RootLayout from "../components/RootLayout";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage />,
-  },
-  {
-    path: "/crypto-list",
-    element: <App />,
-  },
-  {
-    path: "/login",
-    element: <CredentialsPage page="login" />,
-  },
-  {
-    path: "/signup",
-    element: <CredentialsPage page="signup" />,
-  },
-  {
-    path: `/crypto-list/:id`,
-    element: <BuyCryptoPage />,
-  },
-  {
-    path: "/buy-crypto",
-    element: <BuyAndSellGeneralPage type="buy" />,
-  },
-  {
-    path: "/sell-crypto",
-    element: <BuyAndSellGeneralPage type="sell" />,
-  },
-  {
-    path: "/earn",
-    element: <EarnPage />,
-  },
-  {
-    path: `/contact`,
-    element: <ContactPage />,
-  },
-  {
-    path: "/my-wallet",
-    element: <WalletPage />,
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <LandingPage />,
+      },
+      {
+        path: "/crypto-list",
+        element: <App />,
+      },
+      {
+        path: "/login",
+        element: <CredentialsPage page="login" />,
+      },
+      {
+        path: "/signup",
+        element: <CredentialsPage page="signup" />,
+      },
+      {
+        path: `/crypto-list/:id`,
+        element: <BuyCryptoPage />,
+      },
+      {
+        path: "/buy-crypto",
+        element: <BuyAndSellGeneralPage type="buy" />,
+      },
+      {
+        path: "/sell-crypto",
+        element: <BuyAndSellGeneralPage type="sell" />,
+      },
+      {
+        path: "/earn",
+        element: <EarnPage />,
+      },
+      {
+        path: `/contact`,
+        element: <ContactPage />,
+      },
+      {
+        path: "/my-wallet",
+        element: <WalletPage />,
+      },
+    ],
   },
 ]);
