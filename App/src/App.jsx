@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import handImg from "../public/hand.png";
-import Logo from "../public/Logo.png";
 import { toCurrency } from "../utils/transformData";
 import StarRating from "../components/StarRating";
+import Header from "../components/Header";
+import OrderButton from "../components/OrderButton";
 
 const appId = "5b98e15c";
 const appKey = "c545ae4e7476756e51999a9c36bbe4ac";
@@ -49,76 +50,9 @@ const App = () => {
     fetchTags();
   }, []);
 
-  const navLinkCSS = "hover:text-yellow-400 transition-all cursor-pointer";
-
   return (
     <main className="w-full h-auto flex flex-col items-center">
-      <header className="absolute left-0 right-0 top-0 px-20 py-4 z-50 text-white flex justify-between items-center use-poppins">
-        <div className="flex gap-8 items-center">
-          <img className="h-20" src={Logo} />
-          <p className="use-playwrite text-3xl text-yellow-400">DineDivine</p>
-        </div>
-        <ul className="flex items-center gap-3">
-          <li className={navLinkCSS}>Home</li>
-          <li className={navLinkCSS}>About Us</li>
-          <li className={navLinkCSS}>Shop</li>
-          <li className={navLinkCSS}>Services</li>
-          <li className={navLinkCSS}>Blog</li>
-          <li className={navLinkCSS}>Pages</li>
-          <li className={navLinkCSS}>Contact Us</li>
-        </ul>
-        <div className="flex items-center gap-8">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="2em"
-            height="2em"
-            viewBox="0 0 24 24"
-            className={navLinkCSS}
-          >
-            <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="2em"
-            height="2em"
-            viewBox="0 0 14 14"
-            className={navLinkCSS}
-          >
-            <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M12.28 6H1.72a1 1 0 0 0-1 1.2l1.1 5.5a1 1 0 0 0 1 .8h8.36a1 1 0 0 0 1-.8l1.1-5.5a1 1 0 0 0-1-1.2M9 2.5L11 6M3 6l2-3.5"
-            />
-          </svg>
-          <button className="px-6 py-3 gap-2 text-black hover:bg-yellow-300 bg-yellow-400 text-sm font-bold flex items-center">
-            Order Now{" "}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.78em"
-              height="2em"
-              viewBox="0 0 16 9"
-            >
-              <path
-                fill="currentColor"
-                d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"
-              />
-              <path
-                fill="currentColor"
-                d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z"
-              />
-            </svg>
-          </button>
-        </div>
-      </header>
+      <Header />
       <div className="w-full h-screen">
         <div className="relative text-white w-full h-[75%]  special-bg pt-48 pl-32">
           <h1 className="z-50 text-[4.5rem] leading-tight use-playfair">
@@ -131,25 +65,7 @@ const App = () => {
             <br /> and every meal is an unforgettable experience of gourmet
             bliss!
           </p>
-          <button className="px-6 py-3 gap-2 mt-8 text-black hover:bg-yellow-300 bg-yellow-400 text-sm font-bold flex items-center">
-            Order Now{" "}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.78em"
-              height="2em"
-              viewBox="0 0 16 9"
-            >
-              <path
-                fill="currentColor"
-                d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"
-              />
-              <path
-                fill="currentColor"
-                d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z"
-              />
-            </svg>
-          </button>
-
+          <OrderButton />
           <img src={handImg} className="absolute right-0 bottom-0 w-[60%]" />
         </div>
         {tags.length > 0 && (
@@ -177,24 +93,8 @@ const App = () => {
             eyes and palate, making every moment truly divine.
           </p>
           <div className="flex gap-3 items-center mt-8">
-            <button className="px-6 py-3 gap-2 text-black hover:bg-yellow-300 bg-yellow-400 text-sm font-bold flex items-center">
-              Order Now{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1.78em"
-                height="2em"
-                viewBox="0 0 16 9"
-              >
-                <path
-                  fill="currentColor"
-                  d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"
-                />
-                <path
-                  fill="currentColor"
-                  d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z"
-                />
-              </svg>
-            </button>
+            <OrderButton />
+
             <p className="text-yellow-400 hover:underline cursor-pointer text-lg">
               Check your favorites
             </p>
