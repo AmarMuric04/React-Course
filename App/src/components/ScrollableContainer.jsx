@@ -73,31 +73,33 @@ export default function ScrollableContainer({ iterables }) {
           </ul>
         )}
       </section>
-      <div className="absolute top-[65%] left-1/2 translate-x-[-50%] translate-y-[-50%] w-[76rem] flex justify-between">
-        {translateX < 0 ? (
-          <button
-            onClick={handleScrollLeft}
-            className="w-10 h-10 rounded-full grid place-items-center border-2 border-orange-400 transition-all bg-orange-400 text-white hover:bg-orange-300"
-          >
-            <LeftArrowIcon width="1.3em" height="1.3em" />
-          </button>
-        ) : (
-          <div></div>
-        )}
+      {itemRef.current && (
+        <div className="absolute top-[65%] left-1/2 translate-x-[-50%] translate-y-[-50%] w-[76rem] flex justify-between">
+          {translateX < 0 ? (
+            <button
+              onClick={handleScrollLeft}
+              className="w-10 h-10 rounded-full grid place-items-center border-2 border-orange-400 transition-all bg-orange-400 text-white hover:bg-orange-300 shadow-md hover:shadow-xl"
+            >
+              <LeftArrowIcon width="1.3em" height="1.3em" />
+            </button>
+          ) : (
+            <div></div>
+          )}
 
-        {translateX - (itemRef.current.offsetWidth + 11.2) * 2 >
-        containerRef.current.offsetWidth -
-          (iterables.length * itemRef.current.offsetWidth + 11.2) ? (
-          <button
-            onClick={handleScrollRight}
-            className="w-10 h-10 rounded-full grid place-items-center border-2 border-orange-400 transition-all bg-orange-400 hover:bg-orange-300 text-white"
-          >
-            <RightArrowIcon width="1.3em" height="1.3em" />
-          </button>
-        ) : (
-          <div></div>
-        )}
-      </div>
+          {translateX - (itemRef.current.offsetWidth + 11.2) * 2 >
+          containerRef.current.offsetWidth -
+            (iterables.length * itemRef.current.offsetWidth + 11.2) ? (
+            <button
+              onClick={handleScrollRight}
+              className="w-10 h-10 rounded-full grid place-items-center border-2 border-orange-400 transition-all bg-orange-400 hover:bg-orange-300 text-white shadow-md hover:shadow-xl"
+            >
+              <RightArrowIcon width="1.3em" height="1.3em" />
+            </button>
+          ) : (
+            <div></div>
+          )}
+        </div>
+      )}
     </>
   );
 }

@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 body {
-  background-color: rgb(255, 245, 233);
+  background-color: #fff5e9;
 }
 
 .use-poppins {

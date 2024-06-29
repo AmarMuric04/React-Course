@@ -1,6 +1,6 @@
 export default function OrderButton() {
   return (
-    <button className="px-6 py-3 gap-2 mt-8 text-black hover:bg-yellow-300 bg-yellow-400 text-sm font-bold flex items-center">
+    <button className="px-6 py-3 gap-2 text-black hover:bg-yellow-300 bg-yellow-400 text-sm font-bold flex items-center">
       Order Now{" "}
       <svg
         xmlns="http://www.w3.org/2000/svg"
