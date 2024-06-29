@@ -1,16 +1,16 @@
-import Logo from "../public/Logo.png";
+import Logo from "../../public/Logo.png";
 import OrderButton from "./OrderButton";
 
 const navLinkCSS = "hover:text-yellow-400 transition-all cursor-pointer";
 
 export default function Header() {
   return (
-    <header className="absolute left-0 right-0 top-0 px-20 py-4 z-50 text-white flex justify-between items-center use-poppins">
+    <header className="absolute top-0 left-0 w-full px-20 py-4 z-50 text-white flex justify-between items-center use-poppins">
       <div className="flex gap-8 items-center">
         <img className="h-20" src={Logo} />
         <p className="use-playwrite text-3xl text-yellow-400">DineDivine</p>
       </div>
-      <ul className="flex items-center gap-8 text-lg">
+      <ul className="flex items-center gap-3 text-lg">
         <li className={navLinkCSS}>Home</li>
         <li className={navLinkCSS}>About Us</li>
         <li className={navLinkCSS}>Shop</li>
