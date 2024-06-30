@@ -158,7 +158,7 @@ export default function Home() {
             <OrderButton />
           </div>
         </section>
-        <ul className="flex transition-all gap-[0.7rem] mt-16  no-scrollbar flex-wrap w-[66.1rem]">
+        <ul className="flex self-center transition-all gap-[0.7rem] mt-16  no-scrollbar flex-wrap w-[66.1rem]">
           {secondRecipes.length > 0 &&
             secondRecipes.splice(0, 8).map((iterable, index) => (
               <li
@@ -311,7 +311,7 @@ export default function Home() {
           <li className="w-72 h-32 bg-gray-700 rounded-md"></li>
         </ul>
       </div>
-      <div className="h-[40rem] px-48 py-16 flex flex-col items-center">
+      <div className="px-48 py-16 flex flex-col items-center w-full">
         <h1 className="text-center use-playfair text-[3rem] font-bold leading-tight">
           Our <span className="text-green-400">Blog</span>
         </h1>
@@ -319,8 +319,52 @@ export default function Home() {
           Stay tuned to our blog for the latest culinary trends, delicious
           recipes, and insider tips to elevate your dining experience.
         </p>
-        <p>image goes here... etcc....</p>
+        <div className="z-50 text-white special-bg2 w-full h-[40rem] p-16 rounded-xl overflow-hidden relative">
+          <div className="absolute left-0 top-0 w-full h-full bg-black black-gradient"></div>
+          <div className="z-50 absolute">
+            <p className="use-poppins text-xl mb-4">June 30, 2024</p>
+            <h1 className="use-playfair text-[3rem] leading-tight font-bold">
+              The Palate Pioneer: <br />
+              Navigating the World of Tastes.
+            </h1>
+            <p className="use-poppins w-1/2 my-8">
+              Embark on a journey of flavor exploration, discovering hidden
+              culinary treasures from around the globe. Join us as we navigate
+              diverse tastes, bringing bold and exciting flavors to your table.
+            </p>
+            <OrderButton />
+          </div>
+        </div>
+        <div className="flex w-full gap-20 justify-between">
+          <div className="w-1/2 ">
+            <p className="text-sm use-poppins">June 29, 2024</p>
+            <h1>
+              The Culinary Course: <br /> Artistry on a Plate Buffet
+            </h1>
+            <p>
+              The Culinary Course offers a buffet that is a true artistry on a
+              plate. Indulge in a diverse array of meticulously crafted dishes,
+              each one a masterpiece designed to tantalize your taste buds and
+              delight your senses.
+            </p>
+            <OrderButton />
+          </div>{" "}
+          <div className="w-1/2 ">
+            <p className="text-sm use-poppins">June 29, 2024</p>
+            <h1>
+              The Culinary Course: <br /> Artistry on a Plate Buffet
+            </h1>
+            <p>
+              The Culinary Course offers a buffet that is a true artistry on a
+              plate. Indulge in a diverse array of meticulously crafted dishes,
+              each one a masterpiece designed to tantalize your taste buds and
+              delight your senses.
+            </p>
+            <OrderButton />
+          </div>
+        </div>
       </div>
+      <footer>Footer goes here...</footer>
     </main>
   );
 }

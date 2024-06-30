@@ -30,3 +30,18 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.special-bg2 {
+  background-image: url("https://png.pngtree.com/background/20230621/original/pngtree-rapidly-satisfy-your-hunger-with-3d-fast-food-background-03-picture-image_3910286.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.black-gradient {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.7) 2%,
+    rgba(255, 255, 255, 0) 99%
+  );
+}
