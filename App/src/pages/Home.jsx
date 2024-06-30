@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import handImg from "../../public/hand.png";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import OrderButton from "../components/OrderButton";
 import ScrollableContainer from "../components/ScrollableContainer";
 import StarRating from "../components/StarRating";
@@ -335,13 +336,13 @@ export default function Home() {
             <OrderButton />
           </div>
         </div>
-        <div className="flex w-full gap-20 justify-between">
+        <div className="flex w-full gap-20 justify-between mt-12">
           <div className="w-1/2 ">
-            <p className="text-sm use-poppins">June 29, 2024</p>
-            <h1>
+            <p className="text-sm use-poppins mb-4">June 29, 2024</p>
+            <h1 className="text-[2rem] use-playfair font-bold leading-tight">
               The Culinary Course: <br /> Artistry on a Plate Buffet
             </h1>
-            <p>
+            <p className="use-poppins mt-4 mb-8">
               The Culinary Course offers a buffet that is a true artistry on a
               plate. Indulge in a diverse array of meticulously crafted dishes,
               each one a masterpiece designed to tantalize your taste buds and
@@ -350,21 +351,21 @@ export default function Home() {
             <OrderButton />
           </div>{" "}
           <div className="w-1/2 ">
-            <p className="text-sm use-poppins">June 29, 2024</p>
-            <h1>
-              The Culinary Course: <br /> Artistry on a Plate Buffet
+            <p className="text-sm use-poppins mb-4">June 30, 2024</p>
+            <h1 className="text-[2rem] use-playfair font-bold leading-tight">
+              Tasting Traditions <br /> A Culinary and Odyssey
             </h1>
-            <p>
-              The Culinary Course offers a buffet that is a true artistry on a
-              plate. Indulge in a diverse array of meticulously crafted dishes,
-              each one a masterpiece designed to tantalize your taste buds and
-              delight your senses.
+            <p className="use-poppins mt-4 mb-8">
+              Tasting Traditions invites you on a culinary odyssey, exploring
+              the rich and diverse flavors from around the world. Each dish
+              tells a story, celebrating the heritage and artistry of global
+              cuisines.
             </p>
             <OrderButton />
           </div>
         </div>
       </div>
-      <footer>Footer goes here...</footer>
+      <Footer />
     </main>
   );
 }
