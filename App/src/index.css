@@ -45,3 +45,7 @@ body {
     rgba(255, 255, 255, 0) 99%
   );
 }
+
+.smooth-scrolling {
+  scroll-behavior: smooth;
+}

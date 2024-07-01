@@ -1,0 +1,56 @@
+[
+  {
+    "username": "John Smith",
+    "rating": 5,
+    "image": "https://images.generated.photos/98hbtw66xwOeB9rAfYR2esgJoRbsU6CLZi_ZxSzq_N4/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NzU3MjE5LmpwZw.jpg",
+    "comment": "Absolutely delicious! Easy to make and the flavor was perfect. Will definitely make again. My whole family loved it and there were no leftovers. This is now a staple in our household."
+  },
+  {
+    "username": "Emily Johnson",
+    "image": "https://images.generated.photos/LClb0p-MqyG5IxJ99KcGw_0AZfd3NgGBHZSxsgRm4Vw/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Nzc3ODI3LmpwZw.jpg",
+    "rating": 4,
+    "comment": "Very tasty, but a bit too rich for my taste. Next time, I'll use less cream."
+  },
+  {
+    "username": "Michael Brown",
+    "image": "https://images.generated.photos/j-2mBRNNl6rEUy_oTklLkC7DmsL3aq_OTi8-asb7Fek/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MTI0MzIyLmpwZw.jpg",
+    "rating": 3,
+    "comment": "The recipe was good, but I found it a bit bland. Added some extra garlic and it was much better. Overall, it was a decent dish, but it needs a little tweaking to suit my palate."
+  },
+  {
+    "username": "Sarah Davis",
+    "image": "https://images.generated.photos/9wf30-0yqPdWNe3JdlJ4dTu_kze3sBPyh0E0U25LDx4/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NTg3MTYzLmpwZw.jpg",
+    "rating": 5,
+    "comment": "This recipe is amazing! The flavors were spot on and it tasted just like at my favorite restaurant."
+  },
+  {
+    "username": "David Martinez",
+    "image": "https://images.generated.photos/_stpKGYOZgY_SgicG2nQ5cyUvn8_okLl228LAuFOdpU/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MTA2MDg2LmpwZw.jpg",
+    "rating": 4,
+    "comment": "Loved the flavor, but it was a bit too spicy for my family. Will reduce the chili next time. Despite the spice, everyone enjoyed it and we finished it all. I'll definitely make this again with some adjustments."
+  },
+  {
+    "username": "Jessica Wilson",
+    "image": "https://images.generated.photos/mYUz1Ae-btry1UNwrw2Urpal1Cn4VoFGHGw92RGs2pc/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDkxNjAwLmpwZw.jpg",
+    "rating": 4,
+    "comment": "Great recipe, but it took longer to cook than expected. Worth the wait though!"
+  },
+  {
+    "username": "Laura Taylor",
+    "image": "https://images.generated.photos/ywH9P6ssjA03zM7nerUBwHlkmnRxUZRdhOL6a5uLGuw/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MTEyMzQ2LmpwZw.jpg",
+    "rating": 5,
+    "comment": "These cookies are to die for! Crispy on the edges and chewy in the middle. Perfect! I followed the recipe exactly and they came out great. Will be my go-to recipe for cookies from now on."
+  },
+  {
+    "username": "Robert Anderson",
+    "image": "https://images.generated.photos/Mg7DoImCUt-JclEduM4dQimUvE0rZBdR82sB4LmnS-Q/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NTUyMTMzLmpwZw.jpg",
+    "rating": 3,
+    "comment": "They were good, but not the best I've had. A bit too sweet for my taste."
+  },
+  {
+    "username": "Megan Thompson",
+    "image": "https://images.generated.photos/kkMaq-YgRcNZdJu3VUvYWQPxDSFNGZbH4UTa-lTprKI/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NjMzMTcwLmpwZw.jpg",
+    "rating": 4,
+    "comment": "My kids loved them! Will definitely make these again. Easy and delicious. They stayed fresh for days and were a hit at the bake sale. Highly recommend for anyone with a sweet tooth."
+  }
+]
