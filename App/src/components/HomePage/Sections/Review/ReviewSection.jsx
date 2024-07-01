@@ -1,6 +1,6 @@
 import Reviews from "./Reviews";
-import { RightArrowIcon } from "../icons/Icons";
-import reviews from "../assets/reviews";
+import { LeftArrowIcon, RightArrowIcon } from "../../../../icons/Icons";
+import reviews from "../../../../assets/reviews";
 import { useState } from "react";
 
 export default function ReviewSection() {
@@ -13,7 +13,7 @@ export default function ReviewSection() {
     });
 
   return (
-    <div className="h-[40rem] pl-48 py-16 flex flex-col items-end">
+    <div className="w-[1280px] py-16 flex flex-col items-end">
       <div className="flex justify-between z-50">
         <div className="w-1/2">
           <h1 className="use-playfair font-bold text-[3rem] leading-tight">
@@ -34,7 +34,9 @@ export default function ReviewSection() {
           <RightArrowIcon height="1.3em" width="1.3em" />
         </button>
       </div>
-      <Reviews reviews={reviews} isScrolled={scroll} />
+      <section className="w-[1279px] self-start relative">
+        <Reviews reviews={reviews} isScrolled={scroll} />
+      </section>
     </div>
   );
 }
