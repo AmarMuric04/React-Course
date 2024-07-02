@@ -1,8 +1,7 @@
-import StarRating from "./StarRating";
-import { toCurrency } from "../../../utils/transformData";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { LeftArrowIcon, RightArrowIcon } from "../../icons/Icons";
 import CircleButton from "./Buttons/CircleButton";
+import { motion } from "framer-motion";
 
 export default function ScrollableContainer({
   iterables,
@@ -14,6 +13,7 @@ export default function ScrollableContainer({
   const containerRef = useRef(null);
   const [translateX, setTranslateX] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -68,13 +68,24 @@ export default function ScrollableContainer({
           <div></div>
         )}
       </div>
-      <section
+      <motion.section
         ref={containerRef}
+        whileInView={() => setIsInView(true)}
+        onViewportLeave={() => setIsInView(false)}
         style={{ width: `${itemWidth * visible + (visible - 1) * gap}px` }}
         className="self-center flex overflow-hidden no-scrollbar relative"
       >
         {iterables.length > 0 && (
-          <ul
+          <motion.ul
+            initial="hidden"
+            animate={isInView ? "visible" : ""}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
             style={{
               transform: `translateX(${translateX}px)`,
               gap: `${gap}px`,
@@ -84,9 +95,9 @@ export default function ScrollableContainer({
             {iterables.map((iterable, index) =>
               children(iterable, index, itemWidth)
             )}
-          </ul>
+          </motion.ul>
         )}
-      </section>
+      </motion.section>
     </div>
   );
 }

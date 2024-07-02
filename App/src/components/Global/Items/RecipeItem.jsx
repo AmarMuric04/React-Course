@@ -1,11 +1,29 @@
-import StarRating from "./StarRating";
-import { toCurrency } from "../../../utils/transformData";
+import StarRating from "../StarRating";
+import { toCurrency } from "../../../../utils/transformData";
+import { motion } from "framer-motion";
 
 export default function RecipeItem({ itemWidth, recipe }) {
   return (
-    <li
+    <motion.li
+      variants={{
+        hidden: {
+          opacity: 0,
+          scale: 0.9,
+        },
+        visible: {
+          opacity: 1,
+          scale: 1,
+        },
+      }}
+      transition={{
+        type: "spring",
+      }}
+      whileHover={{
+        scale: 1.1,
+      }}
       style={{
         minWidth: `${itemWidth}px`,
+        width: `${itemWidth}px`,
       }}
       key={recipe.name}
       className="use-poppins"
@@ -22,6 +40,6 @@ export default function RecipeItem({ itemWidth, recipe }) {
       ) : (
         <p className="tracking-[0.1rem] text-md my-2">FREE</p>
       )}
-    </li>
+    </motion.li>
   );
 }

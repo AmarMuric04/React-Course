@@ -2,6 +2,9 @@ import { useRef, useState } from "react";
 import Input from "./Input";
 import YellowButton from "../../../Global/Buttons/YellowButton";
 import { RightArrowIcon, SendArrow } from "../../../../icons/Icons";
+import TitleText from "../../../Global/Texts/TitleText";
+import SpecialText from "../../../Global/Texts/SpecialText";
+import ParagraphText from "../../../Global/Texts/ParagraphText";
 
 const initialErrorState = {
   invalidName: false,
@@ -132,21 +135,24 @@ export default function ReservationSection() {
             ></textarea>
           </div>
           <YellowButton
+            extraWrapperClasses="w-full flex items-center justify-center"
+            width="full"
             text="Request Reservation"
             icon={<SendArrow width="1.5em" height="1.5em" />}
           />
         </form>
-        <div className="w-[40%]">
-          <h1 className="use-playfair mt-24 text-[2rem] font-bold text-white leading-tight">
+        <div className="w-[40%] text-white mt-16">
+          <TitleText extraClasses="text-[2rem] text">
             Elevate Your Dining <br /> Experience with a Reserved
-            <br /> Table at <span className="text-green-400">DineDivine</span>
-          </h1>
-          <p className="use-poppins text-white my-8">
+            <br /> Table at <SpecialText>DineDivine</SpecialText>
+          </TitleText>
+          <ParagraphText extraClasses="text-[1rem]">
             Enjoy the perfect blend of convenience and quality, where each meal
             is prepared to delight your taste buds in a relaxed and welcoming
             atmosphere.
-          </p>
+          </ParagraphText>
           <YellowButton
+            width="[15rem]"
             text="Read More"
             icon={<RightArrowIcon width="2em" height="2em" />}
           />
