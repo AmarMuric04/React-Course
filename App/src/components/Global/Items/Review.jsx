@@ -1,6 +1,9 @@
 import { useContext, useEffect, useRef } from "react";
-import { Quotes } from "../../../icons/Icons";
-import { ReviewContext } from "../../HomePage/Sections/Review/ReviewSection";
+
+import { Quotes } from "@Icons/Icons";
+
+import { ReviewContext } from "@Home/Review/ReviewSection";
+
 import { motion } from "framer-motion";
 
 export default function Review({

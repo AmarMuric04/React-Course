@@ -1,7 +1,9 @@
-import { SendArrow } from "../../../../icons/Icons";
-import SlideAndFadeIn from "../../../Animations/SlideAndFadeIn";
-import YellowButton from "../../../Global/Buttons/YellowButton";
-import { useState } from "react";
+import { SendArrow } from "@Icons/Icons";
+
+import SlideAndFadeIn from "@Animations/SlideAndFadeIn";
+
+import YellowButton from "@GlobalComponents/Buttons/YellowButton";
+
 import InputWrapper from "./InputWrapper";
 
 export default function ReservationForm({ handleSubmit, errors }) {

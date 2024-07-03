@@ -1,10 +1,12 @@
-import UnderlinedButton from "../../../Global/Buttons/UnderlinedButton";
-import { RightArrowIcon } from "../../../../icons/Icons";
-import YellowButton from "../../../Global/Buttons/YellowButton";
-import JumpAndFadeIn from "../../../Animations/JumpAndFadeIn";
-import TitleText from "../../../Global/Texts/TitleText";
-import SpecialText from "../../../Global/Texts/SpecialText";
-import ParagraphText from "../../../Global/Texts/ParagraphText";
+import TitleText from "@GlobalComponents/Texts/TitleText";
+import SpecialText from "@GlobalComponents/Texts/SpecialText";
+import YellowButton from "@GlobalComponents/Buttons/YellowButton";
+import ParagraphText from "@GlobalComponents/Texts/ParagraphText";
+import UnderlinedButton from "@GlobalComponents/Buttons/UnderlinedButton";
+
+import { RightArrowIcon } from "@Icons/Icons";
+
+import JumpAndFadeIn from "@Animations/JumpAndFadeIn";
 
 export default function FavoriteSection() {
   return (

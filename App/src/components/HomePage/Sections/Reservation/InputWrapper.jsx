@@ -1,6 +1,8 @@
-import { motion } from "framer-motion";
-import Input from "./Input";
 import { useState } from "react";
+
+import { motion } from "framer-motion";
+
+import Input from "./Input";
 
 export default function InputWrapper({ errors }) {
   const [isInView, setIsInView] = useState(false);

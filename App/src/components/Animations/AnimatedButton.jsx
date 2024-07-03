@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { motion } from "framer-motion";
 
 const buttonVariants = {
@@ -34,7 +35,7 @@ const AnimatedButton = ({
     <div
       className={wrapperClasses && wrapperClasses}
       style={{
-        width: `${width}px`,
+        width: `${width}`,
       }}
     >
       <motion.button
@@ -45,7 +46,7 @@ const AnimatedButton = ({
         variants={buttonVariants}
         style={{ overflow: "hidden", whiteSpace: "nowrap" }}
         onAnimationComplete={() => setContentVisible(true)}
-        className={buttonClasses && buttonClasses}
+        className={buttonClasses}
       >
         <motion.span
           initial={{ opacity: 0 }}
@@ -53,7 +54,7 @@ const AnimatedButton = ({
           animate={contentVisible ? (isInView ? "showContent" : "hidden") : ""}
           whileInView={() => setIsInView(true)}
           onViewportLeave={() => setIsInView(false)}
-          className={textClasses && textClasses}
+          className={textClasses}
         >
           {children}
         </motion.span>

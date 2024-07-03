@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import PostItem from "../../../Global/Items/PostItem";
+
+import PostItem from "@GlobalComponents/Items/PostItem";
 
 export default function BlogImage() {
   const [isInView, setIsInView] = useState(false);

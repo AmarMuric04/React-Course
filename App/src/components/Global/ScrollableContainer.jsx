@@ -1,6 +1,9 @@
-import { useEffect, useRef, useState, useMemo } from "react";
-import { LeftArrowIcon, RightArrowIcon } from "../../icons/Icons";
-import CircleButton from "./Buttons/CircleButton";
+import { useEffect, useRef, useState } from "react";
+
+import { LeftArrowIcon, RightArrowIcon } from "@Icons/Icons";
+
+import CircleButton from "@GlobalComponents/Buttons/CircleButton";
+
 import { motion } from "framer-motion";
 
 export default function ScrollableContainer({

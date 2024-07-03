@@ -1,4 +1,4 @@
-import JumpAndFadeIn from "../../Animations/JumpAndFadeIn";
+import JumpAndFadeIn from "@Animations/JumpAndFadeIn";
 
 export default function TitleText({ children, extraClasses }) {
   return (

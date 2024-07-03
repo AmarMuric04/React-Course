@@ -1,4 +1,4 @@
-import SlideAndFadeIn from "../../Animations/SlideAndFadeIn";
+import SlideAndFadeIn from "@Animations/SlideAndFadeIn";
 
 export default function ParagraphText({
   children,

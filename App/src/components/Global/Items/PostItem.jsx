@@ -1,9 +1,9 @@
-import TitleText from "../Texts/TitleText";
-import ParagraphText from "../Texts/ParagraphText";
-import SlideAndFadeIn from "../../Animations/SlideAndFadeIn";
-import UnderlinedButton from "../Buttons/UnderlinedButton";
-import { SolidRightArrow } from "../../../icons/Icons";
-SolidRightArrow;
+import TitleText from "@GlobalComponents/Texts/TitleText";
+import ParagraphText from "@GlobalComponents/Texts/ParagraphText";
+import SlideAndFadeIn from "@Animations/SlideAndFadeIn";
+import UnderlinedButton from "@GlobalComponents/Buttons/UnderlinedButton";
+
+import { SolidRightArrow } from "@Icons/Icons";
 
 export default function PostItem({
   date,

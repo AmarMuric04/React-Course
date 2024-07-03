@@ -1,10 +1,12 @@
-import SlideAndFadeIn from "../../../Animations/SlideAndFadeIn";
-import InformationCard from "../../../Global/Items/InformationCard";
-import TitleText from "../../../Global/Texts/TitleText";
-import SpecialText from "../../../Global/Texts/SpecialText";
-import ParagraphText from "../../../Global/Texts/ParagraphText";
-import YellowButton from "../../../Global/Buttons/YellowButton";
-import { RightArrowIcon } from "../../../../icons/Icons";
+import TitleText from "@GlobalComponents/Texts/TitleText";
+import SpecialText from "@GlobalComponents/Texts/SpecialText";
+import YellowButton from "@GlobalComponents/Buttons/YellowButton";
+import ParagraphText from "@GlobalComponents/Texts/ParagraphText";
+import InformationCard from "@GlobalComponents/Items/InformationCard";
+
+import { RightArrowIcon } from "@Icons/Icons";
+
+import SlideAndFadeIn from "@Animations/SlideAndFadeIn";
 
 export default function InstructionsSection() {
   return (

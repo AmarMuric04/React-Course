@@ -28,7 +28,7 @@ export default function TagItem({ tag, itemWidth }) {
     >
       <img
         className="w-12"
-        src={`../public/${tag.toLowerCase().trim().replace(" ", "-")}.png`}
+        src={`${tag.toLowerCase().trim().replace(" ", "-")}.png`}
       />
       <p className="use-poppins text-center font-bold tracking-[0.05rem]">
         {tag}

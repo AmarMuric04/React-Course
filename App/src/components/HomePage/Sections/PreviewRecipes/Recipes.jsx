@@ -1,13 +1,16 @@
 import { useMemo, useState } from "react";
+
 import { motion } from "framer-motion";
-import RecipeItem from "../../../Global/Items/RecipeItem";
+
+import RecipeItem from "@GlobalComponents/Items/RecipeItem";
 
 export default function Recipes({ recipes }) {
   const [isInView, setIsInView] = useState(false);
 
-  const newRecipes = useMemo(() => recipes.splice(0, 8), []);
-
-  console.log(newRecipes);
+  const newRecipes = useMemo(() => {
+    console.log("changed");
+    return recipes.splice(0, 8);
+  }, [recipes]);
 
   return (
     <motion.ul

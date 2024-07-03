@@ -1,10 +1,13 @@
 import { useRef, useState } from "react";
-import YellowButton from "../../../Global/Buttons/YellowButton";
-import { RightArrowIcon } from "../../../../icons/Icons";
-import TitleText from "../../../Global/Texts/TitleText";
-import SpecialText from "../../../Global/Texts/SpecialText";
-import ParagraphText from "../../../Global/Texts/ParagraphText";
+
+import TitleText from "@GlobalComponents/Texts/TitleText";
+import SpecialText from "@GlobalComponents/Texts/SpecialText";
+import YellowButton from "@GlobalComponents/Buttons/YellowButton";
+import ParagraphText from "@GlobalComponents/Texts/ParagraphText";
+
 import ReservationForm from "./ReservationForm";
+
+import { RightArrowIcon } from "@Icons/Icons";
 
 const initialErrorState = {
   invalidName: false,

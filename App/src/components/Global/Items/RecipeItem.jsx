@@ -1,5 +1,7 @@
-import StarRating from "../StarRating";
-import { toCurrency } from "../../../../utils/transformData";
+import StarRating from "@GlobalComponents/StarRating";
+
+import { toCurrency } from "@Utility/transformData";
+
 import { motion } from "framer-motion";
 
 export default function RecipeItem({

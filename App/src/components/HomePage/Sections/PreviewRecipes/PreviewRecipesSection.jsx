@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
-import TitleText from "../../../Global/Texts/TitleText";
-import ParagraphText from "../../../Global/Texts/ParagraphText";
-import YellowButton from "../../../Global/Buttons/YellowButton";
-import { RightArrowIcon } from "../../../../icons/Icons";
-import SpecialText from "../../../Global/Texts/SpecialText";
+
+import TitleText from "@GlobalComponents/Texts/TitleText";
+import SpecialText from "@GlobalComponents/Texts/SpecialText";
+import YellowButton from "@GlobalComponents/Buttons/YellowButton";
+import ParagraphText from "@GlobalComponents/Texts/ParagraphText";
+
 import Recipes from "./Recipes";
+
+import { RightArrowIcon } from "@Icons/Icons";
 
 export default function PreviewRecipesSection() {
   const [recipes, setRecipes] = useState([]);

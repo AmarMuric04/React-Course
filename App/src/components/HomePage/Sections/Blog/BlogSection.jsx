@@ -1,8 +1,8 @@
-import TitleText from "../../../Global/Texts/TitleText";
-import ParagraphText from "../../../Global/Texts/ParagraphText";
-import SpecialText from "../../../Global/Texts/SpecialText";
-import PostItem from "../../../Global/Items/PostItem";
-import { useState } from "react";
+import PostItem from "@GlobalComponents/Items/PostItem";
+import TitleText from "@GlobalComponents/Texts/TitleText";
+import SpecialText from "@GlobalComponents/Texts/SpecialText";
+import ParagraphText from "@GlobalComponents/Texts/ParagraphText";
+
 import BlogImage from "./BlogImage";
 
 export default function BlogSection() {

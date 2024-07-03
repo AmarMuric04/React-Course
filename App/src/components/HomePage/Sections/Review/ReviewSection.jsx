@@ -1,11 +1,15 @@
-import Reviews from "./Reviews";
-import { LeftArrowIcon, RightArrowIcon } from "../../../../icons/Icons";
-import reviews from "../../../../assets/reviews";
 import { createContext, useState } from "react";
-import CircleButton from "../../../Global/Buttons/CircleButton";
-import TitleText from "../../../Global/Texts/TitleText";
-import SpecialText from "../../../Global/Texts/SpecialText";
-import ParagraphText from "../../../Global/Texts/ParagraphText";
+
+import TitleText from "@GlobalComponents/Texts/TitleText";
+import SpecialText from "@GlobalComponents/Texts/SpecialText";
+import CircleButton from "@GlobalComponents/Buttons/CircleButton";
+import ParagraphText from "@GlobalComponents/Texts/ParagraphText";
+
+import reviews from "@Assets/reviews";
+
+import Reviews from "./Reviews";
+
+import { RightArrowIcon } from "@Icons/Icons";
 
 export const ReviewContext = createContext({
   widthOfListItem: 0,
@@ -59,7 +63,7 @@ export default function ReviewSection() {
           icon={<RightArrowIcon height="1.3em" width="1.3em" />}
         />
       </div>
-      <section className="w-[1590px] self-start relative">
+      <section className="self-start relative">
         <ReviewContextProvider>
           <Reviews reviews={reviews} isScrolled={scroll} />
         </ReviewContextProvider>

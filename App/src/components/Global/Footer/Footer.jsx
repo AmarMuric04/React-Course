@@ -1,8 +1,12 @@
 import { useState } from "react";
-import Logo from "../../../../public/Logo.png";
+
+import Logo from "/Logo.png";
+
 import { motion } from "framer-motion";
+
 import AnimatedList from "./AnimatedList";
-import SlideAndFadeIn from "../../Animations/SlideAndFadeIn";
+
+import SlideAndFadeIn from "@Animations/SlideAndFadeIn";
 
 export default function Footer() {
   const [isInView, setIsInView] = useState(false);

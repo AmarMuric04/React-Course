@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+
 import { useState } from "react";
 
 export default function SlideAndFadeIn({ children, className, starting, end }) {

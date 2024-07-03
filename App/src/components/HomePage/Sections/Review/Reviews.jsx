@@ -1,9 +1,13 @@
-import { useRef, useEffect, useState, useContext, useMemo } from "react";
-import CircleButton from "../../../Global/Buttons/CircleButton";
-import { LeftArrowIcon } from "../../../../icons/Icons";
-import Review from "../../../Global/Items/Review";
+import { useRef, useEffect, useState, useContext } from "react";
+
+import Review from "@GlobalComponents/Items/Review";
+import CircleButton from "@GlobalComponents/Buttons/CircleButton";
+
 import { ReviewContext } from "./ReviewSection";
+
 import { motion } from "framer-motion";
+
+import { LeftArrowIcon } from "@Icons/Icons";
 
 export default function Reviews({ reviews, isScrolled }) {
   const container = useRef();
