@@ -49,3 +49,7 @@ body {
 .smooth-scrolling {
   scroll-behavior: smooth;
 }
+
+.transition-custom {
+  transition: background-color 1s, color 0.25s;
+}

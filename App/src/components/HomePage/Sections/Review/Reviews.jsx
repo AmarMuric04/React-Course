@@ -3,11 +3,13 @@ import CircleButton from "../../../Global/Buttons/CircleButton";
 import { LeftArrowIcon } from "../../../../icons/Icons";
 import Review from "../../../Global/Items/Review";
 import { ReviewContext } from "./ReviewSection";
+import { motion } from "framer-motion";
 
 export default function Reviews({ reviews, isScrolled }) {
   const container = useRef();
   const [scrollAmount, setScrollAmount] = useState(0);
   const [listItemHovered, setListItemHovered] = useState(false);
+  const [isInView, setIsInView] = useState(false);
 
   const { widthOfListItem } = useContext(ReviewContext);
 
@@ -37,20 +39,6 @@ export default function Reviews({ reviews, isScrolled }) {
 
   const handleHoverItem = (isHovering) => setListItemHovered(isHovering);
 
-  const memoizedReviews = useMemo(() => {
-    return reviews.map((review, index) => (
-      <Review
-        onMouseEnter={() => handleHoverItem(true)}
-        onMouseLeave={() => handleHoverItem(false)}
-        widthOfListItem={widthOfListItem}
-        index={index}
-        scrollAmount={scrollAmount}
-        listItemHovered={listItemHovered}
-        review={review}
-      />
-    ));
-  }, [scrollAmount, listItemHovered]);
-
   return (
     <>
       {scrollAmount !== 0 && (
@@ -72,7 +60,32 @@ export default function Reviews({ reviews, isScrolled }) {
         onScroll={() => setScrollAmount(container.current.scrollLeft)}
         className="w-full overflow-scroll smooth-scrolling no-scrollbar overflow-y-hidden"
       >
-        <ul className="flex gap-4 my-8 items-start">{memoizedReviews}</ul>
+        <motion.ul
+          initial="hidden"
+          whileInView={() => setIsInView(true)}
+          onViewportLeave={() => setIsInView(false)}
+          animate={isInView ? "visible" : ""}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+          className="flex gap-4 my-8 items-start"
+        >
+          {reviews.map((review, index) => (
+            <Review
+              onMouseEnter={() => handleHoverItem(true)}
+              onMouseLeave={() => handleHoverItem(false)}
+              widthOfListItem={widthOfListItem}
+              index={index}
+              scrollAmount={scrollAmount}
+              listItemHovered={listItemHovered}
+              review={review}
+            />
+          ))}
+        </motion.ul>
       </div>
     </>
   );

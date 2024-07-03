@@ -11,14 +11,8 @@ export default function YellowButton({
   return (
     <AnimatedButton
       wrapperClasses={extraWrapperClasses}
-      buttonClasses={`bg-yellow-500 px-6 py-3 flex items-center justify-center hover:bg-yellow-600 w-${
-        width && width
-      } max-w-${width && width} ${extraButtonClasses && extraButtonClasses}`}
-      textClasses={`flex w-${width && width} max-w-${
-        width && width
-      } items-center justify-center gap-2 font-bold use-poppins text-black text-sm ${
-        extraTextClasses && extraTextClasses
-      }`}
+      buttonClasses={`bg-yellow-500 px-6 py-3 flex items-center justify-center hover:bg-yellow-600 w-${width} max-w-${width}  ${extraButtonClasses}`}
+      textClasses={`flex w-${width} max-w-${width} items-center justify-center gap-2 font-bold use-poppins text-black text-sm ${extraTextClasses}`}
     >
       {text}
       {icon && icon}

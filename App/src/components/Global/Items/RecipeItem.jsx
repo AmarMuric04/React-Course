@@ -2,7 +2,11 @@ import StarRating from "../StarRating";
 import { toCurrency } from "../../../../utils/transformData";
 import { motion } from "framer-motion";
 
-export default function RecipeItem({ itemWidth, recipe }) {
+export default function RecipeItem({
+  itemWidth,
+  recipe,
+  showOrderButton = true,
+}) {
   return (
     <motion.li
       variants={{
@@ -19,7 +23,7 @@ export default function RecipeItem({ itemWidth, recipe }) {
         type: "spring",
       }}
       whileHover={{
-        scale: 1.1,
+        scale: 1.05,
       }}
       style={{
         minWidth: `${itemWidth}px`,
@@ -39,6 +43,11 @@ export default function RecipeItem({ itemWidth, recipe }) {
         </p>
       ) : (
         <p className="tracking-[0.1rem] text-md my-2">FREE</p>
+      )}
+      {showOrderButton && (
+        <button className="py-2 px-4 font-bold use-poppins border-2 border-black rounded-full self-start hover:border-yellow-500 hover:bg-yellow-500 hover:text-white transition-all">
+          Order Now
+        </button>
       )}
     </motion.li>
   );

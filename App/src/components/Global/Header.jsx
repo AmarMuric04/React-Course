@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Logo from "../../public/Logo.png";
-import { RightArrowIcon } from "../icons/Icons";
-import YellowButton from "./Global/Buttons/YellowButton";
+import Logo from "../../../public/Logo.png";
+import { RightArrowIcon } from "../../icons/Icons";
+import YellowButton from "./Buttons/YellowButton";
 import { motion } from "framer-motion";
 
 const navLinkCSS = "hover:text-yellow-500 cursor-pointer";

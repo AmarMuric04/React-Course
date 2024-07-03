@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { Quotes } from "../../../icons/Icons";
 import { ReviewContext } from "../../HomePage/Sections/Review/ReviewSection";
+import { motion } from "framer-motion";
 
 export default function Review({
   listItemHovered,
@@ -18,11 +19,35 @@ export default function Review({
     handleSetWidth(listItem.current.offsetWidth);
   }, []);
 
+  console.log(widthOfListItem, scrollAmount, listItemHovered);
+
+  if (
+    !listItemHovered &&
+    scrollAmount + widthOfListItem > widthOfListItem * (2 + 1)
+  )
+    console.log(1);
+  else console.log(2);
   return (
-    <li
+    <motion.li
+      variants={{
+        hidden: {
+          opacity: 0,
+          scale: 0.5,
+        },
+        visible: {
+          opacity: 1,
+          scale: 1,
+        },
+      }}
+      transition={{
+        type: "spring",
+      }}
+      whileHover={{
+        scale: 1.1,
+      }}
       {...props}
       ref={listItem}
-      className={`min-w-72 hover:bg-[#141210] hover:text-white h-auto border-[0.1rem] border-gray-400 rounded-md use-poppins shadow-xl p-4 relative transition-all ${
+      className={`min-w-72 hover:bg-[#141210] hover:text-white h-auto border-[0.1rem] border-gray-400 rounded-md use-poppins shadow-xl p-4 relative transition-custom ${
         !listItemHovered &&
         scrollAmount + widthOfListItem * 1.5 > widthOfListItem * (index + 1)
           ? "bg-[#141210] text-white  first:bg-[#141210] first:text-white "
@@ -36,6 +61,6 @@ export default function Review({
       />
       <p className="font-bold my-4">{review.username}</p>
       <p className="text-sm">{review.comment}</p>
-    </li>
+    </motion.li>
   );
 }

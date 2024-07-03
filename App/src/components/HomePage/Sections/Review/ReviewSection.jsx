@@ -59,7 +59,7 @@ export default function ReviewSection() {
           icon={<RightArrowIcon height="1.3em" width="1.3em" />}
         />
       </div>
-      <section className="w-[1600px] self-start relative">
+      <section className="w-[1590px] self-start relative">
         <ReviewContextProvider>
           <Reviews reviews={reviews} isScrolled={scroll} />
         </ReviewContextProvider>
