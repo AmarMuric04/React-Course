@@ -7,9 +7,11 @@ export default function YellowButton({
   extraTextClasses,
   extraWrapperClasses,
   width,
+  ...props
 }) {
   return (
     <AnimatedButton
+      {...props}
       width={width && width.replace("[", "").replace("]", "")}
       wrapperClasses={extraWrapperClasses}
       buttonClasses={`bg-yellow-500 px-6 py-3 flex items-center justify-center hover:bg-yellow-600 w-${width} max-w-${

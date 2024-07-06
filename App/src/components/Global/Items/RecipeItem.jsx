@@ -4,6 +4,8 @@ import { toCurrency } from "@Utility/transformData";
 
 import { motion } from "framer-motion";
 
+import { listItemVariant } from "../../../utils/animationVariants";
+
 export default function RecipeItem({
   itemWidth,
   recipe,
@@ -11,16 +13,7 @@ export default function RecipeItem({
 }) {
   return (
     <motion.li
-      variants={{
-        hidden: {
-          opacity: 0,
-          scale: 0.9,
-        },
-        visible: {
-          opacity: 1,
-          scale: 1,
-        },
-      }}
+      variants={listItemVariant}
       transition={{
         type: "spring",
       }}

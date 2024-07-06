@@ -2,18 +2,28 @@ import { useState } from "react";
 
 import { motion } from "framer-motion";
 
-export default function AnimatedList({ iterables, children, className }) {
+export default function Increase({
+  children,
+  className,
+  startingHeight,
+  endingHeight,
+  startingWidth,
+  endingWidth,
+}) {
   const [isInView, setIsInView] = useState(false);
 
   return (
-    <motion.ul
+    <motion.div
       whileInView={() => setIsInView(true)}
       onViewportLeave={() => setIsInView(false)}
       variants={{
+        hidden: {
+          width: startingWidth,
+          height: startingHeight,
+        },
         visible: {
-          transition: {
-            staggerChildren: 0.1,
-          },
+          width: endingWidth,
+          height: endingHeight,
         },
       }}
       initial="hidden"
@@ -24,6 +34,6 @@ export default function AnimatedList({ iterables, children, className }) {
       className={className}
     >
       {children}
-    </motion.ul>
+    </motion.div>
   );
 }

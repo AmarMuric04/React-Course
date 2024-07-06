@@ -20,21 +20,31 @@ const initialErrorState = {
 
 export default function ReservationSection() {
   const [errors, setErrors] = useState(initialErrorState);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const removeErrorsTimeout = useRef(null);
+
+  const handleSetErrors = (identifier) =>
+    setErrors((prevErrors) => {
+      return {
+        ...prevErrors,
+        [identifier]: true,
+      };
+    });
+
+  const handleCheckErrors = (data) => {
+    if (!data.name) handleSetErrors("invalidName");
+    if (!data.email) handleSetErrors("invalidEmail");
+    if (!data.number) handleSetErrors("invalidNumber");
+    if (!data.date) handleSetErrors("invalidDate");
+    if (!data.time) handleSetErrors("invalidTime");
+    if (!data.amount) handleSetErrors("invalidAmount");
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (removeErrorsTimeout.current) clearTimeout(removeErrorsTimeout.current);
 
     const data = new FormData(event.target);
-
-    const handleSetErrors = (identifier) =>
-      setErrors((prevErrors) => {
-        return {
-          ...prevErrors,
-          [identifier]: true,
-        };
-      });
 
     const usableData = {
       name: data.get("name"),
@@ -45,23 +55,34 @@ export default function ReservationSection() {
       amount: data.get("amount"),
     };
 
-    if (!usableData.name) handleSetErrors("invalidName");
-    if (!usableData.email) handleSetErrors("invalidEmail");
-    if (!usableData.number)
-      if (!usableData.email) handleSetErrors("invalidNumber");
-    if (!usableData.date) if (!usableData.email) handleSetErrors("invalidDate");
-    if (!usableData.time) handleSetErrors("invalidTime");
-    if (!usableData.amount) handleSetErrors("invalidAmount");
+    handleCheckErrors(usableData);
 
     removeErrorsTimeout.current = setTimeout(() => {
       setErrors(initialErrorState);
     }, 1500);
+
+    if (
+      !usableData.name ||
+      !usableData.email ||
+      !usableData.number ||
+      !usableData.date ||
+      !usableData.time ||
+      !usableData.amount
+    )
+      return;
+
+    setIsSubmitted(true);
   };
 
   return (
     <div className="bg-[#141210] w-full py-16 use-poppins flex items-start justify-center gap-20">
       <div className="w-[1280px] flex justify-between">
-        <ReservationForm handleSubmit={handleSubmit} errors={errors} />
+        <ReservationForm
+          isSubmitted={isSubmitted}
+          setIsSubmitted={setIsSubmitted}
+          handleSubmit={handleSubmit}
+          errors={errors}
+        />
         <div className="w-[40%] text-white mt-16">
           <TitleText extraClasses="text-[2rem] text">
             Elevate Your Dining <br /> Experience with a Reserved

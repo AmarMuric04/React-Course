@@ -4,12 +4,9 @@ import { motion } from "framer-motion";
 
 import { listItemVariant } from "@Utility/animationVariants";
 
-export default function Input({
+export default function TextArea({
   label,
-  type,
-  id,
   placeholder,
-  invalid = false,
   extraClasses,
   isSubmitted,
   ...props
@@ -32,27 +29,33 @@ export default function Input({
       >
         {label}
       </motion.label>
-      <motion.input
-        {...props}
-        variants={listItemVariant}
+
+      <motion.textarea
+        variants={{
+          hidden: {
+            opacity: 0,
+          },
+          visible: {
+            opacity: 1,
+          },
+        }}
         transition={{
           type: "spring",
         }}
         whileHover={{
           scale: 1.05,
         }}
-        className={`bg-gray-100 px-4 py-3 outline-none focus:bg-gray-200
-         text-xs w-full border-[0.1rem] border-transparen ${
-           invalid && "border-red-400"
-         }`}
-        id={id}
-        name={id}
-        placeholder={placeholder ? placeholder : null}
-        type={type}
+        {...props}
         value={inputValue}
-        onChange={handleChangeInputValue}
+        className={`bg-gray-100 px-4 py-3 outline-none focus:bg-gray-200 min-h-48 max-h-48 transition-all text-xs w-full ${extraClasses}`}
+        id="text"
+        name="text"
+        rows="4"
+        cols="50"
         required
-      />
+        onChange={handleChangeInputValue}
+        placeholder={placeholder ? placeholder : null}
+      ></motion.textarea>
     </div>
   );
 }

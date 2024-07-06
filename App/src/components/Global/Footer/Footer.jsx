@@ -4,9 +4,11 @@ import Logo from "/Logo.png";
 
 import { motion } from "framer-motion";
 
-import AnimatedList from "./AnimatedList";
+import AnimatedList from "@Animations/AnimatedList";
 
 import SlideAndFadeIn from "@Animations/SlideAndFadeIn";
+import { listItemVariant } from "../../../utils/animationVariants";
+import FooterItem from "../Items/FooterItem";
 
 export default function Footer() {
   const [isInView, setIsInView] = useState(false);
@@ -33,123 +35,36 @@ export default function Footer() {
         className="w-full h-[40rem] bg-[#141210]"
       >
         <AnimatedList className="w-full flex h-[13rem]">
-          <motion.li
-            variants={{
-              hidden: {
-                opacity: 0,
-                scale: 0.9,
-              },
-              visible: {
-                opacity: 1,
-                scale: 1,
-              },
-            }}
-            transition={{
-              type: "spring",
-            }}
-            whileHover={{
-              scale: 1.05,
-            }}
-            className="w-1/5 h-full bg-red-400"
-          >
+          <FooterItem>
             <img
               className="object-cover w-full h-full"
               src="https://img.freepik.com/premium-photo/highquality-food-photography-grilled-meat-vegetables-dark-background-4k-resolution_561855-2896.jpg"
             />
-          </motion.li>
-          <motion.li
-            variants={{
-              hidden: {
-                opacity: 0,
-                scale: 0.9,
-              },
-              visible: {
-                opacity: 1,
-                scale: 1,
-              },
-            }}
-            transition={{
-              type: "spring",
-            }}
-            whileHover={{
-              scale: 1.05,
-            }}
-            className="w-1/5 h-full"
-          >
+          </FooterItem>
+          <FooterItem>
             <img
               className="object-cover w-full h-full"
               src="https://c4.wallpaperflare.com/wallpaper/1016/938/374/food-high-resolution-desktop-backgrounds-wallpaper-preview.jpg"
             />
-          </motion.li>
-          <motion.li
-            variants={{
-              hidden: {
-                opacity: 0,
-                scale: 0.9,
-              },
-              visible: {
-                opacity: 1,
-                scale: 1,
-              },
-            }}
-            transition={{
-              type: "spring",
-            }}
-            whileHover={{
-              scale: 1.05,
-            }}
-            className="w-1/5 h-full"
-          >
+          </FooterItem>
+          <FooterItem>
             <img
               className="object-cover w-full h-full"
               src="https://s.yimg.com/ny/api/res/1.2/rNXnLchmc4VHCIH02hfd8w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM1OA--/https://media.zenfs.com/en/insidermonkey.com/64a63f085247830169a35b5b3d279198"
             />
-          </motion.li>
-          <motion.li
-            variants={{
-              hidden: {
-                opacity: 0,
-                scale: 0.9,
-              },
-              visible: {
-                opacity: 1,
-                scale: 1,
-              },
-            }}
-            transition={{
-              type: "spring",
-            }}
-            className="w-1/5 h-full"
-          >
+          </FooterItem>
+          <FooterItem>
             <img
               className="object-cover w-full h-full"
               src="https://e0.pxfuel.com/wallpapers/240/265/desktop-wallpaper-delicious-food-high-quality-resolution-japanese-cute-foods.jpg"
             />
-          </motion.li>
-          <motion.li
-            variants={{
-              hidden: {
-                opacity: 0,
-                scale: 0.9,
-              },
-              visible: {
-                opacity: 1,
-                scale: 1,
-              },
-            }}
-            transition={{
-              type: "spring",
-            }}
-            whileHover={{
-              scale: 1.05,
-            }}
-            className="w-1/5 h-full"
-          >
+          </FooterItem>
+          <FooterItem>
             <img
               className="object-cover w-full h-full"
               src="https://media.greatbigphotographyworld.com/wp-content/uploads/2022/04/famous-food-photographers-1.jpg"
             />
-          </motion.li>
+          </FooterItem>
         </AnimatedList>
         <div className="py-16 px-32 flex gap-10">
           <SlideAndFadeIn
@@ -168,22 +83,7 @@ export default function Footer() {
               diverse flavors from around the world.
             </p>
             <AnimatedList className="flex flex-col text-white use-poppins gap-4">
-              <motion.li
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-                className="flex items-center gap-2 text-sm"
-              >
+              <FooterItem>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1.5em"
@@ -197,23 +97,8 @@ export default function Footer() {
                   </g>
                 </svg>
                 <p>(+381) 063 000 000</p>
-              </motion.li>{" "}
-              <motion.li
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-                className="flex items-center gap-2 text-sm"
-              >
+              </FooterItem>{" "}
+              <FooterItem>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1.5em"
@@ -234,23 +119,8 @@ export default function Footer() {
                   <path fill="none" d="M0 0h36v36H0z" />
                 </svg>
                 <p>muricamar2004@gmail.com</p>
-              </motion.li>{" "}
-              <motion.li
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-                className="flex items-center gap-2 text-sm"
-              >
+              </FooterItem>{" "}
+              <FooterItem>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1.5em"
@@ -264,7 +134,7 @@ export default function Footer() {
                   />
                 </svg>
                 <p>Serbia, Novi Pazar, 36300</p>
-              </motion.li>
+              </FooterItem>
             </AnimatedList>
           </SlideAndFadeIn>
           <div className="flex flex-col w-1/4 text-white pl-10">
@@ -272,91 +142,11 @@ export default function Footer() {
               Quick Link
             </h1>
             <AnimatedList className="flex flex-col gap-4">
-              <motion.li
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-              >
-                Home
-              </motion.li>
-              <motion.li
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-              >
-                About Us
-              </motion.li>
-              <motion.li
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-              >
-                Shop
-              </motion.li>
-              <motion.li
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-              >
-                Blog
-              </motion.li>
-              <motion.li
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-              >
-                Licensing
-              </motion.li>
+              <FooterItem>Home</FooterItem>
+              <FooterItem>About Us</FooterItem>
+              <FooterItem>Shop</FooterItem>
+              <FooterItem>Blog</FooterItem>
+              <FooterItem>Licensing</FooterItem>
             </AnimatedList>
           </div>{" "}
           <div className="flex flex-col w-1/4 text-white">
@@ -364,79 +154,18 @@ export default function Footer() {
               Opening Hours
             </h1>
             <AnimatedList>
-              <motion.p
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-                className="use-poppins font-bold mb-2"
-              >
+              <FooterItem extraClasses="use-poppins font-bold mb-2 h-4">
                 Sunday to Friday
-              </motion.p>
-              <motion.p
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-                className="use-poppins mb-8"
-              >
+              </FooterItem>
+              <FooterItem extraClasses="use-poppins">
                 9:30 AM to 12:00PM
-              </motion.p>
-
-              <motion.p
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-                className="use-poppins font-bold mb-2"
-              >
+              </FooterItem>
+              <FooterItem extraClasses="use-poppins font-bold mb-2 h-4">
                 Saturday
-              </motion.p>
-              <motion.p
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    scale: 0.9,
-                  },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                  },
-                }}
-                transition={{
-                  type: "spring",
-                }}
-                className="use-poppins"
-              >
+              </FooterItem>
+              <FooterItem extraClasses="use-poppins">
                 12:30PM to 6:00PM
-              </motion.p>
+              </FooterItem>
             </AnimatedList>
           </div>
           <SlideAndFadeIn
@@ -452,10 +181,14 @@ export default function Footer() {
               memorable experience.
             </p>
             <div className="flex items-center relative">
-              <input
+              <motion.input
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "#ffffdd",
+                }}
                 type="email"
                 placeholder="Your email..."
-                className="w-full py-2 px-4 outline-none"
+                className="w-full py-2 px-4 outline-none text-black"
               />
               <button className="bg-yellow-400 outline-none px-4 h-[90%] absolute right-1 hover:bg-yellow-300">
                 <svg
@@ -471,8 +204,8 @@ export default function Footer() {
                 </svg>
               </button>
             </div>
-            <ul className="flex items-center gap-4 my-4">
-              <li className="text-gray-400 hover:bg-yellow-400 hover:text-white hover:border-yellow-400 transition-all cursor-pointer w-10 h-10 rounded-full border-[0.1rem] border-gray-400 grid place-items-center">
+            <AnimatedList className="flex items-center gap-4 my-4">
+              <FooterItem extraClasses="text-gray-400 hover:bg-yellow-400 hover:text-white hover:border-yellow-400 transition-all cursor-pointer max-w-10 min-h-10 rounded-full border-[0.1rem] border-gray-400 grid place-items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1.3em"
@@ -484,8 +217,8 @@ export default function Footer() {
                     d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z"
                   />
                 </svg>
-              </li>{" "}
-              <li className="text-gray-400 hover:bg-yellow-400 hover:text-white hover:border-yellow-400 transition-all cursor-pointer w-10 h-10 rounded-full border-[0.1rem] border-gray-400 grid place-items-center">
+              </FooterItem>{" "}
+              <FooterItem extraClasses="text-gray-400 hover:bg-yellow-400 hover:text-white hover:border-yellow-400 transition-all cursor-pointer max-w-10 min-h-10 rounded-full border-[0.1rem] border-gray-400 grid place-items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
@@ -500,8 +233,8 @@ export default function Footer() {
                     />
                   </g>
                 </svg>
-              </li>{" "}
-              <li className="text-gray-400 hover:bg-yellow-400 hover:text-white hover:border-yellow-400 transition-all cursor-pointer w-10 h-10 rounded-full border-[0.1rem] border-gray-400 grid place-items-center">
+              </FooterItem>{" "}
+              <FooterItem extraClasses="text-gray-400 hover:bg-yellow-400 hover:text-white hover:border-yellow-400 transition-all cursor-pointer max-w-10 min-h-10 rounded-full border-[0.1rem] border-gray-400 grid place-items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
@@ -513,8 +246,8 @@ export default function Footer() {
                     d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.2 4.2 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.52 8.52 0 0 1-5.33 1.84q-.51 0-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23"
                   />
                 </svg>
-              </li>{" "}
-              <li className="text-gray-400 hover:bg-yellow-400 hover:text-white hover:border-yellow-400 transition-all cursor-pointer w-10 h-10 rounded-full border-[0.1rem] border-gray-400 grid place-items-center">
+              </FooterItem>{" "}
+              <FooterItem extraClasses="text-gray-400 hover:bg-yellow-400 hover:text-white hover:border-yellow-400 transition-all cursor-pointer max-w-10 min-h-10 rounded-full border-[0.1rem] border-gray-400 grid place-items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
@@ -526,8 +259,8 @@ export default function Footer() {
                     d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"
                   />
                 </svg>
-              </li>
-            </ul>
+              </FooterItem>
+            </AnimatedList>
           </SlideAndFadeIn>
         </div>
       </motion.footer>

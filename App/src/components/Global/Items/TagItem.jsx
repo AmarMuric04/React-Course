@@ -1,23 +1,17 @@
 import { motion } from "framer-motion";
 
+import { listItemVariant } from "../../../utils/animationVariants";
+
 export default function TagItem({ tag, itemWidth }) {
   return (
     <motion.li
-      variants={{
-        hidden: {
-          opacity: 0,
-          scale: 0.5,
-        },
-        visible: {
-          opacity: 1,
-          scale: 1,
-        },
-      }}
+      variants={listItemVariant}
       transition={{
         type: "spring",
       }}
       whileHover={{
-        scale: 1.1,
+        scale: 1.05,
+        zIndex: 500,
       }}
       style={{
         minWidth: `${itemWidth}px`,

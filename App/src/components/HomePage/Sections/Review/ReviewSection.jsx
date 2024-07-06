@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 import TitleText from "@GlobalComponents/Texts/TitleText";
 import SpecialText from "@GlobalComponents/Texts/SpecialText";
@@ -13,19 +13,25 @@ import { RightArrowIcon } from "@Icons/Icons";
 
 export const ReviewContext = createContext({
   widthOfListItem: 0,
+  listGap: 0,
   handleSetWidth: () => {},
+  handleSetGap: () => {},
 });
 
 export const ReviewContextProvider = ({ children }) => {
   const [widthOfListItem, setWidthOfListItem] = useState(0);
+  const [listGap, setListGap] = useState(0);
 
   const handleSetWidth = (width) => setWidthOfListItem(width);
+  const handleSetGap = (gap) => setListGap(gap);
 
   return (
     <ReviewContext.Provider
       value={{
         widthOfListItem,
+        listGap,
         handleSetWidth,
+        handleSetGap,
       }}
     >
       {children}
@@ -34,13 +40,11 @@ export const ReviewContextProvider = ({ children }) => {
 };
 
 export default function ReviewSection() {
-  const [scroll, setScroll] = useState(undefined);
+  const [translateX, setTranslateX] = useState(0);
+  const { widthOfListItem, listGap } = useContext(ReviewContext);
 
   const handleScroll = () =>
-    setScroll((prevScroll) => {
-      if (prevScroll === undefined || prevScroll === false) return true;
-      else return false;
-    });
+    setTranslateX((prevTranslateX) => prevTranslateX - widthOfListItem);
 
   return (
     <div className="w-[1280px] py-16 flex flex-col items-end">
@@ -57,16 +61,24 @@ export default function ReviewSection() {
             of our family.
           </ParagraphText>
         </div>
-        <CircleButton
-          onClick={handleScroll}
-          extraClasses="self-end bg-red-400"
-          icon={<RightArrowIcon height="1.3em" width="1.3em" />}
-        />
+        {translateX - (widthOfListItem + parseInt(listGap)) >
+        widthOfListItem * 0.5 -
+          (reviews.length * widthOfListItem + parseInt(listGap)) ? (
+          <CircleButton
+            onClick={handleScroll}
+            extraClasses="self-end bg-red-400"
+            icon={<RightArrowIcon height="1.3em" width="1.3em" />}
+          />
+        ) : (
+          <div></div>
+        )}
       </div>
       <section className="self-start relative">
-        <ReviewContextProvider>
-          <Reviews reviews={reviews} isScrolled={scroll} />
-        </ReviewContextProvider>
+        <Reviews
+          reviews={reviews}
+          translateX={translateX}
+          setTranslateX={setTranslateX}
+        />
       </section>
     </div>
   );

@@ -7,10 +7,20 @@ import UnderlinedButton from "@GlobalComponents/Buttons/UnderlinedButton";
 import { RightArrowIcon } from "@Icons/Icons";
 
 import JumpAndFadeIn from "@Animations/JumpAndFadeIn";
+import Increase from "../../../Animations/Increase";
 
 export default function FavoriteSection() {
   return (
     <div className="w-[1280px] flex py-32 justify-center gap-20 relative">
+      <Increase
+        startingHeight="2rem"
+        endingHeight="40rem"
+        startingWidth="2rem"
+        endingWidth="50rem"
+        className="absolute right-0 bottom-[5rem] shadow-md"
+      >
+        <div className="bg-[#fde7cb] h-full w-full z-0 rounded-md"></div>
+      </Increase>
       <JumpAndFadeIn className="w-1/2 h-[30rem] shadow-xl mr-28">
         <img
           className="w-full h-full object-cover rounded-lg skew-x-1"
@@ -23,7 +33,7 @@ export default function FavoriteSection() {
           src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/pouring-honey-on-pancakes.jpg"
         />
       </JumpAndFadeIn>
-      <div className="flex flex-col gap-2 py-16 w-full">
+      <div className="flex flex-col gap-2 py-16 w-full z-50">
         <TitleText extraClasses="text-[3rem]">
           Captivating Culinary <br /> <SpecialText>Favorites</SpecialText>
         </TitleText>

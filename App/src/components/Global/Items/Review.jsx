@@ -6,9 +6,11 @@ import { ReviewContext } from "@Home/Review/ReviewSection";
 
 import { motion } from "framer-motion";
 
+import { listItemVariant } from "../../../utils/animationVariants";
+
 export default function Review({
   listItemHovered,
-  scrollAmount,
+  translateX,
   index,
   review,
   ...props
@@ -22,26 +24,9 @@ export default function Review({
     handleSetWidth(listItem.current.offsetWidth);
   }, []);
 
-  console.log(widthOfListItem, scrollAmount, listItemHovered);
-
-  if (
-    !listItemHovered &&
-    scrollAmount + widthOfListItem > widthOfListItem * (2 + 1)
-  )
-    console.log(1);
-  else console.log(2);
   return (
     <motion.li
-      variants={{
-        hidden: {
-          opacity: 0,
-          scale: 0.5,
-        },
-        visible: {
-          opacity: 1,
-          scale: 1,
-        },
-      }}
+      variants={listItemVariant}
       transition={{
         type: "spring",
       }}
@@ -52,7 +37,7 @@ export default function Review({
       ref={listItem}
       className={`min-w-72 hover:bg-[#141210] hover:text-white h-auto border-[0.1rem] border-gray-400 rounded-md use-poppins shadow-xl p-4 relative transition-custom ${
         !listItemHovered &&
-        scrollAmount + widthOfListItem * 1.5 > widthOfListItem * (index + 1)
+        translateX - widthOfListItem * 1.5 < -widthOfListItem * (index + 1)
           ? "bg-[#141210] text-white  first:bg-[#141210] first:text-white "
           : " bg-[#fff5e9]"
       }`}

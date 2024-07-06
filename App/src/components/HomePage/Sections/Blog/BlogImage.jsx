@@ -1,31 +1,15 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-
 import PostItem from "@GlobalComponents/Items/PostItem";
 
-export default function BlogImage() {
-  const [isInView, setIsInView] = useState(false);
+import Increase from "@Animations/Increase";
 
+export default function BlogImage() {
   return (
-    <motion.div
-      whileInView={() => setIsInView(true)}
-      onViewportLeave={() => setIsInView(false)}
-      variants={{
-        hidden: {
-          width: "50%",
-          height: "20rem",
-        },
-        visible: {
-          width: "100%",
-          height: "40rem",
-        },
-      }}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      transition={{
-        type: "spring",
-      }}
-      className="z-50 text-white special-bg2 w-full p-16 rounded-xl overflow-hidden relative"
+    <Increase
+      startingHeight="20rem"
+      endingHeight="40rem"
+      startingWidth="50%"
+      endingWidth="100%"
+      className="z-50 text-white special-bg2 w-full p-16 rounded-xl o verflow-hidden relative"
     >
       <div className="absolute left-0 top-0 w-full h-full bg-black black-gradient"></div>
       <div className="z-50 absolute">
@@ -44,6 +28,6 @@ export default function BlogImage() {
           paragraphClasses="text-[1.2rem] w-1/2 self-start"
         />
       </div>
-    </motion.div>
+    </Increase>
   );
 }

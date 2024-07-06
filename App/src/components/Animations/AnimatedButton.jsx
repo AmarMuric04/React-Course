@@ -27,6 +27,7 @@ const AnimatedButton = ({
   buttonClasses,
   textClasses,
   width,
+  ...props
 }) => {
   const [contentVisible, setContentVisible] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -39,6 +40,7 @@ const AnimatedButton = ({
       }}
     >
       <motion.button
+        {...props}
         initial="hidden"
         animate={isInView ? "expand" : "hidden"}
         whileInView={() => setIsInView(true)}

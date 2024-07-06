@@ -1,28 +1,22 @@
-import { useState } from "react";
-
 import Logo from "/Logo.png";
 
 import { RightArrowIcon } from "@Icons/Icons";
 
 import YellowButton from "@GlobalComponents/Buttons/YellowButton";
+import HeaderNavLists from "./HeaderNavList";
 
-import { motion } from "framer-motion";
-
+const navLinks = [
+  "Home",
+  "About Us",
+  "Shop",
+  "Services",
+  "Blog",
+  "Pages",
+  "Contact Us",
+];
 const navLinkCSS = "hover:text-yellow-500 cursor-pointer";
-const navLinkVariant = {
-  hidden: {
-    opacity: 0,
-    scale: 0.8,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-  },
-};
 
 export default function Header() {
-  const [isInView, setIsInView] = useState(false);
-
   return (
     <header className="absolute top-0 left-0 w-full px-20 py-4 z-50 text-white flex justify-between items-center use-poppins">
       <div className="flex gap-8 items-center">
@@ -31,42 +25,7 @@ export default function Header() {
           Dine<span className="text-green-400">Divine</span>
         </p>
       </div>
-      <motion.ul
-        initial="hidden"
-        animate={isInView ? "visible" : ""}
-        whileInView={() => setIsInView(true)}
-        onViewportLeave={() => setIsInView(false)}
-        variants={{
-          visible: {
-            transition: {
-              staggerChildren: 0.05,
-            },
-          },
-        }}
-        className="flex items-center gap-6 text-lg"
-      >
-        <motion.li variants={navLinkVariant} className={navLinkCSS}>
-          Home
-        </motion.li>
-        <motion.li variants={navLinkVariant} className={navLinkCSS}>
-          About Us
-        </motion.li>
-        <motion.li variants={navLinkVariant} className={navLinkCSS}>
-          Shop
-        </motion.li>
-        <motion.li variants={navLinkVariant} className={navLinkCSS}>
-          Services
-        </motion.li>
-        <motion.li variants={navLinkVariant} className={navLinkCSS}>
-          Blog
-        </motion.li>
-        <motion.li variants={navLinkVariant} className={navLinkCSS}>
-          Pages
-        </motion.li>
-        <motion.li variants={navLinkVariant} className={navLinkCSS}>
-          Contact Us
-        </motion.li>
-      </motion.ul>
+      <HeaderNavLists links={navLinks} linksCSS={navLinkCSS} />
       <div className="flex items-center justify-end gap-8 w-1/3">
         <svg
           xmlns="http://www.w3.org/2000/svg"

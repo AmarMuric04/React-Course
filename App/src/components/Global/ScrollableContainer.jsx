@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 import { LeftArrowIcon, RightArrowIcon } from "@Icons/Icons";
 
@@ -14,9 +14,20 @@ export default function ScrollableContainer({
   children,
 }) {
   const containerRef = useRef(null);
-  const [translateX, setTranslateX] = useState(0);
+  const itemRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
+  // const [itemWidth, setItemWidth] = useState(0); <- implement
+
+  const [translateX, setTranslateX] = useState(0);
   const [isInView, setIsInView] = useState(false);
+
+  const reset = useCallback(() => {
+    if (!isInView) setTranslateX(0);
+  }, [isInView]);
+
+  useEffect(() => {
+    reset();
+  }, [reset]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -75,8 +86,8 @@ export default function ScrollableContainer({
         ref={containerRef}
         whileInView={() => setIsInView(true)}
         onViewportLeave={() => setIsInView(false)}
-        style={{ width: `${itemWidth * visible + (visible - 1) * gap}px` }}
-        className="self-center flex overflow-hidden no-scrollbar relative"
+        style={{ width: `${itemWidth * visible + (visible - 1) * gap + 20}px` }}
+        className="self-center px-[10px] z-1 flex overflow-hidden no-scrollbar relative"
       >
         {iterables.length > 0 && (
           <motion.ul

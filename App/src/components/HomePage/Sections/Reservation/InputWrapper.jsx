@@ -3,8 +3,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 import Input from "./Input";
+import TextArea from "./TextArea";
 
-export default function InputWrapper({ errors }) {
+export default function InputWrapper({ errors, isSubmitted }) {
   const [isInView, setIsInView] = useState(false);
 
   return (
@@ -24,6 +25,7 @@ export default function InputWrapper({ errors }) {
       <div className="flex gap-4">
         <Input
           invalid={errors.invalidName}
+          isSubmitted={isSubmitted}
           label="Your Name*"
           id="name"
           type="text"
@@ -32,6 +34,7 @@ export default function InputWrapper({ errors }) {
         />
         <Input
           invalid={errors.invalidEmail}
+          isSubmitted={isSubmitted}
           label="Your Email*"
           id="email"
           type="email"
@@ -42,15 +45,16 @@ export default function InputWrapper({ errors }) {
       <div className="flex gap-4">
         <Input
           invalid={errors.invalidNumber}
+          isSubmitted={isSubmitted}
           label="Your Number*"
           id="number"
           type="tel"
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           placeholder="Your number..."
           extraClasses="w-2/3"
         />
         <Input
           invalid={errors.invalidDate}
+          isSubmitted={isSubmitted}
           label="Reservation Date*"
           id="date"
           type="date"
@@ -60,14 +64,17 @@ export default function InputWrapper({ errors }) {
       <div className="flex gap-4">
         <Input
           invalid={errors.invalidAmount}
+          isSubmitted={isSubmitted}
           label="Amount of People*"
           id="amount"
           type="number"
+          min="0"
           placeholder="2"
           extraClasses="w-1/3"
         />{" "}
         <Input
           invalid={errors.invalidTime}
+          isSubmitted={isSubmitted}
           label="Reservation Time*"
           id="time"
           type="time"
@@ -75,39 +82,11 @@ export default function InputWrapper({ errors }) {
         />
       </div>
       <div>
-        <motion.label
-          variants={{
-            hidden: {
-              opacity: 0,
-            },
-            visible: {
-              opacity: 1,
-            },
-          }}
-          transition={{
-            type: "spring",
-          }}
-        >
-          Notes*
-        </motion.label>
-        <motion.textarea
-          variants={{
-            hidden: {
-              opacity: 0,
-            },
-            visible: {
-              opacity: 1,
-            },
-          }}
-          transition={{
-            type: "spring",
-          }}
-          className="bg-gray-100 px-4 py-3 outline-none focus:bg-gray-200 max-h-48 transition-all text-xs w-full "
-          id="text"
-          name="text"
-          rows="4"
-          cols="50"
-        ></motion.textarea>
+        <TextArea
+          label="Notes*"
+          placeholder="Write something..."
+          isSubmitted={isSubmitted}
+        />
       </div>
     </motion.div>
   );
