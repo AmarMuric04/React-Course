@@ -47,7 +47,7 @@ export default function ReviewSection() {
     setTranslateX((prevTranslateX) => prevTranslateX - widthOfListItem);
 
   return (
-    <div className="w-[1280px] py-16 flex flex-col items-end">
+    <div className="w-full lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] py-16 flex flex-col items-end">
       <div className="flex justify-between z-50">
         <div className="w-1/2">
           <TitleText extraClasses="text-[3rem]">

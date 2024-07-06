@@ -154,13 +154,13 @@ export default function Footer() {
               Opening Hours
             </h1>
             <AnimatedList>
-              <FooterItem extraClasses="use-poppins font-bold mb-2 h-4">
+              <FooterItem extraClasses="use-poppins font-bold mb-4 h-2">
                 Sunday to Friday
               </FooterItem>
               <FooterItem extraClasses="use-poppins">
                 9:30 AM to 12:00PM
               </FooterItem>
-              <FooterItem extraClasses="use-poppins font-bold mb-2 h-4">
+              <FooterItem extraClasses="use-poppins font-bold mb-4 h-2">
                 Saturday
               </FooterItem>
               <FooterItem extraClasses="use-poppins">

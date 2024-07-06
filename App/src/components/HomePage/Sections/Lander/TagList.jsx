@@ -5,6 +5,25 @@ import TagItem from "@GlobalComponents/Items/TagItem";
 
 export default function TagList() {
   const [tags, setTags] = useState([]);
+  const [showedItems, setShowedItems] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1536) setShowedItems(6);
+      else if (window.innerWidth >= 1280) setShowedItems(5);
+      else if (window.innerWidth >= 1024) setShowedItems(4);
+      else if (window.innerWidth >= 768) setShowedItems(3);
+      else if (window.innerWidth >= 640) setShowedItems(2);
+      else setShowedItems(1);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return window.removeEventListener("resize", () => {});
+  }, []);
+
   useEffect(() => {
     const fetchTags = async () => {
       try {
@@ -44,7 +63,7 @@ export default function TagList() {
         iterables={tags}
         itemWidth={140}
         gap={85}
-        visible={6}
+        visible={showedItems}
       >
         {(tag, _, itemWidth) => <TagItem tag={tag} itemWidth={itemWidth} />}
       </ScrollableContainer>

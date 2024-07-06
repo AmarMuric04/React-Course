@@ -8,6 +8,24 @@ import ScrollableContainer from "@GlobalComponents/ScrollableContainer";
 
 export default function OurFavorites() {
   const [recipes, setRecipes] = useState([]);
+  const [showedItems, setShowedItems] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1536) setShowedItems(4);
+      else if (window.innerWidth >= 1280) setShowedItems(4);
+      else if (window.innerWidth >= 1024) setShowedItems(3);
+      else if (window.innerWidth >= 768) setShowedItems(2);
+      else if (window.innerWidth >= 640) setShowedItems(1);
+      else setShowedItems(1);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return window.removeEventListener("resize", () => {});
+  }, []);
 
   useEffect(() => {
     const fetchRecipes = async (limit, skip) => {
@@ -29,15 +47,6 @@ export default function OurFavorites() {
     fetchRecipes(0, 20);
   }, []);
 
-  let recipeAmount;
-
-  if (window.innerWidth >= 1536) recipeAmount = 4;
-  else if (window.innerWidth >= 1280) recipeAmount = 3;
-  else if (window.innerWidth >= 1024) recipeAmount = 3;
-  else if (window.innerWidth >= 768) recipeAmount = 2;
-  else if (window.innerWidth >= 640) recipeAmount = 1;
-  else if (window.innerWidth >= 480) recipeAmount = 1;
-
   return (
     <div className="lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] relative flex flex-col my-16">
       <div className="flex flex-col items-center">
@@ -52,7 +61,7 @@ export default function OurFavorites() {
       </div>
       <ScrollableContainer
         iterables={recipes}
-        visible={recipeAmount}
+        visible={showedItems}
         itemWidth={260.6}
         gap={79.2}
       >

@@ -11,9 +11,13 @@ import SlideAndFadeIn from "@Animations/SlideAndFadeIn";
 export default function InstructionsSection() {
   return (
     <div className="w-full bg-[#fde7cb] py-16 flex justify-center">
-      <div className="w-[1280px] flex justify-between gap-10">
-        <div className="w-[65%] flex-col items-end">
-          <SlideAndFadeIn starting="150" end="-20" className="flex py-4 gap-4">
+      <div className="w-full lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] flex justify-between gap-10 flex-col-reverse 2xl:flex-row ">
+        <div className="w-full 2xl:w-[65%] flex-col items-center 2xl:items-end">
+          <SlideAndFadeIn
+            starting="150"
+            end="-20"
+            className="flex py-4 gap-4 justify-center"
+          >
             <InformationCard
               icon="cooking"
               title="Warm & Enjoy"
@@ -25,7 +29,11 @@ export default function InstructionsSection() {
               text="Experience comforting dishes like hearty soups, savory stews, and decadent desserts, each bite offering a nostalgic embrace of comfort and joy."
             />
           </SlideAndFadeIn>
-          <SlideAndFadeIn starting="-150" end="0" className="flex py-4 gap-4">
+          <SlideAndFadeIn
+            starting="-150"
+            end="0"
+            className="flex py-4 gap-4 justify-center"
+          >
             <InformationCard
               icon="affection"
               title="Delivery Services"
@@ -42,7 +50,7 @@ export default function InstructionsSection() {
             />
           </SlideAndFadeIn>
         </div>
-        <div className="w-[35%]">
+        <div className="w-full 2xl:w-[35%] text-center 2xl:text-start">
           <TitleText extraClasses="text-[3rem]">
             The Choice of <br /> <SpecialText>Customers</SpecialText>
           </TitleText>
