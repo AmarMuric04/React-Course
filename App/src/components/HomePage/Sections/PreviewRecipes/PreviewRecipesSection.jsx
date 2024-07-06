@@ -34,9 +34,9 @@ export default function PreviewRecipesSection() {
   }, []);
 
   return (
-    <div className="w-full lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px]  py-16 flex flex-col">
+    <div className="w-full md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px]  py-16 flex flex-col">
       <section className="w-full xl:h-48 flex justify-between flex-col xl:flex-row">
-        <div className="w-[60%]">
+        <div className="w-full xl:w-[60%] text-center xl:text-start">
           <TitleText extraClasses="text-[3rem]">
             Handpicked Culinary <br /> <SpecialText>Masterpieces</SpecialText>
           </TitleText>
@@ -46,7 +46,7 @@ export default function PreviewRecipesSection() {
             culinary expertise.
           </ParagraphText>
         </div>
-        <div className="w-[40%] flex justify-end items-end">
+        <div className="w-full xl:w-[40%] flex justify-center xl:justify-end items-end">
           <YellowButton
             width="[15rem]"
             text="View More"

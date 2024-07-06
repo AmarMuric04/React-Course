@@ -7,7 +7,7 @@ import BlogImage from "./BlogImage";
 
 export default function BlogSection() {
   return (
-    <div className="w-[1280px] py-16 mb-32 flex flex-col items-center">
+    <div className="w-[98%] xl:w-[1024px] 2xl:w-[1280px] py-16 mb-32 flex flex-col items-center">
       <TitleText extraClasses="text-[3rem]">
         Our <SpecialText>Blog</SpecialText>
       </TitleText>

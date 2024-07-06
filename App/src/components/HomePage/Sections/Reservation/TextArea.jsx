@@ -31,14 +31,7 @@ export default function TextArea({
       </motion.label>
 
       <motion.textarea
-        variants={{
-          hidden: {
-            opacity: 0,
-          },
-          visible: {
-            opacity: 1,
-          },
-        }}
+        variants={listItemVariant}
         transition={{
           type: "spring",
         }}

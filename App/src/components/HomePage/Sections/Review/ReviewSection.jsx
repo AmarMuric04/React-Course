@@ -47,9 +47,9 @@ export default function ReviewSection() {
     setTranslateX((prevTranslateX) => prevTranslateX - widthOfListItem);
 
   return (
-    <div className="w-full lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] py-16 flex flex-col items-end">
-      <div className="flex justify-between z-50">
-        <div className="w-1/2">
+    <div className="w-full md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] py-16 flex flex-col items-end">
+      <div className="flex justify-between z-50 flex-col">
+        <div className="w-full xl:w-1/2 text-center xl:text-start">
           <TitleText extraClasses="text-[3rem]">
             Our Cherished <SpecialText>Patrons</SpecialText>{" "}
           </TitleText>
@@ -70,7 +70,7 @@ export default function ReviewSection() {
             icon={<RightArrowIcon height="1.3em" width="1.3em" />}
           />
         ) : (
-          <div></div>
+          <div className="h-10"></div>
         )}
       </div>
       <section className="self-start relative">

@@ -76,14 +76,14 @@ export default function ReservationSection() {
 
   return (
     <div className="bg-[#141210] w-full py-16 use-poppins flex items-start justify-center gap-20">
-      <div className="w-full lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] flex justify-between flex-col-reverse xl:flex-row gap-20 xl:gap-0 items-center xl:items-start">
+      <div className="w-full md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] flex justify-between flex-col-reverse xl:flex-row gap-20 xl:gap-0 items-center xl:items-start">
         <ReservationForm
           isSubmitted={isSubmitted}
           setIsSubmitted={setIsSubmitted}
           handleSubmit={handleSubmit}
           errors={errors}
         />
-        <div className="w-full xl:w-[40%] text-white mt-16">
+        <div className="w-full xl:w-[40%] text-white mt-16 text-center xl:text-start xl:items-start flex flex-col items-center">
           <TitleText extraClasses="text-[2rem] text">
             Elevate Your Dining <br /> Experience with a Reserved
             <br /> Table at <SpecialText>DineDivine</SpecialText>

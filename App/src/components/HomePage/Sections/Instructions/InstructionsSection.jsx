@@ -11,8 +11,8 @@ import SlideAndFadeIn from "@Animations/SlideAndFadeIn";
 export default function InstructionsSection() {
   return (
     <div className="w-full bg-[#fde7cb] py-16 flex justify-center">
-      <div className="w-full lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] flex justify-between gap-10 flex-col-reverse 2xl:flex-row ">
-        <div className="w-full 2xl:w-[65%] flex-col items-center 2xl:items-end">
+      <div className="w-full md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] flex justify-between gap-10 flex-col-reverse xl:flex-row ">
+        <div className="w-full xl:w-[65%] flex-col items-center 2xl:items-end">
           <SlideAndFadeIn
             starting="150"
             end="-20"
@@ -50,7 +50,7 @@ export default function InstructionsSection() {
             />
           </SlideAndFadeIn>
         </div>
-        <div className="w-full 2xl:w-[35%] text-center 2xl:text-start">
+        <div className="flex  flex-col items-center 2xl:items-start w-full xl:w-[35%] text-center 2xl:text-start">
           <TitleText extraClasses="text-[3rem]">
             The Choice of <br /> <SpecialText>Customers</SpecialText>
           </TitleText>

@@ -13,8 +13,8 @@ export default function OurFavorites() {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1536) setShowedItems(4);
-      else if (window.innerWidth >= 1280) setShowedItems(4);
-      else if (window.innerWidth >= 1024) setShowedItems(3);
+      else if (window.innerWidth >= 1280) setShowedItems(3);
+      else if (window.innerWidth >= 1024) setShowedItems(2);
       else if (window.innerWidth >= 768) setShowedItems(2);
       else if (window.innerWidth >= 640) setShowedItems(1);
       else setShowedItems(1);
@@ -48,7 +48,7 @@ export default function OurFavorites() {
   }, []);
 
   return (
-    <div className="lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] relative flex flex-col my-16">
+    <div className="md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] relative flex flex-col my-16 items-center">
       <div className="flex flex-col items-center">
         <TitleText extraClasses="text-[3rem]">
           Best Selling <SpecialText>Items</SpecialText>
