@@ -21,7 +21,10 @@ export default function HandImage() {
   return (
     <>
       {showImage && (
-        <img src={handImg} className="absolute right-0 bottom-0 w-[70%] z-0" />
+        <img
+          src={handImg}
+          className="absolute right-0 bottom-0 max-w-[70rem] w-[70%] z-0"
+        />
       )}
     </>
   );

@@ -12,7 +12,7 @@ export default function FooterItem({ children, extraClasses }) {
       whileHover={{
         scale: 1.05,
       }}
-      className={`h-full flex gap-2 w-full ${
+      className={`h-full flex gap-2 w-full whitespace-nowrap ${
         extraClasses ? extraClasses : null
       }`}
     >

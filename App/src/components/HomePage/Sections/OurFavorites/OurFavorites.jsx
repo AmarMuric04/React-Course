@@ -48,12 +48,12 @@ export default function OurFavorites() {
   }, []);
 
   return (
-    <div className="md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] relative flex flex-col my-16 items-center">
-      <div className="flex flex-col items-center">
-        <TitleText extraClasses="text-[3rem]">
+    <div className="w-[95%] md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] relative flex flex-col my-16 items-center">
+      <div className="flex flex-col items-center text-center xl:text-start">
+        <TitleText extraClasses="text-[2rem] lg:text-[3rem]">
           Best Selling <SpecialText>Items</SpecialText>
         </TitleText>
-        <ParagraphText extraClasses="text-[1.2rem] text-center">
+        <ParagraphText extraClasses="text-[1rem] lg:text-[1.2rem] text-center">
           Explore our best selling items, beloved by our patrons for their
           exceptional flavors and exquisite presentation. Each dish showcases
           our commitment to quality and culinary innovation.

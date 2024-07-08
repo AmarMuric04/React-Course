@@ -22,7 +22,7 @@ export default function InputWrapper({ errors, isSubmitted }) {
         },
       }}
     >
-      <div className="flex gap-4">
+      <div className="flex gap-4 ">
         <Input
           invalid={errors.invalidName}
           isSubmitted={isSubmitted}
@@ -42,7 +42,7 @@ export default function InputWrapper({ errors, isSubmitted }) {
           extraClasses="w-1/2"
         />
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 ">
         <Input
           invalid={errors.invalidNumber}
           isSubmitted={isSubmitted}
@@ -50,7 +50,7 @@ export default function InputWrapper({ errors, isSubmitted }) {
           id="number"
           type="tel"
           placeholder="Your number..."
-          extraClasses="w-2/3"
+          extraClasses="w-1/2 sm:w-2/3"
         />
         <Input
           invalid={errors.invalidDate}
@@ -58,10 +58,10 @@ export default function InputWrapper({ errors, isSubmitted }) {
           label="Reservation Date*"
           id="date"
           type="date"
-          extraClasses="w-1/3"
+          extraClasses="w-1/2 sm:w-1/3"
         />
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 ">
         <Input
           invalid={errors.invalidAmount}
           isSubmitted={isSubmitted}
@@ -70,7 +70,7 @@ export default function InputWrapper({ errors, isSubmitted }) {
           type="number"
           min="0"
           placeholder="2"
-          extraClasses="w-1/3"
+          extraClasses="w-1/2 sm:w-1/3"
         />{" "}
         <Input
           invalid={errors.invalidTime}
@@ -78,7 +78,7 @@ export default function InputWrapper({ errors, isSubmitted }) {
           label="Reservation Time*"
           id="time"
           type="time"
-          extraClasses="w-2/3"
+          extraClasses="w-1/2 sm:w-2/3"
         />
       </div>
       <div>

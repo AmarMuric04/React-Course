@@ -29,6 +29,7 @@ export default function Input({
         transition={{
           type: "spring",
         }}
+        className="text-xs lg:text-md"
       >
         {label}
       </motion.label>
@@ -42,7 +43,7 @@ export default function Input({
           scale: 1.05,
         }}
         className={`bg-gray-100 px-4 py-3 outline-none focus:bg-gray-200
-         text-xs w-full border-[0.1rem] border-transparen ${
+         text-xs w-full border-[0.1rem] border-transparet ${
            invalid && "border-red-400"
          }`}
         id={id}

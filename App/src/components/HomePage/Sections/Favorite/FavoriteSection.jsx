@@ -21,14 +21,14 @@ export default function FavoriteSection() {
       >
         <div className="bg-[#fde7cb] h-full w-full z-0 rounded-md"></div>
       </Increase>
-      <div className="relative">
-        <JumpAndFadeIn className="h-[30rem] xl:max-w-[100rem] max-w-[24rem] shadow-xl mr-28">
+      <div className="relative flex justify-center w-full">
+        <JumpAndFadeIn className="h-[30rem] xl:max-w-[100rem] max-w-[24rem] shadow-xl mr-28 relative left-8 bottom-12 md:left-0">
           <img
             className="w-full h-full object-cover rounded-lg skew-x-1"
             src="https://img.freepik.com/premium-photo/burger-with-flying-ingredients-black-background-fast-food-concept_843762-1629.jpg?w=826"
           />
         </JumpAndFadeIn>
-        <JumpAndFadeIn className="absolute w-64 h-64 rounded-xl -skew-x-2 -bottom-8 left-40 2xl:left-64 border-[0.4rem] border-[#fff5e9] shadow-xl">
+        <JumpAndFadeIn className="absolute w-64 h-64 rounded-xl -skew-x-2 -bottom-8 left-28 lg:left-40 2xl:left-64 border-[0.4rem] border-[#fff5e9] shadow-xl">
           <img
             className="rounded-xl"
             src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/pouring-honey-on-pancakes.jpg"
@@ -36,10 +36,10 @@ export default function FavoriteSection() {
         </JumpAndFadeIn>
       </div>
       <div className="flex flex-col gap-2 py-16 w-full z-50 text-center xl:text-start px-12 xl:px-0">
-        <TitleText extraClasses="text-[3rem]">
+        <TitleText extraClasses="text-[2rem] lg:text-[2rem]">
           Captivating Culinary <br /> <SpecialText>Favorites</SpecialText>
         </TitleText>
-        <ParagraphText extraClasses="text-[1.2rem]">
+        <ParagraphText extraClasses="text-[1rem] lg:text-[1.2rem]">
           Welcome to a culinary paradise, where every bite is an unforgettable
           journey. Discover captivating favorites, crafted with fresh
           ingredients and innovative flavors. Each dish is a feast for the eyes

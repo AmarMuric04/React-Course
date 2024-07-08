@@ -75,8 +75,8 @@ export default function ReservationSection() {
   };
 
   return (
-    <div className="bg-[#141210] w-full py-16 use-poppins flex items-start justify-center gap-20">
-      <div className="w-full md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] flex justify-between flex-col-reverse xl:flex-row gap-20 xl:gap-0 items-center xl:items-start">
+    <div className="bg-[#141210] h-[95rem] sm:h-auto w-full py-16 use-poppins flex items-start justify-center gap-20">
+      <div className="w-[95%] md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] flex justify-between flex-col-reverse xl:flex-row gap-20 xl:gap-0 items-center xl:items-start">
         <ReservationForm
           isSubmitted={isSubmitted}
           setIsSubmitted={setIsSubmitted}

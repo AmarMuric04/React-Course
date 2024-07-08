@@ -9,7 +9,7 @@ export default function BlogImage() {
       endingHeight="40rem"
       startingWidth="50%"
       endingWidth="100%"
-      className="z-50 text-white special-bg2 w-full p-16 rounded-xl o verflow-hidden relative"
+      className="z-50 text-white special-bg2 w-full py-8 md:p-16 rounded-xl o verflow-hidden relative overflow-hidden"
     >
       <div className="absolute left-0 top-0 w-full h-full bg-black black-gradient"></div>
       <div className="z-50 absolute">
@@ -25,7 +25,8 @@ export default function BlogImage() {
               culinary treasures from around the globe. Join us as we navigate
               diverse tastes, bringing bold and exciting flavors to your table."
           titleClasses="text-[3rem]"
-          paragraphClasses="text-[1.2rem] w-1/2 self-start"
+          paragraphClasses="text-[1.2rem] w-[80%] xl:w-1/2"
+          wrapperClasses="justify-center"
         />
       </div>
     </Increase>

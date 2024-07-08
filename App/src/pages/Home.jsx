@@ -14,7 +14,7 @@ import { ReviewContextProvider } from "@Home/Review/ReviewSection";
 
 export default function Home() {
   return (
-    <main className="w-full h-auto flex flex-col items-center overflow-x-hidden">
+    <main className="w-full h-auto flex flex-col items-center overflow-hidden">
       <Header />
       <LanderSection />
       <FavoriteSection />

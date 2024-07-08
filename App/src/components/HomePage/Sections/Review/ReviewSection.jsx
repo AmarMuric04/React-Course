@@ -47,13 +47,13 @@ export default function ReviewSection() {
     setTranslateX((prevTranslateX) => prevTranslateX - widthOfListItem);
 
   return (
-    <div className="w-full md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] py-16 flex flex-col items-end">
+    <div className="w-[95%] md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px] py-16 flex flex-col items-end">
       <div className="flex justify-between z-50 flex-col">
         <div className="w-full xl:w-1/2 text-center xl:text-start">
-          <TitleText extraClasses="text-[3rem]">
+          <TitleText extraClasses="text-[2rem] lg:text-[3rem]">
             Our Cherished <SpecialText>Patrons</SpecialText>{" "}
           </TitleText>
-          <ParagraphText extraClasses="text-[1.2rem]">
+          <ParagraphText extraClasses="text-[1rem] lg:text-[1.2rem]">
             For our cherished patrons, we extend heartfelt gratitude for your
             unwavering support and loyalty. Your satisfaction and enjoyment are
             at the heart of everything we do, inspiring us to continuously

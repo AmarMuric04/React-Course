@@ -15,16 +15,20 @@ export default function ReservationForm({
   setIsSubmitted,
 }) {
   return (
-    <SlideAndFadeIn starting="-150" end="0">
-      <div className="scene">
+    <SlideAndFadeIn
+      starting="-150"
+      end="0"
+      className="w-full flex justify-center xl:justify-start h-full"
+    >
+      <div className="scene w-full max-w-[35rem] h-full">
         <div
-          className={`min-h-[40rem] rounded-md min-w-[35rem] w-[35rem] bg-white card ${
+          className={`min-h-[40rem] rounded-md w-full bg-white card ${
             isSubmitted && "flipped"
           }`}
         >
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col p-8 rounded-md gap-2 front face"
+            className="flex flex-col w-full bg-white p-8 rounded-md gap-2 front face"
           >
             <h1 className="use-playfair text-[1.6rem] leading-tight font-bold pb-8">
               Smooth Reservations for <br /> Memorable Dining Experiences
